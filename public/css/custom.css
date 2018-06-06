@@ -147,6 +147,7 @@ textarea {
     background-image: url('/img/logincover.png');
     background-position: center;
     background-size: cover;
+    position: relative;
 }
 
 .login-title {
@@ -199,7 +200,7 @@ textarea {
     border: 1px solid rgba(255, 255, 255, .1);
     background-color: #23a9e1;
     color: #fff;
-    padding: 4px 15px;
+    padding: 5px 15px;
     font-family: oswald-reg;
     font-size: 13px;
     text-transform: uppercase;
@@ -224,4 +225,53 @@ textarea {
 
 .link-pts {
     color: #0783bd;
+}
+
+/*login about*/
+.log-about-icon {
+    position: absolute;
+    width: 21px;
+    bottom: 0px;
+    right: 0px;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    box-shadow: 0px 0px 9.5px 6px rgba(0, 0, 0, .3);
+    border-radius: 10px;
+}
+
+.pop-about {
+    display: none;
+}
+
+.pop-text-cont {
+    background-color: #fff;
+    position: absolute;
+    padding: 7px 10px;
+    bottom: 0px;
+    right: 0px;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, .4);
+    margin-bottom: 53px;
+    margin-right: 10px;
+    border-radius: 2px;
+}
+
+.popup-text {
+    font-family: roboto-reg;
+    font-size: 10px;
+    line-height: 15px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+#pop-name {
+    color: #0783bd;
+}
+
+#hover-arrow {
+    position: absolute;
+    width: 12px;
+    bottom: 0px;
+    right: 0px;
+    margin-bottom: 42px;
+    margin-right: 20px;
 }

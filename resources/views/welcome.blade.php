@@ -46,7 +46,15 @@
 
         <!-- Right Side Login -->
         <div class="rightlog-side fl">
-            
+            <div class="pop-about">
+                <div class="pop-text-cont">
+                    <p class="popup-text">Design and develop by <br> <span id="pop-name">Luzel, Melissa </span>and <span id="pop-name">James</span></p>
+                </div>
+                <img src="img/hoverarrow.png" id="hover-arrow">
+            </div>
+            <a href="#">
+                <img src="img/abouticon.png" class="log-about-icon">
+            </a>
         </div>
     </div>
 </div>
