@@ -1,0 +1,227 @@
+
+/* -----Custom css----- */
+
+/* Reset defaults */
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+html, body, div, article, section, main,
+footer, header, form, fieldset, legend, pre,
+code, a, h1, h2, h3, h4, h5, h6, p, ul,
+ol, li, dl, dt, dd, textarea, table, td,
+th, tr, input[type="email"],
+input[type="number"], input[type="password"],
+input[type="tel"], input[type="text"] {
+   box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+.parent-cont {
+    overflow: auto;
+}
+
+/* Global */
+body {
+    background-color: #fff;
+}
+
+.row {
+    width: 1100px;
+    margin: 0 auto;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.clr {
+    clear: both;
+}
+
+.spacer {
+    width: 100%;
+    height: 5px;
+}
+
+input[type = text] {
+    width: 100%;
+	padding: 6px 10px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	margin-bottom: 10px;
+	border-radius: 3px;
+}
+
+input[type = email] {
+    width: 100%;
+	padding: 6px 10px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	margin-bottom: 10px;
+	border-radius: 3px;
+}
+
+input[type = password] {
+    width: 100%;
+	padding: 6px 10px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	margin-bottom: 10px;
+	border-radius: 3px;
+}
+
+input[type = file] {
+    background-color: #00ff4e1f;
+	padding: 6px 10px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	margin-bottom: 10px;
+	border-radius: 3px;
+    font-family: lora-reg;
+    font-size: 13px;
+}
+
+textarea {
+    width: 100%;
+	padding: 6px 10px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	margin-bottom: 10px;
+	border-radius: 3px;
+}
+
+::-webkit-input-placeholder {
+	color: rgba(0, 0, 0, .4);
+	letter-spacing: 1px;
+	font-family: roboto-reg;
+    font-size: 11px;
+}
+
+@font-face {
+    font-family: oswald-reg;
+    src: url('/fonts/Oswaldregular.ttf');
+}
+
+@font-face {
+    font-family: roboto-reg;
+    src: url('/fonts/Robotoregular.ttf');
+}
+
+/*Homepage*/
+
+.landing-bg {
+    height: 100vh;
+    background-image: url('/img/homepagebg.png');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.landing-login-cont {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: 550px;
+    width: 900px;
+    margin-top: -275px;
+    margin-left: -450px;
+    background-color: #fff;
+    box-shadow: 3px 3px 40px -10px rgba(0, 0, 0, 0.29);
+    /*border: 1px solid #f4f5ff;*/
+}
+
+.leftlog-side {
+    width: 40%;
+    height: 100%;
+    padding: 30px 30px;
+    position: relative;
+}
+
+.rightlog-side {
+    width: 60%;
+    height: 100%;
+    background-image: url('/img/logincover.png');
+    background-position: center;
+    background-size: cover;
+}
+
+.login-title {
+}
+
+.login-logo {
+}
+
+.login-logo img {
+    width: 50px;
+}
+
+.login-text {
+    line-height: 20px;
+}
+
+.login-comp-nm {
+    font-family: oswald-reg;
+    font-size: 19px;
+    text-transform: uppercase;
+    color: #23a9e1;
+    letter-spacing: 1px;
+    margin-left: 5px;
+    margin-top: 10px;
+}
+
+.system-about {
+    font-size: 11px;
+    color: #c1c1c1;
+    font-family: roboto-reg;
+    margin-left: 5px;
+    text-transform: uppercase;
+}
+
+/*Login Form*/
+.login-form {
+    margin-top: 100px;
+}
+
+.lbl-login {
+    color: #23a9e1;
+    font-family: roboto-reg;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding-bottom: 5px;
+    display: block;
+}
+
+.login-submit {
+    border: 1px solid rgba(255, 255, 255, .1);
+    background-color: #23a9e1;
+    color: #fff;
+    padding: 4px 15px;
+    font-family: oswald-reg;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-submit:hover {
+    background-color: #0783bd;
+}
+
+.lbl-btm {
+    position: absolute;
+    bottom: 0px;
+    margin-bottom: 30px;
+    font-family: roboto-reg;
+    font-size: 11px;
+    color: #939393;
+    line-height: 17px;
+}
+
+.link-pts {
+    color: #0783bd;
+}

@@ -1,95 +1,52 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@include('templates.header')
 
-        <title>Laravel</title>
+<div class="landing-bg parent-cont"> 
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    <!-- login Container -->
+    <div class="landing-login-cont">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+        <!-- Left Side Login -->
+        <div class="leftlog-side fl">
 
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
+            <!-- Logo and Company name -->
+            <div class="login-title">
+                <div class="login-logo fl">
+                    <img src="img/companylogo.png" title="Project T Solutions">
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class="login-text fl">
+                    <p class="login-comp-nm">Project T Solutions</p>
+                    <p class="system-about">Asset Mgmt. and Procurement System</p>
                 </div>
+                <div class="clr"></div>
+            </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+            <!-- Form -->
+            <div class="login-form">
+                <form method="" action="">
+                    
+                    <label class="lbl-login">Email address</label>
+                    <input type="email" name="email" placeholder="your.email@sample.com" autocomplete="off" autofocus required>
+
+                    <div class="spacer"></div>
+
+                    <label class="lbl-login">Password</label>
+                    <input type="password" name="password" placeholder="password" required>
+
+                    <div class="spacer"></div>
+
+                    <div>
+                        <button type="submit" class="login-submit">Login</button>
+                    </div>
+
+                    <label class="lbl-btm">Asset Management and Procurement System
+                        <br>Copyright &copy; <a href="https://www.projecttsolutions.com/" target="newtab" class="link-pts">Project T Solutions</a> </label>
+                </form>
             </div>
         </div>
-    </body>
-</html>
+
+        <!-- Right Side Login -->
+        <div class="rightlog-side fl">
+            
+        </div>
+    </div>
+</div>
