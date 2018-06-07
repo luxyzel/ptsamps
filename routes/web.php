@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// user auth route
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+
+// admin auth route
+Route::get('/dashboard', 'Admin\AdminController@index')->name('dashboard');

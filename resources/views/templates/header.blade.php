@@ -10,5 +10,4 @@
         <link rel="shortcut icon" href="{{{ asset('favicon.png') }}}">
         <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <script src="{{ asset('js/app.js') }}" defer></script> -->
-        <title>Project T Solutions | Asset Management and Procurement System</title>
-    </head>
+        
