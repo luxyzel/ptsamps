@@ -295,36 +295,119 @@ textarea {
 
 
 /* Dashboard */
-.dboard-strip {
-    height: 40px;
-    width: 100%;
+.dboard-container {
+    background-color: #f6f8ff;
+}
+
+.dboard-left-panel {
+    width: 17%;
+    height: 100vh;
     position: fixed;
-    background: linear-gradient(to right, #f64f59, #4688f6, #12c2e9);
-    box-shadow: 1px 2px 30px -2px rgba(35, 169, 225, 0.8);
-    z-index: 900;
-    top: 0px;
-    padding: 5px 15px;
+    /*background-color: #212546;*/
+    background: linear-gradient(to bottom, #d9e4f1, #88d6fc, #b7d7fe,  #65c7f7);
+    z-index: 999;
+    box-shadow: 0px 1px 40px -10px rgba(70, 136, 246, .9);
 }
 
-.dboard-ls {
-    width: 50%;
+.dboard-right-panel {
+    width: 83%;
+    height: 1500px;
+    padding: 20px 30px;
+}
+
+.dboard-prof {
+    width: 100%;
+    height: 150px;/*
+    border: 1px solid red;*/
+    padding: 20px 30px;
+}
+
+.dboard-prof img {
+    display: block;
+    margin: auto;
+    width: 60px;
+}
+
+.dboard-admin {
+    height: 40px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.admin-avatar {
+    width: 20%;
     height: 100%;
+    background-image: url('/img/gravatar.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 20px;
+    border: 1px solid #c1c1c1;
+    box-shadow: 1px 1px 8px 2px rgba(0, 0, 0, 0.1);
 }
 
-.dboard-rs {
-    width: 50%;/*
-    border: 1px solid blue;*/
-    height: 100%;
-}
-
-.dboard-logo img {
-    width: 28px;
-}
-
-.dboard-title p {
+.admin-profile-name {
     font-family: oswald-reg;
-    color: #fff;
+    color: #4f5863;
+    font-size: 14px;
     text-transform: uppercase;
+    padding-left: 13px;
     letter-spacing: 1px;
-    padding: 7px 0 0 5px;
+    padding-top: 4px;
+}
+
+.admin-subtxt {
+    font-family: roboto-reg;
+    font-size: 12px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    margin-top: 5px;
+}
+
+.dboard-left-but {
+    font-family: oswald-reg;
+    padding: 10px 0px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #5d7593;
+    letter-spacing: 1px;
+    text-align: center;
+    border-radius: 2px;
+    margin-bottom: 15px;
+    transition: background-color 0.2s;
+    /*box-shadow: 1px 1px 8px 2px rgba(0, 0, 0, 0.1);*/
+}
+
+.dboard-left-but:hover {
+    background-color: #6BAAFB;
+    color: #fff;
+}
+
+/*Dashboard Right Side*/
+.dboard-menustrip {
+    height: 40px;
+}
+
+.dboard-menu-left-cont {
+    width: 60%;
+    height: 100%;
+}
+
+.dboard-menu-right-cont {
+    width: 40%;
+    height: 100%;
+    background-color: red;
+}
+
+.dboard-left-menu {
+    background-color: #fff;
+    width: 70px;
+    height: 100%;
+    box-shadow: 5px 5px 21px -3px rgba(70, 136, 246, 0.1);
+    border-radius: 2px;
+    margin-left: 10px;
+}
+
+.dboard-left-menu a {
+    width: 100%;
 }

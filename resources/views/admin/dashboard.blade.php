@@ -5,42 +5,104 @@
 </head>
 
 <body>
+
 	<!-- Start of Dashboard -->
+	<div class="dboard-container">
 
-	<!-- Header -->
-	<div class="dboard-strip">
+		<!-- Left Side (Panel) -->
+		<div class="dboard-left-panel fl">
+			
+			<!-- Company profile -->
+			<div class="dboard-prof">
+				<img src="img/companylogo.png" title="Project T Solutions">
 
-		<!-- Left Side Header Content -->
-		<div class="dboard-ls fl">
-			<div class="dboard-logo fl">
+				<!-- Admin -->
+				<div class="dboard-admin">
+					<div class="admin-avatar fl"></div>
+					<div class="admin-profile-name fl">
+						<p>ANNE SHARMAINE</p>
+						<p class="admin-subtxt">Administrator</p>
+					</div>
+					<div class="clr"></div>
+				</div>
+
+			</div>
+
+			<!-- Buttons -->
+			<div class="dboard-prof">
 				<a href="#">
-					<img src="img/companylogo.png" title="Project Solutions">
+					<div class="dboard-left-but">Deployed Units</div>
+				</a>
+				<a href="#">
+					<div class="dboard-left-but">Stock Assets</div>
+				</a>
+				<a href="#">
+					<div class="dboard-left-but">Procurement</div>
+				</a>
+				<a href="#">
+					<div class="dboard-left-but">Vendors</div>
+				</a>
+				<a href="#">
+					<div class="dboard-left-but">Calendar</div>
 				</a>
 			</div>
-			<div class="dboard-title fl">
-				<p>Project T Solutions - Admin Dashboard</p>	
-			</div>
-			<div class="clr"></div>
+			
+
 		</div>
 
-		<!-- Right Side Header Content -->
-		<div class="dboard-rs fl">
-			<div class="dboard-prof-btn fr">
-				Profile
+		<!-- Right Side -->
+		<div class="dboard-right-panel fr">
+			
+			<!-- Menu Srip -->
+			<div class="dboard-menustrip">
+				<div class="dboard-menu-left-cont fl">
+					
+					<!-- Dashboard Upper Menus Left -->
+					<div class="dboard-left-menu fl">
+						<a href="">
+							<div>
+								a
+							</div>
+						</a>
+					</div>
+					<div class="dboard-left-menu fl">
+						<a href="">
+							<div>
+								
+							</div>
+						</a>
+					</div>
+					<div class="dboard-left-menu fl">
+						<a href="">
+							<div>
+								
+							</div>
+						</a>
+					</div>
+					<div class="dboard-left-menu fl">
+						<a href="">
+							<div>
+								
+							</div>
+						</a>
+					</div>
+					<div class="dboard-left-menu fl">
+						<a href="">
+							<div>
+								
+							</div>
+						</a>
+					</div>
+
+				</div>
+				<div class="dboard-menu-right-cont fl">
+					
+				</div>
+				<div class="clr"></div>
 			</div>
-			<div class="dboard-procurement-btn fr">
-				Procurement
-			</div>
-			<div class="dboard-prof-btn fr">
-				Approve
-			</div>
+
 		</div>
 		<div class="clr"></div>
-	</div>
-
-	<!-- Dashboard Contents -->
-	<div style="margin-top: 50px">
-		
-	</div>
+	</div>	
 
 @include('templates.footer')
