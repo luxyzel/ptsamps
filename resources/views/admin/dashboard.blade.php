@@ -59,42 +59,75 @@
 					
 					<!-- Dashboard Upper Menus Left -->
 					<div class="dboard-left-menu fl">
-						<a href="">
-							<div>
-								a
+						<a href="#">
+							<div class="dboard-menu1-box">
+								<img src="img/icon1.png">
 							</div>
 						</a>
+
+						<!-- popup menu name -->
+						<div id="dboard-menu-pop1">
+							<img src="img/hoverarrow1.png">
+							<p>Dashboard</p>
+						</div>
 					</div>
 					<div class="dboard-left-menu fl">
 						<a href="">
-							<div>
-								
+							<div class="dboard-menu2-box">
+								<img src="img/icon2.png" >
 							</div>
 						</a>
+
+						<!-- popup menu name -->
+						<div id="dboard-menu-pop2">
+							<img src="img/hoverarrow1.png">
+							<p>Asset Tracking</p>
+						</div>
 					</div>
 					<div class="dboard-left-menu fl">
 						<a href="">
-							<div>
-								
+							<div class="dboard-menu3-box">
+								<img src="img/icon3.png">
 							</div>
 						</a>
+
+						<!-- popup menu name -->
+						<div id="dboard-menu-pop3">
+							<img src="img/hoverarrow1.png">
+							<p>Asset Management</p>
+						</div>
 					</div>
 					<div class="dboard-left-menu fl">
 						<a href="">
-							<div>
-								
+							<div class="dboard-menu4-box">
+								<img src="img/icon4.png">
 							</div>
 						</a>
+
+						<!-- popup menu name -->
+						<div id="dboard-menu-pop4">
+							<img src="img/hoverarrow1.png">
+							<p>P.O. Tracking</p>
+						</div>
 					</div>
 					<div class="dboard-left-menu fl">
 						<a href="">
-							<div>
-								
+							<div class="dboard-menu5-box">
+								<img src="img/icon5.png">
 							</div>
 						</a>
+
+						<!-- popup menu name -->
+						<div id="dboard-menu-pop5">
+							<img src="img/hoverarrow1.png">
+							<p>Peripherals</p>
+						</div>
 					</div>
+					<div class="clr"></div>
 
 				</div>
+
+				<!-- Dashboard Upper Righ menus -->
 				<div class="dboard-menu-right-cont fl">
 					
 				</div>
