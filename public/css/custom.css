@@ -339,7 +339,7 @@ textarea {
     background-image: url('/img/gravatar.jpg');
     background-position: center;
     background-size: cover;
-    border-radius: 20px;
+    border-radius: 3px;
     border: 1px solid #c1c1c1;
     box-shadow: 1px 1px 8px 2px rgba(0, 0, 0, 0.1);
 }
@@ -389,11 +389,6 @@ textarea {
 
 .dboard-menu-left-cont {
     width: 60%;
-    height: 100%;
-}
-
-.dboard-menu-right-cont {
-    width: 40%;
     height: 100%;
 }
 
@@ -583,4 +578,67 @@ textarea {
     color: #fff;
     font-family: roboto-reg;
     font-size: 12px;
+}
+
+/*Dashboard Right Menus*/
+
+.dboard-menu-right-cont {
+    width: 40%;
+    height: 100%;/*
+    border: 1px solid red;*/
+}
+
+.dboard-right-menu {
+    height: 40px;   /*
+    border: 1px solid red;*/
+}
+
+.dboard-rmenu1-box {
+    height: 100%;
+    width: 20px;
+}
+
+.dboard-rmenu1-box img {
+    display: block;
+    margin: auto;
+    width: 5px;
+    padding-top: 11px;
+}
+
+.dboard-rmenu2-box {
+    height: 100%;
+    background-image: url('/img/gravatar.jpg');
+    background-position: center;
+    background-size: cover;
+    width: 40px;
+    margin-right: 3px;
+    border: 1px solid #c1c1c1;
+    border-radius: 50px;
+    box-shadow: 5px 5px 21px -3px rgba(70, 136, 246, 0.3);
+}
+
+
+/*Dashboard right menu*/
+.dboard-rmenu3-box {
+    height: 100%;
+    width: 30px;
+}
+
+.dboard-rmenu3-box img {
+    display: block;
+    margin: auto;
+    width: 18px;
+    padding-top: 11px;
+}
+
+.dboard-rmenu4-box {
+    height: 100%;
+    width: 30px;
+}
+
+.dboard-rmenu4-box img {
+    display: block;
+    margin: auto;
+    width: 18px;
+    padding-top: 11px;
 }

@@ -127,9 +127,40 @@
 
 				</div>
 
-				<!-- Dashboard Upper Righ menus -->
+				<!-- Dashboard Upper Right menus -->
 				<div class="dboard-menu-right-cont fl">
-					
+
+					<!-- Right menus -->
+					<div class="dboard-right-menu fr">
+						<a href="#" id="acc-but">
+							<div class="dboard-rmenu1-box">
+								<img src="img/menuicon.png">
+							</div>
+						</a>
+					</div>
+
+					<div class="dboard-right-menu fr">
+						<a href="#" id="acc-but">
+							<div class="dboard-rmenu2-box"></div>
+						</a>
+					</div>
+
+					<div class="dboard-right-menu fr" style="margin-right: 15px">
+						<a href="#" id="acc-but">
+							<div class="dboard-rmenu3-box">
+								<img src="img/purchaseorder.png">
+							</div>
+						</a>
+					</div>
+
+					<div class="dboard-right-menu fr" style="margin-right: 5px">
+						<a href="#" id="acc-but">
+							<div class="dboard-rmenu4-box">
+								<img src="img/adduser.png">
+							</div>
+						</a>
+					</div>
+					<div class="clr"></div>
 				</div>
 				<div class="clr"></div>
 			</div>
