@@ -649,6 +649,7 @@ textarea {
     right: 0px;
     top: 0px;
     margin-top: 60px;
+    display: none;
 }
 
 #acc-but-popup img {
