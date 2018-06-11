@@ -28,4 +28,12 @@ $( document ).ready(function() {
 		$('#dboard-menu-pop5').toggle(200);
 	});
 
+	$('.dboard-rmenu1-box').click(function(){
+		$('#acc-but-popup').toggle(500);
+	});
+
+	$('.dboard-rmenu2-box').click(function(){
+		$('#acc-but-popup').toggle(500);
+	});
+
 });
