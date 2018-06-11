@@ -161,8 +161,19 @@
 						</a>
 					</div>
 					<div class="clr"></div>
+
+					<!--Account popup -->
+					<div id="acc-but-popup">
+						<img src="img/hoverarrow2.png">
+						<div id="acc-but-popup-cont">
+							<a href="acc">Account Settings</a><br>
+							<a href="logout">Logout</a>
+						</div>
+					</div>
 				</div>
 				<div class="clr"></div>
+
+				
 			</div>
 
 		</div>

@@ -642,3 +642,40 @@ textarea {
     width: 18px;
     padding-top: 11px;
 }
+
+/*Logout pop up*/
+#acc-but-popup {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    margin-top: 60px;
+}
+
+#acc-but-popup img {
+    margin-left: 90px;
+    right: 0px;
+    width: 12px;
+}
+
+#acc-but-popup-cont {
+    background-color: #fff;
+    box-shadow: 5px 5px 21px -3px rgba(70, 136, 246, 0.2);
+    margin-top: -5px;
+    margin-right: 30px;
+    padding: 7px 12px;
+    font-family: roboto-reg;
+    font-size: 12px;
+    line-height: 20px;
+    border-radius: 2px;
+    border: 1px solid #bbdbff;
+}
+
+#acc-but-popup-cont a {
+    text-decoration: none;
+    color: #98ADC5;
+    transition: color 0.3s;
+}
+
+#acc-but-popup-cont a:hover {
+    color: #212546;
+}
