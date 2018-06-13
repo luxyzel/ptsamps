@@ -1,0 +1,36 @@
+
+/*Begin content design creation*/
+
+.sample-content {
+	background-color: #fff;
+	width: 100%;
+	height: 500px;
+	margin-top: 5px;
+	border-radius: 2px;
+	box-shadow: 5px 5px 21px -3px rgba(70, 136, 246, 0.1);
+}
+
+.dboard-content-menu {
+	margin-top: 30px;
+	width: 100%;
+	height: 40px;
+	line-height: 25px;
+	/*border: 1px solid red;*/
+}
+
+.dboard-add-acc {
+	background-color: #57efb0;
+	color: #fff;
+	padding: 5px 10px;
+	font-family: roboto-reg;
+	font-size: 12px;
+	letter-spacing: 1px;
+	border-radius: 2px;
+	margin-top: 2px;
+	box-shadow: 5px 5px 21px -3px rgba(87, 239, 176, 0.3);
+	transition: background-color 0.3s;
+}
+
+.dboard-add-acc:hover {
+	background-color: #4edda2;
+}

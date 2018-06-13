@@ -1,5 +1,5 @@
 
-$( document ).ready(function() {
+$(document).ready(function() {
     
     // login popup icon
 	$('#pop-abt').hover(function(){
@@ -28,12 +28,25 @@ $( document ).ready(function() {
 		$('#dboard-menu-pop5').toggle(200);
 	});
 
-	$('.dboard-rmenu1-box').click(function(){
-		$('#acc-but-popup').toggle(400);
-	});
 
-	$('.dboard-rmenu2-box').click(function(){
-		$('#acc-but-popup').toggle(400);
-	});
+	// Account Settings/Logout popup
+	$('.dboard-rmenu1-box').click(function(event){
+        event.stopPropagation();
+         $("#acc-but-popup").slideToggle(300);
+    });
 
+    $('.dboard-rmenu2-box').click(function(event){
+        event.stopPropagation();
+         $("#acc-but-popup").slideToggle(300);
+    });
+
+    $("#acc-but-popup").on("click", function (event) {
+        event.stopPropagation();
+    });
+
+});
+
+// fixed account popup
+$(document).on("click", function () {
+    $("#acc-but-popup").hide();
 });

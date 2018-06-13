@@ -170,10 +170,16 @@
 					</div>
 				</div>
 				<div class="clr"></div>
-
-				
 			</div>
 
+			<div class="dboard-content-menu">
+				<a href="#" class="dboard-add-acc fl">Add Account +</a>
+				<div class="clr"></div>
+			</div>
+
+			<div class="sample-content">
+				
+			</div>
 		</div>
 		<div class="clr"></div>
 	</div>	
