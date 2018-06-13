@@ -46,8 +46,6 @@
 					<div class="dboard-left-but">Calendar</div>
 				</a>
 			</div>
-			
-
 		</div>
 
 		<!-- Right Side -->

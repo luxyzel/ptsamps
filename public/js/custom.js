@@ -29,11 +29,11 @@ $( document ).ready(function() {
 	});
 
 	$('.dboard-rmenu1-box').click(function(){
-		$('#acc-but-popup').toggle(500);
+		$('#acc-but-popup').toggle(400);
 	});
 
 	$('.dboard-rmenu2-box').click(function(){
-		$('#acc-but-popup').toggle(500);
+		$('#acc-but-popup').toggle(400);
 	});
 
 });
