@@ -164,7 +164,7 @@
 					<div id="acc-but-popup">
 						<img src="img/hoverarrow2.png">
 						<div id="acc-but-popup-cont">
-							<a href="acc">Account Settings</a><br>
+							<a href="{{ route('acc.settings') }}">Account Settings</a><br>
 							<a href="{{route('admin.logout')}}" onclick="event.preventDefault();
 							document.getElementById('logout-form').submit(); ">Logout</a>
 						</div>

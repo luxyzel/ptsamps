@@ -31,6 +31,12 @@ Route::prefix('admin')->group(function(){
 	// admin manage user
 	Route::resource('/manage/users', 'Admin\ManageUsersController');
 
+	//ADMIN Account Settings route
+	Route::get('/account/settings', 'Admin\AdminController@accountInfo')->name('acc.settings');
+
+	//ADMIN Account Settings submit
+	Route::match(['put', 'patch'], '/account/settings/update', 'Admin\AdminController@updateInfo')->name('acc.settings.submit'); 
+	
 });
 
 // user auth route

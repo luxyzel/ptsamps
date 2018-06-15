@@ -53,7 +53,7 @@ class ManageUsersController extends Controller
         $user->username = $request->username;
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->passowrd = bcrypt($request->password);
+        $user->password = bcrypt($request->password);
 
         if ($user->save()) {
             return redirect()->route('users.show', $user->id);
@@ -71,7 +71,7 @@ class ManageUsersController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return view('admin.manage-users.show');
+        return view('admin.manage-users.show')->withUser($user);
     }
 
     /**
@@ -83,7 +83,7 @@ class ManageUsersController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('admin.manage-users.edit');
+        return view('admin.manage-users.edit')->withUser($user);
     }
 
     /**

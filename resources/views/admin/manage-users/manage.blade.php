@@ -164,10 +164,15 @@
 					<div id="acc-but-popup">
 						<img src="/img/hoverarrow2.png">
 						<div id="acc-but-popup-cont">
-							<a href="acc">Account Settings</a><br>
-							<a href="#">Logout</a>
+							<a href="{{ route('acc.settings') }}">Account Settings</a><br>
+							<a href="{{route('admin.logout')}}" onclick="event.preventDefault();
+							document.getElementById('logout-form').submit(); ">Logout</a>
 						</div>
 					</div>
+
+					<form id="logout-form" action="{{route('admin.logout')}}" method="POST" style="display: none;">
+						{{ csrf_field() }}
+					</form>
 				</div>
 				<div class="clr"></div>
 			</div>
@@ -200,7 +205,7 @@
 								<td>
 									<a href="{{ route('users.show', $user->id) }}">View</a> &nbsp;
 									<a href="{{ route('users.edit', $user->id) }}">Edit</a>
-									<form accept="{{ route('users.destroy', $user->id) }}" method="POST">
+									<form action="{{ route('users.destroy', $user->id) }}" method="POST">
 										{{ csrf_field() }}
 										{{ method_field('DELETE') }}
 										<button>Archive</button>

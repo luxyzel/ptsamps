@@ -63,6 +63,8 @@
 		          <button class="button is-primary is-pulled-right" style="width: 250px;">Create New User</button>
 		        </div>
 
+		       <a href="{{ route('users.index') }}">asdasdasd</a>
+
 			    <!-- DISPLAY ERRORS -->
 			    @if ($errors->any())
 			    <div class="alert alert-danger">
