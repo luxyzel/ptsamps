@@ -57,7 +57,7 @@
 					
 					<!-- Dashboard Upper Menus Left -->
 					<div class="dboard-left-menu fl">
-						<a href="#">
+						<a href="{{route('dashboard')}}">
 							<div class="dboard-menu1-box">
 								<img src="img/icon1.png">
 							</div>
@@ -152,7 +152,7 @@
 					</div>
 
 					<div class="dboard-right-menu fr" style="margin-right: 5px">
-						<a href="#" id="acc-but">
+						<a href="{{ route('users.index') }}" id="acc-but">
 							<div class="dboard-rmenu4-box">
 								<img src="img/adduser.png" title="Manage User">
 							</div>
@@ -165,9 +165,14 @@
 						<img src="img/hoverarrow2.png">
 						<div id="acc-but-popup-cont">
 							<a href="acc">Account Settings</a><br>
-							<a href="logout">Logout</a>
+							<a href="{{route('admin.logout')}}" onclick="event.preventDefault();
+							document.getElementById('logout-form').submit(); ">Logout</a>
 						</div>
 					</div>
+
+					<form id="logout-form" action="{{route('admin.logout')}}" method="POST" style="display: none;">
+						{{ csrf_field() }}
+					</form>
 				</div>
 				<div class="clr"></div>
 

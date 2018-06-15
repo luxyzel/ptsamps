@@ -18,7 +18,7 @@
                         <img src="img/companylogo.png" title="Project T Solutions">
                     </div>
                     <div class="login-text fl">
-                        <p class="login-comp-nm">Project T Solutions</p>
+                        <p class="login-comp-nm">Project T Solutions - Admin</p>
                         <p class="system-about">Asset Mgmt. and Procurement System</p>
                     </div>
                     <div class="clr"></div>
@@ -26,7 +26,7 @@
 
                 <!-- Form -->
                 <div class="login-form">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('admin.login.submit') }}">
                         {{ csrf_field() }}
 
                         <label class="lbl-login">Email address</label>

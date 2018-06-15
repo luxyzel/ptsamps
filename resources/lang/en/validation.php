@@ -100,8 +100,16 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'email' => [
+            'required' => 'Email Is Required',
+            'unique' => 'Email Aready Exists',
+        ],
+        'username' => [
+            'required' => 'Username is Required',
+            'unique' => 'Username Already Exists',
+        ],
+        'name' => [
+            'required' => 'Name Is Required',
         ],
     ],
 

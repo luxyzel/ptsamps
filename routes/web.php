@@ -11,12 +11,26 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Auth\LoginController@index' );
 
 Route::get('/manage', function () {
     return view('admin.manage');
+});
+
+Route::prefix('admin')->group(function(){
+
+	// admin login
+	Route::get('/', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+	
+	// admin login submit
+	Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+
+	// admin login submit
+	Route::post('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
+
+	// admin manage user
+	Route::resource('/manage/users', 'Admin\ManageUsersController');
+
 });
 
 // user auth route

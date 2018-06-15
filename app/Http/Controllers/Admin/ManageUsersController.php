@@ -1,0 +1,127 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\User;
+
+class ManageUsersController extends Controller
+{
+
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $users = User::all();
+        return view('admin.manage-users.manage')->withUsers($users);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('admin.manage-users.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validateWith([
+            'username' => 'required|unique:users|max:255',
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed|min:8',
+        ]);
+
+        $user = new User();
+        $user->username = $request->username;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->passowrd = bcrypt($request->password);
+
+        if ($user->save()) {
+            return redirect()->route('users.show', $user->id);
+        } else{
+            return redirect()->route('users.create');
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.manage-users.show');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.manage-users.edit');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validateWith([
+            'username' => 'required|unique:users,username,'.$id,
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$id
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->username = $request->username;
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        if ($user->save()) {
+            return redirect()->route('users.show', $id);
+        } else{
+            return redirect()->route('users.edit', $id);
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $user = User::where('id',$id)->delete();
+        return redirect()->back();
+    }
+}
