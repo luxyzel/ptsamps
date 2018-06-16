@@ -32,12 +32,12 @@ $(document).ready(function() {
 	// Account Settings/Logout popup
 	$('.dboard-rmenu1-box').click(function(event){
         event.stopPropagation();
-         $("#acc-but-popup").slideToggle(300);
+       	$("#acc-but-popup").slideToggle(300);
     });
 
     $('.dboard-rmenu2-box').click(function(event){
         event.stopPropagation();
-         $("#acc-but-popup").slideToggle(300);
+        $("#acc-but-popup").slideToggle(300);
     });
 
     $("#acc-but-popup").on("click", function (event) {
