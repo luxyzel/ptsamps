@@ -177,6 +177,22 @@ textarea {
     position: relative;
 }
 
+.login-switch {
+    border: 1px solid #fff;
+    padding: 7px 20px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border-radius: 20px;
+    background-color: #fff;
+    color: #6f9bfe;
+    font-family: roboto-reg;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0px 1px 10px 2px rgba(0, 0, 0, .3);
+}
+
 .rightlog-side {
     width: 60%;
     height: 100%;
