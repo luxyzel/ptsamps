@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Admin;
 use Session;
+use Hash;
 
 class AdminController extends Controller
 {
@@ -40,26 +41,35 @@ class AdminController extends Controller
 
     public function updateInfo(request $request)
     {
-         $id = Auth::user()->id;
+        $id = Auth::user()->id;
 
-         $this->validateWith([
+        $this->validateWith([
         'name' => 'required|max:255',
         'email' => 'required|email|unique:admins,email,'.$id,
         'currentpass' => 'required|max:255',
         'password' => 'required|confirmed|min:8',
         ]);
 
-        $matchpass = Admin::where('password', bcrypt($request->currentpass))->where('id', $id)->first();
-        if (!$matchpass) {
-            Session::flash('warning', 'Current Password Did Not Match');
+        $admin = Admin::findOrFail($id);
+        $curpass = $request->currentpass;
+
+        $usermatch = Admin::where('id', $id)->first();
+        if (!$usermatch) {
+            Session::flash('warning', 'Error Encountered');
         }
-            $admin = Admin::findOrFail($id);
+            if(Hash::check($curpass, $admin->password)) {
+
             $admin->name = $request->name;
             $admin->email = $request->email;
             $admin->password = bcrypt($request->password);
             $admin->save();
             Session::flash('success', 'Password Changed Successfully');
             return redirect()->back();
+
+        } else {
+            Session::flash('warning', 'Current Password Did Not Match!');
+            return redirect()->back();
+        }
 
     }
 
