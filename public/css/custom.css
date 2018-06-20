@@ -347,7 +347,7 @@ textarea {
 
 .dboard-right-panel {
     width: 83%;
-    height: 1500px;
+    height: 100vh;
     padding: 20px 30px;
 }
 

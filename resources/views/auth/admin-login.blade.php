@@ -61,7 +61,6 @@
 
                 {{-- Link to user login page --}}
                 <a href="{{ route('approver.login') }}" class="login-switch">Login as Approver</a>
-
                 <div class="pop-about">
                     <div class="pop-text-cont">
                         <p class="popup-text">Design and develop by <br> <span id="pop-name">Luzel, Melissa </span>and <span id="pop-name">James</span></p>

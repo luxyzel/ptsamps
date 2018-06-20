@@ -1,10 +1,9 @@
 
 /*Begin content design creation*/
-
 .manage-content {
 	background-color: #fff;
 	width: 100%;
-	height: 500px;
+	padding: 10px 10px;
 	margin-top: 5px;
 	border-radius: 2px;
 	box-shadow: 5px 5px 21px -3px rgba(70, 136, 246, 0.1);
@@ -33,4 +32,124 @@
 
 .dboard-add-acc:hover {
 	background-color: #4edda2;
+}
+
+
+/*Content Management User*/
+.manage-content th {
+	padding: 8px 10px;
+	background-color: #eff7ff;
+	color: #4f9dff;
+	font-family: oswald-reg;
+	font-weight: normal;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	border-radius: 2px;
+}
+
+.manage-content td {
+	padding: 10px 10px;
+	font-family: roboto-reg;
+	color: #44496b;
+	font-size: 12px;
+	border-bottom: 1px solid #ebf5ff;
+}
+
+.manage-view-but {
+	background-color: #fce6c7;
+	padding: 3px 5px;
+	color: #cc8d36;
+	border-radius: 2px;
+	font-size: 12px;
+	margin-right: 2px;
+}
+
+.manage-edit-but {
+	background-color: #c7c9fc;
+	padding: 3px 5px;
+	color: #5357c6;
+	border-radius: 2px;
+	font-size: 12px;
+	margin-right: 2px;
+}
+
+.manage-archive-but {
+	background-color: #fccfd8;
+	padding: 3.2px 5px;
+	color: #c23b55;
+	border-radius: 2px;
+	font-size: 12px;
+	margin-right: 2px;
+	border: none;
+	cursor: pointer;
+}
+
+/*popup confirmation archive*/
+.manage-archive-confirmation {
+	z-index: 99999;
+	height: 100vh;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: none;
+}
+
+.manage-popup-cont {
+	width: 350px;
+	height: 120px;
+	background-color: #fff;
+	margin: auto;
+	margin-top: 150px;
+	border-radius: 3px;
+	box-shadow: 5px 5px 21px -3px rgba(0, 0, 0, 0.2);
+	font-family: roboto-reg;
+	padding: 30px 15px;
+}
+
+.manage-popup-cont p {
+	text-align: center;
+	font-size: 13px;
+	margin-bottom: 10px;
+}
+
+.manage-popup-yes {
+	background-color: #16dd47;
+	color: #fff;
+	border: none;
+	padding: 0 10px;
+	margin-left: 90px;
+	margin-top: 10px;
+	margin-right: 5px;
+	border-radius: 2px;
+	width: 60px;
+	height: 25px;
+	font-size: 13px;
+	cursor: pointer;
+	text-transform: uppercase;
+	font-family: oswald-reg;
+	transition: background-color 0.3s;
+	letter-spacing: 1px;
+}
+
+.manage-popup-yes:hover {
+	background-color: #0ebc39;
+}
+
+#manage-popup-cancel {
+	background-color: red;
+	color: #fff;
+	font-size: 13px;
+	padding: 3px 10px;
+	border-radius: 2px;
+	text-transform: uppercase;
+	font-family: oswald-reg;
+	transition: background-color 0.3s;
+	letter-spacing: 1px;
+}
+
+#manage-popup-cancel:hover {
+	background-color: #c00404;
 }

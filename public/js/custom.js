@@ -44,6 +44,15 @@ $(document).ready(function() {
         event.stopPropagation();
     });
 
+    // Popup confirmation manage
+    $('.manage-archive-but').click(function(){
+    	$('.manage-archive-confirmation').css("display", "block");
+    });
+
+    $('#manage-popup-cancel').click(function(){
+    	$('.manage-archive-confirmation').css("display", "none");
+    });
+
 });
 
 // fixed account popup
