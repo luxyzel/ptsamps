@@ -1,0 +1,119 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Model\Asset;
+use App\Model\Category;
+use Auth;
+use Session;
+
+class AssetsController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $admin = Auth::guard('admin')->user();
+        return view('admin.asset-man')->with('admin', $admin);
+    }
+
+    public function showCreate()
+    {
+        $category = Category::All();
+        return view('admin.manage-assets.create')->with('category', $category);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+
+         $this->validateWith([
+        'category' => 'required|unique:assets',
+        'asset_tag' => 'required|unique:assets',
+        'service_tag' => 'required|unique:assets',
+        'serial_number' => 'required|unique:assets',
+        'status' => 'required',
+        'deployment' => 'required',
+        ]);
+
+        $asset = new Asset();
+        $asset->category = $request->category;
+        $asset->asset_tag = $request->asset_tag;
+        $asset->service_tag = $request->service_tag;
+        $asset->serial_number = $request->serial_number;
+        $asset->status = $request->status;
+        $asset->deployment = $request->deployment;
+
+        if ($asset->save()) {
+            Session::flash('success', 'Asset Successfully Added');
+            return redirect()->back();
+        } else{
+            return redirect()->route('create.assets');
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}
