@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use Auth;
 
 class ManageUsersController extends Controller
 {
@@ -20,8 +21,10 @@ class ManageUsersController extends Controller
      */
     public function index()
     {
+        $admin = Auth::guard('admin')->user();
         $users = User::all();
-        return view('admin.manage-users.manage')->withUsers($users);
+        /*return view('admin.manage-users.manage')->withUsers($users);*/
+        return view('admin.manage-users.manage',compact('admin', 'users'));
     }
 
     /**

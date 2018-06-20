@@ -13,10 +13,6 @@
 
 Route::get('/', 'Auth\LoginController@index' );
 
-Route::get('/manage', function () {
-    return view('admin.manage');
-});
-
 Route::prefix('admin')->group(function(){
 
 	// admin login
@@ -30,6 +26,9 @@ Route::prefix('admin')->group(function(){
 
 	// admin manage user
 	Route::resource('/manage/users', 'Admin\ManageUsersController');
+
+	// create new admin
+	Route::resource('/manage/admin', 'Admin\AdminController');
 
 	//ADMIN Account Settings route
 	Route::get('/account/settings', 'Admin\AdminController@accountInfo')->name('acc.settings');
