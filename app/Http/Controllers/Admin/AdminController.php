@@ -47,6 +47,7 @@ class AdminController extends Controller
             $id = Auth::guard('admin')->user()->id;
 
             $this->validateWith([
+            'username' => 'required|unique:admins|max:64',
             'name' => 'required|max:255',
             'email' => 'required|email|unique:admins,email,'.$id,
             ]);
@@ -57,6 +58,7 @@ class AdminController extends Controller
                 Session::flash('warning', 'Error Encountered');
                 return redirect()->back();
             }
+                $admin->username = $request->username;
                 $admin->name = $request->name;
                 $admin->email = $request->email;
                 $admin->save();
@@ -70,6 +72,7 @@ class AdminController extends Controller
             $id = Auth::guard('admin')->user()->id;
 
             $this->validateWith([
+            'username' => 'required|unique:admins|max:64',
             'name' => 'required|max:255',
             'email' => 'required|email|unique:admins,email,'.$id,
             'currentpass' => 'required|max:255',
@@ -86,6 +89,7 @@ class AdminController extends Controller
             }
                 if(Hash::check($curpass, $admin->password)) {
 
+                $admin->username = $request->username;
                 $admin->name = $request->name;
                 $admin->email = $request->email;
                 $admin->password = bcrypt($request->password);
@@ -110,9 +114,9 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $this->validateWith([
-            'username' => 'required|unique:users|max:255',
+            'username' => 'required|unique:admins|max:64',
             'name' => 'required|max:255',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|unique:admins',
             'password' => 'required|confirmed|min:8',
         ]);
 
@@ -123,9 +127,8 @@ class AdminController extends Controller
         $adminnew->password = bcrypt($request->password);
 
         if ($adminnew->save()) {
-            $admin = Admin::all();
-            $users = User::all();
-            return view('admin.manage-users.manage',compact('admin', 'users'));
+            Session::flash('success', 'New Admin Created Successfully');
+            return redirect()->back();
         } else{
             return redirect()->route('admin.create');
         }

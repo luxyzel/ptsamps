@@ -8,7 +8,7 @@
 	<div class="flex-container" style="width: 80%; margin: auto;">
     <div class="columns m-t-10">
       <div class="column">
-        <h1 class="title">Update User</h1>
+        <h1 class="title">Update Account</h1>
       </div>
     </div>
     <hr class="m-t-0">
@@ -23,6 +23,13 @@
             <p class="control">
               <input type="text" class="input" name="name" id="name" value="{{$admin->name}}">
             </p>
+          </div>
+
+          <div class="field">
+          <label for="name" class="label">Username</label>
+          <p class="control">
+              <input type="text" class="input" name="username" id="username" value="{{old('username')}}">
+          </p>
           </div>
 
           <div class="field">

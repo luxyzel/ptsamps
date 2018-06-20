@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
+use Session;
 
 class LoginController extends Controller
 {
@@ -40,6 +42,25 @@ class LoginController extends Controller
 
     public function index() {
         return view('auth.login');   
+    }
+
+    public function login(Request $request)
+    {
+        // Validatation of input
+        $this->validate($request, [
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+
+        // Login attempt
+        if (Auth::guard('web')->attempt(['username' => $request->username, 'password' => $request->password]))
+        {
+            // if success login
+            return redirect()->intended(route('home'));
+        }
+            //if failed login
+            Session::flash('warning', 'Invalid Credentials');
+            return redirect()->back()->withInput($request->only('username'));
     }
 
     public function logout() {
