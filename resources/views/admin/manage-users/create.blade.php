@@ -28,40 +28,33 @@
             <form method="POST" action="{{route('users.store')}}">
             	{{ csrf_field() }}
 
-            	<label for="name" class="label">Name</label>
-              	<input type="text" class="input" name="name" id="name" autofocus autocomplete="off"  required>
+              	<input type="text" class="input" name="name" id="name" autofocus autocomplete="off"  required placeholder="fullname">
 
-              	<label for="name" class="label">Username</label>
-              	<input type="text" class="input" name="username" id="username" autocomplete="off"  required>
+              	<input type="text" class="input" name="username" id="username" autocomplete="off"  required placeholder="username">
 
-              	<label for="email" class="label">Email:</label>
-		        <input type="text" class="input" name="email" id="email" autocomplete="off"  required>
+		        <input type="email" class="input" name="email" id="email" autocomplete="off"  required placeholder="email">
 
 		        {{-- PASSWORD AND CONFIRM PASSWORD --}}
 		        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-		           	<label for="password" class="col-md-4 control-label">Password</label>
-		            <input id="password" type="password" class="form-control" name="password" required>
+		            <input id="password" type="password" class="form-control" name="password" required placeholder="password">
 		        </div>
 
 		        <div class="form-group">
-		            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-		            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+		            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required placeholder="Confirm password">
 		        </div>
 
-		        <button class="">Create New User</button>
+		        <button class="submit-approver-acc">Create New Approver</button>
 
 		        <!-- DISPLAY ERRORS -->
 			    @if ($errors->any())
-			    <div class="alert alert-danger">
-			        <ul>
-			            @foreach ($errors->all() as $error)
-			                <br><strong>{{ $error }}</strong>
-			            @endforeach
-			        </ul>
+			    <div class="login-comment-error">
+					@foreach ($errors->all() as $error)
+			        	<p>{{ $error }}</p>
+			        @endforeach
 			    </div>
 			    @endif
 
-			    <a href="{{ route('users.index') }}">asdasdasd</a>
+			    <a href="{{ route('users.index') }}" class="back-to-manage">Back to Manage Users</a>
 
             </form>
 
