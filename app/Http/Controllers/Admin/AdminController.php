@@ -110,9 +110,9 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $this->validateWith([
-            'username' => 'required|unique:users|max:255',
+            'username' => 'required|unique:admins|max:255',
             'name' => 'required|max:255',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|unique:admins',
             'password' => 'required|confirmed|min:8',
         ]);
 
@@ -123,9 +123,8 @@ class AdminController extends Controller
         $adminnew->password = bcrypt($request->password);
 
         if ($adminnew->save()) {
-            $admin = Admin::all();
-            $users = User::all();
-            return view('admin.manage-users.manage',compact('admin', 'users'));
+            Session::flash('sucess', 'New Admin Created Successfully');
+            return redirect()->back();
         } else{
             return redirect()->route('admin.create');
         }

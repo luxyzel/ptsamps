@@ -16,6 +16,13 @@
      	 {{ csrf_field() }}
      	 <div class="columns">
        		<div class="column">
+
+       			@if(Session::has('success'))
+       				<div class="comment-error">
+       					<strong> {{ Session::get('success') }} </strong>
+       				</div>
+       			@endif
+
             	<div class="field">
             		<label for="name" class="label">Username</label>
             		<p class="control">
