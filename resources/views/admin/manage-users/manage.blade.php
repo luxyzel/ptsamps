@@ -187,7 +187,6 @@
 				<table style="width: 100%; text-align: center;">
 					<thead>
 						<tr>
-							<th>Id</th>
 							<th>Name</th>
 							<th>Email</th>
 							<th>Type</th>
@@ -197,19 +196,14 @@
 					</thead>
 						@foreach ($users as $user)
 							<tr>
-								<td>{{$user->id}}</td>
 								<td>{{$user->name}}</td>
 								<td>{{$user->email}}</td>
 								<td>Approver</td>
 								<td>{{$user->created_at->toFormattedDateString()}}</td>
 								<td>
-									<a href="{{ route('users.show', $user->id) }}">View</a> &nbsp;
-									<a href="{{ route('users.edit', $user->id) }}">Edit</a>
-									<form action="{{ route('users.destroy', $user->id) }}" method="POST">
-										{{ csrf_field() }}
-										{{ method_field('DELETE') }}
-										<button>Archive</button>
-									</form>
+									<a href="{{ route('users.show', $user->id) }}" class="manage-view-but" title="View User">View</a>
+									<a href="{{ route('users.edit', $user->id) }}" class="manage-edit-but" title="Edit User">Edit</a>
+									<a href="#" class="manage-archive-but" title="Archive User">Archive</a>
 								</td>
 							</tr>
 						@endforeach
@@ -217,6 +211,18 @@
 			</div>
 		</div>
 		<div class="clr"></div>
+	</div>
+
+	<div class="manage-archive-confirmation">
+		<div class="manage-popup-cont">
+			<p>Are you sure you want to archive the user?</p>
+			<form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;">
+				{{ csrf_field() }}
+				{{ method_field('DELETE') }}
+					<button class="manage-popup-yes">Yes</button>
+			</form>
+			<a href="#" id="manage-popup-cancel">Cancel</a>
+		</div>
 	</div>	
 
 @include('templates.footer')

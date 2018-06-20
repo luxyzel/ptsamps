@@ -53,7 +53,7 @@
             <div class="rightlog-side fl">
 
                 {{-- Link to user login page --}}
-                <a href="#" class="login-switch">Login as admin</a>
+                <a href="#" class="login-switch">Login as approver</a>
 
                 <div class="pop-about">
                     <div class="pop-text-cont">
