@@ -18,7 +18,7 @@
                         <img src="img/companylogo.png" title="Project T Solutions">
                     </div>
                     <div class="login-text fl">
-                        <p class="login-comp-nm">Project T Solutions - Admin</p>
+                        <p class="login-comp-nm">Project T Solutions - <span style="color: #f6ab3f;">Admin</span></p>
                         <p class="system-about">Asset Mgmt. and Procurement System</p>
                     </div>
                     <div class="clr"></div>
@@ -51,6 +51,10 @@
 
             <!-- Right Side Login -->
             <div class="rightlog-side fl">
+
+                {{-- Link to user login page --}}
+                <a href="#" class="login-switch">Login as admin</a>
+
                 <div class="pop-about">
                     <div class="pop-text-cont">
                         <p class="popup-text">Design and develop by <br> <span id="pop-name">Luzel, Melissa </span>and <span id="pop-name">James</span></p>
