@@ -30,7 +30,7 @@
                         {{ csrf_field() }}
 
                         <label class="lbl-login">Username</label>
-                        <input type="text" name="username" placeholder="username" autocomplete="off" autofocus required>
+                        <input type="text" name="username" placeholder="myaccountusername" autocomplete="off" autofocus required>
 
                         <div class="spacer"></div>
 

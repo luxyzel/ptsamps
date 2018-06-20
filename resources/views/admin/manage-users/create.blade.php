@@ -5,69 +5,52 @@
 </head>
 
 <body>
-	<div class="flex-container" style="width: 80%; margin: auto;">
-    	<div class="columns m-t-10">
-      		<div class="column">
-        		<h1 class="title">Create New User</h1>
-      		</div>
-    	</div>
-    	<hr class="m-t-0">
-    	<form method="POST" action="{{route('users.store')}}">
-     	 {{ csrf_field() }}
-     	 <div class="columns">
-       		<div class="column">
+	
+	{{-- Create User Frontend --}}
+	<div class="landing-bg">
 
-          		<div class="field">
-           			<label for="name" class="label">Name</label>
-            		<p class="control">
-              			<input type="text" class="input" name="name" id="name" value="{{old('name')}}">
-            		</p>
-          		</div>
+		{{-- Container Creating User --}}
+		<div class="user-interface-cont">
 
-          		<div class="field">
-            		<label for="name" class="label">Username</label>
-            		<p class="control">
-              			<input type="text" class="input" name="username" id="username" value="{{old('username')}}">
-            		</p>
-          		</div>
+			{{-- TOP LABELS --}}
+			<div class="login-title">
+                <div class="login-logo fl">
+                    <img src="/img/companylogo.png" title="Project T Solutions">
+                </div>
+                <div class="login-text fl">
+                    <p class="login-comp-nm">Create Approver Account</p>
+                    <p class="system-about">Account Exclusively for Executives</p>
+                </div>
+                <div class="clr"></div>
+            </div>
 
-          		<div class="field">
-		            <label for="email" class="label">Email:</label>
-		            <p class="control">
-		             	<input type="text" class="input" name="email" id="email" value="{{old('email')}}">
-		            </p>
-          		</div>
+            {{-- FORM APPROVER ACCOUNT CREATION --}}
+            <form method="POST" action="{{route('users.store')}}">
+            	{{ csrf_field() }}
 
-          			<!-- PASSWORD -->
+            	<label for="name" class="label">Name</label>
+              	<input type="text" class="input" name="name" id="name" autofocus autocomplete="off"  required>
 
+              	<label for="name" class="label">Username</label>
+              	<input type="text" class="input" name="username" id="username" autocomplete="off"  required>
+
+              	<label for="email" class="label">Email:</label>
+		        <input type="text" class="input" name="email" id="email" autocomplete="off"  required>
+
+		        {{-- PASSWORD AND CONFIRM PASSWORD --}}
 		        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-		            <label for="password" class="col-md-4 control-label">Password</label>
-
-		            <div class="col-md-6">
-		                <input id="password" type="password" class="form-control" name="password" required>
-
-		            </div>
+		           	<label for="password" class="col-md-4 control-label">Password</label>
+		            <input id="password" type="password" class="form-control" name="password" required>
 		        </div>
 
 		        <div class="form-group">
 		            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-		            <div class="col-md-6">
-		                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-		            </div>
+		            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
 		        </div>
 
-        	</div> <!-- end of .column -->
+		        <button class="">Create New User</button>
 
-        	<div class="columns">
-		        <div class="column">
-		          <hr />
-		          <button class="button is-primary is-pulled-right" style="width: 250px;">Create New User</button>
-		        </div>
-
-		       <a href="{{ route('users.index') }}">asdasdasd</a>
-
-			    <!-- DISPLAY ERRORS -->
+		        <!-- DISPLAY ERRORS -->
 			    @if ($errors->any())
 			    <div class="alert alert-danger">
 			        <ul>
@@ -77,8 +60,13 @@
 			        </ul>
 			    </div>
 			    @endif
-    		</div>
-   	 	</form>
-   	</div>
+
+			    <a href="{{ route('users.index') }}">asdasdasd</a>
+
+            </form>
+
+		</div>
+		
+	</div>
 
 @include('templates.footer')

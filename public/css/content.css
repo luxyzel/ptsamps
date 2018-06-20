@@ -101,8 +101,35 @@
 	cursor: pointer;
 }
 
+/*Create User Design*/
+.user-interface-cont {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 350px;
+	height: 500px;
+	margin-top: -250px;
+	margin-left: -175px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 3px 3px 40px -10px rgba(0, 0, 0, 0.29);
+	padding: 20px 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*WITH BUG NEED TO FIX OR NOT DEPENDS*/
+
 /*popup confirmation archive*/
-.manage-archive-confirmation {
+/*.manage-archive-confirmation {
 	z-index: 99999;
 	height: 100vh;
 	position: absolute;
@@ -168,4 +195,5 @@
 
 #manage-popup-cancel:hover {
 	background-color: #c00404;
-}
+}*/
+
