@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Input;
 use Auth;
 use App\Admin;
+use App\User;
 use Session;
 use Hash;
 
@@ -29,48 +29,106 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $admin = Auth::guard('admin')->user();
+        return view('admin.dashboard')->with('admin', $admin);;
     }
 
     public function accountInfo()
     {
-         /*return view('admin.acc-info');*/
-        $admin = Auth::user();
+        $admin = Auth::guard('admin')->user();
         return view('admin.acc-settings')->with('admin', $admin);
     }
 
     public function updateInfo(request $request)
     {
-        $id = Auth::user()->id;
+        //NOT CHANGING PASSWORD
+        if(empty($request->currentpass) && empty($request->password)) {
+            
+            $id = Auth::guard('admin')->user()->id;
 
+            $this->validateWith([
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:admins,email,'.$id,
+            ]);
+
+            $admin = Admin::findOrFail($id);
+            $usermatch = Admin::where('id', $id)->first();
+            if (!$usermatch) {
+                Session::flash('warning', 'Error Encountered');
+                return redirect()->back();
+            }
+                $admin->name = $request->name;
+                $admin->email = $request->email;
+                $admin->save();
+                Session::flash('success', 'Update Changed Successfully');
+                return redirect()->back();
+
+
+        //WILL CHANGE PASSWORD
+        }else{
+            
+            $id = Auth::guard('admin')->user()->id;
+
+            $this->validateWith([
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:admins,email,'.$id,
+            'currentpass' => 'required|max:255',
+            'password' => 'required|confirmed|min:8',
+            ]);
+
+            $admin = Admin::findOrFail($id);
+            $curpass = $request->currentpass;
+
+            $usermatch = Admin::where('id', $id)->first();
+            if (!$usermatch) {
+                Session::flash('warning', 'Error Encountered');
+                return redirect()->back();
+            }
+                if(Hash::check($curpass, $admin->password)) {
+
+                $admin->name = $request->name;
+                $admin->email = $request->email;
+                $admin->password = bcrypt($request->password);
+                $admin->save();
+                Session::flash('success', 'Password Changed Successfully');
+                return redirect()->back();
+
+            } else {
+                Session::flash('warning', 'Current Password Did Not Match!');
+                return redirect()->back();
+            }
+        }
+    }
+
+    //ADMIN CREATE
+
+    public function create()
+    {
+        return view('admin.manage-admins.create');
+    }
+
+    public function store(Request $request)
+    {
         $this->validateWith([
-        'name' => 'required|max:255',
-        'email' => 'required|email|unique:admins,email,'.$id,
-        'currentpass' => 'required|max:255',
-        'password' => 'required|confirmed|min:8',
+            'username' => 'required|unique:users|max:255',
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed|min:8',
         ]);
 
-        $admin = Admin::findOrFail($id);
-        $curpass = $request->currentpass;
+        $adminnew = new Admin();
+        $adminnew->username = $request->username;
+        $adminnew->name = $request->name;
+        $adminnew->email = $request->email;
+        $adminnew->password = bcrypt($request->password);
 
-        $usermatch = Admin::where('id', $id)->first();
-        if (!$usermatch) {
-            Session::flash('warning', 'Error Encountered');
+        if ($adminnew->save()) {
+            $admin = Admin::all();
+            $users = User::all();
+            return view('admin.manage-users.manage',compact('admin', 'users'));
+        } else{
+            return redirect()->route('admin.create');
         }
-            if(Hash::check($curpass, $admin->password)) {
-
-            $admin->name = $request->name;
-            $admin->email = $request->email;
-            $admin->password = bcrypt($request->password);
-            $admin->save();
-            Session::flash('success', 'Password Changed Successfully');
-            return redirect()->back();
-
-        } else {
-            Session::flash('warning', 'Current Password Did Not Match!');
-            return redirect()->back();
-        }
-
     }
 
 }

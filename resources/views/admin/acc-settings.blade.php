@@ -41,14 +41,14 @@
           <div class="field">
             <label for="name" class="label">New Password</label>
             <p class="control">
-              <input id="password" type="password" class="form-control" name="password" required>
+              <input id="password" type="password" class="form-control" name="password">
             </p>
           </div>
 
           <div class="field">
             <label for="email" class="label">Confirm New Password</label>
             <p class="control">
-               <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+               <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
             </p>
           </div>
 

@@ -20,7 +20,7 @@
 				<div class="dboard-admin">
 					<div class="admin-avatar fl"></div>
 					<div class="admin-profile-name fl">
-						<p>ANNE SHARMAINE</p>
+						<p>{{$admin->name}}</p>
 						<p class="admin-subtxt">Administrator</p>
 					</div>
 					<div class="clr"></div>
@@ -179,7 +179,7 @@
 
 			<div class="dboard-content-menu">
 				<a href="{{ route('users.create') }}" class="dboard-add-acc fl">Create New Approver</a>
-				<a href="#" class="dboard-add-acc fl" style="margin-left: 10px;">Create New Admin</a>
+				<a href="{{ route('admin.create') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Create New Admin</a>
 				<div class="clr"></div>
 			</div>
 
