@@ -76,11 +76,13 @@
 
 .manage-archive-but {
 	background-color: #fccfd8;
-	padding: 3px 5px;
+	padding: 3.2px 5px;
 	color: #c23b55;
 	border-radius: 2px;
 	font-size: 12px;
 	margin-right: 2px;
+	border: none;
+	cursor: pointer;
 }
 
 /*popup confirmation archive*/

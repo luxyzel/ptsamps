@@ -1,7 +1,7 @@
 
 @include('templates.header')
 
-  <title>Create User | Asset Management and Procurement System</title>
+  <title>Create Admin | Asset Management and Procurement System</title>
 </head>
 
 <body>

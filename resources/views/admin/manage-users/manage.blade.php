@@ -203,7 +203,12 @@
 								<td>
 									<a href="{{ route('users.show', $user->id) }}" class="manage-view-but" title="View User">View</a>
 									<a href="{{ route('users.edit', $user->id) }}" class="manage-edit-but" title="Edit User">Edit</a>
-									<a href="#" class="manage-archive-but" title="Archive User">Archive</a>
+									{{-- <a href="#" class="manage-archive-but" title="Archive User">Archive</a> --}}
+									<form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;">
+										{{ csrf_field() }}
+										{{ method_field('DELETE') }}
+										<button class="manage-archive-but">Archive</button>
+									</form>
 								</td>
 							</tr>
 						@endforeach
@@ -213,16 +218,16 @@
 		<div class="clr"></div>
 	</div>
 
-	<div class="manage-archive-confirmation">
+	{{-- <div class="manage-archive-confirmation">
 		<div class="manage-popup-cont">
 			<p>Are you sure you want to archive the user?</p>
 			<form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;">
 				{{ csrf_field() }}
 				{{ method_field('DELETE') }}
-					<button class="manage-popup-yes">Yes</button>
+				<button class="manage-popup-yes">Yes</button>
 			</form>
 			<a href="#" id="manage-popup-cancel">Cancel</a>
 		</div>
-	</div>	
+	</div> --}}	
 
 @include('templates.footer')
