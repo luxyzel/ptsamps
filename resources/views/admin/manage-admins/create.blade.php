@@ -17,22 +17,24 @@
      	 <div class="columns">
        		<div class="column">
 
-       			@if(Session::has('success'))
-       				<div class="comment-error">
-       					<strong> {{ Session::get('success') }} </strong>
-       				</div>
-       			@endif
-
-            	<div class="field">
-            		<label for="name" class="label">Username</label>
-            		<p class="control">
-              			<input type="text" class="input" name="username" id="username" value="{{old('username')}}">
-            		</p>
-          		</div>
+			    <!-- warning invalid credentials -->
+	            @if(Session::has('success'))
+	            <div class="comment-error">
+	               <strong> {{ Session::get('success') }}</strong> 
+	            </div>
+	            @endif
+ 
           		<div class="field">
            			<label for="name" class="label">Name</label>
             		<p class="control">
               			<input type="text" class="input" name="name" id="name" value="{{old('name')}}">
+            		</p>
+          		</div>
+
+          		<div class="field">
+            		<label for="name" class="label">Username</label>
+            		<p class="control">
+              			<input type="text" class="input" name="username" id="username" value="{{old('username')}}">
             		</p>
           		</div>
 

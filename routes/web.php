@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'Auth\LoginController@index' );
+Route::get('/', 'Auth\LoginController@index' )->name('approver.login');
 
 Route::prefix('admin')->group(function(){
 

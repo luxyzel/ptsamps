@@ -29,8 +29,15 @@
                     <form method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
-                        <label class="lbl-login">Email address</label>
-                        <input type="email" name="email" placeholder="your.email@sample.com" autocomplete="off" autofocus required>
+                        <!-- warning invalid credentials -->
+                        @if(Session::has('warning'))
+                        <div class="comment-error">
+                           <strong> {{ Session::get('warning') }}</strong> 
+                        </div>
+                        @endif
+
+                        <label class="lbl-login">Username</label>
+                        <input type="text" name="username" placeholder="username" autocomplete="off" autofocus required>
 
                         <div class="spacer"></div>
 
@@ -53,7 +60,7 @@
             <div class="rightlog-side fl">
 
                 {{-- Link to admin login page --}}
-                <a href="#" class="login-switch">Login as admin</a>
+                <a href="{{ route('admin.login') }}" class="login-switch">Login as Admin</a>
 
                 <div class="pop-about">
                     <div class="pop-text-cont">

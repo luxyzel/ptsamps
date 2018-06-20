@@ -46,7 +46,7 @@ class ManageUsersController extends Controller
     public function store(Request $request)
     {
         $this->validateWith([
-            'username' => 'required|unique:users|max:255',
+            'username' => 'required|unique:users|max:64',
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:8',
