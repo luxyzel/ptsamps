@@ -5,80 +5,61 @@
 </head>
 
 <body>
-	<div class="flex-container" style="width: 80%; margin: auto;">
-    	<div class="columns m-t-10">
-      		<div class="column">
-        		<h1 class="title">Create New User</h1>
-      		</div>
-    	</div>
-    	<hr class="m-t-0">
-    	<form method="POST" action="{{route('users.store')}}">
-     	 {{ csrf_field() }}
-     	 <div class="columns">
-       		<div class="column">
+	
+	{{-- Create User Frontend --}}
+	<div class="landing-bg">
 
-          		<div class="field">
-           			<label for="name" class="label">Name</label>
-            		<p class="control">
-              			<input type="text" class="input" name="name" id="name" value="{{old('name')}}">
-            		</p>
-          		</div>
+		{{-- Container Creating User --}}
+		<div class="user-interface-cont">
 
-          		<div class="field">
-            		<label for="name" class="label">Username</label>
-            		<p class="control">
-              			<input type="text" class="input" name="username" id="username" value="{{old('username')}}">
-            		</p>
-          		</div>
+			{{-- TOP LABELS --}}
+			<div class="login-title">
+                <div class="login-logo fl">
+                    <img src="/img/companylogo.png" title="Project T Solutions">
+                </div>
+                <div class="login-text fl">
+                    <p class="login-comp-nm">Create Approver Account</p>
+                    <p class="system-about">Account Exclusively for Executives</p>
+                </div>
+                <div class="clr"></div>
+            </div>
 
-          		<div class="field">
-		            <label for="email" class="label">Email:</label>
-		            <p class="control">
-		             	<input type="text" class="input" name="email" id="email" value="{{old('email')}}">
-		            </p>
-          		</div>
+            {{-- FORM APPROVER ACCOUNT CREATION --}}
+            <form method="POST" action="{{route('users.store')}}">
+            	{{ csrf_field() }}
 
-          			<!-- PASSWORD -->
+              	<input type="text" class="input" name="name" id="name" autofocus autocomplete="off"  required placeholder="fullname">
 
+              	<input type="text" class="input" name="username" id="username" autocomplete="off"  required placeholder="username">
+
+		        <input type="email" class="input" name="email" id="email" autocomplete="off"  required placeholder="email">
+
+		        {{-- PASSWORD AND CONFIRM PASSWORD --}}
 		        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-		            <label for="password" class="col-md-4 control-label">Password</label>
-
-		            <div class="col-md-6">
-		                <input id="password" type="password" class="form-control" name="password" required>
-
-		            </div>
+		            <input id="password" type="password" class="form-control" name="password" required placeholder="password">
 		        </div>
 
 		        <div class="form-group">
-		            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-		            <div class="col-md-6">
-		                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-		            </div>
+		            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required placeholder="Confirm password">
 		        </div>
 
-        	</div> <!-- end of .column -->
+		        <button class="submit-approver-acc">Create New Approver</button>
 
-        	<div class="columns">
-		        <div class="column">
-		          <hr />
-		          <button class="button is-primary is-pulled-right" style="width: 250px;">Create New User</button>
-		        </div>
-
-		       <a href="{{ route('users.index') }}">asdasdasd</a>
-
-			    <!-- DISPLAY ERRORS -->
+		        <!-- DISPLAY ERRORS -->
 			    @if ($errors->any())
-			    <div class="alert alert-danger">
-			        <ul>
-			            @foreach ($errors->all() as $error)
-			                <br><strong>{{ $error }}</strong>
-			            @endforeach
-			        </ul>
+			    <div class="login-comment-error">
+					@foreach ($errors->all() as $error)
+			        	<p>{{ $error }}</p>
+			        @endforeach
 			    </div>
 			    @endif
-    		</div>
-   	 	</form>
-   	</div>
+
+			    <a href="{{ route('users.index') }}" class="back-to-manage">Back to Manage Users</a>
+
+            </form>
+
+		</div>
+		
+	</div>
 
 @include('templates.footer')

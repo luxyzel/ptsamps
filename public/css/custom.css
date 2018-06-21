@@ -74,10 +74,18 @@ body {
 
 input[type = text] {
     width: 100%;
-	padding: 6px 10px;
+	padding: 8px 10px;
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	margin-bottom: 10px;
 	border-radius: 3px;
+    transition: box-shadow 0.5s;
+    color: #4f5863;
+    font-family: roboto-reg;
+    font-size: 13px;
+}
+
+input[type = text]:focus {
+    box-shadow: 3px 3px 40px -10px rgba(35, 169, 225, 0.7);
 }
 
 input[type = email] {

@@ -29,15 +29,8 @@
                     <form method="POST" action="{{ route('admin.login.submit') }}">
                         {{ csrf_field() }}
 
-                        <!-- warning invalid credentials -->
-                        @if(Session::has('warning'))
-                        <div class="comment-error">
-                           <strong> {{ Session::get('warning') }}</strong> 
-                        </div>
-                        @endif
-
                         <label class="lbl-login">Username</label>
-                        <input type="text" name="username" placeholder="username" autocomplete="off" autofocus required>
+                        <input type="text" name="username" placeholder="myaccountusername" autocomplete="off" autofocus required>
 
                         <div class="spacer"></div>
 
@@ -50,8 +43,16 @@
                             <button type="submit" class="login-submit">Login</button>
                         </div>
 
+                        <!-- warning invalid credentials -->
+                        @if(Session::has('warning'))
+                            <div class="login-comment-error">
+                               <p> {{ Session::get('warning') }} &#x1F615;</p> 
+                            </div>
+                        @endif
+
                         <label class="lbl-btm">Asset Management and Procurement System
-                            <br>Copyright &copy; <a href="https://www.projecttsolutions.com/" target="newtab" class="link-pts">Project T Solutions</a> </label>
+                            <br>Copyright &copy; <a href="https://www.projecttsolutions.com/" target="newtab" class="link-pts">Project T Solutions</a>
+                        </label>
                     </form>
                 </div>
             </div>

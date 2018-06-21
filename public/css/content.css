@@ -1,4 +1,21 @@
 
+/*login errors hidden*/
+.login-comment-error {
+	margin-top: 20px;
+    font-family: roboto-reg;
+    font-size: 10px;
+    text-transform: uppercase;
+    padding: 8px 10px;
+    background-color: #ffe3e3;
+    border: 1px solid #fc0000;
+    color: #ff0021;
+    text-align: center;
+    box-shadow: 5px 5px 21px -5px rgba(255, 0, 0, 0.25);
+    letter-spacing: 1px;
+    line-height: 15px;
+}
+
+
 /*Begin content design creation*/
 .manage-content {
 	background-color: #fff;
@@ -85,8 +102,74 @@
 	cursor: pointer;
 }
 
+/*Create User Design*/
+.user-interface-cont {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 350px;
+	height: 500px;
+	margin-top: -250px;
+	margin-left: -175px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 3px 3px 40px -10px rgba(0, 0, 0, 0.29);
+	padding: 20px 30px;
+}
+
+.user-interface-cont form {
+	margin-top: 30px;
+}
+
+.submit-approver-acc {
+	width: 100%;
+	border: 1px solid rgba(255, 255, 255, .1);
+    background-color: #23a9e1;
+    color: #fff;
+    padding: 10px 15px;
+    font-family: oswald-reg;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 3px;
+}
+
+.submit-approver-acc:hover {
+    background-color: #0783bd;
+}
+
+.back-to-manage {
+	position: absolute;
+	bottom: 0px;
+	margin-left: 70px;
+	margin-bottom: 20px;
+	text-transform: uppercase;
+	font-size: 11px;
+	font-family: oswald-reg;
+	letter-spacing: 1px;
+	padding: 5px 10px;
+	color: #929eaa;
+	transition: background-color 0.3s;
+}
+
+.back-to-manage:hover {
+	color: #fff;
+	background-color: #b9d5e8;
+}
+
+
+
+
+
+
+
+
+/*WITH BUG NEED TO FIX OR NOT DEPENDS*/
+
 /*popup confirmation archive*/
-.manage-archive-confirmation {
+/*.manage-archive-confirmation {
 	z-index: 99999;
 	height: 100vh;
 	position: absolute;
@@ -152,4 +235,5 @@
 
 #manage-popup-cancel:hover {
 	background-color: #c00404;
-}
+}*/
+
