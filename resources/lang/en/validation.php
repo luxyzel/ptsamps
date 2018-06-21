@@ -111,6 +111,9 @@ return [
         'name' => [
             'required' => 'Name Is Required',
         ],
+        'category' => [
+            'unique' => 'The Category has already been added',
+        ],
     ],
 
     /*

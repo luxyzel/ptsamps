@@ -28,7 +28,7 @@
           <div class="field">
           <label for="name" class="label">Username</label>
           <p class="control">
-              <input type="text" class="input" name="username" id="username" value="{{old('username')}}">
+              <input type="text" class="input" name="username" id="username" value="{{$admin->username}}">
           </p>
           </div>
 

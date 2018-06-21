@@ -35,6 +35,16 @@ Route::prefix('admin')->group(function(){
 
 	//ADMIN Account Settings submit
 	Route::match(['put', 'patch'], '/account/settings/update', 'Admin\AdminController@updateInfo')->name('acc.settings.submit'); 
+
+
+	// create new category
+	Route::resource('/category', 'Admin\Categorycontroller');
+
+	//Asset Management route
+	Route::resource('/assets-management', 'Admin\AssetsController');
+
+	//Create new Assets route
+	Route::get('/assets/create', 'Admin\AssetsController@showCreate')->name('create.assets');
 	
 });
 
