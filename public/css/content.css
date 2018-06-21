@@ -160,6 +160,20 @@
 }
 
 
+/*View Account Information*/
+.viewacc-interface-cont {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 350px;
+	height: 400px;
+	margin-top: -200px;
+	margin-left: -175px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 3px 3px 40px -10px rgba(0, 0, 0, 0.29);
+	padding: 20px 30px;
+}
 
 
 

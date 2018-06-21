@@ -152,7 +152,7 @@
 					</div>
 
 					<div class="dboard-right-menu fr" style="margin-right: 5px">
-						<a href="#" id="acc-but">
+						<a href="{{ route('users.index') }}" id="acc-but">
 							<div class="dboard-rmenu4-box">
 								<img src="/img/adduser.png" title="Manage User">
 							</div>
@@ -195,6 +195,7 @@
 							<th>Remarks</th>
 							<th>Deployment</th>
 							<th>Date Added</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 						@foreach ($assets as $asset)
