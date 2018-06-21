@@ -19,7 +19,9 @@ class AssetsController extends Controller
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        return view('admin.asset-man')->with('admin', $admin);
+        $assets = Asset::all();
+        return view('admin.manage-assets.asset-man',compact('admin', 'assets'));
+        /*return view('admin.manage-assets.asset-man')->with('admin', $admin);*/
     }
 
     public function showCreate()
@@ -48,20 +50,21 @@ class AssetsController extends Controller
     {
 
          $this->validateWith([
-        'category' => 'required|unique:assets',
+        'category_type' => 'required',
         'asset_tag' => 'required|unique:assets',
         'service_tag' => 'required|unique:assets',
         'serial_number' => 'required|unique:assets',
         'status' => 'required',
-        'deployment' => 'required',
+        'remarks' => 'required',
         ]);
 
         $asset = new Asset();
-        $asset->category = $request->category;
+        $asset->category_type = $request->category_type;
         $asset->asset_tag = $request->asset_tag;
         $asset->service_tag = $request->service_tag;
         $asset->serial_number = $request->serial_number;
         $asset->status = $request->status;
+        $asset->remarks = $request->remarks;
         $asset->deployment = $request->deployment;
 
         if ($asset->save()) {
@@ -91,7 +94,10 @@ class AssetsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::all();
+        $asset = Asset::findOrFail($id);
+        return view('admin.manage-assets.edit',compact('category', 'asset'));
+        /*return view('admin.manage-assets.edit')->withUser($asset);*/
     }
 
     /**
@@ -103,7 +109,30 @@ class AssetsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validateWith([
+        'category_type' => 'required',
+        'asset_tag' => 'required|unique:assets,asset_tag,'.$id,
+        'service_tag' => 'required|unique:assets,service_tag,'.$id,
+        'serial_number' => 'required|unique:assets,serial_number,'.$id,
+        'status' => 'required',
+        'remarks' => 'required',
+        ]);
+
+        $asset = Asset::findOrFail($id);
+        $asset->category_type = $request->category_type;
+        $asset->asset_tag = $request->asset_tag;
+        $asset->service_tag = $request->service_tag;
+        $asset->serial_number = $request->serial_number;
+        $asset->status = $request->status;
+        $asset->remarks = $request->remarks;
+        $asset->deployment = $request->deployment;
+
+        if ($asset->save()) {
+            Session::flash('success', 'Asset Successfully Updated');
+            return redirect()->back();
+        } else{
+            return redirect()->back();
+        }
     }
 
     /**
@@ -114,6 +143,7 @@ class AssetsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $asset = Asset::where('id',$id)->delete();
+        return redirect()->back();
     }
 }

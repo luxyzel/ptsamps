@@ -41,7 +41,7 @@ Route::prefix('admin')->group(function(){
 	Route::resource('/category', 'Admin\Categorycontroller');
 
 	//Asset Management route
-	Route::resource('/assets/management', 'Admin\AssetsController');
+	Route::resource('/assets-management', 'Admin\AssetsController');
 
 	//Create new Assets route
 	Route::get('/assets/create', 'Admin\AssetsController@showCreate')->name('create.assets');

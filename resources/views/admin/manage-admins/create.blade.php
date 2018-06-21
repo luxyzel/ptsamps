@@ -17,7 +17,7 @@
      	 <div class="columns">
        		<div class="column">
 
-			    <!-- warning invalid credentials -->
+			    <!-- success -->
 	            @if(Session::has('success'))
 	            <div class="comment-error">
 	               <strong> {{ Session::get('success') }}</strong> 

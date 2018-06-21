@@ -12,7 +12,7 @@
       		</div>
     	</div>
     	<hr class="m-t-0">
-    	<form method="POST" action="{{route('management.store')}}">
+    	<form method="POST" action="{{route('assets-management.store')}}">
      	 {{ csrf_field() }}
      	 <div class="columns">
        		<div class="column">
@@ -27,8 +27,8 @@
 
 
               <div class="field">
-                <label for="category" class="label">Category</label>
-                 <select name="category" id="category" class="control">
+                <label for="category_type" class="label">Category</label>
+                 <select name="category_type" id="category_type" class="control">
                   @foreach($category as $cat)
                     <option value="{{ $cat->category }}">{{ $cat->category }}</option>
                   @endforeach
@@ -64,6 +64,14 @@
             		</p>
           		</div>
 
+              <div class="field">
+                <label for="remarks" class="label">Remarks</label>
+                 <select name="remarks" id="remarks" class="control">
+                    <option value="Available">Available</option>
+                    <option value="Deployed">Deployed</option>
+                </select>
+              </div>
+
           		<div class="field">
            			<label for="status" class="label">Deployment</label>
             		<p class="control">
@@ -81,7 +89,7 @@
 		          <button class="button is-primary is-pulled-right" style="width: 250px;">Add Asset</button>
 		        </div>
 
-		       <a href="{{ route('management.index') }}">Back</a>
+		       <a href="{{ route('assets-management.index') }}">Back</a>
 
 			    <!-- DISPLAY ERRORS -->
 			    @if ($errors->any())

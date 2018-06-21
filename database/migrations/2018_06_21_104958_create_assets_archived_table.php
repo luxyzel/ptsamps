@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAssetsTable extends Migration
+class CreateAssetsArchivedTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAssetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('assets', function (Blueprint $table) {
+        Schema::create('assets_archived', function (Blueprint $table) {
             $table->increments('id');
             $table->string('category_type');
             $table->string('asset_tag');
@@ -22,6 +22,7 @@ class CreateAssetsTable extends Migration
             $table->string('status');
             $table->string('remarks');
             $table->string('deployment')->nullable();
+            $table->timestamp('date');
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ class CreateAssetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assets');
+        Schema::dropIfExists('assets_archived');
     }
 }

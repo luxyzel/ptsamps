@@ -183,6 +183,45 @@
 				<div class="clr"></div>
 			</div>
 
+			<div class="manage-content">
+				<table style="width: 100%; text-align: center;">
+					<thead>
+						<tr>
+							<th>Category Type</th>
+							<th>Asset Tag</th>
+							<th>Service Tag</th>
+							<th>Serial Number</th>
+							<th>Status</th>
+							<th>Remarks</th>
+							<th>Deployment</th>
+							<th>Date Added</th>
+						</tr>
+					</thead>
+						@foreach ($assets as $asset)
+							<tr>
+								<td>{{$asset->category_type}}</td>
+								<td>{{$asset->asset_tag}}</td>
+								<td>{{$asset->service_tag}}</td>
+								<td>{{$asset->serial_number}}</td>
+								<td>{{$asset->status}}</td>
+								<td>{{$asset->remarks}}</td>
+								<td>{{$asset->deployment}}</td>
+								<td>{{$asset->created_at->toFormattedDateString()}}</td>
+
+								<td>
+									<a href="{{ route('assets-management.edit', $asset->id) }}" class="manage-edit-but" title="Edit User">Edit</a>
+									{{-- <a href="#" class="manage-archive-but" title="Archive User">Archive</a> --}}
+									<form action="{{ route('assets-management.destroy', $asset->id) }}" method="POST" style="display: inline;">
+										{{ csrf_field() }}
+										{{ method_field('DELETE') }}
+										<button class="manage-archive-but">Archive</button>
+									</form>
+								</td>
+							</tr>
+						@endforeach
+				</table>
+			</div>
+
 		</div>
 		<div class="clr"></div>
 	</div>
