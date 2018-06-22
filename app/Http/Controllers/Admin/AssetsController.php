@@ -146,4 +146,46 @@ class AssetsController extends Controller
         $asset = Asset::where('id',$id)->delete();
         return redirect()->back();
     }
+
+    //DEPLOYED ASSETS INDEX
+    public function DeployedIndex()
+    {
+        $admin = Auth::guard('admin')->user();
+        $assets = Asset::where('remarks', 'deployed')->get();
+        return view('admin.assets-deployed.deployed',compact('admin', 'assets'));
+    }
+
+    //DEPLOYED ASSETS Monitor
+    public function DeployedMonitor()
+    {
+        $admin = Auth::guard('admin')->user();
+        $assets = Asset::where('remarks', 'deployed')->where('category_type', 'Monitor')->get();
+        return view('admin.assets-deployed.deployed',compact('admin', 'assets'));
+    }
+
+    //DEPLOYED ASSETS System Unit
+    public function DeployedUnit()
+    {
+        $admin = Auth::guard('admin')->user();
+        $assets = Asset::where('remarks', 'deployed')->where('category_type', 'System Unit')->get();
+        return view('admin.assets-deployed.deployed',compact('admin', 'assets'));
+    }
+
+    //STOCK ASSETS INDEX
+    public function StocksIndex()
+    {
+        $admin = Auth::guard('admin')->user();
+        $assets = Asset::where('remarks', 'available')->get();
+        return view('admin.assets-stock.stocks',compact('admin', 'assets'));
+    }
+
+    //ASSETS TRACKING
+    public function AssetTrackingIndex(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        $category = Category::all();
+        $filter = Asset::where('category_type', $request->category_type)->get();
+        $assets = Asset::all();
+        return view('admin.assets-tracking.asset-track',compact('admin', 'category', 'assets'));
+    }
 }

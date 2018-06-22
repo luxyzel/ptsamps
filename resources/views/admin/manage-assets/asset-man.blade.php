@@ -30,10 +30,10 @@
 
 			<!-- Buttons -->
 			<div class="dboard-prof">
-				<a href="#">
+				<a href="{{ route('assets.deployed')}}">
 					<div class="dboard-left-but">Deployed Units</div>
 				</a>
-				<a href="#">
+				<a href="{{ route('assets.stocks')}}">
 					<div class="dboard-left-but">Stock Assets</div>
 				</a>
 				<a href="#">
@@ -70,7 +70,7 @@
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
-						<a href="">
+						<a href="{{ route('assets.track') }}">
 							<div class="dboard-menu2-box">
 								<img src="/img/icon2.png" >
 							</div>
@@ -83,7 +83,7 @@
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
-						<a href="">
+						<a href="{{ route('assets-management.index') }}">
 							<div class="dboard-menu3-box">
 								<img src="/img/icon3.png">
 							</div>

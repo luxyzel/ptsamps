@@ -28,11 +28,11 @@
             <form method="POST" action="{{route('users.store')}}">
             	{{ csrf_field() }}
 
-              	<input type="text" class="input" name="name" id="name" autofocus autocomplete="off"  required placeholder="fullname">
+              	<input type="text" class="input" name="name" id="name" autofocus autocomplete="off"  required placeholder="fullname" value="{{old('name')}}">
 
-              	<input type="text" class="input" name="username" id="username" autocomplete="off"  required placeholder="username">
+              	<input type="text" class="input" name="username" id="username" autocomplete="off"  required placeholder="username" value="{{old('username')}}">
 
-		        <input type="email" class="input" name="email" id="email" autocomplete="off"  required placeholder="email">
+		        <input type="email" class="input" name="email" id="email" autocomplete="off"  required placeholder="email" value="{{old('email')}}">
 
 		        {{-- PASSWORD AND CONFIRM PASSWORD --}}
 		        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
