@@ -30,10 +30,10 @@
 
 			<!-- Buttons -->
 			<div class="dboard-prof">
-				<a href="#">
+				<a href="{{ route('assets.deployed')}}">
 					<div class="dboard-left-but">Deployed Units</div>
 				</a>
-				<a href="#">
+				<a href="{{ route('assets.stocks')}}">
 					<div class="dboard-left-but">Stock Assets</div>
 				</a>
 				<a href="#">
@@ -70,7 +70,7 @@
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
-						<a href="">
+						<a href="{{route('assets.track')}}">
 							<div class="dboard-menu2-box">
 								<img src="/img/icon2.png" >
 							</div>
@@ -178,56 +178,36 @@
 			</div>
 
 			<div class="dboard-content-menu">
-				<a href="{{ route('users.create') }}" class="dboard-add-acc fl">Create New Approver</a>
-				<a href="{{ route('admin.create') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Create New Admin</a>
-				<div class="clr"></div>
+
 			</div>
 
 			<div class="manage-content">
 				<table style="width: 100%; text-align: center;">
 					<thead>
 						<tr>
-							<th>Name</th>
-							<th>Email</th>
-							<th>Type</th>
-							<th>Date Created</th>
-							<th>Action</th>
+							<th>Category Type</th>
+							<th>Asset Tag</th>
+							<th>Service Tag</th>
+							<th>Serial Number</th>
+							<th>Status</th>
+							<th>Remarks</th>
 						</tr>
 					</thead>
-						@foreach ($users as $user)
+						@foreach ($assets as $asset)
 							<tr>
-								<td>{{$user->name}}</td>
-								<td>{{$user->email}}</td>
-								<td>Approver</td>
-								<td>{{$user->created_at->toFormattedDateString()}}</td>
-								<td>
-									<a href="{{ route('users.show', $user->id) }}" class="manage-view-but" title="View User">View</a>
-									<a href="{{ route('users.edit', $user->id) }}" class="manage-edit-but" title="Edit User">Edit</a>
-									{{-- <a href="#" class="manage-archive-but" title="Archive User">Archive</a> --}}
-									<form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;">
-										{{ csrf_field() }}
-										{{ method_field('DELETE') }}
-										<button class="manage-archive-but">Archive</button>
-									</form>
-								</td>
+								<td>{{$asset->category_type}}</td>
+								<td>{{$asset->asset_tag}}</td>
+								<td>{{$asset->service_tag}}</td>
+								<td>{{$asset->serial_number}}</td>
+								<td>{{$asset->status}}</td>
+								<td>{{$asset->remarks}}</td>
 							</tr>
 						@endforeach
 				</table>
 			</div>
+
 		</div>
 		<div class="clr"></div>
 	</div>
-
-	{{-- <div class="manage-archive-confirmation">
-		<div class="manage-popup-cont">
-			<p>Are you sure you want to archive the user?</p>
-			<form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;">
-				{{ csrf_field() }}
-				{{ method_field('DELETE') }}
-				<button class="manage-popup-yes">Yes</button>
-			</form>
-			<a href="#" id="manage-popup-cancel">Cancel</a>
-		</div>
-	</div> --}}	
 
 @include('templates.footer')

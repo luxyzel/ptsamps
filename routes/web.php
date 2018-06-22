@@ -45,6 +45,21 @@ Route::prefix('admin')->group(function(){
 
 	//Create new Assets route
 	Route::get('/assets/create', 'Admin\AssetsController@showCreate')->name('create.assets');
+
+	//Deployed Units Index
+	Route::get('/assets/deployed', 'Admin\AssetsController@DeployedIndex')->name('assets.deployed');
+
+	//Deployed Monitor
+	Route::get('/assets/deployed/Monitor', 'Admin\AssetsController@DeployedMonitor')->name('assets.deployed.monitor');
+
+	//Deployed Units
+	Route::get('/assets/deployed/Units', 'Admin\AssetsController@DeployedUnit')->name('assets.deployed.units');
+
+	//Stock Assets Index
+	Route::get('/assets/stocks', 'Admin\AssetsController@StocksIndex')->name('assets.stocks');
+
+	//Assets Tracking
+	Route::get('/assets/tracking', 'Admin\AssetsController@AssetTrackingIndex')->name('assets.track');
 	
 });
 
