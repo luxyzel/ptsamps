@@ -195,6 +195,7 @@
 							<th>Remarks</th>
 							<th>Deployment</th>
 							<th>Date Added</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 						@foreach ($assets as $asset)

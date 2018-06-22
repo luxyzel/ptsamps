@@ -1,46 +1,43 @@
 
+
 @include('templates.header')
 
-  <title>Show User Information | Asset Management and Procurement System</title>
+  <title>Show Account Information | Asset Management and Procurement System</title>
 </head>
 
 <body>
-	<div class="flex-container">
-    <div class="columns m-t-10">
-      <div class="column">
-        <h1 class="title">View User Details</h1>
-      </div> <!-- end of column -->
+  
+  {{-- Create User Frontend --}}
+<div class="landing-bg">
 
-      <div class="column">
-        <a href="{{route('users.edit', $user->id)}}" class="button is-primary is-pulled-right"><i class="fa fa-user m-r-10"></i> Edit User</a>
-      </div>
-    </div>
-    <hr class="m-t-0">
+    {{-- Container Creating User --}}
+    <div class="viewacc-interface-cont">
 
-     <div class="columns">
-      <div class="column">
-        <div class="field">
-          <label for="name" class="label">Userame</label>
-          <pre>{{$user->username}}</pre>
+      {{-- TOP LABELS --}}
+        <div class="login-title">
+            <div class="login-logo fl">
+                <img src="/img/companylogo.png" title="Project T Solutions">
+            </div>
+            <div class="login-text fl">
+                <p class="login-comp-nm">Show Account Info</p>
+                <p class="system-about">Account Exclusively for Executives</p>
+            </div>
+            <div class="clr"></div>
         </div>
 
-    <div class="columns">
-      <div class="column">
-        <div class="field">
-          <label for="name" class="label">Name</label>
-          <pre>{{$user->name}}</pre>
-        </div>
-
-        <div class="field">
-          <div class="field">
-            <label for="email" class="label">Email</label>
+            <label class="lbl-view">Username</label>
+            <pre>{{$user->username}}</pre>
+                
+            <label class="lbl-view" style="margin-top: 5px">Fullname</label>
+            <pre>{{$user->username}}</pre>
+               
+            <label class="lbl-view" style="margin-top: 5px">Email</label>
             <pre>{{$user->email}}</pre>
-          </div>
-        </div>
-  </div>
-    </div>
-      </div>
 
-     <a href="{{ route('users.index') }}">asdasdasd</a>
+        <a href="{{ route('users.index') }}" class="back-to-manage">Back to Manage Users</a>
+
+    </div>
+    
+</div>
 
 @include('templates.footer')
