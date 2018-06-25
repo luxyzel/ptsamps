@@ -1,7 +1,7 @@
 
 @include('templates.header')
 
-  <title>Create Admin | Asset Management and Procurement System</title>
+  <title>Create Assets | Asset Management and Procurement System</title>
 </head>
 
 <body>
@@ -33,7 +33,7 @@
                     <option value="{{ $cat->category }}">{{ $cat->category }}</option>
                   @endforeach
                 </select>
-              </div>
+              </div><br>
 
 
           		<div class="field">
@@ -57,20 +57,23 @@
             		</p>
           		</div>
 
-          		<div class="field">
-           			<label for="status" class="label">Status</label>
-            		<p class="control">
-              			<input type="text" class="input" name="status" id="status" value="">
-            		</p>
-          		</div>
+              <div class="field">
+                <label for="status" class="label">Status</label>
+                 <select name="status" id="status" class="control">
+                    <option value="Working">Working</option>
+                    <option value="Defective">Defective</option>
+                    <option value="Pulled out">Pulled out</option>
+                </select>
+              </div><br>
 
               <div class="field">
                 <label for="remarks" class="label">Remarks</label>
                  <select name="remarks" id="remarks" class="control">
                     <option value="Available">Available</option>
                     <option value="Deployed">Deployed</option>
+                    <option value="Deployed">Not Available</option>
                 </select>
-              </div>
+              </div><br>
 
           		<div class="field">
            			<label for="status" class="label">Deployment</label>

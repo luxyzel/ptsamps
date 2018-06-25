@@ -16,6 +16,8 @@
 			<div class="dboard-prof">
 				<img src="/img/companylogo.png" title="Project T Solutions">
 
+
+
 				<!-- Admin -->
 				<div class="dboard-admin">
 					<div class="admin-avatar fl"></div>
@@ -177,11 +179,14 @@
 				<div class="clr"></div>
 			</div>
 
+
 			<div class="dboard-content-menu">
 				<a href="{{ route('assets.deployed.units') }}" class="dboard-add-acc fl">System Unit</a>
 				<a href="{{ route('assets.deployed.monitor') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Monitor</a>
 				<div class="clr"></div>
 			</div>
+
+			<h2>Total deployed units: {{$count}}</h2>
 
 			<div class="manage-content">
 				<table style="width: 100%; text-align: center;">

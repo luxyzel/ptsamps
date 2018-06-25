@@ -1,7 +1,7 @@
 
 @include('templates.header')
 
-  <title>Edit User | Asset Management and Procurement System</title>
+  <title>Edit Assets | Asset Management and Procurement System</title>
 </head>
 
 <body>
@@ -31,12 +31,11 @@
            <div class="field">
                 <label for="category_type" class="label">Category</label>
                  <select name="category_type" id="category_type" class="control">
-                  <option value="{{ $asset->category_type }}" disabled>{{ $asset->category_type }} </option>
                   @foreach($category as $cat)
-                    <option value="{{ $cat->category }}">{{ $cat->category }}</option>
+                    <option value="{{ $cat->category }}" {{ $asset->category_type === $cat->category? 'selected' : '' }}>{{ $cat->category }}</option>
                   @endforeach
                 </select>
-              </div>
+              </div><br>
 
 
               <div class="field">
@@ -62,19 +61,21 @@
 
               <div class="field">
                 <label for="status" class="label">Status</label>
-                <p class="control">
-                    <input type="text" class="input" name="status" id="status" value="{{$asset->status}}">
-                </p>
-              </div>
+                 <select name="status" id="status" class="control">
+                    <option value="Working" {{ $asset->status === 'Working'? 'selected' : '' }}>Working</option>
+                    <option value="Defective" {{ $asset->status === 'Defective'? 'selected' : '' }}>Defective</option>
+                    <option value="Pulled out" {{ $asset->status === 'Pulled out'? 'selected' : '' }}>Pulled out</option>
+                </select>
+              </div><br>
 
                 <div class="field">
                 <label for="remarks" class="label">Remarks</label>
                  <select name="remarks" id="remarks" class="control">
-                     <option value="{{ $asset->remarks }}" disabled>{{ $asset->remarks }} </option>
-                    <option value="Available">Available</option>
-                    <option value="Deployed">Deployed</option>
+                    <option value="Available" {{ $asset->remarks === 'Available'? 'selected' : '' }}>Available</option>
+                    <option value="Deployed" {{ $asset->remarks === 'Deployed'? 'selected' : '' }}>Deployed</option>
+                    <option value="Not Available" {{ $asset->remarks === 'Not Available'? 'selected' : '' }}>Not Available</option>
                 </select>
-              </div>
+              </div><br>
 
               <div class="field">
                 <label for="status" class="label">Deployment</label>

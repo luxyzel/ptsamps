@@ -175,8 +175,26 @@
 	padding: 20px 30px;
 }
 
+.view-container {
+	margin-top: 30px;
+	font-family: roboto-reg;
+	font-size: 13px;
+	text-align: center;	
+}
 
+.lbl-view {
+	color: 	#83c0f6;
+	letter-spacing: 1px;
+	display: block;	
+}
 
+.view-label {
+	color: 	#696a6a;
+	font-family: roboto-reg;
+	font-size: 20px;
+	letter-spacing: 1px;
+	margin-top: 5px;
+}
 
 
 

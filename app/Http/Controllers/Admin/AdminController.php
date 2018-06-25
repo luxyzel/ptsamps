@@ -47,7 +47,7 @@ class AdminController extends Controller
             $id = Auth::guard('admin')->user()->id;
 
             $this->validateWith([
-            'username' => 'required|unique:admins|max:64',
+            'username' => 'required|unique:admins,username,'.$id,
             'name' => 'required|max:255',
             'email' => 'required|email|unique:admins,email,'.$id,
             ]);
@@ -72,7 +72,7 @@ class AdminController extends Controller
             $id = Auth::guard('admin')->user()->id;
 
             $this->validateWith([
-            'username' => 'required|unique:admins|max:64',
+            'username' => 'required|unique:admins,username,'.$id,
             'name' => 'required|max:255',
             'email' => 'required|email|unique:admins,email,'.$id,
             'currentpass' => 'required|max:255',

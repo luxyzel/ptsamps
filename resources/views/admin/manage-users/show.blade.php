@@ -24,15 +24,17 @@
             </div>
             <div class="clr"></div>
         </div>
-
+        <div class="view-container">
             <label class="lbl-view">Username</label>
-            <pre>{{$user->username}}</pre>
+            <p class="view-label">{{$user->username}}</p>
                 
-            <label class="lbl-view" style="margin-top: 5px">Fullname</label>
-            <pre>{{$user->username}}</pre>
+            <label class="lbl-view" style="margin-top: 20px;">Fullname</label>
+            <p class="view-label">{{$user->name}}</p>
                
-            <label class="lbl-view" style="margin-top: 5px">Email</label>
-            <pre>{{$user->email}}</pre>
+            <label class="lbl-view" style="margin-top: 20px;">Email</label>
+            <p class="view-label">{{$user->email}}</p>
+        </div>
+            
 
         <a href="{{ route('users.index') }}" class="back-to-manage">Back to Manage Users</a>
 

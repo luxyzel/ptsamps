@@ -16,13 +16,37 @@ class AssetsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        $assets = Asset::all();
+        $assets = Asset::orderBy('created_at','DESC')->paginate(25);
         return view('admin.manage-assets.asset-man',compact('admin', 'assets'));
-        /*return view('admin.manage-assets.asset-man')->with('admin', $admin);*/
+        
     }
+
+    public function getSearch(Request $request)
+    {
+        $s = $request->get('search');
+        $admin = Auth::guard('admin')->user();
+        $assets = Asset::where(function ($query) use($s) 
+        {
+            $query->where('asset_tag', 'like', '%' . $s . '%')
+               ->orWhere('service_tag', 'like', '%' . $s . '%')
+               ->orWhere('serial_number', 'like', '%' . $s . '%');
+                })
+            ->paginate(25);
+
+
+            if(!$assets->isEmpty()){
+                return view('admin.manage-assets.asset-man',compact('admin', 'assets'));
+            }else{
+                Session::flash('warning', 'No record found');
+                return view('admin.manage-assets.asset-man',compact('admin', 'assets'));
+            }
+
+    }
+    
 
     public function showCreate()
     {
@@ -152,7 +176,8 @@ class AssetsController extends Controller
     {
         $admin = Auth::guard('admin')->user();
         $assets = Asset::where('remarks', 'deployed')->get();
-        return view('admin.assets-deployed.deployed',compact('admin', 'assets'));
+        $count = Asset::where('remarks', 'deployed')->count();
+        return view('admin.assets-deployed.deployed',compact('admin', 'assets', 'count'));
     }
 
     //DEPLOYED ASSETS Monitor
@@ -160,7 +185,8 @@ class AssetsController extends Controller
     {
         $admin = Auth::guard('admin')->user();
         $assets = Asset::where('remarks', 'deployed')->where('category_type', 'Monitor')->get();
-        return view('admin.assets-deployed.deployed',compact('admin', 'assets'));
+        $count = Asset::where('remarks', 'deployed')->where('category_type', 'Monitor')->count();
+        return view('admin.assets-deployed.deployed',compact('admin', 'assets', 'count'));
     }
 
     //DEPLOYED ASSETS System Unit
@@ -168,7 +194,8 @@ class AssetsController extends Controller
     {
         $admin = Auth::guard('admin')->user();
         $assets = Asset::where('remarks', 'deployed')->where('category_type', 'System Unit')->get();
-        return view('admin.assets-deployed.deployed',compact('admin', 'assets'));
+        $count = Asset::where('remarks', 'deployed')->where('category_type', 'System Unit')->count();
+        return view('admin.assets-deployed.deployed',compact('admin', 'assets', 'count'));
     }
 
     //STOCK ASSETS INDEX
@@ -187,5 +214,30 @@ class AssetsController extends Controller
         $filter = Asset::where('category_type', $request->category_type)->get();
         $assets = Asset::all();
         return view('admin.assets-tracking.asset-track',compact('admin', 'category', 'assets'));
+    }
+
+    //ASSETS TRACKING Search
+    public function getSearchAsset(Request $request)
+    {
+        $s = $request->get('search');
+        $admin = Auth::guard('admin')->user();
+        $category = Category::all();
+
+        $assets = Asset::where(function ($query) use($s) 
+        {
+            $query->where('asset_tag', 'like', '%' . $s . '%')
+               ->orWhere('service_tag', 'like', '%' . $s . '%')
+               ->orWhere('serial_number', 'like', '%' . $s . '%');
+                })
+            ->paginate(25);
+
+
+            if(!$assets->isEmpty()){
+                return view('admin.assets-tracking.asset-track',compact('admin', 'category', 'assets'));
+            }else{
+                Session::flash('warning', 'No record found');
+                return view('admin.assets-tracking.asset-track',compact('admin', 'category', 'assets'));
+            }
+
     }
 }
