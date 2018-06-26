@@ -70,7 +70,7 @@
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
-						<a href="">
+						<a href="{{ route('assets.track') }}">
 							<div class="dboard-menu2-box">
 								<img src="/img/icon2.png" >
 							</div>
@@ -181,12 +181,13 @@
 
 				<div class="dboard-content-menu"></div>
 
-					<div class="field">
-           				<label for="search" class="label">Search</label>
-            			<p class="control">
-              			<input type="text" class="input" name="search" id="search" value="">
-            			</p>
-          			</div>
+
+				<form  action="{{ route('search-asset') }}" method="get">
+				<input type="text" class="input" name="search" id="search" value="" placeholder="search ..." required>
+				<button type="submit">Search</button>
+				{{ csrf_field() }}
+				</form><br>
+
 
 					<div class="field">
 	                	<label for="category_type" class="label">Category</label>
@@ -197,12 +198,7 @@
 	                	</select>
 	              	</div>
 
-	              	<div class="field">
-           				<label for="count" class="label">Count</label>
-           				<label for="count" class="label">Count</label>
-          			</div>
-
-          			<div class="manage-content">
+          		<div class="manage-content">
 				<table style="width: 100%; text-align: center;">
 					<thead>
 						<tr>
@@ -231,9 +227,12 @@
 				</table>
 			</div>
 
-
-
-				
+			<!-- warning no record -->
+          	@if(Session::has('warning'))
+                <div class="comment-error">
+                   <strong><center>{{ Session::get('warning') }}</center> </strong> 
+                </div>
+            @endif
 
 			</div>
 

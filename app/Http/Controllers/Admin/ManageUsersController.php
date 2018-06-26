@@ -101,7 +101,7 @@ class ManageUsersController extends Controller
         $this->validateWith([
             'username' => 'required|unique:users,username,'.$id,
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id
+            'email' => 'required|email|unique:users,email,'.$id,
         ]);
 
         $user = User::findOrFail($id);

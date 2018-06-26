@@ -1,7 +1,10 @@
 
 @include('templates.header')
 
-  <title>Manage User | Asset Management and Procurement System</title>
+
+
+
+  <title>Manage Assets | Asset Management and Procurement System</title>
 </head>
 
 <body>
@@ -183,6 +186,12 @@
 				<div class="clr"></div>
 			</div>
 
+             <form  action="{{ route('search') }}" method="get">
+				<input type="text" class="input" name="search" id="search" value="" placeholder="search ..." required>
+				<button type="submit">Search</button>
+				{{ csrf_field() }}
+			</form>
+
 			<div class="manage-content">
 				<table style="width: 100%; text-align: center;">
 					<thead>
@@ -219,9 +228,22 @@
 									</form>
 								</td>
 							</tr>
+							
 						@endforeach
 				</table>
+
 			</div>
+			<br>
+			
+			<!-- PAGINATION -->
+			<center><div style="display: inline">{{$assets->links()}}</div></center>
+
+			<!-- warning no record -->
+          	@if(Session::has('warning'))
+                <div class="comment-error">
+                   <strong><center>{{ Session::get('warning') }}</center> </strong> 
+                </div>
+            @endif
 
 		</div>
 		<div class="clr"></div>
