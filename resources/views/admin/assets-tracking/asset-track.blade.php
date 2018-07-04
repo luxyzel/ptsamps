@@ -199,17 +199,17 @@
 	              	</div>
 
           		<div class="manage-content">
-				<table style="width: 100%; text-align: center;">
+				<table id="assetTable" style="width: 100%; text-align: center;">
 					<thead>
 						<tr>
-							<th>Category Type</th>
-							<th>Asset Tag</th>
-							<th>Service Tag</th>
-							<th>Serial Number</th>
-							<th>Status</th>
-							<th>Remarks</th>
-							<th>Deployment</th>
-							<th>Date Added</th>
+							<th onclick="sortTable(0)">Category Type</th>
+							<th onclick="sortTable(1)">Asset Tag</th>
+							<th onclick="sortTable(2)">Service Tag</th>
+							<th onclick="sortTable(3)">Serial Number</th>
+							<th onclick="sortTable(4)">Status</th>
+							<th onclick="sortTable(5)">Remarks</th>
+							<th onclick="sortTable(6)">Deployment</th>
+							<th onclick="sortTable(7)">Date Added</th>
 						</tr>
 					</thead>
 						@foreach ($assets as $asset)
@@ -241,3 +241,6 @@
 	</div>
 
 @include('templates.footer')
+
+
+
