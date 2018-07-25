@@ -49,6 +49,29 @@ Route::prefix('admin')->group(function(){
 	//Create new Assets route
 	Route::get('/assets/create', 'Admin\AssetsController@showCreate')->name('create.assets');
 
+	//IMPORT ASSETS VIEW
+	Route::get('/import-asset', 'Admin\ImportController@importAssetsView')->name('import-assets');
+
+	//IMPORT ASSETS
+	Route::post('/import/assets', 'Admin\ImportController@import')->name('import');
+
+
+	// PEREPHERALS INDEX ROUTE
+	Route::resource('/manage/perepherals', 'Admin\PerepheralsController');
+
+	//IMPORT PEREPHERALS INDEX
+	Route::get('/import-perepherals', 'Admin\PerepheralsController@importView')->name('import-per');
+
+	//IMPORT PEREPHERALS
+	Route::post('/import/perepherals', 'Admin\PerepheralsController@import')->name('importP');
+
+	// CATEGORY_PEREPHERALS INDEX ROUTE
+	Route::resource('/perepherals-category', 'Admin\CategoryPerController');
+
+	//Perepherals Search route
+	Route::get('/search/perepherals', 'Admin\PerepheralsController@getSearch')->name('searchPer');
+
+
 	//Deployed Units Index
 	Route::get('/assets/deployed', 'Admin\AssetsController@DeployedIndex')->name('assets.deployed');
 

@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Category;
-use Session;
 
-class CategoryController extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.manage-perCategory.create');
+        //
     }
 
     /**
@@ -37,19 +35,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validateWith([
-        'category' => 'required|unique:categories',
-        ]);
-
-        $category = new Category();
-        $category->category = $request->category;
-
-        if ($category->save()) {
-            Session::flash('success', 'Category Successfully Added');
-            return redirect()->back();
-        } else{
-            return redirect()->route('perepherals-category.index');
-        }
+        //
     }
 
     /**

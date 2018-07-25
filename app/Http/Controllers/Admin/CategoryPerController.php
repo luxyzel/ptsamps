@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Category;
+use App\Model\Category_per;
 use Session;
 
-class CategoryController extends Controller
+class CategoryPerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,17 +38,17 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validateWith([
-        'category' => 'required|unique:categories',
+        'category' => 'required|unique:category_pers',
         ]);
 
-        $category = new Category();
+        $category = new Category_per();
         $category->category = $request->category;
 
         if ($category->save()) {
             Session::flash('success', 'Category Successfully Added');
             return redirect()->back();
         } else{
-            return redirect()->route('perepherals-category.index');
+            return redirect()->route('category.index');
         }
     }
 

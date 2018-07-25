@@ -109,7 +109,7 @@
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
-						<a href="">
+						<a href="{{ route('perepherals.index') }}">
 							<div class="dboard-menu5-box">
 								<img src="img/icon5.png">
 							</div>

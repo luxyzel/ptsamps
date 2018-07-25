@@ -15,14 +15,27 @@ class CreateAssetsArchivedTable extends Migration
     {
         Schema::create('assets_archived', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('category_type');
-            $table->string('asset_tag');
-            $table->string('service_tag');
-            $table->string('serial_number');
-            $table->string('status');
-            $table->string('remarks');
-            $table->string('deployment')->nullable();
-            $table->timestamp('date');
+            $table->string('category')->nullable();
+            $table->string('model')->nullable();
+            $table->string('st_msn')->nullable();
+            $table->string('pdsn')->nullable();
+            $table->string('asset_tag')->nullable();
+            $table->string('asset_number')->nullable();
+            $table->string('adapter')->nullable();
+            $table->string('location')->nullable();
+            $table->string('ws_no')->nullable();
+            $table->string('st')->nullable();
+            $table->string('s_n')->nullable();
+            $table->string('mouse')->nullable();
+            $table->string('keyboard')->nullable();
+            $table->string('code')->nullable();
+            $table->string('description')->nullable();
+            $table->string('condition')->nullable();
+            $table->string('status')->nullable();
+            $table->timestamp('date_delivered')->nullable();
+            $table->string('warranty_ends')->nullable();
+            $table->string('vendor')->nullable();
+            $table->string('notes')->nullable();
             $table->timestamps();
         });
     }

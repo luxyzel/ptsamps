@@ -27,62 +27,156 @@
 
 
               <div class="field">
-                <label for="category_type" class="label">Category</label>
-                 <select name="category_type" id="category_type" class="control">
+                <label for="category" class="label">Category</label>
+                 <select name="category" id="category" class="control">
                   @foreach($category as $cat)
                     <option value="{{ $cat->category }}">{{ $cat->category }}</option>
                   @endforeach
                 </select>
               </div><br>
 
+              <div class="field">
+                <label for="model" class="label">Model</label>
+                 <select name="model" id="model" class="control">
+                  @foreach($category as $cat)
+                    <option value="{{ $cat->category }}">{{ $cat->category }}</option>
+                  @endforeach
+                </select>
+              </div><br>
 
-          		<div class="field">
-           			<label for="asset_tag" class="label">Asset Tag</label>
-            		<p class="control">
-              			<input type="text" class="input" name="asset_tag" id="asset_tag" value="">
-            		</p>
-          		</div>
+              <div class="field">
+                <label for="stmsn" class="label">ST/MSN</label>
+                <p class="control">
+                    <input type="text" class="input" name="stmsn" id="stmsn" value="">
+                </p>
+              </div>
 
-          		<div class="field">
-           			<label for="service_tag" class="label">Service Tag</label>
-            		<p class="control">
-              			<input type="text" class="input" name="service_tag" id="service_tag" value="">
-            		</p>
-          		</div>
+              <div class="field">
+                <label for="pdsn" class="label">PDSN</label>
+                <p class="control">
+                    <input type="text" class="input" name="pdsn" id="pdsn" value="">
+                </p>
+              </div>
 
-          		<div class="field">
-           			<label for="serial_number" class="label">Serial Number</label>
-            		<p class="control">
-              			<input type="text" class="input" name="serial_number" id="serial_number" value="">
-            		</p>
-          		</div>
+              <div class="field">
+                <label for="asset_tag" class="label">Asset Tag</label>
+                <p class="control">
+                    <input type="text" class="input" name="asset_tag" id="asset_tag" value="">
+                </p>
+              </div>
+
+              <div class="field">
+                <label for="asset_number" class="label">Asset Number</label>
+                <p class="control">
+                    <input type="text" class="input" name="asset_number" id="asset_number" value="">
+                </p>
+              </div>
+
+              <div class="field">
+                <label for="adapter" class="label">Adapter</label>
+                <p class="control">
+                    <input type="text" class="input" name="adapter" id="adapter" value="">
+                </p>
+              </div>
+
+              <div class="field">
+                <label for="location" class="label">Location</label>
+                 <select name="location" id="location" class="control">
+                  @foreach($category as $cat)
+                    <option value="{{ $cat->category }}">{{ $cat->category }}</option>
+                  @endforeach
+                </select>
+              </div><br>
+
+              <div class="field">
+                <label for="wsno" class="label">WS NO.</label>
+                <p class="control">
+                    <input type="text" class="input" name="wsno" id="wsno" value="">
+                </p>
+              </div>
+
+              <div class="field">
+                <label for="st" class="label">ST</label>
+                <p class="control">
+                    <input type="text" class="input" name="st" id="st" value="">
+                </p>
+              </div>
+
+              <div class="field">
+                <label for="sn" class="label">S/N</label>
+                <p class="control">
+                    <input type="text" class="input" name="sn" id="sn" value="">
+                </p>
+              </div>
+
+              <div class="field">
+                <label for="mouse" class="label">Mouse</label>
+                <p class="control">
+                    <input type="text" class="input" name="mouse" id="mouse" value="">
+                </p>
+              </div>
+
+              <div class="field">
+                <label for="keyboard" class="label">Keyboard</label>
+                <p class="control">
+                    <input type="text" class="input" name="keyboard" id="keyboard" value="">
+                </p>
+              </div>
+
+              <div class="field">
+                <label for="code" class="label">Code</label>
+                 <select name="code" id="code" class="control">
+                  @foreach($category as $cat)
+                    <option value="{{ $cat->category }}">{{ $cat->category }}</option>
+                  @endforeach
+                </select>
+              </div><br>
+
+              <div class="field">
+                <label for="description" class="label">Description</label>
+                 <select name="description" id="description" class="control">
+                  @foreach($category as $cat)
+                    <option value="{{ $cat->category }}">{{ $cat->category }}</option>
+                  @endforeach
+                </select>
+              </div><br>
+
+              <div class="field">
+                <label for="condition" class="label">Condition</label>
+                 <select name="condition" id="condition" class="control">
+                  @foreach($category as $cat)
+                    <option value="{{ $cat->category }}">{{ $cat->category }}</option>
+                  @endforeach
+                </select>
+              </div><br>
 
               <div class="field">
                 <label for="status" class="label">Status</label>
                  <select name="status" id="status" class="control">
-                    <option value="Working">Working</option>
-                    <option value="Defective">Defective</option>
-                    <option value="Pulled out">Pulled out</option>
+                  @foreach($category as $cat)
+                    <option value="{{ $cat->category }}">{{ $cat->category }}</option>
+                  @endforeach
                 </select>
               </div><br>
 
+              <!-- DATE delivered-->
+               <!-- warranty ends-->
+
               <div class="field">
-                <label for="remarks" class="label">Remarks</label>
-                 <select name="remarks" id="remarks" class="control">
-                    <option value="Available">Available</option>
-                    <option value="Deployed">Deployed</option>
-                    <option value="Deployed">Not Available</option>
+                <label for="vendor" class="label">Vendor</label>
+                 <select name="vendor" id="vendor" class="control">
+                  @foreach($category as $cat)
+                    <option value="{{ $cat->category }}">{{ $cat->category }}</option>
+                  @endforeach
                 </select>
               </div><br>
 
           		<div class="field">
-           			<label for="status" class="label">Deployment</label>
+           			<label for="notes" class="label">Notes</label>
             		<p class="control">
-              			<input type="text" class="input" name="deployment" id="deployment" value="">
+              			<input type="text" class="input" name="notes" id="notes" value="">
             		</p>
           		</div>
-
-
 
         	</div> <!-- end of .column -->
 
