@@ -112,7 +112,7 @@
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
-						<a href="{{ route('perepherals.index') }}">
+						<a href="{{ route('peripherals.index') }}">
 							<div class="dboard-menu5-box">
 								<img src="/img/icon5.png">
 							</div>
@@ -181,9 +181,9 @@
 			</div>
 
 			<div class="dboard-content-menu">
-				<a href="{{ route('perepherals-category.index') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Add Category</a>
-				<a href="{{ route('perepherals.create') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Add Perepherals</a>
-				<a href="{{ route('import-per') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Import Perepherals</a>
+				<a href="{{ route('category.index') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Add Category</a>
+				<a href="{{ route('peripherals.create') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Add Peripherals</a>
+				<a href="{{ route('import-per') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Import Peripherals</a>
 				<div class="clr"></div>
 			</div>
 
@@ -211,7 +211,7 @@
 							<th>Action</th>
 						</tr>
 					</thead>
-						@foreach ($perepherals as $per)
+						@foreach ($peripherals as $per)
 							<tr>
 								<td>{{$per->category}}</td>
 								<!-- MODEL -->
@@ -240,10 +240,10 @@
 								@endif
 
 								<td>
-									<a href="{{ route('perepherals.show', $per->id) }}" class="manage-view-but" title="View">View</a>
-									<a href="{{ route('perepherals.edit', $per->id) }}" class="manage-edit-but" title="Edit">Edit</a>
+									<a href="{{ route('peripherals.show', $per->id) }}" class="manage-view-but" title="View">View</a>
+									<a href="{{ route('peripherals.edit', $per->id) }}" class="manage-edit-but" title="Edit">Edit</a>
 									{{-- <a href="#" class="manage-archive-but" title="Archive User">Archive</a> --}}
-									<form action="{{ route('perepherals.destroy', $per->id) }}" method="POST" style="display: inline;">
+									<form action="{{ route('peripherals.destroy', $per->id) }}" method="POST" style="display: inline;">
 										{{ csrf_field() }}
 										{{ method_field('DELETE') }}
 										<button class="manage-archive-but">Delete</button>
@@ -258,7 +258,7 @@
 			<br>
 			
 			<!-- PAGINATION -->
-			<center><div style="display: inline">{{$perepherals->links()}}</div></center>
+			<center><div style="display: inline">{{$peripherals->links()}}</div></center>
 
 			<!-- warning no record -->
           	@if(Session::has('warning'))

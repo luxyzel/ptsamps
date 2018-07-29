@@ -36,7 +36,7 @@
 				<a href="{{ route('assets.stocks')}}">
 					<div class="dboard-left-but">Stock Assets</div>
 				</a>
-				<a href="#">
+				<a href="{{ route('procurement.index')}}">
 					<div class="dboard-left-but">Procurement</div>
 				</a>
 				<a href="#">
@@ -109,7 +109,7 @@
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
-						<a href="{{ route('perepherals.index') }}">
+						<a href="{{ route('peripherals.index') }}">
 							<div class="dboard-menu5-box">
 								<img src="img/icon5.png">
 							</div>

@@ -77,16 +77,21 @@ class ImportController extends Controller
                                 'updated_at' => now(),
                                 ];
 
-                                $arrayC[] = ['category' => array_get($row, 'category'),];
+                                $arrayC[] = ['category' => array_get($row, 'category'), 'type' => 'Peripherals', 'created_at' => date("Y-m-d"), 'updated_at' => date("Y-m-d"),];
                                 $categories = array_unique($arrayC, SORT_REGULAR);
 
-                                $arrayB[] = ['model' => array_get($row, 'model'),];
+                                //GET CAtegory Id
+                                $arrays[] = array_get($row, 'category');
+                                $sortedC = array_unique($arrays, SORT_REGULAR);
+                                $ids = Category::select('id')->whereIn('category', $sortedC)->get();
+
+                                $arrayB[] = ['model' => array_get($row, 'model'), 'created_at' => date("Y-m-d"), 'updated_at' => date("Y-m-d"),];
                                 $brands = array_unique($arrayB, SORT_REGULAR);
 
-                                $arrayL[] = ['location' => array_get($row, 'room'),];
+                                $arrayL[] = ['location' => array_get($row, 'room'), 'created_at' => date("Y-m-d"), 'updated_at' => date("Y-m-d"),];
                                 $locations = array_unique($arrayL, SORT_REGULAR);
 
-                                $arrayV[] = ['vendor' => array_get($row, 'vendor'),];
+                                $arrayV[] = ['vendor' => array_get($row, 'vendor'), 'created_at' => date("Y-m-d"), 'updated_at' => date("Y-m-d"),];
                                 $vendors = array_unique($arrayV, SORT_REGULAR);
                             }
                         }
@@ -101,12 +106,22 @@ class ImportController extends Controller
                             $catMatch = Category::where('category', $categories)->first();
                             if (!$catMatch) {
                                 $catData = Category::insert($categories);
+                                Category::where('category',NULL)->delete();
                             }
+                            
+                            /*ASSET IMPORT*/
+                            $insertData = Asset::insert($insert);
+                            if ($insertData) {
+                                Session::flash('success', 'Data has successfully imported');
+                            }else {                        
+                                Session::flash('error', 'Error inserting the data..');
+                            }
+
                             /*MODEL IMPORT*/
                             $modMatch = Brand::where('model', $brands)->first();
                             if (!$modMatch) {
                                 $modData = Brand::insert($brands);
-                                Brand::where('model',NULL)->delete();
+                                /*Brand::where('model',NULL)->delete();*/
                             }
                             /*LOCATION IMPORT*/
                             $locMatch = Location::where('location', $locations)->first();
@@ -121,13 +136,6 @@ class ImportController extends Controller
                                 Vendor::where('vendor',NULL)->delete();
                             }
 
-                            /*ASSET IMPORT*/
-                            $insertData = Asset::insert($insert);
-                            if ($insertData) {
-                                Session::flash('success', 'Data has successfully imported');
-                            }else {                        
-                                Session::flash('error', 'Error inserting the data..');
-                            }
 
                             }catch(\Illuminate\Database\QueryException $e) {
                                 $errorCode = $e->errorInfo[1];

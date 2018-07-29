@@ -31,6 +31,14 @@
             		</p>
           		</div>
 
+          		<div class="field">
+                <label for="type" class="label">Category Type</label>
+                 <select name="type" id="type" class="control">
+                    <option value="Assets">Assets</option>
+                    <option value="Peripherals">Peripherals</option>
+                </select>
+              </div><br>
+
         	</div> <!-- end of .column -->
 
         	<div class="columns">
