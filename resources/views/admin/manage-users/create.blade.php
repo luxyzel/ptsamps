@@ -27,18 +27,23 @@
             {{-- FORM APPROVER ACCOUNT CREATION --}}
             <form method="POST" action="{{route('users.store')}}">
             	{{ csrf_field() }}
-
+				
+				<label class="lbl-login">Fullname</label>
               	<input type="text" class="input" name="name" id="name" autofocus autocomplete="off"  required placeholder="fullname" value="{{old('name')}}">
-
+				
+				<label class="lbl-login">Username</label>
               	<input type="text" class="input" name="username" id="username" autocomplete="off"  required placeholder="username" value="{{old('username')}}">
-
+				
+				<label class="lbl-login">Email</label>
 		        <input type="email" class="input" name="email" id="email" autocomplete="off"  required placeholder="email" value="{{old('email')}}">
 
 		        {{-- PASSWORD AND CONFIRM PASSWORD --}}
+		        <label class="lbl-login">Password</label>
 		        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 		            <input id="password" type="password" class="form-control" name="password" required placeholder="password">
 		        </div>
-
+				
+				<label class="lbl-login">Confirm Password</label>
 		        <div class="form-group">
 		            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required placeholder="Confirm password">
 		        </div>

@@ -181,19 +181,25 @@
 			</div>
 
 			<div class="dboard-content-menu">
-				<a href="{{ route('category.index') }}" class="dboard-add-acc fl">Create Categories</a>
-				<a href="{{ route('create.assets') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Create Assets</a>
-				<a href="{{ route('import-assets') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Import Assets</a>
+				<a href="{{ route('perepherals-category.index') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Add Category</a>
+				<a href="{{ route('perepherals.create') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Add Perepherals</a>
+				<a href="{{ route('import-per') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Import Perepherals</a>
 				<div class="clr"></div>
 			</div>
 
-             <form  action="{{ route('search') }}" method="get">
-				<input type="text" class="input" name="search" id="search" value="" placeholder="search ..." required>
-				<button type="submit">Search</button>
+             <form  action="{{ route('searchPer') }}" method="get">
+				<div calss="col-md-4"><input type="text" class="input" name="search" id="search" value="" placeholder="search ..." required><button type="submit">Search</button></div>
 				{{ csrf_field() }}
 			</form>
 
-			<div class="manage-content">
+				<!-- SESSION  -->
+	            @if(Session::has('success'))
+	            <div class="comment-error">
+	               <strong> {{ Session::get('success') }}</strong> 
+	            </div>
+	            @endif
+				<div class="manage-content">
+
 				<table style="width: 100%; text-align: center;">
 					<thead>
 						<tr>
@@ -202,52 +208,45 @@
 							<th>ST/MSN</th>
 							<th>PDSN</th>
 							<th>Asset Tag</th>
-							<th>Asset Number</th>
 							<th>Action</th>
 						</tr>
 					</thead>
-						@foreach ($assets as $asset)
+						@foreach ($perepherals as $per)
 							<tr>
-								<td>{{$asset->category}}</td>
+								<td>{{$per->category}}</td>
 								<!-- MODEL -->
-								@if($asset->model == NULL)
+								@if($per->model == NULL)
 								<td>N/A</td>
 								@else
-								<td>{{$asset->model}}</td>
+								<td>{{$per->model}}</td>
 								@endif
 								<!-- ST MSN -->
-								@if($asset->st_msn == NULL)
+								@if($per->stmsn == NULL)
 								<td>N/A</td>
 								@else
-								<td>{{$asset->st_msn}}</td>
+								<td>{{$per->stmsn}}</td>
 								@endif
 								<!-- PDSN -->
-								@if($asset->pdsn == NULL)
+								@if($per->pdsn == NULL)
 								<td>N/A</td>
 								@else
-								<td>{{$asset->pdsn}}</td>
+								<td>{{$per->pdsn}}</td>
 								@endif
 								<!-- ASSET TAG -->
-								@if($asset->asset_tag == NULL)
+								@if($per->asset_tag == NULL)
 								<td>N/A</td>
 								@else
-								<td>{{$asset->asset_tag}}</td>
-								@endif
-								<!-- ASSET NUMBER -->
-								@if($asset->asset_number == NULL)
-								<td>N/A</td>
-								@else
-								<td>{{$asset->asset_number}}</td>
+								<td>{{$per->asset_tag}}</td>
 								@endif
 
 								<td>
-									<a href="{{ route('assets-management.show', $asset->id) }}" class="manage-view-but" title="View">View</a>
-									<a href="{{ route('assets-management.edit', $asset->id) }}" class="manage-edit-but" title="Edit">Edit</a>
+									<a href="{{ route('perepherals.show', $per->id) }}" class="manage-view-but" title="View">View</a>
+									<a href="{{ route('perepherals.edit', $per->id) }}" class="manage-edit-but" title="Edit">Edit</a>
 									{{-- <a href="#" class="manage-archive-but" title="Archive User">Archive</a> --}}
-									<form action="{{ route('assets-management.destroy', $asset->id) }}" method="POST" style="display: inline;">
+									<form action="{{ route('perepherals.destroy', $per->id) }}" method="POST" style="display: inline;">
 										{{ csrf_field() }}
 										{{ method_field('DELETE') }}
-										<button class="manage-archive-but">Archive</button>
+										<button class="manage-archive-but">Delete</button>
 									</form>
 								</td>
 							</tr>
@@ -259,7 +258,7 @@
 			<br>
 			
 			<!-- PAGINATION -->
-			<center><div style="display: inline">{{$assets->links()}}</div></center>
+			<center><div style="display: inline">{{$perepherals->links()}}</div></center>
 
 			<!-- warning no record -->
           	@if(Session::has('warning'))
