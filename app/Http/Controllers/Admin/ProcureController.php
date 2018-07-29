@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Category_per;
-use Session;
 
-class CategoryPerController extends Controller
+class ProcureController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +14,7 @@ class CategoryPerController extends Controller
      */
     public function index()
     {
-        return view('admin.manage-perCategory.create');
+        return view('admin.procurement.index');
     }
 
     /**
@@ -37,19 +35,7 @@ class CategoryPerController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validateWith([
-        'category' => 'required|unique:category_pers',
-        ]);
-
-        $category = new Category_per();
-        $category->category = $request->category;
-
-        if ($category->save()) {
-            Session::flash('success', 'Category Successfully Added');
-            return redirect()->back();
-        } else{
-            return redirect()->route('category.index');
-        }
+        //
     }
 
     /**

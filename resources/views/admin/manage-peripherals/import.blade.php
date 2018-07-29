@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <h2 class="text-center">
-             Excel/CSV Import Perepherals
+             Excel/CSV Import Peripherals
         </h2>
  
         @if ( Session::has('success') )

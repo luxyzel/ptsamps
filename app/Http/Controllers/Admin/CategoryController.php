@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.manage-perCategory.create');
+        return view('admin.manage-category.create');
     }
 
     /**
@@ -39,16 +39,18 @@ class CategoryController extends Controller
     {
         $this->validateWith([
         'category' => 'required|unique:categories',
+        'type' => 'required',
         ]);
 
         $category = new Category();
         $category->category = $request->category;
+        $category->type = $request->type;
 
         if ($category->save()) {
             Session::flash('success', 'Category Successfully Added');
             return redirect()->back();
         } else{
-            return redirect()->route('perepherals-category.index');
+            return redirect()->route('category.index');
         }
     }
 

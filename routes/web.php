@@ -38,7 +38,7 @@ Route::prefix('admin')->group(function(){
 
 
 	// create new category
-	Route::resource('/category', 'Admin\Categorycontroller');
+	Route::resource('/category', 'Admin\CategoryController');
 
 	//Asset Management route
 	Route::resource('/assets-management', 'Admin\AssetsController');
@@ -57,19 +57,16 @@ Route::prefix('admin')->group(function(){
 
 
 	// PEREPHERALS INDEX ROUTE
-	Route::resource('/manage/perepherals', 'Admin\PerepheralsController');
+	Route::resource('/manage/peripherals', 'Admin\PeripheralsController');
 
 	//IMPORT PEREPHERALS INDEX
-	Route::get('/import-perepherals', 'Admin\PerepheralsController@importView')->name('import-per');
+	Route::get('/import-peripherals', 'Admin\PeripheralsController@importView')->name('import-per');
 
 	//IMPORT PEREPHERALS
-	Route::post('/import/perepherals', 'Admin\PerepheralsController@import')->name('importP');
-
-	// CATEGORY_PEREPHERALS INDEX ROUTE
-	Route::resource('/perepherals-category', 'Admin\CategoryPerController');
+	Route::post('/import/peripherals', 'Admin\PeripheralsController@import')->name('importP');
 
 	//Perepherals Search route
-	Route::get('/search/perepherals', 'Admin\PerepheralsController@getSearch')->name('searchPer');
+	Route::get('/search/peripherals', 'Admin\PeripheralsController@getSearch')->name('searchPer');
 
 
 	//Deployed Units Index
@@ -89,6 +86,9 @@ Route::prefix('admin')->group(function(){
 
 	//Asset Tracking Search route
 	Route::get('assets-tracking/search', 'Admin\AssetsController@getSearchAsset')->name('search-asset');
+
+	// PROCUREMENT INDEX ROUTE
+	Route::resource('/procurement', 'Admin\ProcureController');
 	
 });
 

@@ -16,7 +16,7 @@ use Session;
 use File;
 use Excel;
 
-class PerepheralsController extends Controller
+class PeripheralsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,8 +26,8 @@ class PerepheralsController extends Controller
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        $perepherals = Peripheral::orderBy('category','DESC')->paginate(25);
-        return view('admin.manage-perepherals.index',compact('admin', 'perepherals'));
+        $peripherals = Peripheral::orderBy('category','DESC')->paginate(25);
+        return view('admin.manage-peripherals.index',compact('admin', 'peripherals'));
     }
 
     /**
@@ -41,7 +41,7 @@ class PerepheralsController extends Controller
         $vendor = Vendor::All();
         $condition = Condition::All();
         $status = Status::All();
-        return view('admin.manage-perepherals.create', compact('category', 'vendor', 'condition', 'status'));
+        return view('admin.manage-peripherals.create', compact('category', 'vendor', 'condition', 'status'));
     }
 
     /**
@@ -54,28 +54,28 @@ class PerepheralsController extends Controller
     {
         $this->validateWith([
         'category' => 'required',
-        'stmsn' => 'required|unique:perepherals,stmsn',
-        'pdsn' => 'unique:perepherals,pdsn',
-        'asset_tag' => 'unique:perepherals,asset_tag',
-        'wsno' => 'unique:perepherals,wsno',
+        'stmsn' => 'required|unique:peripherals,stmsn',
+        'pdsn' => 'unique:peripherals,pdsn',
+        'asset_tag' => 'unique:peripherals,asset_tag',
+        'wsno' => 'unique:peripherals,wsno',
         'date_delivered' => 'required',
         'vendor' => 'required',
         ]);
 
-        $perepheral = new Peripheral();
-        $perepheral->category = $request->category;
-        $perepheral->model = $request->model;
-        $perepheral->stmsn = $request->stmsn;
-        $perepheral->pdsn = $request->pdsn;
-        $perepheral->asset_tag = $request->asset_tag;
-        $perepheral->condition = $request->condition;
-        $perepheral->status = $request->status;
-        $perepheral->vendor = $request->vendor;
-        $perepheral->date_delivered = $request->date_delivered;
-        $perepheral->warranty_ends = $request->warranty_ends;
-        $perepheral->notes = $request->notes;
+        $peripheral = new Peripheral();
+        $peripheral->category = $request->category;
+        $peripheral->model = $request->model;
+        $peripheral->stmsn = $request->stmsn;
+        $peripheral->pdsn = $request->pdsn;
+        $peripheral->asset_tag = $request->asset_tag;
+        $peripheral->condition = $request->condition;
+        $peripheral->status = $request->status;
+        $peripheral->vendor = $request->vendor;
+        $peripheral->date_delivered = $request->date_delivered;
+        $peripheral->warranty_ends = $request->warranty_ends;
+        $peripheral->notes = $request->notes;
 
-        if ($perepheral->save()) {
+        if ($peripheral->save()) {
             Session::flash('success', 'Perepheral Successfully Added');
             return redirect()->back();
         } else{
@@ -91,8 +91,8 @@ class PerepheralsController extends Controller
      */
     public function show($id)
     {
-        $perepheral = Peripheral::findOrFail($id);
-        return view('admin.manage-perepherals.show', compact('perepheral'));
+        $peripheral = Peripheral::findOrFail($id);
+        return view('admin.manage-peripherals.show', compact('peripheral'));
     }
 
     /**
@@ -107,7 +107,7 @@ class PerepheralsController extends Controller
     {
         $s = $request->get('search');
         $admin = Auth::guard('admin')->user();
-        $perepherals = Peripheral::where(function ($query) use($s) 
+        $peripherals = Peripheral::where(function ($query) use($s) 
         {
             $query->where('stmsn', 'like', '%' . $s . '%')
                ->orWhere('pdsn', 'like', '%' . $s . '%')
@@ -117,10 +117,10 @@ class PerepheralsController extends Controller
 
 
             if(!$perepherals->isEmpty()){
-                return view('admin.manage-perepherals.index',compact('admin', 'perepherals'));
+                return view('admin.manage-peripherals.index',compact('admin', 'peripherals'));
             }else{
                 Session::flash('warning', 'No record found');
-                return view('admin.manage-perepherals.index',compact('admin', 'perepherals'));
+                return view('admin.manage-peripherals.index',compact('admin', 'peripherals'));
             }
 
     }
@@ -134,8 +134,8 @@ class PerepheralsController extends Controller
         $vendor = Vendor::all();
         $condition = Condition::All();
         $status = Status::All();
-        $perepheral = Peripheral::findOrFail($id);
-        return view('admin.manage-perepherals.edit',compact('category', 'brand', 'location', 'vendor', 'condition', 'status', 'perepheral'));
+        $peripheral = Peripheral::findOrFail($id);
+        return view('admin.manage-peripherals.edit',compact('category', 'brand', 'location', 'vendor', 'condition', 'status', 'peripheral'));
     }
 
     /**
@@ -149,28 +149,28 @@ class PerepheralsController extends Controller
     {
         $this->validateWith([
         'category' => 'required',
-        'stmsn' => 'required|unique:perepherals,stmsn,'.$id,
-        'pdsn' => 'unique:perepherals,pdsn,'.$id,
-        'asset_tag' => 'unique:perepherals,asset_tag,'.$id,
-        'wsno' => 'unique:perepherals,wsno,'.$id,
+        'stmsn' => 'required|unique:peripherals,stmsn,'.$id,
+        'pdsn' => 'unique:peripherals,pdsn,'.$id,
+        'asset_tag' => 'unique:peripherals,asset_tag,'.$id,
+        'wsno' => 'unique:peripherals,wsno,'.$id,
         'date_delivered' => 'required',
         'vendor' => 'required',
         ]);
 
-        $perepheral = Peripheral::findOrFail($id);
-        $perepheral->category = $request->category;
-        $perepheral->model = $request->model;
-        $perepheral->stmsn = $request->stmsn;
-        $perepheral->pdsn = $request->pdsn;
-        $perepheral->asset_tag = $request->asset_tag;
-        $perepheral->condition = $request->condition;
-        $perepheral->status = $request->status;
-        $perepheral->vendor = $request->vendor;
-        $perepheral->date_delivered = $request->date_delivered;
-        $perepheral->warranty_ends = $request->warranty_ends;
-        $perepheral->notes = $request->notes;
+        $peripheral = Peripheral::findOrFail($id);
+        $peripheral->category = $request->category;
+        $peripheral->model = $request->model;
+        $peripheral->stmsn = $request->stmsn;
+        $peripheral->pdsn = $request->pdsn;
+        $peripheral->asset_tag = $request->asset_tag;
+        $peripheral->condition = $request->condition;
+        $peripheral->status = $request->status;
+        $peripheral->vendor = $request->vendor;
+        $peripheral->date_delivered = $request->date_delivered;
+        $peripheral->warranty_ends = $request->warranty_ends;
+        $peripheral->notes = $request->notes;
 
-        if ($perepheral->save()) {
+        if ($peripheral->save()) {
             Session::flash('success', 'Perepheral Successfully Updated');
             return redirect()->back();
         } else{
@@ -188,7 +188,7 @@ class PerepheralsController extends Controller
     {
         $DelPer = Peripheral::where('id',$id);
         if ($DelPer->delete()) {
-            Session::flash('success', 'Perepheral Successfully Deleted');
+            Session::flash('success', 'Peripheral Successfully Deleted');
             return redirect()->back();
         } else{
             return redirect()->back();
@@ -197,7 +197,7 @@ class PerepheralsController extends Controller
 
     public function importView()
     {
-        return view('admin.manage-perepherals.import');
+        return view('admin.manage-peripherals.import');
     }
 
   //IMPORT ASSET FUNCTION
