@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePerepheralsTable extends Migration
+class CreatePeripheralsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreatePerepheralsTable extends Migration
      */
     public function up()
     {
-        Schema::create('perepherals', function (Blueprint $table) {
+        Schema::create('peripherals', function (Blueprint $table) {
             $table->increments('id');
             $table->string('category');
             $table->string('model');
-            $table->string('stmsn');
-            $table->string('pdsn');
-            $table->string('asset_tag');
+            $table->string('stmsn')->nullable();
+            $table->string('pdsn')->nullable();
+            $table->string('asset_tag')->nullable();
             $table->string('condition')->nullable();
             $table->string('status')->nullable();
             $table->date('date_delivered');
@@ -37,6 +37,6 @@ class CreatePerepheralsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('perepherals');
+        Schema::dropIfExists('peripherals');
     }
 }

@@ -15,7 +15,7 @@ class CreateAssetsTable extends Migration
     {
         Schema::create('assets', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('category_id')
+            $table->string('category')->nullable();
             $table->string('model')->nullable();
             $table->string('st_msn')->nullable();
             $table->string('pdsn')->nullable();
@@ -32,7 +32,7 @@ class CreateAssetsTable extends Migration
             $table->string('description')->nullable();
             $table->string('condition')->nullable();
             $table->string('status')->nullable();
-            $table->timestamp('date_delivered')->nullable();
+            $table->date('date_delivered')->nullable();
             $table->string('warranty_ends')->nullable();
             $table->string('vendor')->nullable();
             $table->string('notes')->nullable();

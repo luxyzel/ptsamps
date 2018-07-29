@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Perepheral;
-use App\Model\Category_per;
+use App\Model\Peripheral;
+use App\Model\Category;
 use App\Model\Brand;
 use App\Model\Location;
 use App\Model\Vendor;
@@ -26,7 +26,7 @@ class PerepheralsController extends Controller
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        $perepherals = Perepheral::orderBy('category','DESC')->paginate(25);
+        $perepherals = Peripheral::orderBy('category','DESC')->paginate(25);
         return view('admin.manage-perepherals.index',compact('admin', 'perepherals'));
     }
 
@@ -37,7 +37,7 @@ class PerepheralsController extends Controller
      */
     public function create()
     {
-        $category = Category_per::All();
+        $category = Category::All();
         $vendor = Vendor::All();
         $condition = Condition::All();
         $status = Status::All();
@@ -62,7 +62,7 @@ class PerepheralsController extends Controller
         'vendor' => 'required',
         ]);
 
-        $perepheral = new Perepheral();
+        $perepheral = new Peripheral();
         $perepheral->category = $request->category;
         $perepheral->model = $request->model;
         $perepheral->stmsn = $request->stmsn;
@@ -91,7 +91,7 @@ class PerepheralsController extends Controller
      */
     public function show($id)
     {
-        $perepheral = Perepheral::findOrFail($id);
+        $perepheral = Peripheral::findOrFail($id);
         return view('admin.manage-perepherals.show', compact('perepheral'));
     }
 
@@ -107,7 +107,7 @@ class PerepheralsController extends Controller
     {
         $s = $request->get('search');
         $admin = Auth::guard('admin')->user();
-        $perepherals = Perepheral::where(function ($query) use($s) 
+        $perepherals = Peripheral::where(function ($query) use($s) 
         {
             $query->where('stmsn', 'like', '%' . $s . '%')
                ->orWhere('pdsn', 'like', '%' . $s . '%')
@@ -128,13 +128,13 @@ class PerepheralsController extends Controller
 
     public function edit($id)
     {
-        $category = Category_per::all();
+        $category = Category::all();
         $brand = Brand::all();
         $location = Location::all();
         $vendor = Vendor::all();
         $condition = Condition::All();
         $status = Status::All();
-        $perepheral = Perepheral::findOrFail($id);
+        $perepheral = Peripheral::findOrFail($id);
         return view('admin.manage-perepherals.edit',compact('category', 'brand', 'location', 'vendor', 'condition', 'status', 'perepheral'));
     }
 
@@ -157,7 +157,7 @@ class PerepheralsController extends Controller
         'vendor' => 'required',
         ]);
 
-        $perepheral = Perepheral::findOrFail($id);
+        $perepheral = Peripheral::findOrFail($id);
         $perepheral->category = $request->category;
         $perepheral->model = $request->model;
         $perepheral->stmsn = $request->stmsn;
@@ -186,7 +186,7 @@ class PerepheralsController extends Controller
      */
     public function destroy($id)
     {
-        $DelPer = Perepheral::where('id',$id);
+        $DelPer = Peripheral::where('id',$id);
         if ($DelPer->delete()) {
             Session::flash('success', 'Perepheral Successfully Deleted');
             return redirect()->back();
@@ -275,8 +275,9 @@ class PerepheralsController extends Controller
                                 'updated_at' => now(),
                                 ];
 
-                            $arr[] = ['category' => array_get($row, 'category'),];
+                            $arr[] = ['category' => array_get($row, 'category'), 'type' => 'Peripherals', 'created_at' => date("Y-m-d"), 'updated_at' => date("Y-m-d"),];
                             $categories = array_unique($arr, SORT_REGULAR);
+
                             }
                         }
                     }
@@ -287,13 +288,14 @@ class PerepheralsController extends Controller
                         try
                         {
                             /*CATEGORY IMPORT*/
-                            $catMatch = Category_per::where('category', $categories)->first();
+                            $catMatch = Category::where('category', $categories)->first();
                             if (!$catMatch) {
-                                $catData = Category_per::insert($categories);
+                                $catData = Category::insert($categories);
+                                Category::where('category',NULL)->delete();
                             }
 
-                            $insertData = Perepheral::insert($insert);
-                            Perepheral::where('category',NULL)->delete();
+                            $insertData = Peripheral::insert($insert);
+                            Peripheral::where('category',NULL)->delete();
                             if ($insertData) {
                                 Session::flash('success', 'Your Data has successfully imported');
                             }else {                        
@@ -308,7 +310,7 @@ class PerepheralsController extends Controller
                             }
                         }
 
-                    }return back();
+                    }return $categories;
             }else
             {
                 Session::flash('error', ''.$extension.' file is invalid. Please upload a valid xls/csv file..!!');

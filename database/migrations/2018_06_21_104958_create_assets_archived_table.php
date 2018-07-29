@@ -32,7 +32,7 @@ class CreateAssetsArchivedTable extends Migration
             $table->string('description')->nullable();
             $table->string('condition')->nullable();
             $table->string('status')->nullable();
-            $table->timestamp('date_delivered')->nullable();
+            $table->date('date_delivered')->nullable();
             $table->string('warranty_ends')->nullable();
             $table->string('vendor')->nullable();
             $table->string('notes')->nullable();

@@ -24,25 +24,21 @@
 	            </div>
 	            @endif
 
-
-
               <div class="field">
                 <label for="category" class="label">Category</label>
                  <select name="category" id="category" class="control">
-                  @foreach($category as $cat)
-                    <option value="{{ $cat->category }}">{{ $cat->category }}</option>
+                  @foreach($categories as $category)
+                    <option value="{{ $category->category }}">{{ $category->category }}</option>
                   @endforeach
                 </select>
               </div><br>
 
               <div class="field">
                 <label for="model" class="label">Model</label>
-                 <select name="model" id="model" class="control">
-                  @foreach($category as $cat)
-                    <option value="{{ $cat->category }}">{{ $cat->category }}</option>
-                  @endforeach
-                </select>
-              </div><br>
+                <p class="control">
+                    <input type="text" class="input" name="model" id="model" value="">
+                </p>
+              </div>
 
               <div class="field">
                 <label for="stmsn" class="label">ST/MSN</label>
@@ -82,8 +78,8 @@
               <div class="field">
                 <label for="location" class="label">Location</label>
                  <select name="location" id="location" class="control">
-                  @foreach($category as $cat)
-                    <option value="{{ $cat->category }}">{{ $cat->category }}</option>
+                  @foreach($locations as $location)
+                    <option value="{{ $location->location }}">{{ $location->location }}</option>
                   @endforeach
                 </select>
               </div><br>
@@ -123,29 +119,25 @@
                 </p>
               </div>
 
-              <div class="field">
+               <div class="field">
                 <label for="code" class="label">Code</label>
-                 <select name="code" id="code" class="control">
-                  @foreach($category as $cat)
-                    <option value="{{ $cat->category }}">{{ $cat->category }}</option>
-                  @endforeach
-                </select>
-              </div><br>
+                <p class="control">
+                    <input type="text" class="input" name="code" id="code" value="">
+                </p>
+              </div>
 
-              <div class="field">
+               <div class="field">
                 <label for="description" class="label">Description</label>
-                 <select name="description" id="description" class="control">
-                  @foreach($category as $cat)
-                    <option value="{{ $cat->category }}">{{ $cat->category }}</option>
-                  @endforeach
-                </select>
-              </div><br>
+                <p class="control">
+                    <input type="text" class="input" name="description" id="description" value="">
+                </p>
+              </div>
 
               <div class="field">
                 <label for="condition" class="label">Condition</label>
                  <select name="condition" id="condition" class="control">
-                  @foreach($category as $cat)
-                    <option value="{{ $cat->category }}">{{ $cat->category }}</option>
+                  @foreach($conditions as $condition)
+                    <option value="{{ $condition->condition }}">{{ $condition->condition }}</option>
                   @endforeach
                 </select>
               </div><br>
@@ -153,8 +145,8 @@
               <div class="field">
                 <label for="status" class="label">Status</label>
                  <select name="status" id="status" class="control">
-                  @foreach($category as $cat)
-                    <option value="{{ $cat->category }}">{{ $cat->category }}</option>
+                  @foreach($statuses as $status)
+                    <option value="{{ $status->status }}">{{ $status->status }}</option>
                   @endforeach
                 </select>
               </div><br>
@@ -165,8 +157,8 @@
               <div class="field">
                 <label for="vendor" class="label">Vendor</label>
                  <select name="vendor" id="vendor" class="control">
-                  @foreach($category as $cat)
-                    <option value="{{ $cat->category }}">{{ $cat->category }}</option>
+                  @foreach($vendors as $vendor)
+                    <option value="{{ $vendor->vendor }}">{{ $vendor->vendor }}</option>
                   @endforeach
                 </select>
               </div><br>

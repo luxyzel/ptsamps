@@ -54,8 +54,12 @@ class AssetsController extends Controller
 
     public function showCreate()
     {
-        $category = Category::All();
-        return view('admin.manage-assets.create')->with('category', $category);
+        $categories = Category::All();
+        $vendors = Vendor::All();
+        $conditions = Condition::All();
+        $statuses = Status::All();
+        $locations = Location::All();
+        return view('admin.manage-assets.create', compact('categories', 'vendors', 'conditions', 'statuses', 'locations'));
     }
 
     /**
