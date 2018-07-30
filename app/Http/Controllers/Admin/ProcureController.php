@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class ProcureController extends Controller
 {
@@ -14,7 +15,8 @@ class ProcureController extends Controller
      */
     public function index()
     {
-        return view('admin.procurement.index');
+        $admin = Auth::guard('admin')->user();
+        return view('admin.procurement.index')->with('admin', $admin);
     }
 
     /**

@@ -109,7 +109,7 @@
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
-						<a href="">
+						<a href="{{ route('peripherals.index') }}">
 							<div class="dboard-menu5-box">
 								<img src="/img/icon5.png">
 							</div>
@@ -119,6 +119,19 @@
 						<div id="dboard-menu-pop5">
 							<img src="/img/hoverarrow1.png">
 							<p>Peripherals</p>
+						</div>
+					</div>
+					<div class="dboard-left-menu fl">
+						<a href="">
+							<div class="dboard-menu6-box">
+								<img src="/img/icon5.png">
+							</div>
+						</a>
+
+						<!-- popup menu name -->
+						<div id="dboard-menu-pop6">
+							<img src="/img/hoverarrow1.png">
+							<p>Manage User</p>
 						</div>
 					</div>
 					<div class="clr"></div>
@@ -143,7 +156,8 @@
 						</a>
 					</div>
 
-					<div class="dboard-right-menu fr" style="margin-right: 15px">
+					{{-- Change UI Update to DASHBOARD MENUS --}}
+					{{-- <div class="dboard-right-menu fr" style="margin-right: 15px">
 						<a href="#" id="acc-but">
 							<div class="dboard-rmenu3-box">
 								<img src="/img/purchaseorder.png" title="Manage PO">
@@ -157,7 +171,7 @@
 								<img src="/img/adduser.png" title="Manage User">
 							</div>
 						</a>
-					</div>
+					</div> --}}
 					<div class="clr"></div>
 
 					<!--Account popup -->
