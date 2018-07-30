@@ -195,7 +195,7 @@
 			</div>
 
 			<div class="dboard-content-menu">
-				<a href="{{ route('category.index') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Add Category</a>
+				<a href="{{ route('category.index') }}" class="dboard-add-acc fl">Add Category</a>
 				<a href="{{ route('peripherals.create') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Add Peripherals</a>
 				<a href="{{ route('import-per') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Import Peripherals</a>
 				<div class="clr"></div>

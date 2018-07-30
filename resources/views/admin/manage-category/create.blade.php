@@ -47,7 +47,7 @@
 		          <button class="button is-primary is-pulled-right" style="width: 250px;">Add Category</button>
 		        </div>
 
-		       <a href="{{ route('assets-management.index') }}">Back</a>
+		       <a href="{{ route('peripherals.index') }}">Back</a>
 
 			    <!-- DISPLAY ERRORS -->
 			    @if ($errors->any())
