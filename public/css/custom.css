@@ -138,6 +138,17 @@ textarea {
 	border-radius: 3px;
 }
 
+select {
+    padding: 6px 10px;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    transition: box-shadow 0.5s;
+    color: #4f5863;
+    font-family: roboto-reg;
+    font-size: 13px;
+}
+
 ::-webkit-input-placeholder {
 	color: rgba(0, 0, 0, .4);
 	letter-spacing: 1px;

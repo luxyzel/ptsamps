@@ -201,7 +201,7 @@
 				<div class="clr"></div>
 			</div>
 
-             <form  action="{{ route('search') }}" method="get">
+            <form  action="{{ route('search') }}" method="get">
 				<input type="text" class="input" name="search" id="search" value="" placeholder="search ..." required>
 				<button type="submit">Search</button>
 				{{ csrf_field() }}
