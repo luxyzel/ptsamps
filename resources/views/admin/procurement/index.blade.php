@@ -1,7 +1,7 @@
 
 @include('templates.header')
 
-  <title>Dashboard | Asset Management and Procurement System</title>
+  <title>Procurement | Asset Management and Procurement System</title>
 </head>
 
 <body>

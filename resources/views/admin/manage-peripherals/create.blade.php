@@ -1,7 +1,7 @@
 
 @include('templates.header')
 
-  <title>Create Assets | Asset Management and Procurement System</title>
+  <title>Create Peripherals | Asset Management and Procurement System</title>
 </head>
 
 <body>

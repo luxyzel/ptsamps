@@ -4,7 +4,7 @@
 
 
 
-  <title>Manage Assets | Asset Management and Procurement System</title>
+  <title>Manage Peripherals | Asset Management and Procurement System</title>
 </head>
 
 <body>
