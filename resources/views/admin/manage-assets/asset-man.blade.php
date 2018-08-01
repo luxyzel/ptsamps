@@ -1,9 +1,6 @@
 
 @include('templates.header')
 
-
-
-
   <title>Manage Assets | Asset Management and Procurement System</title>
 </head>
 

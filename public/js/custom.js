@@ -28,9 +28,9 @@ $(document).ready(function() {
 		$('#dboard-menu-pop5').toggle(200);
 	});
 
-  $('.dboard-menu6-box').hover(function(){
-    $('#dboard-menu-pop6').toggle(200);
-  });
+    $('.dboard-menu6-box').hover(function(){
+        $('#dboard-menu-pop6').toggle(200);
+    });
 
 
 	// Account Settings/Logout popup
