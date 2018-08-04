@@ -134,6 +134,19 @@
 							<p>Manage User</p>
 						</div>
 					</div>
+					<div class="dboard-left-menu fl">
+						<a href="{{ route('category.index') }}">
+							<div class="dboard-menu7-box">
+								<img src="/img/icon5.png">
+							</div>
+						</a>
+
+						<!-- popup menu name -->
+						<div id="dboard-menu-pop7">
+							<img src="/img/hoverarrow1.png">
+							<p>Create Categories</p>
+						</div>
+					</div>
 					<div class="clr"></div>
 
 				</div>

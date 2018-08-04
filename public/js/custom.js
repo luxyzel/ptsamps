@@ -32,6 +32,10 @@ $(document).ready(function() {
         $('#dboard-menu-pop6').toggle(200);
     });
 
+    $('.dboard-menu7-box').hover(function(){
+        $('#dboard-menu-pop7').toggle(200);
+    });
+
 
 	// Account Settings/Logout popup
 	$('.dboard-rmenu1-box').click(function(event){

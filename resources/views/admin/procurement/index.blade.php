@@ -70,19 +70,6 @@
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
-						<a href="{{route('assets.track')}}">
-							<div class="dboard-menu2-box">
-								<img src="/img/icon2.png" >
-							</div>
-						</a>
-
-						<!-- popup menu name -->
-						<div id="dboard-menu-pop2">
-							<img src="/img/hoverarrow1.png">
-							<p>Asset Tracking</p>
-						</div>
-					</div>
-					<div class="dboard-left-menu fl">
 						<a href="{{ route('assets-management.index') }}">
 							<div class="dboard-menu3-box">
 								<img src="/img/icon3.png">
@@ -93,6 +80,19 @@
 						<div id="dboard-menu-pop3">
 							<img src="/img/hoverarrow1.png">
 							<p>Asset Management</p>
+						</div>
+					</div>
+					<div class="dboard-left-menu fl">
+						<a href="{{route('assets.track')}}">
+							<div class="dboard-menu2-box">
+								<img src="/img/icon2.png" >
+							</div>
+						</a>
+
+						<!-- popup menu name -->
+						<div id="dboard-menu-pop2">
+							<img src="/img/hoverarrow1.png">
+							<p>Asset Tracking</p>
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
@@ -122,7 +122,7 @@
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
-						<a href="{{ route('peripherals.index') }}">
+						<a href="{{ route('category.index') }}">
 							<div class="dboard-menu6-box">
 								<img src="/img/icon5.png">
 							</div>
@@ -130,6 +130,19 @@
 
 						<!-- popup menu name -->
 						<div id="dboard-menu-pop6">
+							<img src="/img/hoverarrow1.png">
+							<p>Create Categories</p>
+						</div>
+					</div>
+					<div class="dboard-left-menu fl">
+						<a href="{{ route('users.index') }}">
+							<div class="dboard-menu7-box">
+								<img src="/img/icon5.png">
+							</div>
+						</a>
+
+						<!-- popup menu name -->
+						<div id="dboard-menu-pop7">
 							<img src="/img/hoverarrow1.png">
 							<p>Manage User</p>
 						</div>
