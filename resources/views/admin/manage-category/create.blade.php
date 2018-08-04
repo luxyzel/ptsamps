@@ -1,66 +1,66 @@
 
 @include('templates.header')
 
-  <title>Create Admin | Asset Management and Procurement System</title>
+  <title>Create Category | Asset Management and Procurement System</title>
 </head>
 
 <body>
-	<div class="flex-container" style="width: 80%; margin: auto;">
-    	<div class="columns m-t-10">
-      		<div class="column">
-        		<h1 class="title">Create New Category</h1>
-      		</div>
-    	</div>
-    	<hr class="m-t-0">
-    	<form method="POST" action="{{route('category.store')}}">
-     	 {{ csrf_field() }}
-     	 <div class="columns">
-       		<div class="column">
 
-			    <!-- warning invalid credentials -->
-	            @if(Session::has('success'))
-	            <div class="comment-error">
-	               <strong> {{ Session::get('success') }}</strong> 
-	            </div>
-	            @endif
- 
-          		<div class="field">
-           			<label for="name" class="label">Category</label>
-            		<p class="control">
-              			<input type="text" class="input" name="category" id="category" value="{{old('category')}}">
-            		</p>
-          		</div>
+    {{-- Background --}}
+    <div class="landing-bg">
 
-          		<div class="field">
-                <label for="type" class="label">Category Type</label>
-                 <select name="type" id="type" class="control">
+        {{-- Container of form --}}
+        <div class="user-interface-cont-peri">
+        
+            {{-- TOP LABELS --}}
+            <div class="login-title">
+                <div class="login-logo fl">
+                    <img src="/img/companylogo.png" title="Project T Solutions">
+                </div>
+                <div class="login-text fl">
+                    <p class="login-comp-nm">Create New Categories</p>
+                    <p class="system-about">Add Category to your assets</p>
+                </div>
+                <div class="clr"></div>
+            </div>
+
+            <form method="POST" action="{{route('category.store')}}">
+                {{ csrf_field() }}
+          
+                <label class="lbl-login">Category</label>
+                <input type="text" class="input" name="category" id="category" autocomplete="off" placeholder="ex. System Unit" value="{{old('category')}}">
+                
+                <label class="lbl-login">Category Type</label>
+                <select name="type" id="type" class="control">
                     <option value="Assets">Assets</option>
                     <option value="Peripherals">Peripherals</option>
                 </select>
-              </div><br>
 
-        	</div> <!-- end of .column -->
+                <button class="submit-approver-acc" style="margin-top: 40px;">Add Category</button>
 
-        	<div class="columns">
-		        <div class="column">
-		          <hr />
-		          <button class="button is-primary is-pulled-right" style="width: 250px;">Add Category</button>
-		        </div>
+                <!-- DISPLAY ERRORS -->
+                 @if ($errors->any())
+                    <div class="login-comment-error">
+                        @foreach ($errors->all() as $error)
+                            <strong>{{ $error }}</strong>
+                        @endforeach
+                    </div>
+                 @endif
 
-		       <a href="{{ route('assets-management.index') }}">Back</a>
+                {{-- Success Message --}}
+                @if(Session::has('success'))
+                    <div class="comment-success">
+                    <strong>{{ Session::get('success') }}</strong> 
+                </div>
+                @endif
 
-			    <!-- DISPLAY ERRORS -->
-			    @if ($errors->any())
-			    <div class="alert alert-danger">
-			        <ul>
-			            @foreach ($errors->all() as $error)
-			                <br><strong>{{ $error }}</strong>
-			            @endforeach
-			        </ul>
-			    </div>
-			    @endif
-    		</div>
-   	 	</form>
-   	</div>
+
+                <a href="{{ route('peripherals.index') }}" class="back-to-manage">Back to Previous Page</a>
+
+          </form>
+
+        </div>
+
+    <div>
 
 @include('templates.footer')

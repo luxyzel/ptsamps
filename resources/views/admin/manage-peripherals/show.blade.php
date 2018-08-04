@@ -2,7 +2,7 @@
 
 @include('templates.header')
 
-  <title>Show Account Information | Asset Management and Procurement System</title>
+  <title>Show Peripherals Information | Asset Management and Procurement System</title>
 </head>
 
 <body>

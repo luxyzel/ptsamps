@@ -138,6 +138,17 @@ textarea {
 	border-radius: 3px;
 }
 
+select {
+    padding: 6px 10px;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    transition: box-shadow 0.5s;
+    color: #4f5863;
+    font-family: roboto-reg;
+    font-size: 13px;
+}
+
 ::-webkit-input-placeholder {
 	color: rgba(0, 0, 0, .4);
 	letter-spacing: 1px;
@@ -509,6 +520,30 @@ textarea {
     margin: auto;
 }
 
+.dboard-menu6-box{
+    height: 40px;
+    padding-top: 12px;
+    position: relative;
+}
+
+.dboard-menu6-box img {
+    width: 18px;
+    display: block;
+    margin: auto;
+}
+
+.dboard-menu7-box{
+    height: 40px;
+    padding-top: 12px;
+    position: relative;
+}
+
+.dboard-menu7-box img {
+    width: 18px;
+    display: block;
+    margin: auto;
+}
+
 /*Dashboard menu1*/
 #dboard-menu-pop1 {
     display: none;
@@ -623,6 +658,53 @@ textarea {
     font-family: roboto-reg;
     font-size: 12px;
 }
+
+/*Dashboard Menu6*/
+#dboard-menu-pop6 {
+    display: none;
+}
+
+#dboard-menu-pop6 img {
+    position: absolute;
+    padding-left: 28px;
+    padding-top: 5px;
+    width: 12px;
+}
+
+#dboard-menu-pop6 p {
+    margin-top: 15px;
+    position: absolute;
+    background-color: #212546;
+    padding: 5px 10px;
+    border-radius: 2px;
+    color: #fff;
+    font-family: roboto-reg;
+    font-size: 12px;
+}
+
+/*Dashboard Menu7*/
+#dboard-menu-pop7 {
+    display: none;
+}
+
+#dboard-menu-pop7 img {
+    position: absolute;
+    padding-left: 28px;
+    padding-top: 5px;
+    width: 12px;
+}
+
+#dboard-menu-pop7 p {
+    margin-top: 15px;
+    position: absolute;
+    background-color: #212546;
+    padding: 5px 10px;
+    border-radius: 2px;
+    color: #fff;
+    font-family: roboto-reg;
+    font-size: 12px;
+}
+
 
 /*Dashboard Right Menus*/
 

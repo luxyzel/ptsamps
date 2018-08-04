@@ -15,6 +15,20 @@
     line-height: 15px;
 }
 
+.comment-success {
+	margin-top: 20px;
+    font-family: roboto-reg;
+    font-size: 10px;
+    text-transform: uppercase;
+    padding: 8px 10px;
+    background-color: #e3ffe7;
+    border: 1px solid #00dc80;
+    color: #006339;
+    text-align: center;
+    box-shadow: 5px 5px 21px -5px rgba(7, 255, 0, 0.25);
+    letter-spacing: 1px;
+    line-height: 15px;
+}
 
 /*Begin content design creation*/
 .manage-content {
@@ -48,7 +62,7 @@
 }
 
 .dboard-add-acc:hover {
-	background-color: #4edda2;
+	background-color: #4dd29b;
 }
 
 
@@ -157,7 +171,7 @@
 
 .back-to-manage:hover {
 	color: #fff;
-	background-color: #b9d5e8;
+	background-color: #5497db;
 }
 
 
@@ -197,6 +211,39 @@
 	margin-top: 5px;
 }
 
+/*Peripherals*/
+.user-interface-cont-peri {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 350px;
+	height: 420px;
+	margin-top: -210px;
+	margin-left: -175px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 3px 3px 40px -10px rgba(0, 0, 0, 0.29);
+	padding: 20px 30px;
+}
+
+.user-interface-cont-peri form {
+	margin-top: 30px;
+}
+
+/*Large Form Container*/
+.large-cont {
+	background-color: #fff;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 800px;
+	height: 600px;
+	margin-top: -300px;
+	margin-left: -400px;
+	border-radius: 5px;
+	padding: 20px 30px;
+	box-shadow: 3px 3px 40px -10px rgba(0, 0, 0, 0.29);
+}
 
 
 /*WITH BUG NEED TO FIX OR NOT DEPENDS*/

@@ -1,9 +1,6 @@
 
 @include('templates.header')
 
-
-
-
   <title>Manage Assets | Asset Management and Procurement System</title>
 </head>
 
@@ -73,19 +70,6 @@
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
-						<a href="{{ route('assets.track') }}">
-							<div class="dboard-menu2-box">
-								<img src="/img/icon2.png" >
-							</div>
-						</a>
-
-						<!-- popup menu name -->
-						<div id="dboard-menu-pop2">
-							<img src="/img/hoverarrow1.png">
-							<p>Asset Tracking</p>
-						</div>
-					</div>
-					<div class="dboard-left-menu fl">
 						<a href="{{ route('assets-management.index') }}">
 							<div class="dboard-menu3-box">
 								<img src="/img/icon3.png">
@@ -96,6 +80,19 @@
 						<div id="dboard-menu-pop3">
 							<img src="/img/hoverarrow1.png">
 							<p>Asset Management</p>
+						</div>
+					</div>
+					<div class="dboard-left-menu fl">
+						<a href="{{route('assets.track')}}">
+							<div class="dboard-menu2-box">
+								<img src="/img/icon2.png" >
+							</div>
+						</a>
+
+						<!-- popup menu name -->
+						<div id="dboard-menu-pop2">
+							<img src="/img/hoverarrow1.png">
+							<p>Asset Tracking</p>
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
@@ -124,6 +121,32 @@
 							<p>Peripherals</p>
 						</div>
 					</div>
+					<div class="dboard-left-menu fl">
+						<a href="{{ route('category.index') }}">
+							<div class="dboard-menu6-box">
+								<img src="/img/icon5.png">
+							</div>
+						</a>
+
+						<!-- popup menu name -->
+						<div id="dboard-menu-pop6">
+							<img src="/img/hoverarrow1.png">
+							<p>Create Categories</p>
+						</div>
+					</div>
+					<div class="dboard-left-menu fl">
+						<a href="{{ route('users.index') }}">
+							<div class="dboard-menu7-box">
+								<img src="/img/icon5.png">
+							</div>
+						</a>
+
+						<!-- popup menu name -->
+						<div id="dboard-menu-pop7">
+							<img src="/img/hoverarrow1.png">
+							<p>Manage User</p>
+						</div>
+					</div>
 					<div class="clr"></div>
 
 				</div>
@@ -146,7 +169,8 @@
 						</a>
 					</div>
 
-					<div class="dboard-right-menu fr" style="margin-right: 15px">
+					{{-- Change UI Update to DASHBOARD MENUS --}}
+					{{-- <div class="dboard-right-menu fr" style="margin-right: 15px">
 						<a href="#" id="acc-but">
 							<div class="dboard-rmenu3-box">
 								<img src="/img/purchaseorder.png" title="Manage PO">
@@ -160,7 +184,7 @@
 								<img src="/img/adduser.png" title="Manage User">
 							</div>
 						</a>
-					</div>
+					</div> --}}
 					<div class="clr"></div>
 
 					<!--Account popup -->
@@ -181,13 +205,12 @@
 			</div>
 
 			<div class="dboard-content-menu">
-				<a href="{{ route('category.index') }}" class="dboard-add-acc fl">Create Categories</a>
-				<a href="{{ route('create.assets') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Create Assets</a>
+				<a href="{{ route('create.assets') }}" class="dboard-add-acc fl">Create Assets</a>
 				<a href="{{ route('import-assets') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Import Assets</a>
 				<div class="clr"></div>
 			</div>
 
-             <form  action="{{ route('search') }}" method="get">
+            <form  action="{{ route('search') }}" method="get">
 				<input type="text" class="input" name="search" id="search" value="" placeholder="search ..." required>
 				<button type="submit">Search</button>
 				{{ csrf_field() }}
