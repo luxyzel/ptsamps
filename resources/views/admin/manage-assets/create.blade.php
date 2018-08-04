@@ -5,6 +5,25 @@
 </head>
 
 <body>
+   {{-- Landing BG --}}
+   <div class="landing-bg">
+
+      {{-- Container--}}
+      <div class="large-cont">
+         <div class="login-title">
+                <div class="login-logo fl">
+                    <img src="/img/companylogo.png" title="Project T Solutions">
+                </div>
+                <div class="login-text fl">
+                    <p class="login-comp-nm">Create New Assets</p>
+                    <p class="system-about">Add Asset to your Inventory</p>
+                </div>
+                <div class="clr"></div>
+            </div>
+      </div>
+      
+   </div>
+
 	<div class="flex-container" style="width: 80%; margin: auto;">
     	<div class="columns m-t-10">
       		<div class="column">
