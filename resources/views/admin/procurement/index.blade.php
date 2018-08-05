@@ -1,7 +1,8 @@
 
 @include('templates.header')
 
-  <title>Procurement | Asset Management and Procurement System</title>
+
+  <title>Manage Peripherals | Asset Management and Procurement System</title>
 </head>
 
 <body>
@@ -30,7 +31,7 @@
 
 			<!-- Buttons -->
 			<div class="dboard-prof">
-				<a href="{{ route('assets.deployed') }}">
+				<a href="{{ route('assets.deployed')}}">
 					<div class="dboard-left-but">Deployed Units</div>
 				</a>
 				<a href="{{ route('assets.stocks')}}">
@@ -202,12 +203,283 @@
 					</form>
 				</div>
 				<div class="clr"></div>
-
-				
 			</div>
+			
+			<div class="dboard-content-menu">
+				<p><strong>VENDOR</strong></p>
+				<div class="field">
+                <label for="vendor" class="label">Vendor</label>
+                 <select name="vendor" id="vendor" class="control">
+                 
+                    <option value="SAMPLE">SAMPLE</option>
+                  
+                </select>
+              </div>
+			</div><br><br><br>
+			
+
+			<div class="manage-content">
+
+				<div class="field">
+                <label for="coname" class="label">Company Name</label>
+                <p class="control">
+                    <input type="text" class="input" name="coname" id="coname" value="">
+                </p>
+              	</div>
+
+              	<div class="field">
+                <label for="ctperson" class="label">Contact Person</label>
+                <p class="control">
+                    <input type="text" class="input" name="ctperson" id="ctperson" value="">
+                </p>
+              	</div>
+
+                <div class="field">
+                <label for="designation" class="label">Designation</label>
+                <p class="control">
+                    <input type="text" class="input" name="designation" id="designation" value="">
+                </p>
+              	</div>
+
+              	<div class="field">
+                <label for="emailadd" class="label">Email Address</label>
+                <p class="control">
+                    <input type="text" class="input" name="emailadd" id="emailadd" value="">
+                </p>
+              	</div>
+
+              	<div class="field">
+                <label for="ctnumber" class="label">Contact Number</label>
+                <p class="control">
+                    <input type="text" class="input" name="ctnumber" id="ctnumber" value="">
+                </p>
+              	</div>
+
+              	<div class="field">
+                <label for="coaddress" class="label">Company Address</label>
+                <p class="control">
+                    <input type="text" class="input" name="coaddress" id="coaddress" value="">
+                </p>
+              	</div>
+
+              	<div class="field">
+                <label for="phone" class="label">Phone</label>
+                <p class="control">
+                    <input type="text" class="input" name="phone" id="phone" value="">
+                </p>
+              	</div>
+
+              	<div class="field">
+                <label for="fax" class="label">Fax</label>
+                <p class="control">
+                    <input type="text" class="input" name="fax" id="fax" value="">
+                </p>
+              	</div>
+
+              	<div class="field">
+                <label for="vrtin" class="label">VAT Reg. TIN: </label>
+                <p class="control">
+                    <input type="text" class="input" name="vrtin" id="vrtin" value="">
+                </p>
+              	</div>
+			</div><br>
+
+			<div class="manage-content">
+				<p><strong>SHIP TO</strong></p><br>
+				
+				<div class="field">
+                <label for="coname" class="label">Company Name</label>
+                <p class="control">
+                    <input type="text" class="input" name="coname" id="coname" value="">
+                </p>
+              	</div>
+
+              	<div class="field">
+                <label for="ctperson" class="label">Contact Person</label>
+                <p class="control">
+                    <input type="text" class="input" name="ctperson" id="ctperson" value="">
+                </p>
+              	</div>
+
+                <div class="field">
+                <label for="designation" class="label">Designation</label>
+                <p class="control">
+                    <input type="text" class="input" name="designation" id="designation" value="">
+                </p>
+              	</div>
+
+              	<div class="field">
+                <label for="emailadd" class="label">Email Address</label>
+                <p class="control">
+                    <input type="text" class="input" name="emailadd" id="emailadd" value="">
+                </p>
+              	</div>
+
+              	<div class="field">
+                <label for="ctnumber" class="label">Contact Number</label>
+                <p class="control">
+                    <input type="text" class="input" name="ctnumber" id="ctnumber" value="">
+                </p>
+              	</div>
+
+              	<div class="field">
+                <label for="coaddress" class="label">Company Address</label>
+                <p class="control">
+                    <input type="text" class="input" name="coaddress" id="coaddress" value="">
+                </p>
+              	</div>
+
+              	<div class="field">
+                <label for="phone" class="label">Phone</label>
+                <p class="control">
+                    <input type="text" class="input" name="phone" id="phone" value="">
+                </p>
+              	</div>
+			</div>
+
+			<div class="manage-content">
+			<form id="order_details">
+				<table style="width: 100%; text-align: center;" id="dynamic_field">
+					<thead>
+						<tr>
+							<th>Item</th>
+							<th>Quantity</th>
+							<th>UOM</th>
+							<th>Description</th>
+							<th>Unit Price (₱)</th>
+							<th>Unit Price ($)</th>
+							<th>Total Price (₱)</th>
+							<th>Total Price ($)</th>
+							<th>Add</th>
+						</tr>
+					</thead>
+							<tr>
+								<td>
+									<div class="input_fields_wrap">
+								    <div><input type="text" name="item[]" size="45"></div>
+									</div>
+								</td>
+								<td>
+									<div class="input_fields_wrap">
+								    <div><input type="text" name="quantity[]" size="5"></div>
+									</div>
+								</td>
+								<td>
+									<div class="input_fields_wrap">
+								    <div><input type="text" name="uom[]"></div>
+									</div>
+								</td>
+								<td>
+									<div class="input_fields_wrap">
+								    <div><input type="text" name="description[]" size="40"></div>
+									</div>
+								</td>
+								<td>
+									<div class="input_fields_wrap">
+								    <div><input type="text" name="uppeso[]"></div>
+									</div>
+								</td>
+								<td>
+									<div class="input_fields_wrap">
+								    <div><input type="text" name="updollar[]"></div>
+									</div>
+								</td>
+								<td>
+									<div class="input_fields_wrap">
+								    <div><input type="text" name="tppeso[]"></div>
+									</div>
+								</td>
+								<td>
+									<div class="input_fields_wrap">
+								    <div><input type="text" name="tpdollar[]"></div>
+									</div>
+								</td>
+								<td>
+									<button type="button" name="add" id="add" class="btn btn-success">+</button>
+								</td>
+							</tr>
+					</table>
+				</form>
+			</div>
+
+			<br>
+			
+			<!-- PAGINATION -->
+
+			<!-- warning no record -->
+          	@if(Session::has('warning'))
+                <div class="comment-error">
+                   <strong><center>{{ Session::get('warning') }}</center> </strong> 
+                </div>
+            @endif
 
 		</div>
 		<div class="clr"></div>
-	</div>	
+	</div>
 
 @include('templates.footer')
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){      
+      var postURL = "<?php echo url('addmore'); ?>";
+      var i=1;  
+
+
+      $('#add').click(function(){  
+           i++;  
+           $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="item[]" class="form-control name_list" size="45"/></td><td><input type="text" name="quantity[]" class="form-control name_list" /></td><td><input type="text" name="uom[]" class="form-control name_list" /></td><td><input type="text" name="description[]" class="form-control name_list" size="30" /></td><td><input type="text" name="uppeso[]" class="form-control name_list" /></td><td><input type="text" name="updollar[]" class="form-control name_list" /></td><td><input type="text" name="tppeso[]" class="form-control name_list" /></td><td><input type="text" name="tpdollar[]" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+      });  
+
+
+      $(document).on('click', '.btn_remove', function(){  
+           var button_id = $(this).attr("id");   
+           $('#row'+button_id+'').remove();  
+      });  
+
+
+      $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+
+
+      $('#submit').click(function(){            
+           $.ajax({  
+                url:postURL,  
+                method:"POST",  
+                data:$('#add_name').serialize(),
+                type:'json',
+                success:function(data)  
+                {
+                    if(data.error){
+                        printErrorMsg(data.error);
+                    }else{
+                        i=1;
+                        $('.dynamic-added').remove();
+                        $('#add_name')[0].reset();
+                        $(".print-success-msg").find("ul").html('');
+                        $(".print-success-msg").css('display','block');
+                        $(".print-error-msg").css('display','none');
+                        $(".print-success-msg").find("ul").append('<li>Record Inserted Successfully.</li>');
+                    }
+                }  
+           });  
+      });  
+
+
+      function printErrorMsg (msg) {
+         $(".print-error-msg").find("ul").html('');
+         $(".print-error-msg").css('display','block');
+         $(".print-success-msg").css('display','none');
+         $.each( msg, function( key, value ) {
+            $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+         });
+      }
+    });  
+</script>
+
+
+			

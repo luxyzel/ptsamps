@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Vendor;
 use Auth;
+use Session;
 
-class ProcureController extends Controller
+class VendorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +18,8 @@ class ProcureController extends Controller
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        return view('admin.procurement.index', compact('admin'));
+        $vendors = Vendor::orderBy('vendor','DESC')->paginate(25);
+        return view('admin.vendors.index', compact('admin', 'vendors'));
     }
 
     /**
@@ -26,7 +29,7 @@ class ProcureController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.vendors.create');
     }
 
     /**

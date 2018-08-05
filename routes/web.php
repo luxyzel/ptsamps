@@ -86,11 +86,14 @@ Route::prefix('admin')->group(function(){
 
 	//Asset Tracking Search route
 	Route::get('assets-tracking/search', 'Admin\AssetsController@getSearchAsset')->name('search-asset');
-
-	// PROCUREMENT INDEX ROUTE
-	Route::resource('/procurement', 'Admin\ProcureController');
 	
 });
+
+// PROCUREMENT INDEX ROUTE
+Route::resource('/procurement', 'Admin\ProcureController');
+
+// VENDOR INDEX ROUTE
+Route::resource('/vendor', 'Admin\VendorController');
 
 // user auth route
 Auth::routes();
