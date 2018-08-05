@@ -61,66 +61,92 @@
 					<div class="dboard-left-menu fl">
 						<a href="{{route('dashboard')}}">
 							<div class="dboard-menu1-box">
-								<img src="/img/icon1.png">
+								<img src="img/icon1.png">
 							</div>
 						</a>
 
 						<!-- popup menu name -->
 						<div id="dboard-menu-pop1">
-							<img src="/img/hoverarrow1.png">
+							<img src="img/hoverarrow1.png">
 							<p>Dashboard</p>
-						</div>
-					</div>
-					<div class="dboard-left-menu fl">
-						<a href="{{route('assets.track')}}">
-							<div class="dboard-menu2-box">
-								<img src="/img/icon2.png" >
-							</div>
-						</a>
-
-						<!-- popup menu name -->
-						<div id="dboard-menu-pop2">
-							<img src="/img/hoverarrow1.png">
-							<p>Asset Tracking</p>
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
 						<a href="{{ route('assets-management.index') }}">
 							<div class="dboard-menu3-box">
-								<img src="/img/icon3.png">
+								<img src="img/icon3.png">
 							</div>
 						</a>
 
 						<!-- popup menu name -->
 						<div id="dboard-menu-pop3">
-							<img src="/img/hoverarrow1.png">
+							<img src="img/hoverarrow1.png">
 							<p>Asset Management</p>
+						</div>
+					</div>
+					<div class="dboard-left-menu fl">
+						<a href="{{route('assets.track')}}">
+							<div class="dboard-menu2-box">
+								<img src="img/icon2.png" >
+							</div>
+						</a>
+
+						<!-- popup menu name -->
+						<div id="dboard-menu-pop2">
+							<img src="img/hoverarrow1.png">
+							<p>Asset Tracking</p>
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
 						<a href="">
 							<div class="dboard-menu4-box">
-								<img src="/img/icon4.png">
+								<img src="img/icon4.png">
 							</div>
 						</a>
 
 						<!-- popup menu name -->
 						<div id="dboard-menu-pop4">
-							<img src="/img/hoverarrow1.png">
+							<img src="img/hoverarrow1.png">
 							<p>P.O. Tracking</p>
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
-						<a href="">
+						<a href="{{ route('peripherals.index') }}">
 							<div class="dboard-menu5-box">
-								<img src="/img/icon5.png">
+								<img src="img/icon5.png">
 							</div>
 						</a>
 
 						<!-- popup menu name -->
 						<div id="dboard-menu-pop5">
-							<img src="/img/hoverarrow1.png">
+							<img src="img/hoverarrow1.png">
 							<p>Peripherals</p>
+						</div>
+					</div>
+					<div class="dboard-left-menu fl">
+						<a href="{{ route('category.index') }}">
+							<div class="dboard-menu6-box">
+								<img src="/img/icon5.png">
+							</div>
+						</a>
+
+						<!-- popup menu name -->
+						<div id="dboard-menu-pop6">
+							<img src="/img/hoverarrow1.png">
+							<p>Create Categories</p>
+						</div>
+					</div>
+					<div class="dboard-left-menu fl">
+						<a href="{{ route('users.index') }}">
+							<div class="dboard-menu7-box">
+								<img src="img/icon5.png">
+							</div>
+						</a>
+
+						<!-- popup menu name -->
+						<div id="dboard-menu-pop7">
+							<img src="img/hoverarrow1.png">
+							<p>Manage User</p>
 						</div>
 					</div>
 					<div class="clr"></div>
