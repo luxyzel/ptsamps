@@ -83,14 +83,6 @@ class AssetsController extends Controller
 
          $this->validateWith([
         'category' => 'required',
-        'stmsn' => 'unique:assets,stmsn',
-        'asset_tag' => 'unique:assets,asset_tag',
-        'asset_number' => 'unique:assets,asset_number',
-        'wsno' => 'unique:assets,wsno',
-        'st' => 'unique:assets,st',
-        'sn' => 'unique:assets,sn',
-        'date_delivered' => 'required',
-        'warranty_ends' => 'required',
         ]);
 
         $asset = new Asset();
