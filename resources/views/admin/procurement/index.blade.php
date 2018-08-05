@@ -337,7 +337,7 @@
               	</div>
 			</div>
 
-			<div class="manage-content">
+		<div class="manage-content">
 			<form id="order_details">
 				<table style="width: 100%; text-align: center;" id="dynamic_field">
 					<thead>
@@ -353,56 +353,56 @@
 							<th>Add</th>
 						</tr>
 					</thead>
-							<tr>
-								<td>
-									<div class="input_fields_wrap">
-								    <div><input type="text" name="item[]" size="45"></div>
-									</div>
-								</td>
-								<td>
-									<div class="input_fields_wrap">
-								    <div><input type="text" name="quantity[]" size="5"></div>
-									</div>
-								</td>
-								<td>
-									<div class="input_fields_wrap">
-								    <div><input type="text" name="uom[]"></div>
-									</div>
-								</td>
-								<td>
-									<div class="input_fields_wrap">
-								    <div><input type="text" name="description[]" size="40"></div>
-									</div>
-								</td>
-								<td>
-									<div class="input_fields_wrap">
-								    <div><input type="text" name="uppeso[]"></div>
-									</div>
-								</td>
-								<td>
-									<div class="input_fields_wrap">
-								    <div><input type="text" name="updollar[]"></div>
-									</div>
-								</td>
-								<td>
-									<div class="input_fields_wrap">
-								    <div><input type="text" name="tppeso[]"></div>
-									</div>
-								</td>
-								<td>
-									<div class="input_fields_wrap">
-								    <div><input type="text" name="tpdollar[]"></div>
-									</div>
-								</td>
-								<td>
-									<button type="button" name="add" id="add" class="btn btn-success">+</button>
-								</td>
-							</tr>
-					</table>
-				</form>
-			</div>
-
-			<br>
+						<tr>
+							<td>
+								<div class="input_fields_wrap">
+							    <div><input type="text" name="item[]" size="45"></div>
+								</div>
+							</td>
+							<td>
+								<div class="input_fields_wrap">
+							    <div><input type="text" name="quantity[]" size="5"></div>
+								</div>
+							</td>
+							<td>
+								<div class="input_fields_wrap">
+							    <div><input type="text" name="uom[]"></div>
+								</div>
+							</td>
+							<td>
+								<div class="input_fields_wrap">
+							    <div><input type="text" name="description[]" size="40"></div>
+								</div>
+							</td>
+							<td>
+								<div class="input_fields_wrap">
+							    <div><input type="text" name="uppeso[]"></div>
+								</div>
+							</td>
+							<td>
+								<div class="input_fields_wrap">
+							    <div><input type="text" name="updollar[]"></div>
+								</div>
+							</td>
+							<td>
+								<div class="input_fields_wrap">
+							    <div><input type="text" name="tppeso[]"></div>
+								</div>
+							</td>
+							<td>
+								<div class="input_fields_wrap">
+							    <div><input type="text" name="tpdollar[]"></div>
+								</div>
+							</td>
+							<td>
+								<button type="button" name="add" id="add" class="btn btn-success">+</button>
+							</td>
+						</tr>
+				</table>
+					<button class="submit-approver-acc" style="margin-top: 40px;">Submit</button>
+			</form>
+		</div>
+		<br>
 			
 			<!-- PAGINATION -->
 

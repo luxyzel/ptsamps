@@ -1,28 +1,4 @@
 
-@include('templates.header')
-
-  <title>Create Category | Asset Management and Procurement System</title>
-</head>
-
-<body>
-
-    {{-- Background --}}
-    <div class="landing-bg">
-
-        {{-- Container of form --}}
-        <div class="user-interface-cont-peri">
-        
-            {{-- TOP LABELS --}}
-            <div class="login-title">
-                <div class="login-logo fl">
-                    <img src="/img/companylogo.png" title="Project T Solutions">
-                </div>
-                <div class="login-text fl">
-                    <p class="login-comp-nm">Create New Categories</p>
-                    <p class="system-about">Add Category to your assets</p>
-                </div>
-                <div class="clr"></div>
-            </div>
 
             <form method="POST" action="{{route('category.store')}}">
                 {{ csrf_field() }}
@@ -37,7 +13,7 @@
                 </div>
                 @endif
  
-                        <div class="field">
+                <div class="field">
                 <label for="coname" class="label">Company Name</label>
                 <p class="control">
                     <input type="text" class="input" name="coname" id="coname" value="">
@@ -122,12 +98,6 @@
                 @endif
 
 
-                <a href="{{ route('peripherals.index') }}" class="back-to-manage">Back to Previous Page</a>
+                <a href="{{ route('vendor.index') }}" class="back-to-manage">Back to Previous Page</a>
 
           </form>
-
-        </div>
-
-    <div>
-
-@include('templates.footer')
