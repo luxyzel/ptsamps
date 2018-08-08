@@ -10,21 +10,139 @@
 
       {{-- Container--}}
       <div class="large-cont">
-         <div class="login-title">
-                <div class="login-logo fl">
-                    <img src="/img/companylogo.png" title="Project T Solutions">
-                </div>
-                <div class="login-text fl">
-                    <p class="login-comp-nm">Create New Assets</p>
-                    <p class="system-about">Add Asset to your Inventory</p>
-                </div>
-                <div class="clr"></div>
+            <div class="login-title">
+
+                {{-- Asset From --}}
+                <form method="POST" action="{{route('assets-management.store')}}">
+                    {{ csrf_field() }}
+
+                    {{-- left Container --}}
+                    <div class="lcont-c-asset fl" style="padding-right: 10px">
+
+                        {{-- Logo --}}
+                        <div class="login-logo fl">
+                            <img src="/img/companylogo.png" title="Project T Solutions">
+                        </div>
+                        <div class="login-text fl">
+                            <p class="login-comp-nm">Create New Assets</p>
+                            <p class="system-about">Add Asset to your Inventory</p>
+                        </div>
+                        <div class="clr"></div>
+
+                        <label class="lbl-login" style="margin-top: 20px">Category</label>
+                        <select name="category" id="category" class="control" autofocus>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->category }}">{{ $category->category }}</option>
+                            @endforeach
+                        </select>
+
+                        <label class="lbl-login">Model</label>
+                        <input type="text" class="input" name="model" id="model" value="" autocomplete="off">
+
+                        <label class="lbl-login">ST/MSN</label>
+                        <input type="text" class="input" name="stmsn" id="stmsn" value="" autocomplete="off"> 
+
+                        <label class="lbl-login">PDSN</label>
+                        <input type="text" class="input" name="pdsn" id="pdsn" value="" autocomplete="off">
+
+                        <label class="lbl-login">Asset Tag</label>
+                        <input type="text" class="input" name="asset_tag" id="asset_tag" value="" autocomplete="off">
+
+                        <label class="lbl-login">Asset Number</label>
+                        <input type="text" class="input" name="asset_number" id="asset_number" value="" autocomplete="off">
+
+                        <label class="lbl-login">Adapter</label>
+                        <input type="text" class="input" name="adapter" id="adapter" value="" autocomplete="off">
+
+                    </div>
+
+                    {{-- Center Container --}}
+                    <div class="lcont-c-asset fl" style="padding-left: 5px; padding-right: 5px;">
+
+                        <label class="lbl-login" style="margin-top: 77px;">Location</label>
+                        <select name="location" id="location" class="control">
+                            @foreach($locations as $location)
+                                <option value="{{ $location->location }}">{{ $location->location }}</option>
+                            @endforeach
+                        </select>
+                        
+                        <label class="lbl-login">WS NO.</label>
+                        <input type="text" class="input" name="wsno" id="wsno" value="" autocomplete="off">
+
+                        <label class="lbl-login">ST</label>
+                        <input type="text" class="input" name="st" id="st" value="" autocomplete="off">
+
+                        <label class="lbl-login">SN</label>
+                        <input type="text" class="input" name="sn" id="sn" value="" autocomplete="off">
+
+                        <label class="lbl-login">Mouse</label>
+                        <input type="text" class="input" name="mouse" id="mouse" value="" autocomplete="off">
+
+                        <label class="lbl-login">Keyboard</label>
+                        <input type="text" class="input" name="keyboard" id="keyboard" value="" autocomplete="off">
+
+                        <label class="lbl-login">Code</label>
+                        <input type="text" class="input" name="code" id="code" value="" autocomplete="off">
+
+                    </div>
+
+                    {{-- Right Container --}}
+                    <div class="lcont-c-asset fl" style="padding-left: 10px">
+
+                        <label class="lbl-login" style="margin-top: 77px;">Description</label>
+                        <input type="text" class="input" name="description" id="description" value="" autocomplete="off">
+
+                        <label class="lbl-login">Condition</label>
+                        <select name="condition" id="condition" class="control">
+                            @foreach($conditions as $condition)
+                                <option value="{{ $condition->condition }}">{{ $condition->condition }}</option>
+                            @endforeach
+                        </select>
+
+                        <label class="lbl-login">Status</label>
+                        <select name="status" id="status" class="control">
+                            @foreach($statuses as $status)
+                                <option value="{{ $status->status }}">{{ $status->status }}</option>
+                            @endforeach
+                        </select>
+
+                        <label class="lbl-login">Vendor</label>
+                        <select name="vendor" id="vendor" class="control">
+                            @foreach($vendors as $vendor)
+                                <option value="{{ $vendor->vendor }}">{{ $vendor->vendor }}</option>
+                            @endforeach
+                        </select>
+
+                        <label class="lbl-login">Notes</label>
+                        <input type="text" class="input" name="notes" id="notes" value="" autocomplete="off">
+
+                        <button class="submit-approver-acc" style="margin-top: 12px;">Confirm Asset Creation</button>
+
+                        @if(Session::has('success'))
+                            <div class="comment-success" style="margin-top: 25px">
+                                <strong> {{ Session::get('success') }}</strong> 
+                            </div>
+                        @endif
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <br><strong>{{ $error }}</strong>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <a href="{{ route('assets-management.index') }}" class="back-but-l">Back to previous page</a>
+                    </div>
+                </form>    
             </div>
       </div>
       
    </div>
 
-	<div class="flex-container" style="width: 80%; margin: auto;">
+	{{-- <div class="flex-container" style="width: 80%; margin: auto;">
     	<div class="columns m-t-10">
       		<div class="column">
         		<h1 class="title">Create New Assets</h1>
@@ -211,6 +329,6 @@
 			    @endif
     		</div>
    	 	</form>
-   	</div>
+   	</div> --}}
 
 @include('templates.footer')

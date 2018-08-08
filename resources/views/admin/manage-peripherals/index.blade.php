@@ -208,15 +208,22 @@
 			</div>
 
 			<div class="dboard-content-menu">
-				<a href="{{ route('peripherals.create') }}" class="dboard-add-acc fl">Add Peripherals</a>
-				<a href="{{ route('import-per') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Import Peripherals</a>
+				<div class="fl">
+					<a href="{{ route('peripherals.create') }}" class="dboard-add-acc fl">Add Peripherals</a>
+					<a href="{{ route('import-per') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Import Peripherals</a>
+					<div class="clr"></div>
+				</div>
+				<div class="fr" style="width: 400px;">
+					<form  action="{{ route('searchPer') }}" method="get">
+						<input type="text" class="input" name="search" id="search" value="" placeholder="search peripherals" required autocomplete="off">
+						{{-- <button type="submit">Search</button> --}}
+						{{ csrf_field() }}
+					</form>	
+				</div>
 				<div class="clr"></div>
 			</div>
 
-             <form  action="{{ route('searchPer') }}" method="get">
-				<div calss="col-md-4"><input type="text" class="input" name="search" id="search" value="" placeholder="search ..." required><button type="submit">Search</button></div>
-				{{ csrf_field() }}
-			</form>
+             
 
 				<!-- SESSION  -->
 	            @if(Session::has('success'))
