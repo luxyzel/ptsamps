@@ -95,6 +95,9 @@ Route::resource('/procurement', 'Admin\ProcureController');
 // VENDOR INDEX ROUTE
 Route::resource('/vendor', 'Admin\VendorController');
 
+
+Route::post('/procurement/po', 'Admin\ProcureController@VendorDetails')->name('vendorshow');
+
 // user auth route
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

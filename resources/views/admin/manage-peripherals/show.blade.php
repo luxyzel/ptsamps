@@ -46,7 +46,7 @@
             <p class="view-label">{{$peripheral->status}}</p>
             <!-- Date Delivered -->  
             <label class="lbl-view" style="margin-top: 20px;">Date Delivered</label>
-            <p class="view-label">{{ \Carbon\Carbon::parse(\DB::table('perepherals')->first()->date_delivered)->toFormattedDateString() }}</p>
+            <p class="view-label">{{ \Carbon\Carbon::parse(\DB::table('peripherals')->first()->date_delivered)->toFormattedDateString() }}</p>
             <!-- Warranty Ends -->
             <label class="lbl-view" style="margin-top: 20px;">Warranty Ends</label>
             <p class="view-label">{{$peripheral->warranty_ends}}</p>

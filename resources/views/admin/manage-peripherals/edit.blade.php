@@ -43,7 +43,7 @@
                 <label for="category" class="label">Category</label>
                  <select name="category" id="category" class="control">
                   @foreach($category as $cat)
-                    <option value="{{ $cat->category }}" {{ $perepheral->category === $cat->category? 'selected' : '' }}>{{ $cat->category }}</option>
+                    <option value="{{ $cat->category }}" {{ $peripheral->category === $cat->category? 'selected' : '' }}>{{ $cat->category }}</option>
                   @endforeach
                 </select>
               </div><br>
@@ -133,7 +133,7 @@
 		          <button class="button is-primary is-pulled-right" style="width: 250px;">Update Peripheral</button>
 		        </div>
 
-		       <a href="{{ route('perepherals.index') }}">Back</a>
+		       <a href="{{ route('peripherals.index') }}">Back</a>
 
 
     		</div>

@@ -1,7 +1,7 @@
 
 @include('templates.header')
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <title>Manage Peripherals | Asset Management and Procurement System</title>
 </head>
 
@@ -203,142 +203,106 @@
 					</form>
 				</div>
 				<div class="clr"></div>
-			</div>
+			</div><br>
 			
+		<form id="VendorForm" action="{{ route('vendorshow') }}" method="post">{{ csrf_field() }}
+		<div class="manage-content">	
 			<div class="dboard-content-menu">
 				<p><strong>VENDOR</strong></p>
 				<div class="field">
-                <label for="vendor" class="label">Vendor</label>
-                 <select name="vendor" id="vendor" class="control">
-                 
-                    <option value="SAMPLE">SAMPLE</option>
-                  
+                <label for="vendorname" class="label">Vendor Name</label>
+                 <select name="vendorname" id="vendorname" class="control" >
+                 <option value="none">--Select Vendor--</option>
+                  @foreach($vendors as $vendor)
+                    <option value="{{ $vendor->company_name }}">{{ $vendor->company_name }}</option>
+                  @endforeach
                 </select>
-              </div>
-			</div><br><br><br>
-			
-
-			<div class="manage-content">
-
-				<div class="field">
-                <label for="coname" class="label">Company Name</label>
-                <p class="control">
-                    <input type="text" class="input" name="coname" id="coname" value="">
-                </p>
-              	</div>
-
-              	<div class="field">
-                <label for="ctperson" class="label">Contact Person</label>
-                <p class="control">
-                    <input type="text" class="input" name="ctperson" id="ctperson" value="">
-                </p>
-              	</div>
-
-                <div class="field">
-                <label for="designation" class="label">Designation</label>
-                <p class="control">
-                    <input type="text" class="input" name="designation" id="designation" value="">
-                </p>
-              	</div>
-
-              	<div class="field">
-                <label for="emailadd" class="label">Email Address</label>
-                <p class="control">
-                    <input type="text" class="input" name="emailadd" id="emailadd" value="">
-                </p>
-              	</div>
-
-              	<div class="field">
-                <label for="ctnumber" class="label">Contact Number</label>
-                <p class="control">
-                    <input type="text" class="input" name="ctnumber" id="ctnumber" value="">
-                </p>
-              	</div>
-
-              	<div class="field">
-                <label for="coaddress" class="label">Company Address</label>
-                <p class="control">
-                    <input type="text" class="input" name="coaddress" id="coaddress" value="">
-                </p>
-              	</div>
-
-              	<div class="field">
-                <label for="phone" class="label">Phone</label>
-                <p class="control">
-                    <input type="text" class="input" name="phone" id="phone" value="">
-                </p>
-              	</div>
-
-              	<div class="field">
-                <label for="fax" class="label">Fax</label>
-                <p class="control">
-                    <input type="text" class="input" name="fax" id="fax" value="">
-                </p>
-              	</div>
-
-              	<div class="field">
-                <label for="vrtin" class="label">VAT Reg. TIN: </label>
-                <p class="control">
-                    <input type="text" class="input" name="vrtin" id="vrtin" value="">
-                </p>
-              	</div>
-			</div><br>
+              </div><br><br><br>
+			</div><br><br><br>	
+		
+				<table style="width: 100%; text-align: center;" id="tfilter">
+					<thead>
+						<tr>
+							<th data-type="standard">Company Name</th>
+							<th>Contact Person</th>
+							<th>Designation</th>
+							<th>Email Address</th>
+							<th>Contact Number</th>
+							<th>Company Address</th>
+							<th>Phone</th>
+							<th>Fax</th>
+							<th>Vat Number</th>
+						</tr>
+					</thead>
+					@foreach ($vendors as $vendor)
+						<tr>
+							<td>{{$vendor->company_name}}</td>
+							<td>{{$vendor->contact_person}}</td>
+							<td>{{$vendor->designation}}</td>
+							<td>{{$vendor->email_address}}</td>
+							<td>{{$vendor->contact_number}}</td>
+							<td>{{$vendor->company_address}}</td>
+							<td>{{$vendor->phone}}</td>
+							<td>{{$vendor->fax}}</td>
+							<td>{{$vendor->vat_number}}</td>
+						</tr>	
+					@endforeach
+				</table>
+		</div><br>
 
 			<div class="manage-content">
 				<p><strong>SHIP TO</strong></p><br>
-				
 				<div class="field">
                 <label for="coname" class="label">Company Name</label>
                 <p class="control">
-                    <input type="text" class="input" name="coname" id="coname" value="">
+                    <input type="text" class="input" name="coname" id="coname" value="" required>
                 </p>
               	</div>
 
               	<div class="field">
                 <label for="ctperson" class="label">Contact Person</label>
                 <p class="control">
-                    <input type="text" class="input" name="ctperson" id="ctperson" value="">
+                    <input type="text" class="input" name="ctperson" id="ctperson" value="" required>
                 </p>
               	</div>
 
                 <div class="field">
                 <label for="designation" class="label">Designation</label>
                 <p class="control">
-                    <input type="text" class="input" name="designation" id="designation" value="">
+                    <input type="text" class="input" name="designation" id="designation" value="" required>
                 </p>
               	</div>
 
               	<div class="field">
                 <label for="emailadd" class="label">Email Address</label>
                 <p class="control">
-                    <input type="text" class="input" name="emailadd" id="emailadd" value="">
+                    <input type="email" class="input" name="emailadd" id="emailadd" value="" required>
                 </p>
               	</div>
 
               	<div class="field">
                 <label for="ctnumber" class="label">Contact Number</label>
                 <p class="control">
-                    <input type="text" class="input" name="ctnumber" id="ctnumber" value="">
+                    <input type="text" class="input" name="ctnumber" id="ctnumber" value="" required>
                 </p>
               	</div>
 
               	<div class="field">
                 <label for="coaddress" class="label">Company Address</label>
                 <p class="control">
-                    <input type="text" class="input" name="coaddress" id="coaddress" value="">
+                    <input type="text" class="input" name="coaddress" id="coaddress" value="" required>
                 </p>
               	</div>
 
               	<div class="field">
                 <label for="phone" class="label">Phone</label>
                 <p class="control">
-                    <input type="text" class="input" name="phone" id="phone" value="">
+                    <input type="text" class="input" name="phone" id="phone" value="" required>
                 </p>
               	</div>
 			</div>
 
 		<div class="manage-content">
-			<form id="order_details">
 				<table style="width: 100%; text-align: center;" id="dynamic_field">
 					<thead>
 						<tr>
@@ -356,27 +320,27 @@
 						<tr>
 							<td>
 								<div class="input_fields_wrap">
-							    <div><input type="text" name="item[]" size="45"></div>
+							    <div><input type="text" name="item[]" size="45" required></div>
 								</div>
 							</td>
 							<td>
 								<div class="input_fields_wrap">
-							    <div><input type="text" name="quantity[]" size="5"></div>
+							    <div><input type="text" name="quantity[]" size="5" required></div>
 								</div>
 							</td>
 							<td>
 								<div class="input_fields_wrap">
-							    <div><input type="text" name="uom[]"></div>
+							    <div><input type="text" name="uom[]" required></div>
 								</div>
 							</td>
 							<td>
 								<div class="input_fields_wrap">
-							    <div><input type="text" name="description[]" size="40"></div>
+							    <div><input type="text" name="description[]" size="40" required></div>
 								</div>
 							</td>
 							<td>
 								<div class="input_fields_wrap">
-							    <div><input type="text" name="uppeso[]"></div>
+							    <div><input type="text" name="uppeso[]" required></div>
 								</div>
 							</td>
 							<td>
@@ -399,11 +363,11 @@
 							</td>
 						</tr>
 				</table>
-					<button class="submit-approver-acc" style="margin-top: 40px;">Submit</button>
-			</form>
+					<button class="submit-approver-acc" style="margin-top: 40px;" id="submit">Submit</button>
+			
 		</div>
 		<br>
-			
+		</form>	
 			<!-- PAGINATION -->
 
 			<!-- warning no record -->
@@ -417,7 +381,11 @@
 		<div class="clr"></div>
 	</div>
 
+	<p id="showing"></p>
+
 @include('templates.footer')
+
+
 
 
 
@@ -479,6 +447,34 @@
          });
       }
     });  
+
+//Showing vendor details
+$(document).ready(function () {
+	$('#tfilter').hide();
+ $('#vendorname').on('change', function() {
+   	$('#tfilter').toggle(100);
+  // Declare variables 
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("vendorname");
+ filter = input.value.toUpperCase();
+  table = document.getElementById("tfilter");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+	  for (i = 0; i < tr.length; i++) {
+	    td = tr[i].getElementsByTagName("td")[0];
+	    if (td) {
+	      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	        tr[i].style.display = "";
+	      } else {
+	        tr[i].style.display = "none";
+
+	      }
+	    } 
+	  }
+	});
+}); 
+
 </script>
 
 
