@@ -205,16 +205,22 @@
 			</div>
 
 			<div class="dboard-content-menu">
-				<a href="{{ route('create.assets') }}" class="dboard-add-acc fl">Create Assets</a>
-				<a href="{{ route('import-assets') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Import Assets</a>
+				<div class="fl">
+					<a href="{{ route('create.assets') }}" class="dboard-add-acc fl">Create Assets</a>
+					<a href="{{ route('import-assets') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Import Assets</a>
+					<div class="clr"></div>
+				</div>
+				<div class="fr" style="width: 400px;">
+					<form  action="{{ route('search') }}" method="get">
+						<input type="text" class="input" name="search" id="search" value="" placeholder="search asset" required autocomplete="off">
+						{{-- <button type="submit">Search</button> --}}
+						{{ csrf_field() }}
+					</form>
+				</div>
 				<div class="clr"></div>
 			</div>
 
-            <form  action="{{ route('search') }}" method="get">
-				<input type="text" class="input" name="search" id="search" value="" placeholder="search ..." required>
-				<button type="submit">Search</button>
-				{{ csrf_field() }}
-			</form>
+            
 
 			<div class="manage-content">
 				<table style="width: 100%; text-align: center;">
@@ -282,7 +288,9 @@
 			<br>
 			
 			<!-- PAGINATION -->
-			<center><div style="display: inline">{{$assets->links()}}</div></center>
+			<div class="pagination-bot">
+				{{$assets->links()}}
+			</div>
 
 			<!-- warning no record -->
           	@if(Session::has('warning'))

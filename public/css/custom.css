@@ -27,7 +27,7 @@ a {
 
 /* Global */
 body {
-    background-color: #fff;
+    background-color: #f6f8ff;
 }
 
 .row {
@@ -139,7 +139,7 @@ textarea {
 }
 
 select {
-    padding: 6px 10px;
+    padding: 7px 10px;
     width: 100%;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 3px;
@@ -147,6 +147,11 @@ select {
     color: #4f5863;
     font-family: roboto-reg;
     font-size: 13px;
+    margin-bottom: 10px;
+}
+
+select:focus {
+    box-shadow: 3px 3px 40px -10px rgba(35, 169, 225, 0.7);
 }
 
 ::-webkit-input-placeholder {
@@ -366,7 +371,6 @@ select {
 
 .dboard-right-panel {
     width: 83%;
-    height: 100vh;
     padding: 20px 30px;
 }
 
