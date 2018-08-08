@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Vendor;
 use Auth;
 
 class ProcureController extends Controller
@@ -13,10 +14,15 @@ class ProcureController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $admin = Auth::guard('admin')->user();
-        return view('admin.procurement.index', compact('admin'));
+        $name = $request->input('vendorname');
+
+        
+                $admin = Auth::guard('admin')->user();
+                $vendors = Vendor::All();
+                return view('admin.procurement.index', compact('admin', 'vendors'));
+        
     }
 
     /**
@@ -84,4 +90,11 @@ class ProcureController extends Controller
     {
         //
     }
+
+    public function VendorDetails(Request $request)
+    {
+
+
+    }
+
 }
