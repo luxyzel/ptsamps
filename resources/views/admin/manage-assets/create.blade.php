@@ -56,7 +56,7 @@
 
                     </div>
 
-                    {{-- Right Container --}}
+                    {{-- Center Container --}}
                     <div class="lcont-c-asset fl" style="padding-left: 5px; padding-right: 5px;">
 
                         <label class="lbl-login" style="margin-top: 77px;">Location</label>
@@ -86,6 +86,7 @@
 
                     </div>
 
+                    {{-- Right Container --}}
                     <div class="lcont-c-asset fl" style="padding-left: 10px">
 
                         <label class="lbl-login" style="margin-top: 77px;">Description</label>

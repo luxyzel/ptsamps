@@ -210,7 +210,7 @@
 					<a href="{{ route('import-assets') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Import Assets</a>
 					<div class="clr"></div>
 				</div>
-				<div class="fr" style="width: 300px;">
+				<div class="fr" style="width: 400px;">
 					<form  action="{{ route('search') }}" method="get">
 						<input type="text" class="input" name="search" id="search" value="" placeholder="search asset" required autocomplete="off">
 						{{-- <button type="submit">Search</button> --}}

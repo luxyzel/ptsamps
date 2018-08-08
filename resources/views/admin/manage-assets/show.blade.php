@@ -11,124 +11,199 @@
 <div class="landing-bg">
 
     {{-- Container Creating User --}}
-    <div class="viewacc-interface-cont">
+    <div class="large-cont">
 
       {{-- TOP LABELS --}}
-        <div class="login-title">
+        <div class="login-title" style="margin-bottom: 20px;">
             <div class="login-logo fl">
                 <img src="/img/companylogo.png" title="Project T Solutions">
             </div>
             <div class="login-text fl">
                 <p class="login-comp-nm">Show Asset Info</p>
+                <p class="system-about">View Asset full Information</p>
             </div>
             <div class="clr"></div>
         </div>
-        <div class="view-container">
-            <label class="lbl-view">Category</label>
-            <p class="view-label">{{$asset->category}}</p>
+
+        {{-- First  --}}
+        <div class="lcont-c-asset fl" style="padding-right: 10px">
+
+            {{-- Categories --}}
+            <label class="lbl-login">Category</label>
+            <p class="view-label-full">{{$asset->category}}</p>
+
             <!-- Model -->
+            <label class="lbl-login" style="margin-top: 20px;">Model</label>
             @if(!is_null($asset->model))   
-            <label class="lbl-view" style="margin-top: 20px;">Model</label>
-            <p class="view-label">{{$asset->model}}</p>
+                <p class="view-label-full">{{$asset->model}}</p>
+            @else
+                <p class="view-label-full"N/A></p>
             @endif
+
             <!-- ST MSN -->
-            @if(!is_null($asset->st_msn))    
             <label class="lbl-view" style="margin-top: 20px;">ST MSN</label>
-            <p class="view-label">{{$asset->st_msn}}</p>
+            @if(!is_null($asset->st_msn))    
+                <p class="view-label-full">{{$asset->st_msn}}</p>
+            @else
+                <p class="view-label-full">N/A</p>
             @endif
+
             <!-- PDSN -->
-            @if(!is_null($asset->pdsn))  
             <label class="lbl-view" style="margin-top: 20px;">PDSN</label>
-            <p class="view-label">{{$asset->pdsn}}</p>
+            @if(!is_null($asset->pdsn))  
+                <p class="view-label-full">{{$asset->pdsn}}</p>
+            @else
+                <p class="view-label-full">N/A</p>
             @endif
+
             <!-- Asset Tag -->
-            @if(!is_null($asset->asset_tag))  
             <label class="lbl-view" style="margin-top: 20px;">Asset Tag</label>
-            <p class="view-label">{{$asset->asset_tag}}</p>
+            @if(!is_null($asset->asset_tag))
+                <p class="view-label-full">{{$asset->asset_tag}}</p>
+            @else
+                <p class="view-label-full">N/A</p>    
             @endif
-           <!--  Asset Number -->
-            @if(!is_null($asset->asset_number))  
+
+            <!--  Asset Number -->
             <label class="lbl-view" style="margin-top: 20px;">Asset Number</label>
-            <p class="view-label">{{$asset->asset_number}}</p>
+            @if(!is_null($asset->asset_number))  
+                <p class="view-label-full">{{$asset->asset_number}}</p>
+            @else
+                <p class="view-label-full">N/A</p>
             @endif
+
             <!-- Adapter -->
-            @if(!is_null($asset->adapter))  
             <label class="lbl-view" style="margin-top: 20px;">Adapter</label>
-            <p class="view-label">{{$asset->adapter}}</p>
+            @if(!is_null($asset->adapter))  
+                <p class="view-label-full">{{$asset->adapter}}</p>
+            @else
+                <p class="view-label-full">N/A</p>
             @endif
-            <!-- Location -->
-            @if(!is_null($asset->location))  
-            <label class="lbl-view" style="margin-top: 20px;">Location</label>
-            <p class="view-label">{{$asset->location}}</p>
-            @endif
-            <!-- WS No. -->
-            @if(!is_null($asset->ws_nno))  
-            <label class="lbl-view" style="margin-top: 20px;">WS No.</label>
-            <p class="view-label">{{$asset->ws_no}}</p>
-            @endif
-            <!-- ST -->
-            @if(!is_null($asset->st))  
-            <label class="lbl-view" style="margin-top: 20px;">ST</label>
-            <p class="view-label">{{$asset->st}}</p>
-            @endif
-           <!--  S/N -->
-            @if(!is_null($asset->s_n))  
-            <label class="lbl-view" style="margin-top: 20px;">S/N</label>
-            <p class="view-label">{{$asset->s_n}}</p>
-            @endif
-            <!-- Mouse -->
-            @if(!is_null($asset->mouse))  
-            <label class="lbl-view" style="margin-top: 20px;">Mouse</label>
-            <p class="view-label">{{$asset->mouse}}</p>
-            @endif
-            <!-- Keyboard -->
-            @if(!is_null($asset->keyboard))  
-            <label class="lbl-view" style="margin-top: 20px;">Keyboard</label>
-            <p class="view-label">{{$asset->keyboard}}</p>
-            @endif
-            <!-- Code -->
-            @if(!is_null($asset->code))  
-            <label class="lbl-view" style="margin-top: 20px;">Code</label>
-            <p class="view-label">{{$asset->code}}</p>
-            @endif
-            <!-- Description -->
-            @if(!is_null($asset->description))  
-            <label class="lbl-view" style="margin-top: 20px;">Description</label>
-            <p class="view-label">{{$asset->description}}</p>
-            @endif
-            <!-- Condition -->
-            @if(!is_null($asset->condition))  
-            <label class="lbl-view" style="margin-top: 20px;">Condition</label>
-            <p class="view-label">{{$asset->condition}}</p>
-            @endif
-            <!-- Status -->
-            @if(!is_null($asset->status))  
-            <label class="lbl-view" style="margin-top: 20px;">Status</label>
-            <p class="view-label">{{$asset->status}}</p>
-            @endif
-            <!-- Date Delivered -->
-            @if(!is_null($asset->date_delivered))  
-            <label class="lbl-view" style="margin-top: 20px;">Date Delivered</label>
-            <p class="view-label">{{ \Carbon\Carbon::parse(\DB::table('assets')->first()->date_delivered)->toFormattedDateString() }}</p>
-            @endif
-            <!-- Warranty Ends -->
-            @if(!is_null($asset->warranty_ends))  
-            <label class="lbl-view" style="margin-top: 20px;">Warranty Ends</label>
-            <p class="view-label">{{$asset->warranty_ends}}</p>
-            @endif
-            <!-- Vendor -->
-            @if(!is_null($asset->vendor))  
-            <label class="lbl-view" style="margin-top: 20px;">Vendor</label>
-            <p class="view-label">{{$asset->vendor}}</p>
-            @endif
-            <!-- Notes -->
-            @if(!is_null($asset->notes))  
-            <label class="lbl-view" style="margin-top: 20px;">Notes</label>
-            <p class="view-label">{{$asset->notes}}</p>
-            @endif
+
         </div>
+
+        {{-- Second --}}
+        <div class="lcont-c-asset fl" style="padding-left: 5px; padding-right: 5px;">
             
-        <a href="{{ route('assets-management.index') }}" class="back-to-manage">Back to Manage Users</a>
+            <!-- Location -->
+            <label class="lbl-view">Location</label>
+            @if(!is_null($asset->location))
+                <p class="view-label-full">{{$asset->location}}</p>
+            @else
+                <p class="view-label-full">N/A</p>
+            @endif
+
+            <!-- WS No. -->
+            <label class="lbl-view" style="margin-top: 20px;">WS No.</label>
+            @if(!is_null($asset->ws_nno))  
+                <p class="view-label-full">{{$asset->ws_no}}</p>
+            @else
+                <p class="view-label-full">N/A</p>
+            @endif
+
+            <!-- ST -->
+            <label class="lbl-view" style="margin-top: 20px;">ST</label>
+            @if(!is_null($asset->st))  
+                <p class="view-label-full">{{$asset->st}}</p>
+            @else
+                <p class="view-label-full">N/A</p>
+            @endif
+
+            <!--  S/N -->
+            <label class="lbl-view" style="margin-top: 20px;">S/N</label>
+            @if(!is_null($asset->s_n))  
+                <p class="view-label-full">{{$asset->s_n}}</p>
+            @else
+                <p class="view-label-full">N/A</p>
+            @endif
+
+            <!-- Mouse -->
+            <label class="lbl-view" style="margin-top: 20px;">Mouse</label>
+            @if(!is_null($asset->mouse))  
+                <p class="view-label-full">{{$asset->mouse}}</p>
+            @else
+                <p class="view-label-full">N/A</p>
+            @endif
+
+            <!-- Keyboard -->
+            <label class="lbl-view" style="margin-top: 20px;">Keyboard</label>
+            @if(!is_null($asset->keyboard))  
+                <p class="view-label-full">{{$asset->keyboard}}</p>
+            @else
+                <p class="view-label-full">N/A</p>
+            @endif
+
+            <!-- Code -->
+            <label class="lbl-view" style="margin-top: 20px;">Code</label>
+            @if(!is_null($asset->code))  
+                <p class="view-label-full">{{$asset->code}}</p>
+            @else
+                <p class="view-label-full">N/A</p>
+            @endif
+
+        </div>
+
+        <div class="lcont-c-asset fl" style="padding-left: 10px">
+
+            <!-- Description -->
+            <label class="lbl-view">Description</label>
+            @if(!is_null($asset->description))  
+                <p class="view-label-full">{{$asset->description}}</p>
+            @else
+                <p class="view-label-full">N/A</p>
+            @endif
+
+            <!-- Condition -->
+            <label class="lbl-view" style="margin-top: 20px;">Condition</label>
+            @if(!is_null($asset->condition))
+                <p class="view-label-full">{{$asset->condition}}</p>
+            @else
+                <p class="view-label-full">N/A</p>
+            @endif
+
+            <!-- Status -->
+            <label class="lbl-view" style="margin-top: 20px;">Status</label>
+            @if(!is_null($asset->status))  
+                <p class="view-label-full">{{$asset->status}}</p>
+            @else
+                <p class="view-label-full">N/A</p>
+            @endif
+
+            <!-- Date Delivered -->
+            <label class="lbl-view" style="margin-top: 20px;">Date Delivered</label>
+            @if(!is_null($asset->date_delivered))
+                <p class="view-label-full">{{ \Carbon\Carbon::parse(\DB::table('assets')->first()->date_delivered)->toFormattedDateString() }}</p>
+            @else
+                <p class="view-label-full">N/A</p>
+            @endif
+
+            <!-- Warranty Ends -->
+            <label class="lbl-view" style="margin-top: 20px;">Warranty Ends</label>
+            @if(!is_null($asset->warranty_ends))  
+                <p class="view-label-full">{{$asset->warranty_ends}}</p>
+            @else
+                <p class="view-label-full">N/A</p>
+            @endif
+
+            <!-- Vendor -->
+            <label class="lbl-view" style="margin-top: 20px;">Vendor</label>
+            @if(!is_null($asset->vendor))  
+                <p class="view-label-full">{{$asset->vendor}}</p>
+            @else
+                <p class="view-label-full">N/A</p>
+            @endif
+
+            <!-- Notes -->
+            <label class="lbl-view" style="margin-top: 20px;">Notes</label>
+            @if(!is_null($asset->notes))  
+                <p class="view-label-full">{{$asset->notes}}</p>
+            @else
+                <p class="view-label-full">N/A</p>
+            @endif
+
+            <a href="{{ route('assets-management.index') }}" class="back-but-l">Back to Manage Users</a>
+        </div>
+        
 
     </div>
     
