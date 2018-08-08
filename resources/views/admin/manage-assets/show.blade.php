@@ -41,7 +41,7 @@
             @endif
 
             <!-- ST MSN -->
-            <label class="lbl-view" style="margin-top: 20px;">ST MSN</label>
+            <label class="lbl-login" style="margin-top: 20px;">ST MSN</label>
             @if(!is_null($asset->st_msn))    
                 <p class="view-label-full">{{$asset->st_msn}}</p>
             @else
@@ -49,7 +49,7 @@
             @endif
 
             <!-- PDSN -->
-            <label class="lbl-view" style="margin-top: 20px;">PDSN</label>
+            <label class="lbl-login" style="margin-top: 20px;">PDSN</label>
             @if(!is_null($asset->pdsn))  
                 <p class="view-label-full">{{$asset->pdsn}}</p>
             @else
@@ -57,7 +57,7 @@
             @endif
 
             <!-- Asset Tag -->
-            <label class="lbl-view" style="margin-top: 20px;">Asset Tag</label>
+            <label class="lbl-login" style="margin-top: 20px;">Asset Tag</label>
             @if(!is_null($asset->asset_tag))
                 <p class="view-label-full">{{$asset->asset_tag}}</p>
             @else
@@ -65,7 +65,7 @@
             @endif
 
             <!--  Asset Number -->
-            <label class="lbl-view" style="margin-top: 20px;">Asset Number</label>
+            <label class="lbl-login" style="margin-top: 20px;">Asset Number</label>
             @if(!is_null($asset->asset_number))  
                 <p class="view-label-full">{{$asset->asset_number}}</p>
             @else
@@ -73,7 +73,7 @@
             @endif
 
             <!-- Adapter -->
-            <label class="lbl-view" style="margin-top: 20px;">Adapter</label>
+            <label class="lbl-login" style="margin-top: 20px;">Adapter</label>
             @if(!is_null($asset->adapter))  
                 <p class="view-label-full">{{$asset->adapter}}</p>
             @else
@@ -86,7 +86,7 @@
         <div class="lcont-c-asset fl" style="padding-left: 5px; padding-right: 5px;">
             
             <!-- Location -->
-            <label class="lbl-view">Location</label>
+            <label class="lbl-login">Location</label>
             @if(!is_null($asset->location))
                 <p class="view-label-full">{{$asset->location}}</p>
             @else
@@ -94,7 +94,7 @@
             @endif
 
             <!-- WS No. -->
-            <label class="lbl-view" style="margin-top: 20px;">WS No.</label>
+            <label class="lbl-login" style="margin-top: 20px;">WS No.</label>
             @if(!is_null($asset->ws_nno))  
                 <p class="view-label-full">{{$asset->ws_no}}</p>
             @else
@@ -102,7 +102,7 @@
             @endif
 
             <!-- ST -->
-            <label class="lbl-view" style="margin-top: 20px;">ST</label>
+            <label class="lbl-login" style="margin-top: 20px;">ST</label>
             @if(!is_null($asset->st))  
                 <p class="view-label-full">{{$asset->st}}</p>
             @else
@@ -110,7 +110,7 @@
             @endif
 
             <!--  S/N -->
-            <label class="lbl-view" style="margin-top: 20px;">S/N</label>
+            <label class="lbl-login" style="margin-top: 20px;">S/N</label>
             @if(!is_null($asset->s_n))  
                 <p class="view-label-full">{{$asset->s_n}}</p>
             @else
@@ -118,7 +118,7 @@
             @endif
 
             <!-- Mouse -->
-            <label class="lbl-view" style="margin-top: 20px;">Mouse</label>
+            <label class="lbl-login" style="margin-top: 20px;">Mouse</label>
             @if(!is_null($asset->mouse))  
                 <p class="view-label-full">{{$asset->mouse}}</p>
             @else
@@ -126,7 +126,7 @@
             @endif
 
             <!-- Keyboard -->
-            <label class="lbl-view" style="margin-top: 20px;">Keyboard</label>
+            <label class="lbl-login" style="margin-top: 20px;">Keyboard</label>
             @if(!is_null($asset->keyboard))  
                 <p class="view-label-full">{{$asset->keyboard}}</p>
             @else
@@ -134,7 +134,7 @@
             @endif
 
             <!-- Code -->
-            <label class="lbl-view" style="margin-top: 20px;">Code</label>
+            <label class="lbl-login" style="margin-top: 20px;">Code</label>
             @if(!is_null($asset->code))  
                 <p class="view-label-full">{{$asset->code}}</p>
             @else
@@ -146,7 +146,7 @@
         <div class="lcont-c-asset fl" style="padding-left: 10px">
 
             <!-- Description -->
-            <label class="lbl-view">Description</label>
+            <label class="lbl-login">Description</label>
             @if(!is_null($asset->description))  
                 <p class="view-label-full">{{$asset->description}}</p>
             @else
@@ -154,7 +154,7 @@
             @endif
 
             <!-- Condition -->
-            <label class="lbl-view" style="margin-top: 20px;">Condition</label>
+            <label class="lbl-login" style="margin-top: 20px;">Condition</label>
             @if(!is_null($asset->condition))
                 <p class="view-label-full">{{$asset->condition}}</p>
             @else
@@ -162,7 +162,7 @@
             @endif
 
             <!-- Status -->
-            <label class="lbl-view" style="margin-top: 20px;">Status</label>
+            <label class="lbl-login" style="margin-top: 20px;">Status</label>
             @if(!is_null($asset->status))  
                 <p class="view-label-full">{{$asset->status}}</p>
             @else
@@ -170,7 +170,7 @@
             @endif
 
             <!-- Date Delivered -->
-            <label class="lbl-view" style="margin-top: 20px;">Date Delivered</label>
+            <label class="lbl-login" style="margin-top: 20px;">Date Delivered</label>
             @if(!is_null($asset->date_delivered))
                 <p class="view-label-full">{{ \Carbon\Carbon::parse(\DB::table('assets')->first()->date_delivered)->toFormattedDateString() }}</p>
             @else
@@ -178,7 +178,7 @@
             @endif
 
             <!-- Warranty Ends -->
-            <label class="lbl-view" style="margin-top: 20px;">Warranty Ends</label>
+            <label class="lbl-login" style="margin-top: 20px;">Warranty Ends</label>
             @if(!is_null($asset->warranty_ends))  
                 <p class="view-label-full">{{$asset->warranty_ends}}</p>
             @else
@@ -186,7 +186,7 @@
             @endif
 
             <!-- Vendor -->
-            <label class="lbl-view" style="margin-top: 20px;">Vendor</label>
+            <label class="lbl-login" style="margin-top: 20px;">Vendor</label>
             @if(!is_null($asset->vendor))  
                 <p class="view-label-full">{{$asset->vendor}}</p>
             @else
@@ -194,7 +194,7 @@
             @endif
 
             <!-- Notes -->
-            <label class="lbl-view" style="margin-top: 20px;">Notes</label>
+            <label class="lbl-login" style="margin-top: 20px;">Notes</label>
             @if(!is_null($asset->notes))  
                 <p class="view-label-full">{{$asset->notes}}</p>
             @else

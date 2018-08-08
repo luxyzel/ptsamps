@@ -307,6 +307,13 @@
 	font-size: 13px;
 }
 
+/*view label full*/
+.view-label-full {
+	font-size: 20px;
+	font-family: roboto-reg;
+	line-height: 23px;
+	color: #706f6f;
+}
 
 
 /*WITH BUG NEED TO FIX OR NOT DEPENDS*/
