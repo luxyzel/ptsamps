@@ -3,9 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 use App\Model\Vendor;
+use App\Model\Procure;
+use Carbon\Carbon;
 use Auth;
+use DB;
+use Session;
+
 
 class ProcureController extends Controller
 {
@@ -16,12 +22,10 @@ class ProcureController extends Controller
      */
     public function index(Request $request)
     {
-        $name = $request->input('vendorname');
-
         
-                $admin = Auth::guard('admin')->user();
-                $vendors = Vendor::All();
-                return view('admin.procurement.index', compact('admin', 'vendors'));
+        $admin = Auth::guard('admin')->user();
+        $vendors = Vendor::All();
+        return view('admin.procurement.index', compact('admin', 'vendors'));
         
     }
 
@@ -43,7 +47,74 @@ class ProcureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $year = Carbon::now()->year;
+        $valNum = "00001";
+        $val = "PO". $year. $valNum;
+        
+        /***Check PO NUMBER - NEW or INCREMENT***/
+        $idCheck = Procure::where('po_number', $val)->first();
+        if (!$idCheck){
+            $poNum = $val;
+            $newNum = 1;
+        }else{
+            $getNum = Procure::whereYear('created_at', $year)->max('number');
+            $n = str_pad($getNum + 1, 5, 0, STR_PAD_LEFT);
+            $poNum = "PO". $year. $n;
+            $newNum = $getNum + 1; 
+        }
+
+        /***GET VENDOR ID***/
+        $id = Vendor::where('company_name', $request->vendorname)->first();
+
+        /***FROM INPUTS***/
+        $data  = Input::only('item', 'quantity', 'uom', 'description', 'uppeso', 'updollar', 'tppeso', 'tpdollar');
+
+        $item = $data['item'];
+        $quantity = $data['quantity'];
+        $uom = $data['uom'];
+        $description = $data['description'];
+        $uppeso = $data['uppeso'];
+        $updollar = $data['updollar'];
+        $tppeso = $data['tppeso'];
+        $tpdollar = $data['tpdollar'];
+
+        /***SAVE PO REQUEST***/
+        foreach( $item as $key => $i ) {
+            $save = DB::table('procures')->insert(
+                array(
+                    'po_number' => $poNum,
+                    'number' => $newNum,
+                    'vendor_id' => $id->id,
+                    'request_date' => date("Y-m-d"),
+                    'company_name' => $request->coname,
+                    'contact_person' => $request->ctperson,
+                    'designation' => $request->designation,
+                    'email_address' => $request->emailadd,
+                    'contact_number' => $request->ctnumber,
+                    'company_address' => $request->coaddress,
+                    'phone' => $request->phone,          
+                    'item' => $item[$key],
+                    'quantity' => $quantity[$key],
+                    'uom' => $uom[$key],
+                    'description' => $description[$key],
+                    'unitprice_php' => $uppeso[$key],
+                    'unitprice_usd' => $updollar[$key],
+                    'item_totalprice_php' => $tppeso[$key],
+                    'item_totalprice_usd' => $tpdollar[$key],
+                    'status' => 'Pending',
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                )
+            );
+        }
+
+        if ($save){
+            Session::flash('success', 'PO Request Successfully Created');
+            return redirect()->back();
+        }else{
+            Session::flash('error', 'Error Encountered');
+            return redirect()->back();
+        }
     }
 
     /**
