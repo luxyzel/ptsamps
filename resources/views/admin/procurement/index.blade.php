@@ -204,8 +204,26 @@
 				</div>
 				<div class="clr"></div>
 			</div><br>
-			
-		<form id="VendorForm" action="{{ route('vendorshow') }}" method="post">{{ csrf_field() }}
+
+		<!-- SUCCESS ALERT -->
+        @if(Session::has('success'))
+        <div class="comment-error">
+           <strong> {{ Session::get('success') }}</strong> 
+        </div>
+        @endif
+
+          <!-- DISPLAY ERRORS -->
+          @if ($errors->any())
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <br><strong>{{ $error }}</strong>
+                  @endforeach
+              </ul>
+          </div>
+          @endif
+
+		<form id="VendorForm" action="{{ route('procurement.store') }}" method="post">{{ csrf_field() }}
 		<div class="manage-content">	
 			<div class="dboard-content-menu">
 				<p><strong>VENDOR</strong></p>
@@ -345,17 +363,17 @@
 							</td>
 							<td>
 								<div class="input_fields_wrap">
-							    <div><input type="text" name="updollar[]"></div>
+							    <div><input type="text" name="updollar[]" ></div>
 								</div>
 							</td>
 							<td>
 								<div class="input_fields_wrap">
-							    <div><input type="text" name="tppeso[]"></div>
+							    <div><input type="text" name="tppeso[]" ></div>
 								</div>
 							</td>
 							<td>
 								<div class="input_fields_wrap">
-							    <div><input type="text" name="tpdollar[]"></div>
+							    <div><input type="text" name="tpdollar[]" ></div>
 								</div>
 							</td>
 							<td>
@@ -363,7 +381,7 @@
 							</td>
 						</tr>
 				</table>
-					<button class="submit-approver-acc" style="margin-top: 40px;" id="submit">Submit</button>
+					<button class="submit-approver-acc" style="margin-top: 40px;" id="submits">Submit</button>
 			
 		</div>
 		<br>
@@ -397,7 +415,7 @@
 
       $('#add').click(function(){  
            i++;  
-           $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="item[]" class="form-control name_list" size="45"/></td><td><input type="text" name="quantity[]" class="form-control name_list" /></td><td><input type="text" name="uom[]" class="form-control name_list" /></td><td><input type="text" name="description[]" class="form-control name_list" size="30" /></td><td><input type="text" name="uppeso[]" class="form-control name_list" /></td><td><input type="text" name="updollar[]" class="form-control name_list" /></td><td><input type="text" name="tppeso[]" class="form-control name_list" /></td><td><input type="text" name="tpdollar[]" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+           $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="item[]" class="form-control name_list" size="45" required/></td><td><input type="text" name="quantity[]" class="form-control name_list" required/></td><td><input type="text" name="uom[]" class="form-control name_list" required/></td><td><input type="text" name="description[]" class="form-control name_list" size="30" required/></td><td><input type="text" name="uppeso[]" class="form-control name_list" required/></td><td><input type="text" name="updollar[]" class="form-control name_list" /></td><td><input type="text" name="tppeso[]" class="form-control name_list" /></td><td><input type="text" name="tpdollar[]" class="form-control name_list"  /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
       });  
 
 
@@ -474,6 +492,8 @@ $(document).ready(function () {
 	  }
 	});
 }); 
+
+
 
 </script>
 

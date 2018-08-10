@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePurchaseOrdersTable extends Migration
+class CreateProcuresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,26 +13,27 @@ class CreatePurchaseOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_orders', function (Blueprint $table) {
+        Schema::create('procures', function (Blueprint $table) {
             $table->increments('id');
             $table->string('po_number');
+            $table->integer('number');
             $table->date('request_date');
             $table->integer('vendor_id');
             $table->string('company_name');
             $table->string('contact_person');
             $table->string('designation');
             $table->string('email_address');
-            $table->integer('contact_number');
+            $table->string('contact_number');
             $table->string('company_address');
             $table->string('phone');
             $table->string('item');
             $table->integer('quantity');
             $table->string('uom');
             $table->string('description');
-            $table->decimal('unitprice_php', 6, 2);
-            $table->decimal('unitprice_usd', 6, 2);
-            $table->decimal('item_totalprice_php', 7, 2);
-            $table->decimal('item_totalprice_usd', 7, 2);
+            $table->decimal('unitprice_php', 8, 2);
+            $table->decimal('unitprice_usd', 8, 2);
+            $table->decimal('item_totalprice_php', 10, 2);
+            $table->decimal('item_totalprice_usd', 10, 2);
             $table->string('remarks')->nullable();
             $table->string('payment_terms')->nullable();
             $table->string('vat_inc')->nullable();
@@ -56,6 +57,6 @@ class CreatePurchaseOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_orders');
+        Schema::dropIfExists('procures');
     }
 }
