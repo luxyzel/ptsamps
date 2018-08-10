@@ -15,9 +15,11 @@ class CreateProcuresTable extends Migration
     {
         Schema::create('procures', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('po_number');
-            $table->integer('number');
-            $table->date('request_date');
+            $table->string('po_number')->nullable();
+            $table->integer('number')->nullable();
+            $table->string('groupid')->nullable();
+            $table->integer('groupnum')->nullable();
+            $table->datetime('request_date')->nullable();
             $table->integer('vendor_id');
             $table->string('company_name');
             $table->string('contact_person');

@@ -49,17 +49,17 @@ class ProcureController extends Controller
     {
         $year = Carbon::now()->year;
         $valNum = "00001";
-        $val = "PO". $year. $valNum;
+        $val = "ID". $year. $valNum;
         
-        /***Check PO NUMBER - NEW or INCREMENT***/
-        $idCheck = Procure::where('po_number', $val)->first();
+        /***Check GROUP NUMBER - NEW or INCREMENT***/
+        $idCheck = Procure::where('groupid', $val)->first();
         if (!$idCheck){
-            $poNum = $val;
+            $groupID = $val;
             $newNum = 1;
         }else{
-            $getNum = Procure::whereYear('created_at', $year)->max('number');
+            $getNum = Procure::whereYear('created_at', $year)->max('groupnum');
             $n = str_pad($getNum + 1, 5, 0, STR_PAD_LEFT);
-            $poNum = "PO". $year. $n;
+            $groupID = "ID". $year. $n;
             $newNum = $getNum + 1; 
         }
 
@@ -82,10 +82,10 @@ class ProcureController extends Controller
         foreach( $item as $key => $i ) {
             $save = DB::table('procures')->insert(
                 array(
-                    'po_number' => $poNum,
-                    'number' => $newNum,
+                    'groupid' => $groupID,
+                    'groupnum' => $newNum,
                     'vendor_id' => $id->id,
-                    'request_date' => date("Y-m-d"),
+                    'request_date' => Carbon::now(),
                     'company_name' => $request->coname,
                     'contact_person' => $request->ctperson,
                     'designation' => $request->designation,
