@@ -224,6 +224,7 @@
           @endif
 
 		<form id="VendorForm" action="{{ route('procurement.store') }}" method="post">{{ csrf_field() }}
+
 		<div class="manage-content">	
 			<div class="dboard-content-menu">
 				<p><strong>VENDOR</strong></p>
@@ -363,17 +364,17 @@
 							</td>
 							<td>
 								<div class="input_fields_wrap">
-							    <div><input type="text" name="updollar[]" ></div>
+							    <div><input type="text" name="updollar[]"></div>
 								</div>
 							</td>
 							<td>
 								<div class="input_fields_wrap">
-							    <div><input type="text" name="tppeso[]" ></div>
+							    <div><input type="text" name="tppeso[]"></div>
 								</div>
 							</td>
 							<td>
 								<div class="input_fields_wrap">
-							    <div><input type="text" name="tpdollar[]" ></div>
+							    <div><input type="text" name="tpdollar[]"></div>
 								</div>
 							</td>
 							<td>
@@ -408,6 +409,8 @@
 
 
 <script type="text/javascript">
+
+	/*** ADD NEW INPUT ORDERS ***/
     $(document).ready(function(){      
       var postURL = "<?php echo url('addmore'); ?>";
       var i=1;  
@@ -415,7 +418,7 @@
 
       $('#add').click(function(){  
            i++;  
-           $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="item[]" class="form-control name_list" size="45" required/></td><td><input type="text" name="quantity[]" class="form-control name_list" required/></td><td><input type="text" name="uom[]" class="form-control name_list" required/></td><td><input type="text" name="description[]" class="form-control name_list" size="30" required/></td><td><input type="text" name="uppeso[]" class="form-control name_list" required/></td><td><input type="text" name="updollar[]" class="form-control name_list" /></td><td><input type="text" name="tppeso[]" class="form-control name_list" /></td><td><input type="text" name="tpdollar[]" class="form-control name_list"  /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+           $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="item[]" class="form-control name_list" size="45" required/></td><td><input type="text" name="quantity[]" class="form-control name_list" required/></td><td><input type="text" name="uom[]" class="form-control name_list" required/></td><td><input type="text" name="description[]" class="form-control name_list" size="30" required/></td><td><input type="text" name="uppeso[]" class="form-control name_list" required/></td><td><input type="text" name="updollar[]" class="form-control name_list" /></td><td><input type="text" name="tppeso[]" class="form-control name_list"/></td><td><input type="text" name="tpdollar[]" class="form-control name_list"  /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
       });  
 
 
@@ -466,7 +469,7 @@
       }
     });  
 
-//Showing vendor details
+/*** Showing vendor details ***/
 $(document).ready(function () {
 	$('#tfilter').hide();
  $('#vendorname').on('change', function() {
@@ -492,8 +495,6 @@ $(document).ready(function () {
 	  }
 	});
 }); 
-
-
 
 </script>
 
