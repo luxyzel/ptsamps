@@ -2,6 +2,7 @@
 @include('templates.header')
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
   <title>Manage Peripherals | Asset Management and Procurement System</title>
 </head>
 
@@ -224,7 +225,6 @@
           @endif
 
 		<form id="VendorForm" action="{{ route('procurement.store') }}" method="post">{{ csrf_field() }}
-
 		<div class="manage-content">	
 			<div class="dboard-content-menu">
 				<p><strong>VENDOR</strong></p>
@@ -302,7 +302,7 @@
               	<div class="field">
                 <label for="ctnumber" class="label">Contact Number</label>
                 <p class="control">
-                    <input type="text" class="input" name="ctnumber" id="ctnumber" value="" required>
+                    <input type="text" class="input" name="ctnumber" id="ctnumber" value="" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
                 </p>
               	</div>
 
@@ -316,7 +316,7 @@
               	<div class="field">
                 <label for="phone" class="label">Phone</label>
                 <p class="control">
-                    <input type="text" class="input" name="phone" id="phone" value="" required>
+                    <input type="text" class="input" name="phone" id="phone" value="" placeholder="###-####" required>
                 </p>
               	</div>
 			</div>
@@ -336,45 +336,45 @@
 							<th>Add</th>
 						</tr>
 					</thead>
-						<tr>
+						<tr class="dynamic-added">
 							<td>
 								<div class="input_fields_wrap">
-							    <div><input type="text" name="item[]" size="45" required></div>
+							    <div><input type="text" name="item[]" size="45" id="item-0" required></div>
 								</div>
 							</td>
 							<td>
 								<div class="input_fields_wrap">
-							    <div><input type="text" name="quantity[]" size="5" required></div>
+							    <div><input type="text" class="quantity" name="quantity[]" size="5" id="quantity-0" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required></div>
 								</div>
 							</td>
 							<td>
 								<div class="input_fields_wrap">
-							    <div><input type="text" name="uom[]" required></div>
+							    <div><input type="text" name="uom[]" id="uom-0" required></div>
 								</div>
 							</td>
 							<td>
 								<div class="input_fields_wrap">
-							    <div><input type="text" name="description[]" size="40" required></div>
+							    <div><input type="text" name="description[]" size="40" id="description-0" required></div>
 								</div>
 							</td>
 							<td>
 								<div class="input_fields_wrap">
-							    <div><input type="text" name="uppeso[]" required></div>
+							    <div><input type="text" class="uppeso" name="uppeso[]" id="uppeso-0"  onkeypress="return event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)" required></div>
 								</div>
 							</td>
 							<td>
 								<div class="input_fields_wrap">
-							    <div><input type="text" name="updollar[]"></div>
+							    <div><input type="text" class="updollar" name="updollar[]" id="updollar-0" onkeypress="return event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)"></div>
 								</div>
 							</td>
 							<td>
 								<div class="input_fields_wrap">
-							    <div><input type="text" name="tppeso[]"></div>
+							    <div><input type="text" class="tppeso" name="tppeso[]" id="tppeso-0" placeholder="total" readonly></div>
 								</div>
 							</td>
 							<td>
 								<div class="input_fields_wrap">
-							    <div><input type="text" name="tpdollar[]"></div>
+							    <div><input type="text" class="tpdollar" id="tpdollar-0" name="tpdollar[]" placeholder="total" readonly></div>
 								</div>
 							</td>
 							<td>
@@ -409,67 +409,63 @@
 
 
 <script type="text/javascript">
+ 
+$(document).ready(function() {
+  var i = 0;
+  $("#quantity-" + i).change(function() {
+    upd_art(i)
+  });
+  $("#uppeso-" + i).change(function() {
+    upd_art(i)
+  });
+ $("#updollar-" + i).change(function() {
+    upd_art(i)
+  });
 
-	/*** ADD NEW INPUT ORDERS ***/
-    $(document).ready(function(){      
-      var postURL = "<?php echo url('addmore'); ?>";
-      var i=1;  
-
-
-      $('#add').click(function(){  
-           i++;  
-           $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="item[]" class="form-control name_list" size="45" required/></td><td><input type="text" name="quantity[]" class="form-control name_list" required/></td><td><input type="text" name="uom[]" class="form-control name_list" required/></td><td><input type="text" name="description[]" class="form-control name_list" size="30" required/></td><td><input type="text" name="uppeso[]" class="form-control name_list" required/></td><td><input type="text" name="updollar[]" class="form-control name_list" /></td><td><input type="text" name="tppeso[]" class="form-control name_list"/></td><td><input type="text" name="tpdollar[]" class="form-control name_list"  /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
-      });  
-
-
-      $(document).on('click', '.btn_remove', function(){  
-           var button_id = $(this).attr("id");   
-           $('#row'+button_id+'').remove();  
-      });  
-
-
-      $.ajaxSetup({
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-      });
+  $('#add').click(function() {
+    i++;
+    $('#dynamic_field').append('<tr id="row' + i + '"><td><input type="text" name="item[]" id="item-' + i + '" size="45" class="form-control name_list" required/></td><td><input type="text" value=0 id="quantity-' + i + '" name="quantity[]" placeholder="quantity" size="5" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required/></td><td><input type="text" name="uom[]" id="uom-' + i + '" class="form-control name_list" required/></td><td><input type="text" name="description[]" id="description-' + i + '" size="40" class="form-control name_list" required/></td><td><input type="text" id="uppeso-' + i + '" name="uppeso[]" value=0  placeholder="price" onkeypress="return event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)" required/></td><td><input type="text" id="updollar-' + i + '" name="updollar[]" value=0  placeholder="price" onkeypress="return event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)" required/></td><td><input type="text" id="tppeso-' + i + '" name="tppeso[]" placeholder="total" class="form-control name_list" readonly /></td><td><input type="text" id="tpdollar-' + i + '" name="tpdollar[]" placeholder="total" class="form-control name_list" readonly /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
 
 
-      $('#submit').click(function(){            
-           $.ajax({  
-                url:postURL,  
-                method:"POST",  
-                data:$('#add_name').serialize(),
-                type:'json',
-                success:function(data)  
-                {
-                    if(data.error){
-                        printErrorMsg(data.error);
-                    }else{
-                        i=1;
-                        $('.dynamic-added').remove();
-                        $('#add_name')[0].reset();
-                        $(".print-success-msg").find("ul").html('');
-                        $(".print-success-msg").css('display','block');
-                        $(".print-error-msg").css('display','none');
-                        $(".print-success-msg").find("ul").append('<li>Record Inserted Successfully.</li>');
-                    }
-                }  
-           });  
-      });  
+
+    $("#quantity-" + i).change(function() {
+      upd_art(i)
+    });
+    $("#uppeso-" + i).change(function() {
+      upd_art(i)
+    });
+    $("#updollar-" + i).change(function() {
+      upd_art(i)
+    });
+
+  });
 
 
-      function printErrorMsg (msg) {
-         $(".print-error-msg").find("ul").html('');
-         $(".print-error-msg").css('display','block');
-         $(".print-success-msg").css('display','none');
-         $.each( msg, function( key, value ) {
-            $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
-         });
-      }
-    });  
+  $(document).on('click', '.btn_remove', function() {
+    var button_id = $(this).attr("id");
+    $('#row' + button_id + '').remove();
+  });
 
-/*** Showing vendor details ***/
+  function upd_art(i) {
+    var qty = $('#quantity-' + i).val();
+    var peso = $('#uppeso-' + i).val();
+    var usd = $('#updollar-' + i).val();
+    var totPeso = (qty * peso);
+    var totUsd = (qty * usd);
+    var valPeso = totPeso.toFixed(2);
+    var valUsd = totUsd.toFixed(2);
+    $('#tppeso-' + i).val(valPeso);
+    $('#tpdollar-' + i).val(valUsd);
+  }
+
+   /*setInterval(upd_art, 1000);*/
+});
+
+
+
+
+
+//Showing vendor details
 $(document).ready(function () {
 	$('#tfilter').hide();
  $('#vendorname').on('change', function() {
@@ -496,7 +492,23 @@ $(document).ready(function () {
 	});
 }); 
 
+
 </script>
+
+
+			
+
+
+
+			
+
+
+
+
+
+ 
+
+
 
 
 			
