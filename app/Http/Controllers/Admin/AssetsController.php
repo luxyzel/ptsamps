@@ -24,37 +24,14 @@ class AssetsController extends Controller
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        $assets = Asset::orderBy('category','DESC')->paginate(25);
+        $assets = Asset::orderBy('category_type','DESC')->paginate(25);
         return view('admin.manage-assets.asset-man',compact('admin', 'assets'));
-    }
-
-    public function getSearch(Request $request)
-    {
-        $s = $request->get('search');
-        $admin = Auth::guard('admin')->user();
-        $assets = Asset::where(function ($query) use($s) 
-        {
-            $query->where('st_msn', 'like', '%' . $s . '%')
-               ->orWhere('pdsn', 'like', '%' . $s . '%')
-               ->orWhere('asset_tag', 'like', '%' . $s . '%')
-               ->orWhere('asset_number', 'like', '%' . $s . '%');
-                })
-            ->paginate(25);
-
-
-            if(!$assets->isEmpty()){
-                return view('admin.manage-assets.asset-man',compact('admin', 'assets'));
-            }else{
-                Session::flash('warning', 'No record found');
-                return view('admin.manage-assets.asset-man',compact('admin', 'assets'));
-            }
-
     }
     
 
     public function showCreate()
     {
-        $categories = Category::All();
+        $categories = Category::Where('type', 'Assets')->get();
         $vendors = Vendor::All();
         $conditions = Condition::All();
         $statuses = Status::All();
@@ -62,31 +39,21 @@ class AssetsController extends Controller
         return view('admin.manage-assets.create', compact('categories', 'vendors', 'conditions', 'statuses', 'locations'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
 
          $this->validateWith([
-        'category' => 'required',
+        'category_type' => 'required',
         ]);
 
         $asset = new Asset();
-        $asset->category = $request->category;
+        $asset->category_type = $request->category_type;
         $asset->model = $request->model;
         $asset->st_msn = $request->stmsn;
         $asset->pdsn = $request->pdsn;
@@ -103,6 +70,7 @@ class AssetsController extends Controller
         $asset->description = $request->description;
         $asset->condition = $request->condition;
         $asset->status = $request->status;
+        $asset->date_delivered = $request->date_delivered;
         $asset->vendor = $request->vendor;
         $asset->notes = $request->notes;
 
@@ -126,6 +94,12 @@ class AssetsController extends Controller
         return view('admin.manage-assets.show', compact('asset'));
     }
 
+        public function AssetstrackShow($id)
+    {
+        $asset = Asset::findOrFail($id);
+        return view('admin.assets-tracking.show', compact('asset'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -134,7 +108,7 @@ class AssetsController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::all();
+        $category = Category::Where('type', 'Assets')->get();
         $brand = Brand::all();
         $location = Location::all();
         $vendor = Vendor::all();
@@ -155,7 +129,7 @@ class AssetsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validateWith([
-        'category' => 'required',
+        'category_type' => 'required',
         'stmsn' => 'unique:assets,stmsn,'.$id,
         'asset_tag' => 'unique:assets,asset_tag,'.$id,
         'asset_number' => 'unique:assets,asset_number,'.$id,
@@ -165,7 +139,7 @@ class AssetsController extends Controller
         ]);
 
         $asset = Asset::findOrFail($id);
-        $asset->category = $request->category;
+        $asset->category_type = $request->category_type;
         $asset->model = $request->model;
         $asset->st_msn = $request->stmsn;
         $asset->pdsn = $request->pdsn;
@@ -201,8 +175,13 @@ class AssetsController extends Controller
      */
     public function destroy($id)
     {
-        $asset = Asset::where('id',$id)->delete();
-        return redirect()->back();
+        $asset = Asset::where('id',$id);
+        if ($asset->delete()) {
+            Session::flash('success', 'Asset Successfully Archived');
+            return redirect()->back();
+        } else{
+            return redirect()->back();
+        }
     }
 
     //DEPLOYED ASSETS INDEX
@@ -240,39 +219,6 @@ class AssetsController extends Controller
         return view('admin.assets-stock.stocks',compact('admin', 'assets'));
     }
 
-    //ASSETS TRACKING
-    public function AssetTrackingIndex(Request $request)
-    {
-        $admin = Auth::guard('admin')->user();
-        $category = Category::all();
-        $filter = Asset::where('category', $request->category)->get();
-        $assets = Asset::all();
-        return view('admin.assets-tracking.asset-track',compact('admin', 'category', 'assets'));
-    }
-
-    //ASSETS TRACKING Search
-    public function getSearchAsset(Request $request)
-    {
-        $s = $request->get('search');
-        $admin = Auth::guard('admin')->user();
-        $category = Category::all();
-
-        $assets = Asset::where(function ($query) use($s) 
-        {
-            $query->where('asset_tag', 'like', '%' . $s . '%')
-               ->orWhere('service_tag', 'like', '%' . $s . '%')
-               ->orWhere('serial_number', 'like', '%' . $s . '%');
-                })
-            ->paginate(25);
-
-
-            if(!$assets->isEmpty()){
-                return view('admin.assets-tracking.asset-track',compact('admin', 'category', 'assets'));
-            }else{
-                Session::flash('warning', 'No record found');
-                return view('admin.assets-tracking.asset-track',compact('admin', 'category', 'assets'));
-            }
-    }
 
 
 }

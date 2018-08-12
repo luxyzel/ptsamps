@@ -26,7 +26,7 @@ class PeripheralsController extends Controller
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        $peripherals = Peripheral::orderBy('category','DESC')->paginate(25);
+        $peripherals = Peripheral::orderBy('category_type','DESC')->paginate(25);
         return view('admin.manage-peripherals.index',compact('admin', 'peripherals'));
     }
 
@@ -37,7 +37,7 @@ class PeripheralsController extends Controller
      */
     public function create()
     {
-        $category = Category::All();
+        $category = Category::Where('type', 'Peripherals')->get();
         $vendor = Vendor::All();
         $condition = Condition::All();
         $status = Status::All();
@@ -53,7 +53,7 @@ class PeripheralsController extends Controller
     public function store(Request $request)
     {
         $this->validateWith([
-        'category' => 'required',
+        'category_type' => 'required',
         'stmsn' => 'required|unique:peripherals,stmsn',
         'pdsn' => 'unique:peripherals,pdsn',
         'asset_tag' => 'unique:peripherals,asset_tag',
@@ -63,7 +63,7 @@ class PeripheralsController extends Controller
         ]);
 
         $peripheral = new Peripheral();
-        $peripheral->category = $request->category;
+        $peripheral->category_type = $request->category_type;
         $peripheral->model = $request->model;
         $peripheral->stmsn = $request->stmsn;
         $peripheral->pdsn = $request->pdsn;
@@ -101,34 +101,11 @@ class PeripheralsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-
-        public function getSearch(Request $request)
-    {
-        $s = $request->get('search');
-        $admin = Auth::guard('admin')->user();
-        $peripherals = Peripheral::where(function ($query) use($s) 
-        {
-            $query->where('stmsn', 'like', '%' . $s . '%')
-               ->orWhere('pdsn', 'like', '%' . $s . '%')
-               ->orWhere('asset_tag', 'like', '%' . $s . '%');
-                })
-            ->paginate(25);
-
-
-            if(!$perepherals->isEmpty()){
-                return view('admin.manage-peripherals.index',compact('admin', 'peripherals'));
-            }else{
-                Session::flash('warning', 'No record found');
-                return view('admin.manage-peripherals.index',compact('admin', 'peripherals'));
-            }
-
-    }
     
 
     public function edit($id)
     {
-        $category = Category::all();
+        $category = Category::Where('type', 'Peripherals')->get();
         $brand = Brand::all();
         $location = Location::all();
         $vendor = Vendor::all();
@@ -148,7 +125,7 @@ class PeripheralsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validateWith([
-        'category' => 'required',
+        'category_type' => 'required',
         'stmsn' => 'required|unique:peripherals,stmsn,'.$id,
         'pdsn' => 'unique:peripherals,pdsn,'.$id,
         'asset_tag' => 'unique:peripherals,asset_tag,'.$id,
@@ -158,7 +135,7 @@ class PeripheralsController extends Controller
         ]);
 
         $peripheral = Peripheral::findOrFail($id);
-        $peripheral->category = $request->category;
+        $peripheral->category_type = $request->category_type;
         $peripheral->model = $request->model;
         $peripheral->stmsn = $request->stmsn;
         $peripheral->pdsn = $request->pdsn;
@@ -233,7 +210,7 @@ class PeripheralsController extends Controller
                         foreach ($data as $key => $value)
                         {
                             $insert[] = [
-                            'category' => array_get($value, 'category'),
+                            'category_type' => array_get($value, 'category'),
                             'model' => array_get($value, 'model'),
                             'stmsn' => array_get($value, 'stmsn'),
                             'pdsn' => array_get($value, 'pdsn'),
@@ -248,7 +225,7 @@ class PeripheralsController extends Controller
                             'updated_at' => now(),
                             ];
 
-                            $arr[] = ['category' => array_get($row, 'category'),];
+                            $arr[] = ['category_type' => array_get($row, 'category'),];
                             $categories = array_unique($arr, SORT_REGULAR);
                         }
                     }
@@ -260,7 +237,7 @@ class PeripheralsController extends Controller
                         if ($data == 'Perepherals'){
                             foreach ($sheet as $row){
                                 $insert[] = [
-                                'category' => array_get($row, 'category'),
+                                'category_type' => array_get($row, 'category'),
                                 'model' => array_get($row, 'model'),
                                 'stmsn' => array_get($row, 'stmsn'),
                                 'pdsn' => array_get($row, 'pdsn'),
@@ -275,7 +252,7 @@ class PeripheralsController extends Controller
                                 'updated_at' => now(),
                                 ];
 
-                            $arr[] = ['category' => array_get($row, 'category'), 'type' => 'Peripherals', 'created_at' => date("Y-m-d"), 'updated_at' => date("Y-m-d"),];
+                            $arr[] = ['category_type' => array_get($row, 'category'), 'category' => $data, 'type' => 'Peripherals', 'created_at' => date("Y-m-d"), 'updated_at' => date("Y-m-d"),];
                             $categories = array_unique($arr, SORT_REGULAR);
 
                             }
@@ -288,14 +265,14 @@ class PeripheralsController extends Controller
                         try
                         {
                             /*CATEGORY IMPORT*/
-                            $catMatch = Category::where('category', $categories)->first();
+                            $catMatch = Category::where('category_type', $categories)->first();
                             if (!$catMatch) {
                                 $catData = Category::insert($categories);
-                                Category::where('category',NULL)->delete();
+                                Category::where('category_type',NULL)->delete();
                             }
 
                             $insertData = Peripheral::insert($insert);
-                            Peripheral::where('category',NULL)->delete();
+                            Peripheral::where('category_type',NULL)->delete();
                             if ($insertData) {
                                 Session::flash('success', 'Your Data has successfully imported');
                             }else {                        
@@ -310,7 +287,7 @@ class PeripheralsController extends Controller
                             }
                         }
 
-                    }return $categories;
+                    }/*return $categories;*/
             }else
             {
                 Session::flash('error', ''.$extension.' file is invalid. Please upload a valid xls/csv file..!!');

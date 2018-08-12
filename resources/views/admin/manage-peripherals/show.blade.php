@@ -25,7 +25,7 @@
         </div>
         <div class="view-container">
             <label class="lbl-view">Category</label>
-            <p class="view-label">{{$peripheral->category}}</p>
+            <p class="view-label">{{$peripheral->category_type}}</p>
             <!-- Model -->
             <label class="lbl-view" style="margin-top: 20px;">Model</label>
             <p class="view-label">{{$peripheral->model}}</p>

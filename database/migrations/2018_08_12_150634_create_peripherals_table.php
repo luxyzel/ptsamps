@@ -15,7 +15,7 @@ class CreatePeripheralsTable extends Migration
     {
         Schema::create('peripherals', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('category');
+            $table->string('category_type');
             $table->string('model');
             $table->string('stmsn')->nullable();
             $table->string('pdsn')->nullable();

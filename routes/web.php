@@ -43,9 +43,6 @@ Route::prefix('admin')->group(function(){
 	//Asset Management route
 	Route::resource('/assets-management', 'Admin\AssetsController');
 
-	//Asset Management Search route
-	Route::get('/search', 'Admin\AssetsController@getSearch')->name('search');
-
 	//Create new Assets route
 	Route::get('/assets/create', 'Admin\AssetsController@showCreate')->name('create.assets');
 
@@ -65,9 +62,6 @@ Route::prefix('admin')->group(function(){
 	//IMPORT PEREPHERALS
 	Route::post('/import/peripherals', 'Admin\PeripheralsController@import')->name('importP');
 
-	//Perepherals Search route
-	Route::get('/search/peripherals', 'Admin\PeripheralsController@getSearch')->name('searchPer');
-
 
 	//Deployed Units Index
 	Route::get('/assets/deployed', 'Admin\AssetsController@DeployedIndex')->name('assets.deployed');
@@ -82,10 +76,7 @@ Route::prefix('admin')->group(function(){
 	Route::get('/assets/stocks', 'Admin\AssetsController@StocksIndex')->name('assets.stocks');
 
 	//Assets Tracking
-	Route::get('/assets-tracking', 'Admin\AssetsController@AssetTrackingIndex')->name('assets.track');
-
-	//Asset Tracking Search route
-	Route::get('assets-tracking/search', 'Admin\AssetsController@getSearchAsset')->name('search-asset');
+	Route::resource('/assets-tracking', 'Admin\AssetTrackController');
 	
 });
 

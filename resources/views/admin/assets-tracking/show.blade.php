@@ -30,7 +30,7 @@
 
             {{-- Categories --}}
             <label class="lbl-login">Category</label>
-            <p class="view-label-full">{{$asset->category_type}}</p>
+            <p class="view-label-full">{{$asset->category}}</p>
 
             <!-- Model -->
             <label class="lbl-login" style="margin-top: 20px;">Model</label>
@@ -201,7 +201,7 @@
                 <p class="view-label-full">N/A</p>
             @endif
 
-            <a href="{{ route('assets-management.index') }}" class="back-but-l">Back to Manage Users</a>
+            <a href="{{ route('assets-tracking.index') }}" class="back-but-l">Back to Assets Tracking</a>
         </div>
         
 

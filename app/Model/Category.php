@@ -11,4 +11,9 @@ class Category extends Model
     	return $this->hasMany('App\Model\Brand');
     } 
 
+	public function assets()
+    {
+    	return $this->hasMany('App\Model\Assets');
+    } 
+
 }
