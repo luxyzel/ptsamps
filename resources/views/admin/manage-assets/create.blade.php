@@ -16,7 +16,7 @@
                 <form method="POST" action="{{route('assets-management.store')}}">
                     {{ csrf_field() }}
 
-                    {{-- left Container --}}
+                    {{-- 1st Container --}}
                     <div class="lcont-c-asset fl" style="padding-right: 10px">
 
                         {{-- Logo --}}
@@ -51,15 +51,15 @@
                         <label class="lbl-login">Asset Number</label>
                         <input type="text" class="input" name="asset_number" id="asset_number" value="" autocomplete="off">
 
-                        <label class="lbl-login">Adapter</label>
-                        <input type="text" class="input" name="adapter" id="adapter" value="" autocomplete="off">
-
                     </div>
 
-                    {{-- Center Container --}}
+                    {{-- 2nd Container --}}
                     <div class="lcont-c-asset fl" style="padding-left: 5px; padding-right: 5px;">
 
-                        <label class="lbl-login" style="margin-top: 77px;">Location</label>
+                        <label class="lbl-login" style="margin-top: 77px;">Adapter</label>
+                        <input type="text" class="input" name="adapter" id="adapter" value="" autocomplete="off">
+
+                        <label class="lbl-login">Location</label>
                         <select name="location" id="location" class="control">
                             @foreach($locations as $location)
                                 <option value="{{ $location->location }}">{{ $location->location }}</option>
@@ -78,18 +78,18 @@
                         <label class="lbl-login">Mouse</label>
                         <input type="text" class="input" name="mouse" id="mouse" value="" autocomplete="off">
 
-                        <label class="lbl-login">Keyboard</label>
+                    </div>
+
+                    {{-- 3rd Container --}}
+                    <div class="lcont-c-asset fl" style="padding-left: 5px; padding-right: 5px;">
+                        
+                        <label class="lbl-login" style="margin-top: 77px;">Keyboard</label>
                         <input type="text" class="input" name="keyboard" id="keyboard" value="" autocomplete="off">
 
                         <label class="lbl-login">Code</label>
                         <input type="text" class="input" name="code" id="code" value="" autocomplete="off">
 
-                    </div>
-
-                    {{-- Right Container --}}
-                    <div class="lcont-c-asset fl" style="padding-left: 10px">
-
-                        <label class="lbl-login" style="margin-top: 77px;">Description</label>
+                        <label class="lbl-login">Description</label>
                         <input type="text" class="input" name="description" id="description" value="" autocomplete="off">
 
                         <label class="lbl-login">Condition</label>
@@ -106,23 +106,31 @@
                             @endforeach
                         </select>
 
-                        <div class="field">
-                        <label for="date_delivered" class="lbl-login">Date Delivered</label>
+                        <div class="field" >
+                            <label for="date_delivered" class="lbl-login">Date Delivered</label>
                             <input type="date" class="input" name="date_delivered" id="date_delivered" value="">
                         </div>
-                    
-                        <div class="field EndsDate">
+
+                    </div>
+
+                    {{-- 4th Container --}}
+                    <div class="lcont-c-asset fl" style="padding-left: 10px">
+
+                        <div class="field EndsDate" style="margin-top: 77px;">
                         <label for="warranty_ends" class="lbl-login">Warranty Ends</label>
                             <input type="date" class="input" name="warranty_ends" id="warranty_ends" value="">
                         </div>
                         
-                        <div class="col-md-4"><input type="checkbox" id="others" name="others"><label for="warranty_ends" class="lbl-login">Specify Other Warranty</label></div>
-
-                      <div class="field EndsOther">
-                        <p class="control">
-                            <input type="text" class="input" name="warranty_ends" id="warranty_ends" value="" disabled>
-                        </p>
-                      </div>
+                        <div>
+                            <input type="checkbox" id="others" name="others" class="fl">
+                            <label for="warranty_ends" class="lbl-login fl" style="margin-left: 7px;">Specify Other Warranty</label> 
+                        </div>
+                        
+                        <div class="field EndsOther">
+                            <p class="control">
+                                <input type="text" class="input" name="warranty_ends" id="warranty_ends" value="" disabled>
+                            </p>
+                        </div>
 
                         <label class="lbl-login">Vendor</label>
                         <select name="vendor" id="vendor" class="control">
