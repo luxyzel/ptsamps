@@ -86,7 +86,7 @@
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
-						<a href="{{route('assets.track')}}">
+						<a href="{{route('assets-tracking.index')}}">
 							<div class="dboard-menu2-box">
 								<img src="/img/icon2.png" >
 							</div>
@@ -214,7 +214,7 @@
 					<div class="clr"></div>
 				</div>
 				<div class="fr" style="width: 400px;">
-					<form  action="{{ route('searchPer') }}" method="get">
+					<form  action="#" method="get">
 						<input type="text" class="input" name="search" id="search" value="" placeholder="search peripherals" required autocomplete="off">
 						{{-- <button type="submit">Search</button> --}}
 						{{ csrf_field() }}
@@ -226,11 +226,12 @@
              
 
 				<!-- SESSION  -->
-	            @if(Session::has('success'))
-	            <div class="comment-error">
-	               <strong> {{ Session::get('success') }}</strong> 
-	            </div>
+		        @if(Session::has('success'))
+		            <div class="comment-success" style="margin-top: 25px">
+		                <strong> {{ Session::get('success') }}</strong> 
+		            </div>
 	            @endif
+
 				<div class="manage-content">
 
 				<table style="width: 100%; text-align: center;" id="ptables">
@@ -246,7 +247,7 @@
 					</thead>
 						@foreach ($peripherals as $per)
 							<tr>
-								<td>{{$per->category}}</td>
+								<td>{{$per->category_type}}</td>
 								<!-- MODEL -->
 								@if($per->model == NULL)
 								<td>N/A</td>
@@ -308,6 +309,20 @@
 
 <script type="text/javascript">
 	
+/*** SEARCH TABLE BY INPUT ***/
+$("#search").keyup(function () {
+    var value = this.value.toLowerCase().trim();
+
+    $("table tr").each(function (index) {
+        if (!index) return;
+        $(this).find("td").each(function () {
+            var id = $(this).text().toLowerCase().trim();
+            var not_found = (id.indexOf(value) == -1);
+            $(this).closest('tr').toggle(!not_found);
+            return not_found;
+        });
+    });
+});
 
 
 	(function($) {

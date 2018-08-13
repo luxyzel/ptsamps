@@ -52,7 +52,7 @@ class ImportController extends Controller
                         if ($data !== 'Perepherals'){
                             foreach ($sheet as $row){
                                 $insert[] = [
-                                'category' => array_get($row, 'category'),
+                                'category_type' => array_get($row, 'category'),
                                 'model' => array_get($row, 'model'),
                                 'st_msn' => array_get($row, 'stmsn'),
                                 'pdsn' => array_get($row, 'pdsn'),
@@ -77,7 +77,7 @@ class ImportController extends Controller
                                 'updated_at' => now(),
                                 ];
 
-                                $arrayC[] = ['category' => array_get($row, 'category'), 'type' => 'Peripherals', 'created_at' => date("Y-m-d"), 'updated_at' => date("Y-m-d"),];
+                                $arrayC[] = ['category_type' => array_get($row, 'category'), 'category' => $data, 'type' => 'Assets', 'created_at' => date("Y-m-d"), 'updated_at' => date("Y-m-d"),];
                                 $categories = array_unique($arrayC, SORT_REGULAR);
 
                                 //GET CAtegory Id
@@ -103,10 +103,10 @@ class ImportController extends Controller
                         try
                         {
                             /*CATEGORY IMPORT*/
-                            $catMatch = Category::where('category', $categories)->first();
+                            $catMatch = Category::where('category_type', $categories)->first();
                             if (!$catMatch) {
                                 $catData = Category::insert($categories);
-                                Category::where('category',NULL)->delete();
+                                Category::where('category_type',NULL)->delete();
                             }
                             
                             /*ASSET IMPORT*/

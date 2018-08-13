@@ -30,9 +30,9 @@
                         <div class="clr"></div>
 
                         <label class="lbl-login" style="margin-top: 20px">Category</label>
-                        <select name="category" id="category" class="control" autofocus>
+                        <select name="category_type" id="category_type" class="control" autofocus>
                             @foreach($categories as $category)
-                                <option value="{{ $category->category }}">{{ $category->category }}</option>
+                                <option value="{{ $category->category_type }}">{{ $category->category_type }}</option>
                             @endforeach
                         </select>
 
@@ -105,6 +105,24 @@
                                 <option value="{{ $status->status }}">{{ $status->status }}</option>
                             @endforeach
                         </select>
+
+                        <div class="field">
+                        <label for="date_delivered" class="lbl-login">Date Delivered</label>
+                            <input type="date" class="input" name="date_delivered" id="date_delivered" value="">
+                        </div>
+                    
+                        <div class="field EndsDate">
+                        <label for="warranty_ends" class="lbl-login">Warranty Ends</label>
+                            <input type="date" class="input" name="warranty_ends" id="warranty_ends" value="">
+                        </div>
+                        
+                        <div class="col-md-4"><input type="checkbox" id="others" name="others"><label for="warranty_ends" class="lbl-login">Specify Other Warranty</label></div>
+
+                      <div class="field EndsOther">
+                        <p class="control">
+                            <input type="text" class="input" name="warranty_ends" id="warranty_ends" value="" disabled>
+                        </p>
+                      </div>
 
                         <label class="lbl-login">Vendor</label>
                         <select name="vendor" id="vendor" class="control">
@@ -332,3 +350,20 @@
    	</div> --}}
 
 @include('templates.footer')
+
+<script>
+$(document).ready(function() {
+    $('#others').change(function() {
+        //alert();
+        if ($(this).prop('checked')) {
+            $('.EndsOther Input').prop('disabled', false);
+            $('.EndsDate Input').prop('disabled', true);
+        }
+        else {
+            $('.EndsOther Input').prop('disabled', true);
+            $('.EndsDate Input').prop('disabled', false);
+        }
+    });
+});
+
+</script>

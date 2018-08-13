@@ -38,10 +38,10 @@
 				<a href="{{ route('assets.stocks')}}">
 					<div class="dboard-left-but">Stock Assets</div>
 				</a>
-				<a href="#">
+				<a href="{{ route('procurement.index')}}">
 					<div class="dboard-left-but">Procurement</div>
 				</a>
-				<a href="#">
+				<a href="{{ route('vendor.index')}}">
 					<div class="dboard-left-but">Vendors</div>
 				</a>
 				<a href="#">
@@ -85,7 +85,7 @@
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
-						<a href="{{route('assets.track')}}">
+						<a href="{{route('assets-tracking.index')}}">
 							<div class="dboard-menu2-box">
 								<img src="img/icon2.png" >
 							</div>
@@ -205,12 +205,28 @@
 				<div class="clr"></div>
 			</div>
 
-
 			<div class="dboard-content-menu">
-				<a href="{{ route('assets.deployed.units') }}" class="dboard-add-acc fl">System Unit</a>
-				<a href="{{ route('assets.deployed.monitor') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Monitor</a>
-				<div class="clr"></div>
-			</div>
+				<div class="fl">
+					<label for="categorytype" class="label">Category</label>
+					<form method="get" id="DeployedForm" action="{{route('deployed-units')}}">{{ csrf_field() }}
+			         	<select name="categorytype"  id='categorytype'>
+			         		<option value="" selected disabled hidden>--Select--</option>
+			         		<option value="All">All</option>
+			          	@foreach($category as $cat)
+			            	<option value="{{ $cat->category_type }}">{{ $cat->category_type }}</option>
+			          	@endforeach
+			        	</select>
+		        	</form>
+      			</div>
+
+				<div class="fr" style="width: 400px;">
+					<form  action="#" method="get">
+						<input type="text" class="input" name="search" id="search" value="" placeholder="search asset" required autocomplete="off">
+						{{-- <button type="submit">Search</button> --}}
+						{{ csrf_field() }}
+					</form>
+				</div><br>
+			</div><br>
 
 			<h2>Total deployed units: {{$count}}</h2>
 
@@ -219,23 +235,25 @@
 					<thead>
 						<tr>
 							<th>Category Type</th>
-							<th>Asset Tag</th>
-							<th>Service Tag</th>
+							<th>Asset Number</th>
+							<th>ST/MSN</th>
+							<th>PDSN</th>
 							<th>Serial Number</th>
-							<th>Status</th>
-							<th>Remarks</th>
-							<th>Deployment</th>
+							<th>Asset Tag</th>
+							<th>Location</th>
+							<th>Condition</th>
 						</tr>
 					</thead>
 						@foreach ($assets as $asset)
 							<tr>
 								<td>{{$asset->category_type}}</td>
+								<td>{{$asset->asset_number}}</td>
+								<td>{{$asset->st_msn}}</td>
+								<td>{{$asset->pdsn}}</td>
+								<td>{{$asset->s_n}}</td>
 								<td>{{$asset->asset_tag}}</td>
-								<td>{{$asset->service_tag}}</td>
-								<td>{{$asset->serial_number}}</td>
-								<td>{{$asset->status}}</td>
-								<td>{{$asset->remarks}}</td>
-								<td>{{$asset->deployment}}</td>
+								<td>{{$asset->location}}</td>
+								<td>{{$asset->condition}}</td>
 							</tr>
 						@endforeach
 				</table>
@@ -246,3 +264,30 @@
 	</div>
 
 @include('templates.footer')
+
+<script type="text/javascript">
+
+/*** Auto-Submit Form on Dropdown Change ***/
+$(document).ready(function() {
+   $('#categorytype').change(function() {
+     var parentForm = $(this).closest("form");
+     if (parentForm && parentForm.length > 0)
+       parentForm.submit();
+   });
+});
+
+/*** SEARCH ASSETS TABLE BY INPUT ***/
+$("#search").keyup(function () {
+    var value = this.value.toLowerCase().trim();
+
+    $("table tr").each(function (index) {
+        if (!index) return;
+        $(this).find("td").each(function () {
+            var id = $(this).text().toLowerCase().trim();
+            var not_found = (id.indexOf(value) == -1);
+            $(this).closest('tr').toggle(!not_found);
+            return not_found;
+        });
+    });
+});
+</script>

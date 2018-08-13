@@ -40,10 +40,10 @@
 
 
               <div class="field">
-                <label for="category" class="label">Category</label>
-                 <select name="category" id="category" class="control">
+                <label for="category_type" class="label">Category</label>
+                 <select name="category_type" id="category_type" class="control">
                   @foreach($category as $cat)
-                    <option value="{{ $cat->category }}" {{ $asset->category === $cat->category? 'selected' : '' }}>{{ $cat->category }}</option>
+                    <option value="{{ $cat->category_type }}" {{ $asset->category_type === $cat->category_type? 'selected' : '' }}>{{ $cat->category_type }}</option>
                   @endforeach
                 </select>
               </div><br>
