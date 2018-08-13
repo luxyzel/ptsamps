@@ -64,13 +64,10 @@ Route::prefix('admin')->group(function(){
 
 
 	//Deployed Units Index
-	Route::get('/assets/deployed', 'Admin\AssetsController@DeployedIndex')->name('assets.deployed');
+	Route::get('/assets/deployed', 'Admin\DeployedAssetsController@Index')->name('assets.deployed');
 
-	//Deployed Monitor
-	Route::get('/assets/deployed/Monitor', 'Admin\AssetsController@DeployedMonitor')->name('assets.deployed.monitor');
-
-	//Deployed Units
-	Route::get('/assets/deployed/Units', 'Admin\AssetsController@DeployedUnit')->name('assets.deployed.units');
+	//Deployed Units Filter
+	Route::get('/assets/deployed/Units', 'Admin\DeployedAssetsController@DeployedAsset')->name('deployed-units');
 
 	//Stock Assets Index
 	Route::get('/assets/stocks', 'Admin\AssetsController@StocksIndex')->name('assets.stocks');

@@ -184,32 +184,6 @@ class AssetsController extends Controller
         }
     }
 
-    //DEPLOYED ASSETS INDEX
-    public function DeployedIndex()
-    {
-        $admin = Auth::guard('admin')->user();
-        $assets = Asset::where('remarks', 'deployed')->get();
-        $count = Asset::where('remarks', 'deployed')->count();
-        return view('admin.assets-deployed.deployed',compact('admin', 'assets', 'count'));
-    }
-
-    //DEPLOYED ASSETS Monitor
-    public function DeployedMonitor()
-    {
-        $admin = Auth::guard('admin')->user();
-        $assets = Asset::where('remarks', 'deployed')->where('category_type', 'Monitor')->get();
-        $count = Asset::where('remarks', 'deployed')->where('category_type', 'Monitor')->count();
-        return view('admin.assets-deployed.deployed',compact('admin', 'assets', 'count'));
-    }
-
-    //DEPLOYED ASSETS System Unit
-    public function DeployedUnit()
-    {
-        $admin = Auth::guard('admin')->user();
-        $assets = Asset::where('remarks', 'deployed')->where('category_type', 'System Unit')->get();
-        $count = Asset::where('remarks', 'deployed')->where('category_type', 'System Unit')->count();
-        return view('admin.assets-deployed.deployed',compact('admin', 'assets', 'count'));
-    }
 
     //STOCK ASSETS INDEX
     public function StocksIndex()
