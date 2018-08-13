@@ -73,7 +73,7 @@
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
-						<a href="{{ route('ssets-tracking.index') }}">
+						<a href="{{ route('assets-tracking.index') }}">
 							<div class="dboard-menu2-box">
 								<img src="/img/icon2.png" >
 							</div>

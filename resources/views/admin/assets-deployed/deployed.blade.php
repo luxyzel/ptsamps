@@ -228,7 +228,7 @@
 				</div><br>
 			</div><br>
 
-			<h2>Total deployed units: {{$count}}</h2>
+			<h2>Total deployed assets: {{$count}}</h2>
 
 			<div class="manage-content">
 				<table style="width: 100%; text-align: center;">
