@@ -61,65 +61,65 @@
 					<div class="dboard-left-menu fl">
 						<a href="{{route('dashboard')}}">
 							<div class="dboard-menu1-box">
-								<img src="img/icon1.png">
+								<img src="/img/icon1.png">
 							</div>
 						</a>
 
 						<!-- popup menu name -->
 						<div id="dboard-menu-pop1">
-							<img src="img/hoverarrow1.png">
+							<img src="/img/hoverarrow1.png">
 							<p>Dashboard</p>
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
 						<a href="{{ route('assets-management.index') }}">
 							<div class="dboard-menu3-box">
-								<img src="img/icon3.png">
+								<img src="/img/icon3.png">
 							</div>
 						</a>
 
 						<!-- popup menu name -->
 						<div id="dboard-menu-pop3">
-							<img src="img/hoverarrow1.png">
+							<img src="/img/hoverarrow1.png">
 							<p>Asset Management</p>
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
 						<a href="{{route('assets-tracking.index')}}">
 							<div class="dboard-menu2-box">
-								<img src="img/icon2.png" >
+								<img src="/img/icon2.png" >
 							</div>
 						</a>
 
 						<!-- popup menu name -->
 						<div id="dboard-menu-pop2">
-							<img src="img/hoverarrow1.png">
+							<img src="/img/hoverarrow1.png">
 							<p>Asset Tracking</p>
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
 						<a href="">
 							<div class="dboard-menu4-box">
-								<img src="img/icon4.png">
+								<img src="/img/icon4.png">
 							</div>
 						</a>
 
 						<!-- popup menu name -->
 						<div id="dboard-menu-pop4">
-							<img src="img/hoverarrow1.png">
+							<img src="/img/hoverarrow1.png">
 							<p>P.O. Tracking</p>
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
 						<a href="{{ route('peripherals.index') }}">
 							<div class="dboard-menu5-box">
-								<img src="img/icon5.png">
+								<img src="/img/icon5.png">
 							</div>
 						</a>
 
 						<!-- popup menu name -->
 						<div id="dboard-menu-pop5">
-							<img src="img/hoverarrow1.png">
+							<img src="/img/hoverarrow1.png">
 							<p>Peripherals</p>
 						</div>
 					</div>
@@ -139,13 +139,13 @@
 					<div class="dboard-left-menu fl">
 						<a href="{{ route('users.index') }}">
 							<div class="dboard-menu7-box">
-								<img src="img/icon5.png">
+								<img src="/img/icon5.png">
 							</div>
 						</a>
 
 						<!-- popup menu name -->
 						<div id="dboard-menu-pop7">
-							<img src="img/hoverarrow1.png">
+							<img src="/img/hoverarrow1.png">
 							<p>Manage User</p>
 						</div>
 					</div>
@@ -171,7 +171,7 @@
 						</a>
 					</div>
 
-					<div class="dboard-right-menu fr" style="margin-right: 15px">
+					{{-- <div class="dboard-right-menu fr" style="margin-right: 15px">
 						<a href="#" id="acc-but">
 							<div class="dboard-rmenu3-box">
 								<img src="/img/purchaseorder.png" title="Manage PO">
@@ -185,7 +185,7 @@
 								<img src="/img/adduser.png" title="Manage User">
 							</div>
 						</a>
-					</div>
+					</div> --}}
 					<div class="clr"></div>
 
 					<!--Account popup -->
@@ -207,16 +207,19 @@
 
 			<div class="dboard-content-menu">
 				<div class="fl">
-					<label for="categorytype" class="label">Category</label>
 					<form method="get" id="DeployedForm" action="{{route('deployed-units')}}">{{ csrf_field() }}
 			         	<select name="categorytype"  id='categorytype'>
-			         		<option value="" selected disabled hidden>--Select--</option>
+			         		<option value="" selected disabled hidden>Select Category</option>
 			         		<option value="All">All</option>
-			          	@foreach($category as $cat)
-			            	<option value="{{ $cat->category_type }}">{{ $cat->category_type }}</option>
-			          	@endforeach
+					          	@foreach($category as $cat)
+					            	<option value="{{ $cat->category_type }}">{{ $cat->category_type }}</option>
+					          	@endforeach
 			        	</select>
 		        	</form>
+      			</div>
+
+      			<div class="fl">
+      				<p class="category-count">Total deployed units: <span>{{$count}}</span></p>
       			</div>
 
 				<div class="fr" style="width: 400px;">
@@ -225,10 +228,11 @@
 						{{-- <button type="submit">Search</button> --}}
 						{{ csrf_field() }}
 					</form>
-				</div><br>
-			</div><br>
+				</div>
+				<div class="clr"></div>			
+			</div>
 
-			<h2>Total deployed units: {{$count}}</h2>
+			
 
 			<div class="manage-content">
 				<table style="width: 100%; text-align: center;">

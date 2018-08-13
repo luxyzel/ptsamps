@@ -39,7 +39,7 @@
 				<a href="{{ route('procurement.index')}}">
 					<div class="dboard-left-but">Procurement</div>
 				</a>
-				<a href="#">
+				<a href="{{ route('vendor.index')}}">
 					<div class="dboard-left-but">Vendors</div>
 				</a>
 				<a href="#">

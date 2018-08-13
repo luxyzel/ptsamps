@@ -315,6 +315,20 @@
 	color: #706f6f;
 }
 
+/*deployed unit number of counts*/
+.category-count {
+	margin-left: 15px;
+	font-family: roboto-reg;
+	font-size: 13px;
+	text-transform: capitalize;
+	color: #4267b2;
+	margin-top: 5px;
+}
+
+.category-count span {
+	color: #f37c22;	
+}
+
 
 /*WITH BUG NEED TO FIX OR NOT DEPENDS*/
 

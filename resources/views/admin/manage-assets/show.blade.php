@@ -201,7 +201,7 @@
                 <p class="view-label-full">N/A</p>
             @endif
 
-            <a href="{{ route('assets-management.index') }}" class="back-but-l">Back to Manage Users</a>
+            <a href="{{ route('assets-management.index') }}" class="back-but-l">Back to Manage Assets</a>
         </div>
         
 
