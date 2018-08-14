@@ -18,29 +18,31 @@
                     <img src="/img/companylogo.png" title="Project T Solutions">
                 </div>
                 <div class="login-text fl">
-                    <p class="login-comp-nm">Create New Categories</p>
-                    <p class="system-about">Add Category to your assets</p>
+                    <p class="login-comp-nm">Update Category</p>
+                    <p class="system-about">Update Category to your assets</p>
                 </div>
                 <div class="clr"></div>
             </div>
 
-            <form method="POST" action="{{route('category.store')}}">
-                {{ csrf_field() }}
+            <form method="POST" action="{{route('category.update', $category->id)}}">
+                {{method_field('PUT')}}
+                {{csrf_field()}}
           
                 <label class="lbl-login">Category</label>
-                <input type="text" class="input" name="category" id="category" autocomplete="off" value="{{old('category')}}">
+                <input type="text" class="input" name="category" id="category" autocomplete="off" value="{{$category->category}}">
                 
                 <label class="lbl-login">Category Type</label>
-                <input type="text" class="input" name="category_type" id="category_type" autocomplete="off" value="{{old('category_type')}}">
+                <input type="text" class="input" name="category_type" id="category_type" autocomplete="off" value="{{$category->category_type}}">
 
+                <div class="field">
                 <label class="lbl-login">Classification</label>
-                <select name="type" id="type" class="control">
-                    <option value="" disabled hidden selected>Select</option>
-                    <option value="Assets">Assets</option>
-                    <option value="Peripherals">Peripherals</option>
+                 <select name="type" id="type" class="control">
+                    <option value="Assets" {{ $category->type === 'Assets'? 'selected' : '' }}>Assets</option>
+                    <option value="Peripherals" {{ $category->type === 'Peripherals'? 'selected' : '' }}>Peripherals</option>
                 </select>
+              </div><br>
 
-                <button class="submit-approver-acc" style="margin-top: 40px;">Add Category</button>
+                <button class="submit-approver-acc" style="margin-top: 40px;">Update Category</button>
 
                 <!-- DISPLAY ERRORS -->
                  @if ($errors->any())

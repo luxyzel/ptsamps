@@ -226,7 +226,7 @@
 
 
       		<div class="manage-content">
-			<table id="assetTable" style="width: 100%; text-align: center;">
+			<table id="Tablesort" style="width: 100%; text-align: center;">
 				<thead>
 					<tr>
 						<th style="display:none">Category</th>

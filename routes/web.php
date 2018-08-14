@@ -36,15 +36,28 @@ Route::prefix('admin')->group(function(){
 	//ADMIN Account Settings submit
 	Route::match(['put', 'patch'], '/account/settings/update', 'Admin\AdminController@updateInfo')->name('acc.settings.submit'); 
 
-
-	// create new category
+	
+	// CATEGORY
 	Route::resource('/category', 'Admin\CategoryController');
+
+	// CONDITION
+	Route::resource('/manage/conditions', 'Admin\ConditionsController');
+
+	// LOCATION
+	Route::resource('/manage/locations', 'Admin\LocationsController');
+
+	// STATUS
+	Route::resource('/manage/statuses', 'Admin\StatusesController');
 
 	//Asset Management route
 	Route::resource('/assets-management', 'Admin\AssetsController');
 
 	//Create new Assets route
 	Route::get('/assets/create', 'Admin\AssetsController@showCreate')->name('create.assets');
+
+		//Create new Assets route
+	Route::get('/assets/search', 'Admin\SearchController@assetSearch')->name('asset-search');
+
 
 	//IMPORT ASSETS VIEW
 	Route::get('/import-asset', 'Admin\ImportController@importAssetsView')->name('import-assets');
@@ -60,7 +73,10 @@ Route::prefix('admin')->group(function(){
 	Route::get('/import-peripherals', 'Admin\PeripheralsController@importView')->name('import-per');
 
 	//IMPORT PEREPHERALS
-	Route::post('/import/peripherals', 'Admin\PeripheralsController@import')->name('importP');
+	Route::post('/peripherals/search', 'Admin\SearchController@peripheralsSearch')->name('p-search');
+
+		//Create new Assets route
+	Route::get('/assets/search', 'Admin\SearchController@assetSearch')->name('asset-search');
 
 
 	//Deployed Units Index
