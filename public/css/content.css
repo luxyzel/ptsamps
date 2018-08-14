@@ -237,8 +237,8 @@
 	top: 50%;
 	left: 50%;
 	width: 1100px;
-	height: 550px;
-	margin-top: -275px;
+	height: 500px;
+	margin-top: -250px;
 	margin-left: -550px;
 	border-radius: 5px;
 	padding: 20px 30px;
@@ -248,7 +248,7 @@
 
 /*Asset creation container*/
 .lcont-c-asset {
-	width: 33.33%;
+	width: 24.9%;
 }
 
 /*Asset creation back-button*/
@@ -313,6 +313,20 @@
 	font-family: roboto-reg;
 	line-height: 23px;
 	color: #706f6f;
+}
+
+/*deployed unit number of counts*/
+.category-count {
+	margin-left: 15px;
+	font-family: roboto-reg;
+	font-size: 13px;
+	text-transform: capitalize;
+	color: #4267b2;
+	margin-top: 5px;
+}
+
+.category-count span {
+	color: #f37c22;	
 }
 
 
