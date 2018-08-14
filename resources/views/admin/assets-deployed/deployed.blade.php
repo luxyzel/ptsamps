@@ -232,8 +232,6 @@
 				<div class="clr"></div>			
 			</div>
 
-			
-
 			<div class="manage-content">
 				<table style="width: 100%; text-align: center;">
 					<thead>

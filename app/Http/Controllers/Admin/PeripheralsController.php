@@ -277,8 +277,8 @@ class PeripheralsController extends Controller
                                 Session::flash('success', 'Your Data has successfully imported');
                             }else {                        
                                 Session::flash('error', 'Error inserting the data..');
-                               /* return back();*/
-                            }
+                               
+                            } 
 
                         }catch(\Illuminate\Database\QueryException $e) {
                             $errorCode = $e->errorInfo[1];
@@ -287,7 +287,7 @@ class PeripheralsController extends Controller
                             }
                         }
 
-                    }/*return $categories;*/
+                    }return back();
             }else
             {
                 Session::flash('error', ''.$extension.' file is invalid. Please upload a valid xls/csv file..!!');
