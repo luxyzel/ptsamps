@@ -26,7 +26,7 @@ class PeripheralsController extends Controller
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        $peripherals = Peripheral::orderBy('category_type','DESC')->paginate(25);
+        $peripherals = Peripheral::orderBy('category_type','ASC')->paginate(25);
         return view('admin.manage-peripherals.index',compact('admin', 'peripherals'));
     }
 

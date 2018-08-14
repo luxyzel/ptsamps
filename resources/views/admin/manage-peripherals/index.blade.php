@@ -1,7 +1,10 @@
 
 @include('templates.header')
 
+<script src="jquery.js"></script>
+<script src="jquery.searchable.js"></script>
 
+</head>  
 
 
   <title>Manage Peripherals | Asset Management and Procurement System</title>
@@ -223,18 +226,16 @@
 				<div class="clr"></div>
 			</div>
 
-             
-
+            
 				<!-- SESSION  -->
 		        @if(Session::has('success'))
 		            <div class="comment-success" style="margin-top: 25px">
 		                <strong> {{ Session::get('success') }}</strong> 
 		            </div>
 	            @endif
-
 				<div class="manage-content">
 
-				<table style="width: 100%; text-align: center;" id="Tablesort">
+				<table style="width: 100%; text-align: center;" class="dataTable" id="example">
 					<thead>
 						<tr>
 							<th onclick="sortTable(0)">Category</th>
@@ -288,7 +289,8 @@
 						@endforeach
 				</table>
 
-			</div>
+			</div> 
+				 
 			<br>
 			
 			<!-- PAGINATION -->
@@ -324,6 +326,8 @@ $("#search").keyup(function () {
             return not_found;
         });
     });
+
+
 });
 
 
