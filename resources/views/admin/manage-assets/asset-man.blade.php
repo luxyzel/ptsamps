@@ -227,7 +227,7 @@
             @endif
 
 			<div class="manage-content">
-				<table style="width: 100%; text-align: center;" id="assetTable">
+				<table style="width: 100%; text-align: center;" id="Tablesort">
 					<thead>
 						<tr>
 							<th onclick="sortTable(0)">Category</th>

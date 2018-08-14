@@ -72,7 +72,7 @@ $(document).on("click", function () {
 // sorting table
 function sortTable(n) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    table = document.getElementById("assetTable");
+    table = document.getElementById("Tablesort");
     switching = true;
 
      // Set the sorting direction to ascending:
