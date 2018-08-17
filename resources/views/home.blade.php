@@ -1,23 +1,66 @@
-@extends('layouts.app')
+@include('templates.header')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+    <title>Dashboard | Asset Management and Procurement System</title>
+</head>
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+<body>
 
-                    You are logged in!
-                </div>
+    {{-- Start of Dashboard --}}
+    <div class="dboard-container">
+
+        {{-- Left Menu --}}
+        <div class="dboard-left-panel fl">
+            <div class="dboard-prof" style="height: 100px">
+                <img src="img/companylogo.png" title="Project T Solutions">
+            </div>
+
+            <!-- Buttons -->
+            <div class="dboard-prof">
+                <a href="#">
+                    <div class="dboard-left-but">Purchase Orders</div>
+                </a>
+                <a href="#">
+                    <div class="dboard-left-but">Approved P.O.</div>
+                </a>
+                <a href="#">
+                    <div class="dboard-left-but">Rejected P.O.</div>
+                </a>
+                <div style="margin-bottom: 40px;"></div>
+                <a href="#">
+                    <div class="dboard-left-but">Account Settings</div>
+                </a>
+                <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+
+                    <div class="dboard-left-but">Logout</div>
+                </a>
             </div>
         </div>
+
+        {{-- Right Menu --}}
+        <div class="dboard-right-panel fr">
+            
+            {{-- Page Label --}}
+            <div class="app-label">
+                <div class="fl">
+                    <p class="app-page-name">Dashboard</p>
+                </div>
+                <div class="fl">
+                    <p class="app-page-sub">Overview</p>
+                </div>
+                
+            </div>
+            
+        </div>
+
+        <div class="clr"></div>
+        
     </div>
-</div>
-@endsection
+
+
+@include('templates.footer')

@@ -294,8 +294,7 @@
 
 .pagination-bot li a:hover {
 	background-color: #a9cff8;
-	color: #fff;	
-
+	color: #fff;
 }
 
 .pagination-bot li span {
@@ -328,6 +327,50 @@
 .category-count span {
 	color: #f37c22;	
 }
+
+
+/*Approver Interface Design*/
+.app-label {
+	width: 100%;
+}
+
+.app-page-sub {
+	color: #5d7593;
+	font-family: roboto-reg;
+	font-size: 12px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	margin-bottom: 5px;
+	margin-left: 10px;
+	margin-top: 17px;
+}
+
+.app-page-name {
+	font-family: oswald-reg;
+	font-size: 30px;
+	text-transform: uppercase;
+	color: #6baafb;
+	letter-spacing: 1px;
+	text-shadow: 2px 2px 5px rgba(111, 115, 254, 0.5);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*WITH BUG NEED TO FIX OR NOT DEPENDS*/
