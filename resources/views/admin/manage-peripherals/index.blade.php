@@ -241,7 +241,7 @@
 				<table style="width: 100%; text-align: center;" class="dataTable" id="example">
 					<thead>
 						<tr>
-							<th onclick="sortTable(0)">Category</th>
+							<th onclick="sortTable(0)">Category Type</th>
 							<th onclick="sortTable(1)">Model</th>
 							<th onclick="sortTable(2)">ST/MSN</th>
 							<th onclick="sortTable(3)">PDSN</th>

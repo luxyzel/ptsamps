@@ -72,11 +72,14 @@ Route::prefix('admin')->group(function(){
 	//IMPORT PEREPHERALS INDEX
 	Route::get('/import-peripherals', 'Admin\PeripheralsController@importView')->name('import-per');
 
+		//IMPORT PEREPHERALS
+	Route::post('/import/peripherals', 'Admin\PeripheralsController@import')->name('importP');
+
 	//IMPORT PEREPHERALS
 	Route::post('/peripherals/search', 'Admin\SearchController@peripheralsSearch')->name('p-search');
 
 		//Create new Assets route
-	Route::get('/assets/search', 'Admin\SearchController@assetSearch')->name('asset-search');
+	Route::get('/assets/search', 'Admin\AssetsController@assetSearch')->name('asset-search');
 
 
 	//Deployed Units Index
@@ -88,8 +91,13 @@ Route::prefix('admin')->group(function(){
 	//Stock Assets Index
 	Route::get('/assets/stocks', 'Admin\AssetsController@StocksIndex')->name('assets.stocks');
 
+	//Asset Track Filter
+	Route::get('/assets-tracking/filter', 'Admin\AssetTrackController@TrackAsset')->name('track-units');
+
 	//Assets Tracking
 	Route::resource('/assets-tracking', 'Admin\AssetTrackController');
+
+
 	
 });
 
@@ -98,6 +106,9 @@ Route::resource('/procurement', 'Admin\ProcureController');
 
 // VENDOR INDEX ROUTE
 Route::resource('/vendor', 'Admin\VendorController');
+
+// REQUESTOR INDEX ROUTE
+Route::resource('/requestor', 'Admin\RequestorController');
 
 
 // user auth route

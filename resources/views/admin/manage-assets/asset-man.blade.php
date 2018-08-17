@@ -214,11 +214,11 @@
 					<div class="clr"></div>
 				</div>
 				<div class="fr" style="width: 400px;">
-					<form  action="#" method="get">
-						<input type="text" class="input" name="search" id="search" value="" placeholder="search asset" required autocomplete="off">
-						{{-- <button type="submit">Search</button> --}}
-						{{ csrf_field() }}
-					</form>
+					<form  action="{{ route('asset-search') }}" method="get">
+				<input type="text" class="input" name="search" id="search" value="" placeholder="search ..." required>
+				{{ csrf_field() }}
+			</form>
+
 				</div>
 				<div class="clr"></div>
 			</div>
@@ -233,7 +233,7 @@
 				<table style="width: 100%; text-align: center;" id="Tablesort">
 					<thead>
 						<tr>
-							<th onclick="sortTable(0)">Category</th>
+							<th onclick="sortTable(0)">Category Type</th>
 							<th onclick="sortTable(1)" style="max-width:150px;">Model</th>
 							<th onclick="sortTable(2)">ST/MSN</th>
 							<th onclick="sortTable(3)">PDSN</th>
@@ -315,7 +315,7 @@
 <script type="text/javascript">
 	
 /*** SEARCH ASSETS TABLE BY INPUT ***/
-$("#search").keyup(function () {
+/*$("#search").keyup(function () {
     var value = this.value.toLowerCase().trim();
 
     $("table tr").each(function (index) {
@@ -328,6 +328,6 @@ $("#search").keyup(function () {
         });
     });
 });
-
+*/
 
 </script>

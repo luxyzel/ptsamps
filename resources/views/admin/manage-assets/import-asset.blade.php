@@ -52,6 +52,8 @@
  
     <input type="submit" class="btn btn-primary btn-lg" style="margin-top: 3%">
 </form>
+
+ <a href="{{ route('assets-management.index') }}" class="back-but-l">Back to previous page</a>
  
 </div>
 </body>
