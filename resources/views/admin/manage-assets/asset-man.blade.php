@@ -42,7 +42,7 @@
 				<a href="{{ route('vendor.index')}}">
 					<div class="dboard-left-but">Vendors</div>
 				</a>
-				<a href="#">
+				<a href="{{ route('requestor.index')}}">
 					<div class="dboard-left-but">Requestor</div>
 				</a>
 				<a href="#">
@@ -224,7 +224,7 @@
 			</div>
 
             @if(Session::has('success'))
-	            <div class="comment-success" style="margin-top: 25px">
+	            <div class="comment-success" id ="comment-success" style="margin-top: 25px">
 	                <strong> {{ Session::get('success') }}</strong> 
 	            </div>
             @endif
@@ -313,7 +313,13 @@
 @include('templates.footer')
 
 <script type="text/javascript">
-	
+
+/*** TIME-OUT SESSION ALERT ***/
+setTimeout(function() {
+    $('#comment-success').fadeOut('fast');
+}, 5000);	
+
+
 /*** SEARCH ASSETS TABLE BY INPUT ***/
 /*$("#search").keyup(function () {
     var value = this.value.toLowerCase().trim();

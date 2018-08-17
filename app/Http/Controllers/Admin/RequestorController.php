@@ -30,7 +30,7 @@ class RequestorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.requestors.create');
     }
 
     /**
@@ -41,7 +41,32 @@ class RequestorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validateWith([
+        'reqname' => 'required',
+        'comname' => 'required',
+        'comaddress' => 'required',
+        'designation' => 'required',
+        'emailadd' => 'required|unique:requestors,email_address',
+        'contactnum' => 'required|unique:requestors,contact_number',
+        'phonenum' => 'required',
+        ]);
+
+        $requestors = new Requestor();
+        $requestors->company_name = $request->comname;
+        $requestors->company_address = $request->comaddress;
+        $requestors->requestor_name = $request->reqname;
+        $requestors->designation = $request->designation;
+        $requestors->email_address = $request->emailadd;
+        $requestors->contact_number = $request->contactnum;
+        $requestors->phone = $request->phonenum;
+
+        if ($requestors->save()) {
+            Session::flash('success', 'Requestor Successfully Added');
+            return redirect()->back();
+        } else{
+            Session::flash('warning', 'Error Encountered');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -63,7 +88,8 @@ class RequestorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $requestor = Requestor::findOrFail($id);
+        return view('admin.requestors.edit',compact('requestor'));
     }
 
     /**
@@ -75,7 +101,32 @@ class RequestorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validateWith([
+        'reqname' => 'required',
+        'comname' => 'required',
+        'comaddress' => 'required',
+        'designation' => 'required',
+        'emailadd' => 'required|unique:requestors,email_address,'.$id,
+        'contactnum' => 'required|unique:requestors,contact_number,'.$id,
+        'phonenum' => 'required',
+        ]);
+
+        $requestors = Requestor::findOrFail($id);
+        $requestors->company_name = $request->comname;
+        $requestors->company_address = $request->comaddress;
+        $requestors->requestor_name = $request->reqname;
+        $requestors->designation = $request->designation;
+        $requestors->email_address = $request->emailadd;
+        $requestors->contact_number = $request->contactnum;
+        $requestors->phone = $request->phonenum;
+
+        if ($requestors->save()) {
+            Session::flash('success', 'Requestor Successfully Added');
+            return redirect()->back();
+        } else{
+            Session::flash('warning', 'Error Encountered');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -86,6 +137,13 @@ class RequestorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $requestor = Requestor::where('id',$id);
+        if ($requestor->delete()) {
+            Session::flash('success', 'Requestor Info Successfully Deleted');
+            return redirect()->back();
+        } else{
+            Session::flash('warning', 'Error Encountered');
+            return redirect()->back();
+        }
     }
 }

@@ -22,7 +22,7 @@
 
               <!-- success -->
               @if(Session::has('success'))
-              <div class="comment-error">
+              <div class="comment-error" id="comment-error">
                  <strong> {{ Session::get('success') }}</strong> 
               </div>
               @endif
@@ -262,3 +262,12 @@
     </form>
 
 @include('templates.footer')
+
+<script type="text/javascript">
+  
+  /*** TIME-OUT SESSION ALERT ***/
+setTimeout(function() {
+    $('#comment-success').fadeOut('fast');
+}, 5000); 
+
+</script>

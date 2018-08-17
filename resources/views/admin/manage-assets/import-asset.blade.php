@@ -16,7 +16,7 @@
         </h2>
  
         @if ( Session::has('success') )
-        <div class="alert alert-success alert-dismissible" role="alert">
+        <div class="alert alert-success alert-dismissible"  id = "comment-success" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">×</span>
             <span class="sr-only">Close</span>
@@ -58,3 +58,12 @@
 </div>
 </body>
 </html>
+
+<script type="text/javascript">
+    
+/*** TIME-OUT SESSION ALERT ***/
+setTimeout(function() {
+    $('#comment-success').fadeOut('fast');
+}, 5000);
+
+</script>

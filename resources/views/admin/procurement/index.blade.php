@@ -44,7 +44,7 @@
 				<a href="{{ route('vendor.index')}}">
 					<div class="dboard-left-but">Vendors</div>
 				</a>
-				<a href="#">
+				<a href="{{ route('requestor.index')}}">
 					<div class="dboard-left-but">Requestor</div>
 				</a>
 				<a href="#">
@@ -211,7 +211,7 @@
 
 		<!-- SUCCESS ALERT -->
         @if(Session::has('success'))
-        <div class="comment-error">
+        <div class="comment-error" id="comment-error">
            <strong> {{ Session::get('success') }}</strong> 
         </div>
         @endif
@@ -495,7 +495,10 @@ $(document).ready(function () {
 	});
 }); 
 
-
+/*** TIME-OUT SESSION ALERT ***/
+setTimeout(function() {
+    $('#comment-success').fadeOut('fast');
+}, 5000);
 </script>
 
 

@@ -97,7 +97,6 @@ Route::prefix('admin')->group(function(){
 	//Assets Tracking
 	Route::resource('/assets-tracking', 'Admin\AssetTrackController');
 
-
 	
 });
 
