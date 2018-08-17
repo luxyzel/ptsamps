@@ -8,7 +8,7 @@
 
                 <!-- {{-- Success Message --}} -->
                 @if(Session::has('success'))
-                <div class="comment-error">
+                <div class="comment-error" id="comment-error">
                    <strong> {{ Session::get('success') }}</strong> 
                 </div>
                 @endif
@@ -96,3 +96,10 @@
                 <a href="{{ route('vendor.index') }}" class="back-to-manage">Back to Previous Page</a>
 
           </form>
+
+<script type="text/javascript">
+/*** TIME-OUT SESSION ALERT ***/
+setTimeout(function() {
+    $('#comment-success').fadeOut('fast');
+}, 5000);
+</script>

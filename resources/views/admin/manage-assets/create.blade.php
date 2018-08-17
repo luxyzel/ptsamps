@@ -145,7 +145,7 @@
                         <button class="submit-approver-acc" style="margin-top: 12px;">Confirm Asset Creation</button>
 
                         @if(Session::has('success'))
-                            <div class="comment-success" style="margin-top: 25px">
+                            <div class="comment-success" id="comment-success" style="margin-top: 25px">
                                 <strong> {{ Session::get('success') }}</strong> 
                             </div>
                         @endif
@@ -374,4 +374,8 @@ $(document).ready(function() {
     });
 });
 
+/*** TIME-OUT SESSION ALERT ***/
+setTimeout(function() {
+    $('#comment-success').fadeOut('fast');
+}, 5000); 
 </script>

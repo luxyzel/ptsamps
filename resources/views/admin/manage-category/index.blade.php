@@ -47,7 +47,7 @@
                 <a href="{{ route('vendor.index')}}">
                     <div class="dboard-left-but">Vendors</div>
                 </a>
-                <a href="#">
+                <a href="{{ route('requestor.index')}}">
                     <div class="dboard-left-but">Requestor</div>
                 </a>
                 <a href="#">
