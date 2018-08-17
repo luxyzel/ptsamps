@@ -45,7 +45,7 @@
 				<a href="{{ route('vendor.index')}}">
 					<div class="dboard-left-but">Vendors</div>
 				</a>
-				<a href="#">
+				<a href="{{ route('requestor.index')}}">
 					<div class="dboard-left-but">Requestor</div>
 				</a>
 				<a href="#">
@@ -214,6 +214,14 @@
 				<div class="clr"></div>
 			</div>
 
+			<!-- ALERT SUCCESS -->
+		    @if(Session::has('success'))
+            <div class="comment-success" id="comment-success" style="margin-top: 25px">
+                <strong> {{ Session::get('success') }}</strong> 
+            </div>
+        	@endif
+
+
 			<div class="manage-content">
 				<table style="width: 100%; text-align: center;">
 					<thead>
@@ -255,7 +263,7 @@
 			
 			<!-- PAGINATION -->
 			
-
+			
 			<!-- warning no record -->
           	@if(Session::has('warning'))
                 <div class="comment-error">
@@ -268,3 +276,12 @@
 	</div>
 
 @include('templates.footer')
+
+<script type="text/javascript">
+
+/*** TIME-OUT SESSION ALERT ***/
+setTimeout(function() {
+    $('#comment-success').fadeOut('fast');
+}, 5000);
+
+</script>

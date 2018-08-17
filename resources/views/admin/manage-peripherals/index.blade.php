@@ -48,7 +48,7 @@
 				<a href="{{ route('vendor.index')}}">
 					<div class="dboard-left-but">Vendors</div>
 				</a>
-				<a href="#">
+				<a href="{{ route('requestor.index')}}">
 					<div class="dboard-left-but">Requestor</div>
 				</a>
 				<a href="#">
@@ -303,7 +303,7 @@
 
 			<!-- warning no record -->
           	@if(Session::has('warning'))
-                <div class="comment-error">
+                <div class="comment-error" id="comment-error">
                    <strong><center>{{ Session::get('warning') }}</center> </strong> 
                 </div>
             @endif
@@ -333,6 +333,9 @@ $("#search").keyup(function () {
 
 });
 
-
+/*** TIME-OUT SESSION ALERT ***/
+setTimeout(function() {
+    $('#comment-success').fadeOut('fast');
+}, 5000);
 
 </script>
