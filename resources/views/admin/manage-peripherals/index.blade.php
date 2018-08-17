@@ -49,6 +49,9 @@
 					<div class="dboard-left-but">Vendors</div>
 				</a>
 				<a href="#">
+					<div class="dboard-left-but">Requestor</div>
+				</a>
+				<a href="#">
 					<div class="dboard-left-but">Calendar</div>
 				</a>
 			</div>
