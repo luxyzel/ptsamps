@@ -3,7 +3,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
-  <title>Manage Peripherals | Asset Management and Procurement System</title>
+  <title>Procurement Process | Asset Management and Procurement System</title>
 </head>
 
 <body>
@@ -43,6 +43,9 @@
 				</a>
 				<a href="{{ route('vendor.index')}}">
 					<div class="dboard-left-but">Vendors</div>
+				</a>
+				<a href="#">
+					<div class="dboard-left-but">Requestor</div>
 				</a>
 				<a href="#">
 					<div class="dboard-left-but">Calendar</div>

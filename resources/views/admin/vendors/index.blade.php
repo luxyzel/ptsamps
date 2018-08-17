@@ -46,6 +46,9 @@
 					<div class="dboard-left-but">Vendors</div>
 				</a>
 				<a href="#">
+					<div class="dboard-left-but">Requestor</div>
+				</a>
+				<a href="#">
 					<div class="dboard-left-but">Calendar</div>
 				</a>
 			</div>
@@ -219,7 +222,7 @@
 							<th>Contact Person</th>
 							<th>Email Address</th>
 							<th>Contact Number</th>
-							<th>Company Address</th>
+							<th style="max-width:200px;">Company Address</th>
 							<th>Phone</th>
 							<th>Action</th>
 						</tr>
@@ -230,7 +233,7 @@
 								<td>{{$vendor->contact_person}}</td>
 								<td>{{$vendor->email_address}}</td>
 								<td>{{$vendor->contact_number}}</td>
-								<td>{{$vendor->company_address}}</td>
+								<td style="max-width:200px;">{{$vendor->company_address}}</td>
 								<td>{{$vendor->phone}}</td>
 								<td>
 									<a href="{{ route('vendor.show', $vendor->id) }}" class="manage-view-but" title="View">View</a>
