@@ -212,7 +212,7 @@
 				<div class="fl">
 					<form method="get" id="DeployedForm" action="{{route('deployed-units')}}">{{ csrf_field() }}
 			         	<select name="categorytype"  id='categorytype'>
-			         		<option value="" selected disabled hidden>Select Category</option>
+			         		<option value="" selected disabled hidden>Select Category Type</option>
 			         		<option value="All">All</option>
 					          	@foreach($category as $cat)
 					            	<option value="{{ $cat->category_type }}">{{ $cat->category_type }}</option>
@@ -269,7 +269,7 @@
 	</div>
 		<!-- PAGINATION -->
 			<div class="pagination-bot">
-				{{$assets->links()}}
+				{{ $assets->appends(request()->input())->links() }}
 			</div>
 
 @include('templates.footer')

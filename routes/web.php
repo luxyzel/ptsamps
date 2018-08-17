@@ -93,7 +93,7 @@ Route::prefix('admin')->group(function(){
 
 	//Asset Track Filter
 	Route::get('/assets-tracking/filter', 'Admin\AssetTrackController@TrackAsset')->name('track-units');
-	
+
 	//Assets Tracking
 	Route::resource('/assets-tracking', 'Admin\AssetTrackController');
 
@@ -106,6 +106,9 @@ Route::resource('/procurement', 'Admin\ProcureController');
 
 // VENDOR INDEX ROUTE
 Route::resource('/vendor', 'Admin\VendorController');
+
+// REQUESTOR INDEX ROUTE
+Route::resource('/requestor', 'Admin\RequestorController');
 
 
 // user auth route
