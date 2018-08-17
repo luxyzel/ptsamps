@@ -83,7 +83,7 @@
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
-						<a href="{{route('assets.track')}}">
+						<a href="{{route('assets-tracking.index')}}">
 							<div class="dboard-menu2-box">
 								<img src="img/icon2.png" >
 							</div>
@@ -212,21 +212,23 @@
 					<thead>
 						<tr>
 							<th>Category Type</th>
-							<th>Asset Tag</th>
-							<th>Service Tag</th>
+							<th>Asset Number</th>
+							<th>ST/MSN</th>
+							<th>PDSN</th>
 							<th>Serial Number</th>
-							<th>Status</th>
-							<th>Remarks</th>
+							<th>Asset Tag</th>
+							<th>Condition</th>
 						</tr>
 					</thead>
 						@foreach ($assets as $asset)
 							<tr>
 								<td>{{$asset->category_type}}</td>
+								<td>{{$asset->asset_number}}</td>
+								<td>{{$asset->st_msn}}</td>
+								<td>{{$asset->pdsn}}</td>
+								<td>{{$asset->s_n}}</td>
 								<td>{{$asset->asset_tag}}</td>
-								<td>{{$asset->service_tag}}</td>
-								<td>{{$asset->serial_number}}</td>
-								<td>{{$asset->status}}</td>
-								<td>{{$asset->remarks}}</td>
+								<td>{{$asset->condition}}</td>
 							</tr>
 						@endforeach
 				</table>

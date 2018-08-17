@@ -204,16 +204,18 @@
 			</div>
 
 			<div class="dboard-content-menu">
-				<div class="fl">
-					<label for="category" class="label">Category</label>
-		         	<select name="category"  id='filterCat' style='display:inline-block' onchange='filterText()'>
-		         		<option value="">All</option>
-		          	@foreach($category as $cat)
-		            	<option value="{{ $cat->category }}">{{ $cat->category }}</option>
-		          	@endforeach
-		        	</select>
-		      		
+      			<div class="fl">
+					<form method="get" id="CategoryForm" action="{{route('track-units')}}">{{ csrf_field() }}
+			         	<select name="categories"  id='categories'>
+			         		<option value="" selected disabled hidden>Select Category</option>
+			         		<option value="All">All</option>
+					          	@foreach($category as $cat)
+					            	<option value="{{ $cat->category }}">{{ $cat->category }}</option>
+					          	@endforeach
+			        	</select>
+		        	</form>
       			</div>
+
 
 				<div class="fr" style="width: 400px;">
 					<form  action="#" method="get">
@@ -243,7 +245,7 @@
 				</thead>
 					@foreach ($assets as $asset)
 						<tr class="content">
-							<td style="display:none">{{$asset->categories->category}}</td>
+							
 							<td>{{$asset->category_type}}</td>
 							
 							@if($asset->st_msn == NULL)
@@ -293,6 +295,10 @@
 					@endforeach
 			</table>
 		</div>
+		<!-- PAGINATION -->
+			<div class="pagination-bot">
+				{{$assets->links()}}
+			</div>
 
 		<!-- warning no record -->
       	@if(Session::has('warning'))
@@ -311,26 +317,19 @@
 
 <script type="text/javascript">
 
-/*** FILTER TABLE BY DROPDOWN CATEGORY ***/	
-function filterText()
-	{  
-		var rex = new RegExp($('#filterCat').val());
-		if(rex =="/all/"){clearFilter()}else{
-			$('.content').hide();
-			$('.content').filter(function() {
-			return rex.test($(this).text());
-			}).show();
-		}
-	}	
-function clearFilter()
-	{
-		$('.filterCat').val('');
-		$('.content').show();
-	}
+	/*** Auto-Submit Form on Dropdown Change ***/
+$(document).ready(function() {
+   $('#categories').change(function() {
+     var parentForm = $(this).closest("form");
+     if (parentForm && parentForm.length > 0)
+       parentForm.submit();
+   });
+});
+
 
 
 /*** SEARCH ASSETS TABLE BY INPUT ***/
-$("#search").keyup(function () {
+/*$("#search").keyup(function () {
     var value = this.value.toLowerCase().trim();
 
     $("table tr").each(function (index) {
@@ -343,6 +342,6 @@ $("#search").keyup(function () {
         });
     });
 });
-
+*/
 </script>
 

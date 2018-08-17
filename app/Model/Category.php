@@ -13,7 +13,7 @@ class Category extends Model
 
 	public function assets()
     {
-    	return $this->hasMany('App\Model\Assets');
+    	return $this->hasMany('App\Model\Asset');
     } 
 
 }

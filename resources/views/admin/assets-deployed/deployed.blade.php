@@ -264,6 +264,10 @@
 		</div>
 		<div class="clr"></div>
 	</div>
+		<!-- PAGINATION -->
+			<div class="pagination-bot">
+				{{$assets->links()}}
+			</div>
 
 @include('templates.footer')
 
