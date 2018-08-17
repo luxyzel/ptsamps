@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Asset;
-use App\Model\Category;
+use App\Model\Requestor;
 use DB;
 use Auth;
+use Session;
 
-class AssetTrackController extends Controller
+class RequestorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +19,8 @@ class AssetTrackController extends Controller
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        $category = Category::select('category')->groupBy('category')->get();
-        $assets = Asset::orderBy('category_type','ASC')->paginate(25);
-        return view('admin.assets-tracking.asset-track',compact('admin', 'category', 'assets'));
+        $requestors = Requestor::orderBy('requestor_name','ASC')->paginate(25);
+        return view('admin.requestors.index',compact('admin', 'requestors'));
     }
 
     /**
@@ -53,8 +52,7 @@ class AssetTrackController extends Controller
      */
     public function show($id)
     {
-        $asset = Asset::findOrFail($id);
-        return view('admin.assets-tracking.show', compact('asset'));
+        //
     }
 
     /**
@@ -89,23 +87,5 @@ class AssetTrackController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-        //DEPLOYED ASSETS Monitor
-    public function TrackAsset(Request $request)
-    {
-        if ($request->categories !== 'All'){
-            $assets = DB::table('assets')->leftJoin('categories', 'assets.category_type', '=', 'categories.category_type')
-                   ->select('assets.*')
-                   ->where('categories.category', $request->categories)
-                   ->paginate(25);
-
-        }else{
-            $assets = Asset::orderBy('category_type','ASC')->paginate(25);
-        }
-
-        $admin = Auth::guard('admin')->user();
-        $category = Category::select('category')->groupBy('category')->get();
-        return view('admin.assets-tracking.asset-track', compact('admin', 'category', 'assets'));
     }
 }

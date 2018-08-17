@@ -258,7 +258,6 @@
     <br>
             
             
-
             <!-- warning no record -->
             @if(Session::has('warning'))
                 <div class="comment-error">

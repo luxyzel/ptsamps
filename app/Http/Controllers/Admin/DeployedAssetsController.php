@@ -14,8 +14,8 @@ class DeployedAssetsController extends Controller
     public function Index()
     {
         $admin = Auth::guard('admin')->user();
-        $category = Category::select('category_type')->groupBy('category_type')->get();
-        $assets = Asset::where('status', 'Deployed')->get();
+        $category = Category::select('category_type')->where('type', 'Assets')->groupBy('category_type')->get();
+        $assets = Asset::where('status', 'Deployed')->paginate(25);
         $count = Asset::where('status', 'Deployed')->count();
         return view('admin.assets-deployed.deployed',compact('admin', 'category', 'assets', 'count'));
     }
@@ -24,16 +24,16 @@ class DeployedAssetsController extends Controller
     public function DeployedAsset(Request $request)
     {
     	if ($request->categorytype !== 'All'){
-    		$assets = Asset::where('status', 'Deployed')->where('category_type', $request->categorytype)->get();
+    		$assets = Asset::where('status', 'Deployed')->where('category_type', $request->categorytype)->paginate(25);
     		$count = Asset::where('status', 'Deployed')->where('category_type', $request->categorytype)->count();
 
     	}else{
-    		$assets = Asset::where('status', 'Deployed')->get();
+    		$assets = Asset::where('status', 'Deployed')->paginate(25);
     		$count = Asset::where('status', 'Deployed')->count();
     	}
 
         $admin = Auth::guard('admin')->user();
-        $category = Category::select('category_type')->groupBy('category_type')->get();
+        $category = Category::select('category_type')->where('type', 'Assets')->groupBy('category_type')->get();
         return view('admin.assets-deployed.deployed',compact('admin', 'category', 'assets', 'count'));
     }
 }

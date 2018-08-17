@@ -77,7 +77,7 @@ class ImportController extends Controller
                                 'updated_at' => now(),
                                 ];
 
-                                $arrayC[] = ['category_type' => array_get($row, 'category'), 'category' => $data, 'type' => 'Assets', 'created_at' => date("Y-m-d"), 'updated_at' => date("Y-m-d"),];
+                                $arrayC[] = ['category_type' => array_get($row, 'category'),'category' => $data, 'type' => 'Assets', 'created_at' => date("Y-m-d"), 'updated_at' => date("Y-m-d"),];
                                 $categories = array_unique($arrayC, SORT_REGULAR);
 
                                 //GET CAtegory Id

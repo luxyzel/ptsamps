@@ -24,7 +24,7 @@ class AssetsController extends Controller
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        $assets = Asset::orderBy('category_type','DESC')->paginate(25);
+        $assets = Asset::orderBy('category_type','ASC')->paginate(25);
         return view('admin.manage-assets.asset-man',compact('admin', 'assets'));
     }
     
@@ -189,12 +189,34 @@ class AssetsController extends Controller
     public function StocksIndex()
     {
         $admin = Auth::guard('admin')->user();
-        $assets = Asset::where('remarks', 'available')->get();
+        $assets = Asset::where('status', 'Available')->get();
         return view('admin.assets-stock.stocks',compact('admin', 'assets'));
     }
 
 
+      public function assetSearch(Request $request)
+    {
+        $s = $request->get('search');
+        $admin = Auth::guard('admin')->user();
+        $assets = Asset::where(function ($query) use($s) 
+        {
+            $query->where('st_msn', 'like', '%' . $s . '%')
+               ->orWhere('pdsn', 'like', '%' . $s . '%')
+               ->orWhere('asset_tag', 'like', '%' . $s . '%')
+               ->orWhere('asset_number', 'like', '%' . $s . '%');
+                })
+            ->paginate(25);
 
+
+            if(!$assets->isEmpty()){
+                return view('admin.manage-assets.asset-man',compact('admin', 'assets'));
+            }else{
+                Session::flash('warning', 'No record found');
+                return view('admin.manage-assets.asset-man',compact('admin', 'assets'));
+            }
+
+    }
+    
 
 
 }
