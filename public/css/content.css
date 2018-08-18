@@ -88,6 +88,10 @@
 	border-bottom: 1px solid #ebf5ff;
 }
 
+.manage-content tr:hover {
+	box-shadow: 5px 3px 30px 1px rgba(70, 136, 246, 0.15);
+}
+
 .manage-view-but {
 	background-color: #fce6c7;
 	padding: 3px 5px;
@@ -294,8 +298,7 @@
 
 .pagination-bot li a:hover {
 	background-color: #a9cff8;
-	color: #fff;	
-
+	color: #fff;
 }
 
 .pagination-bot li span {
@@ -328,6 +331,124 @@
 .category-count span {
 	color: #f37c22;	
 }
+
+
+/*Approver Interface Design*/
+.app-label {
+	width: 100%;
+}
+
+.app-page-sub {
+	color: #5d7593;
+	font-family: roboto-reg;
+	font-size: 12px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	margin-bottom: 5px;
+	margin-left: 10px;
+	margin-top: 17px;
+}
+
+.app-page-name {
+	font-family: oswald-reg;
+	font-size: 30px;
+	text-transform: uppercase;
+	color: #6baafb;
+	letter-spacing: 1px;
+	text-shadow: 2px 2px 7px rgba(111, 115, 254, 0.3);
+	margin-bottom: 20px;
+}
+
+.app-dboard-cont {
+	width: 100%;
+}
+
+.app-cont-box2 {
+	width: 65%;
+	margin-right: 20px;
+	background-color: #fff;
+	border-radius: 3px;
+	padding: 8px;
+	box-shadow: 5px 5px 21px -3px rgba(70, 136, 246, 0.1);
+	height: 150px;
+}
+
+.app-cont-box1 {
+	width: 33%;
+	background-color: #fff;
+	border-radius: 3px;
+	padding: 8px;
+	box-shadow: 5px 5px 21px -3px rgba(70, 136, 246, 0.1);
+	height: 150px;
+}
+
+.app-cont-title-blue {
+	font-family: oswald-reg;
+	font-size: 18px;
+	text-transform: uppercase;
+	color: #4f9dff;
+	padding: 5px;
+	background-color: #e1f0ff;
+	letter-spacing: 1px;
+}
+
+.app-cont-title-orange {
+	font-family: oswald-reg;
+	font-size: 18px;
+	text-transform: uppercase;
+	color: #fe903a;
+	padding: 5px;
+	background-color: #ffdcaa;
+	letter-spacing: 1px;
+}
+
+.app-cont-title-violet {
+	font-family: oswald-reg;
+	font-size: 18px;
+	text-transform: uppercase;
+	color: #8279ff;
+	padding: 5px;
+	background-color: #e1deff;
+	letter-spacing: 1px;
+}
+
+.app-cont-title-pink {
+	font-family: oswald-reg;
+	font-size: 18px;
+	text-transform: uppercase;
+	color: #ff3668;
+	padding: 5px;
+	background-color: #ffabc0;
+	letter-spacing: 1px;
+}
+
+.app-cont-title-green {
+	font-family: oswald-reg;
+	font-size: 18px;
+	text-transform: uppercase;
+	color: #3f9e7b;
+	padding: 5px;
+	background-color: #ceffed;
+	letter-spacing: 1px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*WITH BUG NEED TO FIX OR NOT DEPENDS*/
