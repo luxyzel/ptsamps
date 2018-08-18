@@ -40,7 +40,7 @@
 
 
               <div class="field">
-                <label for="category_type" class="label">Category</label>
+                <label for="category_type" class="label">Category Type</label>
                  <select name="category_type" id="category_type" class="control">
                   @foreach($category as $cat)
                     <option value="{{ $cat->category_type }}" {{ $peripheral->category_type === $cat->category_type? 'selected' : '' }}>{{ $cat->category_type }}</option>
@@ -98,8 +98,8 @@
               <div class="field">
                 <label for="vendor" class="label">Vendor</label>
                  <select name="vendor" id="vendor" class="control">
-                  @foreach($vendor as $vendor)
-                    <option value="{{ $vendor->vendor }}" {{ $peripheral->vendor === $vendor->vendor? 'selected' : '' }}>{{ $vendor->vendor }}</option>
+                  @foreach($vendors as $vendor)
+                    <option value="{{ $vendor->company_name }}" {{ $peripheral->vendor === $vendor->company_name? 'selected' : '' }}>{{ $vendor->company_name }}</option>
                   @endforeach
                 </select>
               </div><br>

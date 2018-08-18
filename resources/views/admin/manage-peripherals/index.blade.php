@@ -220,9 +220,8 @@
 					<div class="clr"></div>
 				</div>
 				<div class="fr" style="width: 400px;">
-					<form  action="#" method="get">
+					<form  action="{{ route('peripherals.search') }}" method="get">
 						<input type="text" class="input" name="search" id="search" value="" placeholder="search peripherals" required autocomplete="off">
-						{{-- <button type="submit">Search</button> --}}
 						{{ csrf_field() }}
 					</form>	
 				</div>
@@ -301,12 +300,12 @@
 				{{$peripherals->links()}}
 			</div>
 
-			<!-- warning no record -->
-          	@if(Session::has('warning'))
-                <div class="comment-error" id="comment-error">
-                   <strong><center>{{ Session::get('warning') }}</center> </strong> 
-                </div>
-            @endif
+			<!-- SEARCH NO RECORD FOUND -->
+		  	@if(Session::has('warning'))
+		        <div class="comment-error">
+		           <br><strong><center>{{ Session::get('warning') }}</center> </strong> 
+		        </div>
+		    @endif
 
 		</div>
 		<div class="clr"></div>
@@ -317,21 +316,9 @@
 <script type="text/javascript">
 	
 /*** SEARCH TABLE BY INPUT ***/
-$("#search").keyup(function () {
-    var value = this.value.toLowerCase().trim();
+/*$("#search").keyup(function () {
 
-    $("table tr").each(function (index) {
-        if (!index) return;
-        $(this).find("td").each(function () {
-            var id = $(this).text().toLowerCase().trim();
-            var not_found = (id.indexOf(value) == -1);
-            $(this).closest('tr').toggle(!not_found);
-            return not_found;
-        });
-    });
-
-
-});
+});*/
 
 /*** TIME-OUT SESSION ALERT ***/
 setTimeout(function() {

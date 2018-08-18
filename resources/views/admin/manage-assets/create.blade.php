@@ -29,8 +29,9 @@
                         </div>
                         <div class="clr"></div>
 
-                        <label class="lbl-login" style="margin-top: 20px">Category</label>
+                        <label class="lbl-login" style="margin-top: 20px">Category Type</label>
                         <select name="category_type" id="category_type" class="control" autofocus>
+                         <option value="" selected disabled hidden>--Select Category Type--</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->category_type }}">{{ $category->category_type }}</option>
                             @endforeach
@@ -61,6 +62,7 @@
 
                         <label class="lbl-login">Location</label>
                         <select name="location" id="location" class="control">
+                           <option value="" selected disabled hidden>--Select Location--</option>
                             @foreach($locations as $location)
                                 <option value="{{ $location->location }}">{{ $location->location }}</option>
                             @endforeach
@@ -94,6 +96,7 @@
 
                         <label class="lbl-login">Condition</label>
                         <select name="condition" id="condition" class="control">
+                           <option value="" selected disabled hidden>--Select Condition--</option>
                             @foreach($conditions as $condition)
                                 <option value="{{ $condition->condition }}">{{ $condition->condition }}</option>
                             @endforeach
@@ -101,6 +104,7 @@
 
                         <label class="lbl-login">Status</label>
                         <select name="status" id="status" class="control">
+                         <option value="" selected disabled hidden>--Select Status--</option>
                             @foreach($statuses as $status)
                                 <option value="{{ $status->status }}">{{ $status->status }}</option>
                             @endforeach
@@ -134,8 +138,9 @@
 
                         <label class="lbl-login">Vendor</label>
                         <select name="vendor" id="vendor" class="control">
+                        <option value="" selected disabled hidden>--Select Vendor--</option>
                             @foreach($vendors as $vendor)
-                                <option value="{{ $vendor->vendor }}">{{ $vendor->vendor }}</option>
+                                <option value="{{ $vendor->company_name }}">{{ $vendor->company_name }}</option>
                             @endforeach
                         </select>
 

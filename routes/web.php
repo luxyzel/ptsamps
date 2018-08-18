@@ -65,6 +65,8 @@ Route::prefix('admin')->group(function(){
 	//IMPORT ASSETS
 	Route::post('/import/assets', 'Admin\ImportController@import')->name('import');
 
+	// IMPORT PEREPHERALS
+	Route::get('/peripherals/search', 'Admin\PeripheralsController@Search')->name('peripherals.search');
 
 	// PEREPHERALS INDEX ROUTE
 	Route::resource('/manage/peripherals', 'Admin\PeripheralsController');
@@ -72,22 +74,23 @@ Route::prefix('admin')->group(function(){
 	//IMPORT PEREPHERALS INDEX
 	Route::get('/import-peripherals', 'Admin\PeripheralsController@importView')->name('import-per');
 
-		//IMPORT PEREPHERALS
+	// IMPORT PEREPHERALS
 	Route::post('/import/peripherals', 'Admin\PeripheralsController@import')->name('importP');
 
-	//IMPORT PEREPHERALS
-	Route::post('/peripherals/search', 'Admin\SearchController@peripheralsSearch')->name('p-search');
 
-	//SEARCH ASSETS
+	// SEARCH ASSETS
 	Route::get('/assets/search', 'Admin\AssetsController@Search')->name('asset-search');
 
-	//Stock Assets Index
+	// Stock Assets Index
 	Route::get('/assets/stocks', 'Admin\AssetsController@StocksIndex')->name('assets.stocks');
 
-	//Asset Track Filter
-	Route::get('/assets-tracking/filter', 'Admin\AssetTrackController@TrackAsset')->name('track-units');
+	// Asset Track FILTER
+	Route::get('/assets-tracking/filter', 'Admin\AssetTrackController@TrackAsset')->name('assets-track.filter');
 
-	//Assets Tracking
+	// Asset Track SEARCH
+	Route::get('/assets-tracking/search', 'Admin\AssetTrackController@Search')->name('assets-track.search');
+
+	// Assets Tracking
 	Route::resource('/assets-tracking', 'Admin\AssetTrackController');
 
 });

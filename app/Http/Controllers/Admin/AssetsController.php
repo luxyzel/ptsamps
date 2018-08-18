@@ -111,11 +111,11 @@ class AssetsController extends Controller
         $category = Category::Where('type', 'Assets')->get();
         $brand = Brand::all();
         $location = Location::all();
-        $vendor = Vendor::all();
+        $vendors = Vendor::all();
         $condition = Condition::All();
         $status = Status::All();
         $asset = Asset::findOrFail($id);
-        return view('admin.manage-assets.edit',compact('category', 'brand', 'location', 'vendor', 'condition', 'status', 'asset'));
+        return view('admin.manage-assets.edit',compact('category', 'brand', 'location', 'vendors', 'condition', 'status', 'asset'));
         /*return view('admin.manage-assets.edit')->withUser($asset);*/
     }
 
