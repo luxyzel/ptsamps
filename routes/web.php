@@ -78,15 +78,8 @@ Route::prefix('admin')->group(function(){
 	//IMPORT PEREPHERALS
 	Route::post('/peripherals/search', 'Admin\SearchController@peripheralsSearch')->name('p-search');
 
-		//Create new Assets route
-	Route::get('/assets/search', 'Admin\AssetsController@assetSearch')->name('asset-search');
-
-
-	//Deployed Units Index
-	Route::get('/assets/deployed', 'Admin\DeployedAssetsController@Index')->name('assets.deployed');
-
-	//Deployed Units Filter
-	Route::get('/assets/deployed/Units', 'Admin\DeployedAssetsController@DeployedAsset')->name('deployed-units');
+	//SEARCH ASSETS
+	Route::get('/assets/search', 'Admin\AssetsController@Search')->name('asset-search');
 
 	//Stock Assets Index
 	Route::get('/assets/stocks', 'Admin\AssetsController@StocksIndex')->name('assets.stocks');
@@ -97,16 +90,25 @@ Route::prefix('admin')->group(function(){
 	//Assets Tracking
 	Route::resource('/assets-tracking', 'Admin\AssetTrackController');
 
-	
 });
 
-// PROCUREMENT INDEX ROUTE
+
+// DEPLOYED-UNITS Filter
+Route::get('/deployed-units/filter', 'Admin\DeployedAssetsController@DeployedAsset')->name('deployed-units.filter');
+
+// SEARCH DEPLOYED-UNITS
+Route::get('/deployed-units/search', 'Admin\DeployedAssetsController@Search')->name('deployed-units.search');
+
+// DEPLOYED-UNITS RESOURCE
+Route::resource('/deployed-units', 'Admin\DeployedAssetsController');
+
+// PROCUREMENT  RESOURCE
 Route::resource('/procurement', 'Admin\ProcureController');
 
-// VENDOR INDEX ROUTE
+// VENDOR  RESOURCE
 Route::resource('/vendor', 'Admin\VendorController');
 
-// REQUESTOR INDEX ROUTE
+// REQUESTOR  RESOURCE
 Route::resource('/requestor', 'Admin\RequestorController');
 
 

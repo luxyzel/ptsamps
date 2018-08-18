@@ -35,7 +35,7 @@
 
             <!-- Buttons -->
             <div class="dboard-prof">
-                <a href="{{ route('assets.deployed')}}">
+                <a href="{{ route('deployed-units.index')}}">
                     <div class="dboard-left-but">Deployed Units</div>
                 </a>
                 <a href="{{ route('assets.stocks')}}">

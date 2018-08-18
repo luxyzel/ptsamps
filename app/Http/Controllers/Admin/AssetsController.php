@@ -194,7 +194,7 @@ class AssetsController extends Controller
     }
 
 
-      public function assetSearch(Request $request)
+      public function Search(Request $request)
     {
         $s = $request->get('search');
         $admin = Auth::guard('admin')->user();
