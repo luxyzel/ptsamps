@@ -30,7 +30,7 @@
 
 			<!-- Buttons -->
 			<div class="dboard-prof">
-				<a href="{{ route('assets.deployed')}}">
+				<a href="{{ route('deployed-units.index')}}">
 					<div class="dboard-left-but">Deployed Units</div>
 				</a>
 				<a href="{{ route('assets.stocks')}}">
@@ -208,7 +208,7 @@
 
 			<div class="dboard-content-menu">
       			<div class="fl">
-					<form method="get" id="CategoryForm" action="{{route('track-units')}}">{{ csrf_field() }}
+					<form method="get" id="CategoryForm" action="{{route('assets-track.filter')}}">{{ csrf_field() }}
 			         	<select name="categories"  id='categories'>
 			         		<option value="" selected disabled hidden>Select Category</option>
 			         		<option value="All">All</option>
@@ -221,7 +221,7 @@
 
 
 				<div class="fr" style="width: 400px;">
-					<form  action="#" method="get">
+					<form  action="{{ route('assets-track.search') }}" method="get">
 						<input type="text" class="input" name="search" id="search" value="" placeholder="search asset" required autocomplete="off">
 						{{-- <button type="submit">Search</button> --}}
 						{{ csrf_field() }}
@@ -303,12 +303,12 @@
 				{{ $assets->appends(request()->input())->links() }}
 			</div>
 
-		<!-- warning no record -->
-      	@if(Session::has('warning'))
-            <div class="comment-error">
-               <strong><center>{{ Session::get('warning') }}</center> </strong> 
-            </div>
-        @endif
+			<!-- SEARCH NO RECORD FOUND -->
+		  	@if(Session::has('warning'))
+		        <div class="comment-error">
+		           <br><strong><center>{{ Session::get('warning') }}</center> </strong> 
+		        </div>
+		    @endif
 
 
 		</div>

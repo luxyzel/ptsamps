@@ -228,8 +228,8 @@
               <div class="field">
                 <label for="vendor" class="label">Vendor</label>
                  <select name="vendor" id="vendor" class="control">
-                  @foreach($vendor as $vendor)
-                    <option value="{{ $vendor->vendor }}" {{ $asset->vendor === $vendor->vendor? 'selected' : '' }}>{{ $vendor->vendor }}</option>
+                  @foreach($vendors as $vendor)
+                    <option value="{{ $vendor->company_name }}" {{ $asset->vendor === $vendor->company_name? 'selected' : '' }}>{{ $vendor->company_name }}</option>
                   @endforeach
                 </select>
               </div><br>

@@ -2,7 +2,7 @@
 
 @include('templates.header')
 
-  <title>Asset Tracking Information | Asset Management and Procurement System</title>
+  <title>Deployed Asset Information | Asset Management and Procurement System</title>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
                 <img src="/img/companylogo.png" title="Project T Solutions">
             </div>
             <div class="login-text fl">
-                <p class="login-comp-nm">Show Asset Info</p>
+                <p class="login-comp-nm">Show Deployed Asset Info</p>
                 <p class="system-about">View Asset full Information</p>
             </div>
             <div class="clr"></div>
@@ -201,7 +201,7 @@
                 <p class="view-label-full">N/A</p>
             @endif
 
-            <a href="{{ route('assets-tracking.index') }}" class="back-but-l">Back to Assets Tracking</a>
+            <a href="{{ route('deployed-units.index') }}" class="back-but-l">Back to Assets Deployed Page</a>
         </div>
         
 

@@ -38,10 +38,10 @@ class PeripheralsController extends Controller
     public function create()
     {
         $category = Category::Where('type', 'Peripherals')->get();
-        $vendor = Vendor::All();
+        $vendors = Vendor::All();
         $condition = Condition::All();
         $status = Status::All();
-        return view('admin.manage-peripherals.create', compact('category', 'vendor', 'condition', 'status'));
+        return view('admin.manage-peripherals.create', compact('category', 'vendors', 'condition', 'status'));
     }
 
     /**
@@ -108,11 +108,11 @@ class PeripheralsController extends Controller
         $category = Category::Where('type', 'Peripherals')->get();
         $brand = Brand::all();
         $location = Location::all();
-        $vendor = Vendor::all();
+        $vendors = Vendor::all();
         $condition = Condition::All();
         $status = Status::All();
         $peripheral = Peripheral::findOrFail($id);
-        return view('admin.manage-peripherals.edit',compact('category', 'brand', 'location', 'vendor', 'condition', 'status', 'peripheral'));
+        return view('admin.manage-peripherals.edit',compact('category', 'brand', 'location', 'vendors', 'condition', 'status', 'peripheral'));
     }
 
     /**
@@ -172,12 +172,35 @@ class PeripheralsController extends Controller
         }
     }
 
+    /*** SEARCH ***/
+    public function Search(Request $request)
+    {
+        $s = $request->get('search');
+        $admin = Auth::guard('admin')->user();
+        $peripherals = Peripheral::where(function ($query) use($s) 
+        {
+            $query->where('stmsn', 'like', '%' . $s . '%')
+               ->orWhere('pdsn', 'like', '%' . $s . '%')
+               ->orWhere('asset_tag', 'like', '%' . $s . '%');
+                })
+            ->orderBy('category_type','ASC')
+            ->paginate(25);
+
+        if(!$peripherals->isEmpty()){
+            return view('admin.manage-peripherals.index',compact('admin', 'peripherals'));
+        }else{
+            Session::flash('warning', 'No record found');
+            return view('admin.manage-peripherals.index',compact('admin', 'peripherals'));
+        }
+    }
+
+    /*** IMPORTS ***/
     public function importView()
     {
         return view('admin.manage-peripherals.import');
     }
 
-  //IMPORT ASSET FUNCTION
+    //IMPORT ASSET FUNCTION
     public function import(Request $request)
     {
 

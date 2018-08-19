@@ -30,7 +30,7 @@
 
 			<!-- Buttons -->
 			<div class="dboard-prof">
-				<a href="{{ route('assets.deployed')}}">
+				<a href="{{ route('deployed-units.index')}}">
 					<div class="dboard-left-but">Deployed Units</div>
 				</a>
 				<a href="{{ route('assets.stocks')}}">
@@ -213,12 +213,11 @@
 					<a href="{{ route('import-assets') }}" class="dboard-add-acc fl" style="margin-left: 10px;">Import Assets</a>
 					<div class="clr"></div>
 				</div>
+
 				<div class="fr" style="width: 400px;">
 					<form  action="{{ route('asset-search') }}" method="get">
-				<input type="text" class="input" name="search" id="search" value="" placeholder="search ..." required>
-				{{ csrf_field() }}
-			</form>
-
+					<input type="text" class="input" name="search" id="search" value="" placeholder="search ..." required> {{ csrf_field() }}
+					</form>
 				</div>
 				<div class="clr"></div>
 			</div>
@@ -299,7 +298,7 @@
 				{{$assets->links()}}
 			</div>
 
-			<!-- warning no record -->
+			<!-- SEARCH NO RECORD FOUND -->
           	@if(Session::has('warning'))
                 <div class="comment-error">
                    <strong><center>{{ Session::get('warning') }}</center> </strong> 
@@ -319,21 +318,5 @@ setTimeout(function() {
     $('#comment-success').fadeOut('fast');
 }, 5000);	
 
-
-/*** SEARCH ASSETS TABLE BY INPUT ***/
-/*$("#search").keyup(function () {
-    var value = this.value.toLowerCase().trim();
-
-    $("table tr").each(function (index) {
-        if (!index) return;
-        $(this).find("td").each(function () {
-            var id = $(this).text().toLowerCase().trim();
-            var not_found = (id.indexOf(value) == -1);
-            $(this).closest('tr').toggle(!not_found);
-            return not_found;
-        });
-    });
-});
-*/
 
 </script>
