@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 use App\Model\Vendor;
+use App\Model\Requestor;
 use App\Model\Procure;
 use Carbon\Carbon;
 use Auth;
@@ -25,7 +26,8 @@ class ProcureController extends Controller
         
         $admin = Auth::guard('admin')->user();
         $vendors = Vendor::All();
-        return view('admin.procurement.index', compact('admin', 'vendors'));
+        $requestors = Requestor::All();
+        return view('admin.procurement.index', compact('admin', 'vendors', 'requestors'));
         
     }
 
@@ -64,19 +66,17 @@ class ProcureController extends Controller
         }
 
         /***GET VENDOR ID***/
-        $id = Vendor::where('company_name', $request->vendorname)->first();
+        $vendor = Vendor::where('company_name', $request->vendorname)->first();
 
         /***FROM INPUTS***/
-        $data  = Input::only('item', 'quantity', 'uom', 'description', 'uppeso', 'updollar', 'tppeso', 'tpdollar');
+        $data  = Input::only('item', 'quantity', 'uom', 'description', 'unitprice', 'totalprice');
 
         $item = $data['item'];
         $quantity = $data['quantity'];
         $uom = $data['uom'];
         $description = $data['description'];
-        $uppeso = $data['uppeso'];
-        $updollar = $data['updollar'];
-        $tppeso = $data['tppeso'];
-        $tpdollar = $data['tpdollar'];
+        $unitprice = $data['unitprice'];
+        $totalprice = $data['totalprice'];
 
         /***SAVE PO REQUEST***/
         foreach( $item as $key => $i ) {
@@ -84,23 +84,16 @@ class ProcureController extends Controller
                 array(
                     'groupid' => $groupID,
                     'groupnum' => $newNum,
-                    'vendor_id' => $id->id,
+                    'vendor_id' => $vendor->id, //for update
+                    'requestor_id' => $id->id,
                     'request_date' => Carbon::now(),
-                    'company_name' => $request->coname,
-                    'contact_person' => $request->ctperson,
-                    'designation' => $request->designation,
-                    'email_address' => $request->emailadd,
-                    'contact_number' => $request->ctnumber,
-                    'company_address' => $request->coaddress,
                     'phone' => $request->phone,          
                     'item' => $item[$key],
                     'quantity' => $quantity[$key],
                     'uom' => $uom[$key],
                     'description' => $description[$key],
-                    'unitprice_php' => $uppeso[$key],
-                    'unitprice_usd' => $updollar[$key],
-                    'item_totalprice_php' => $tppeso[$key],
-                    'item_totalprice_usd' => $tpdollar[$key],
+                    'item_unitprice' => $unitprice[$key],
+                    'item_totalprice' => $totalprice[$key],
                     'status' => 'Pending',
                     'created_at' => now(),
                     'updated_at' => now(),

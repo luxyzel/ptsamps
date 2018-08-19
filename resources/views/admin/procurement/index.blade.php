@@ -228,20 +228,34 @@
           @endif
 
 		<form id="VendorForm" action="{{ route('procurement.store') }}" method="post">{{ csrf_field() }}
+
+
+		<div class="manage-content">
+			<p><strong>SHIP TO</strong></p><br>
+			<div class="field">
+                <label for="requestor" class="label">Requestor Name</label>
+                 <select name="requestor" id="requestor" class="control" >
+                 <option value="none">--Select Requestor--</option>
+                  @foreach($requestors as $requestor)
+                    <option value="{{ $requestor->requestor_name }}">{{ $requestor->requestor_name }}</option>
+                  @endforeach
+                </select>
+          	</div><br>
+		</div>
+		<br>
 		<div class="manage-content">	
-			<div class="dboard-content-menu">
-				<p><strong>VENDOR</strong></p>
-				<div class="field">
+			<p><strong>VENDOR</strong></p><br>
+			<div class="field">
                 <label for="vendorname" class="label">Vendor Name</label>
-                 <select name="vendorname" id="vendorname" class="control" >
-                 <option value="none">--Select Vendor--</option>
+                 <select name="vendorname" id="vendorname" class="control">
+                 <option value="">--Select Vendor--</option>
                   @foreach($vendors as $vendor)
                     <option value="{{ $vendor->company_name }}">{{ $vendor->company_name }}</option>
                   @endforeach
                 </select>
-              </div><br><br><br>
-			</div><br><br><br>	
-		
+          	</div><br>
+
+			<div id="tableDiv" style="display:none">
 				<table style="width: 100%; text-align: center;" id="tfilter">
 					<thead>
 						<tr>
@@ -270,126 +284,103 @@
 						</tr>	
 					@endforeach
 				</table>
+			</div>
 		</div><br>
 
-			<div class="manage-content">
-				<p><strong>SHIP TO</strong></p><br>
-				<div class="field">
-                <label for="coname" class="label">Company Name</label>
-                <p class="control">
-                    <input type="text" class="input" name="coname" id="coname" value="" required>
-                </p>
-              	</div>
 
-              	<div class="field">
-                <label for="ctperson" class="label">Contact Person</label>
-                <p class="control">
-                    <input type="text" class="input" name="ctperson" id="ctperson" value="" required>
-                </p>
-              	</div>
-
-                <div class="field">
-                <label for="designation" class="label">Designation</label>
-                <p class="control">
-                    <input type="text" class="input" name="designation" id="designation" value="" required>
-                </p>
-              	</div>
-
-              	<div class="field">
-                <label for="emailadd" class="label">Email Address</label>
-                <p class="control">
-                    <input type="email" class="input" name="emailadd" id="emailadd" value="" required>
-                </p>
-              	</div>
-
-              	<div class="field">
-                <label for="ctnumber" class="label">Contact Number</label>
-                <p class="control">
-                    <input type="text" class="input" name="ctnumber" id="ctnumber" value="" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
-                </p>
-              	</div>
-
-              	<div class="field">
-                <label for="coaddress" class="label">Company Address</label>
-                <p class="control">
-                    <input type="text" class="input" name="coaddress" id="coaddress" value="" required>
-                </p>
-              	</div>
-
-              	<div class="field">
-                <label for="phone" class="label">Phone</label>
-                <p class="control">
-                    <input type="text" class="input" name="phone" id="phone" value="" placeholder="###-####" required>
-                </p>
-              	</div>
-			</div>
 
 		<div class="manage-content">
-				<table style="width: 100%; text-align: center;" id="dynamic_field">
-					<thead>
-						<tr>
-							<th>Item</th>
-							<th>Quantity</th>
-							<th>UOM</th>
-							<th>Description</th>
-							<th>Unit Price (₱)</th>
-							<th>Unit Price ($)</th>
-							<th>Total Price (₱)</th>
-							<th>Total Price ($)</th>
-							<th>Add</th>
-						</tr>
-					</thead>
-						<tr class="dynamic-added">
-							<td>
-								<div class="input_fields_wrap">
-							    <div><input type="text" name="item[]" size="45" id="item-0" required></div>
-								</div>
-							</td>
-							<td>
-								<div class="input_fields_wrap">
-							    <div><input type="text" class="quantity" name="quantity[]" size="5" id="quantity-0" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required></div>
-								</div>
-							</td>
-							<td>
-								<div class="input_fields_wrap">
-							    <div><input type="text" name="uom[]" id="uom-0" required></div>
-								</div>
-							</td>
-							<td>
-								<div class="input_fields_wrap">
-							    <div><input type="text" name="description[]" size="40" id="description-0" required></div>
-								</div>
-							</td>
-							<td>
-								<div class="input_fields_wrap">
-							    <div><input type="text" class="uppeso" name="uppeso[]" id="uppeso-0"  onkeypress="return event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)" required></div>
-								</div>
-							</td>
-							<td>
-								<div class="input_fields_wrap">
-							    <div><input type="text" class="updollar" name="updollar[]" id="updollar-0" onkeypress="return event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)"></div>
-								</div>
-							</td>
-							<td>
-								<div class="input_fields_wrap">
-							    <div><input type="text" class="tppeso" name="tppeso[]" id="tppeso-0" placeholder="total" readonly></div>
-								</div>
-							</td>
-							<td>
-								<div class="input_fields_wrap">
-							    <div><input type="text" class="tpdollar" id="tpdollar-0" name="tpdollar[]" placeholder="total" readonly></div>
-								</div>
-							</td>
-							<td>
-								<button type="button" name="add" id="add" class="btn btn-success">+</button>
-							</td>
-						</tr>
-				</table>
-					<button class="submit-approver-acc" style="margin-top: 40px;" id="submits">Submit</button>
-			
+			<p><strong>ORDERS</strong></p><br>
+			<table style="width: 100%; text-align: center;" id="dynamic_field">
+				<thead>
+					<tr>
+						<th>Item</th>
+						<th>Quantity</th>
+						<th>UOM</th>
+						<th>Description</th>
+						<th>Unit Price (₱)</th>
+						<th>Total Price (₱)</th>
+						<th>Add</th>
+					</tr>
+				</thead>
+					<tr class="dynamic-added">
+						<td>
+							<div class="input_fields_wrap">
+						    <div><input type="text" name="item[]" size="45" id="item-0" required></div>
+							</div>
+						</td>
+						<td>
+							<div class="input_fields_wrap">
+						    <div><input type="text" class="quantity" name="quantity[]" size="5" id="quantity-0" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required></div>
+							</div>
+						</td>
+						<td>
+							<div class="input_fields_wrap">
+						    <div><input type="text" name="uom[]" id="uom-0" required></div>
+							</div>
+						</td>
+						<td>
+							<div class="input_fields_wrap">
+						    <div><input type="text" name="description[]" size="40" id="description-0" required></div>
+							</div>
+						</td>
+						<td>
+							<div class="input_fields_wrap">
+						    <div><input type="text" class="unitprice" name="unitprice[]" id="unitprice-0"  onkeypress="return event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)" required></div>
+							</div>
+						</td>
+						<td>
+							<div class="input_fields_wrap">
+						    <div><input type="text" class="totalprice" name="totalprice[]" id="totalprice-0" placeholder="total" readonly></div>
+							</div>
+						</td>
+						<td>
+							<button type="button" name="add" id="add" class="btn btn-success">+</button>
+						</td>
+					</tr>
+			</table>
+		</div><br>
+		
+		<div class="dboard-content-menu">
+				
+				<p><strong>PAYMENTS</strong></p><br>
+			    <div class="fl">
+					<label for="remarks" class="label">Notes/Remarks/Comment:</label>
+					<textarea name="remarks" id="remarks" rows="4" cols="30"></textarea>
+					<br>
+					<div class="field">
+					<label for="remarks" class="label">Payment Terms:</label>
+					<input type="text" name="paymentterms" id="paymentterms">
+	            	</div>
+	            </div>
+	            <div class="fr">
+	            	<div class="field">
+					<label class="label">VAT Inclusive:</label>
+					<input type="text" class="vatinclusive" name="vatinclusive" id="vatinclusive" readonly>
+					</div>
+					<div class="field">
+					<label class="label">VAT Exclusive:</label>
+					<input type="text" class="vatexclusive" name="vatexclusive" id="vatexclusive" readonly>
+	            	</div>
+	            	<div class="field">
+					<label class="label">Less Discount:</label>
+					<input type="text" class="lessdiscount" name="lessdiscount" id="lessdiscount">
+	            	</div>
+	            	<div class="field">
+					<label class="label">12% VAT:</label>
+					<input type="text" class="12vat" name="12vat" id="12vat" readonly>
+	            	</div>
+	            	<div class="field">
+					<label class="label">Total Price:</label>
+					<input type="text" class="total" name="total" id="total" readonly>
+	            	</div>
+	            </div>
+	        
 		</div>
-		<br>
-		</form>	
+
+		<button class="submit-approver-acc" style="margin-top: 40px;" id="submits">Submit</button>
+		
+	</form>	
 			<!-- PAGINATION -->
 
 			<!-- warning no record -->
@@ -409,35 +400,28 @@
 
 
 
-
-
 <script type="text/javascript">
- 
+
+/*** ADD NEW ROW FOR ITEM ***/
 $(document).ready(function() {
   var i = 0;
   $("#quantity-" + i).change(function() {
     upd_art(i)
   });
-  $("#uppeso-" + i).change(function() {
+  $("#unitprice-" + i).change(function() {
     upd_art(i)
   });
- $("#updollar-" + i).change(function() {
-    upd_art(i)
-  });
+
 
   $('#add').click(function() {
     i++;
-    $('#dynamic_field').append('<tr id="row' + i + '"><td><input type="text" name="item[]" id="item-' + i + '" size="45" class="form-control name_list" required/></td><td><input type="text" value=0 id="quantity-' + i + '" name="quantity[]" placeholder="quantity" size="5" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required/></td><td><input type="text" name="uom[]" id="uom-' + i + '" class="form-control name_list" required/></td><td><input type="text" name="description[]" id="description-' + i + '" size="40" class="form-control name_list" required/></td><td><input type="text" id="uppeso-' + i + '" name="uppeso[]" value=0  placeholder="price" onkeypress="return event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)" required/></td><td><input type="text" id="updollar-' + i + '" name="updollar[]" value=0  placeholder="price" onkeypress="return event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)" required/></td><td><input type="text" id="tppeso-' + i + '" name="tppeso[]" placeholder="total" class="form-control name_list" readonly /></td><td><input type="text" id="tpdollar-' + i + '" name="tpdollar[]" placeholder="total" class="form-control name_list" readonly /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
-
+    $('#dynamic_field').append('<tr id="row' + i + '"><td><input type="text" name="item[]" id="item-' + i + '" size="45" class="form-control name_list" required/></td><td><input type="text" value=0 id="quantity-' + i + '" name="quantity[]" placeholder="quantity" size="5" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required/></td><td><input type="text" name="uom[]" id="uom-' + i + '" class="form-control name_list" required/></td><td><input type="text" name="description[]" id="description-' + i + '" size="40" class="form-control name_list" required/></td><td><input type="text" id="unitprice-' + i + '" name="unitprice[]" class="unitprice" value=0  placeholder="price" onkeypress="return event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)" required/></td><td><input type="text" id="totalprice-' + i + '" name="totalprice[]" placeholder="total" class="totalprice" readonly /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
 
 
     $("#quantity-" + i).change(function() {
       upd_art(i)
     });
-    $("#uppeso-" + i).change(function() {
-      upd_art(i)
-    });
-    $("#updollar-" + i).change(function() {
+    $("#unitprice-" + i).change(function() {
       upd_art(i)
     });
 
@@ -447,53 +431,119 @@ $(document).ready(function() {
   $(document).on('click', '.btn_remove', function() {
     var button_id = $(this).attr("id");
     $('#row' + button_id + '').remove();
+
   });
 
-  function upd_art(i) {
-    var qty = $('#quantity-' + i).val();
-    var peso = $('#uppeso-' + i).val();
-    var usd = $('#updollar-' + i).val();
-    var totPeso = (qty * peso);
-    var totUsd = (qty * usd);
-    var valPeso = totPeso.toFixed(2);
-    var valUsd = totUsd.toFixed(2);
-    $('#tppeso-' + i).val(valPeso);
-    $('#tpdollar-' + i).val(valUsd);
-  }
-
+	function upd_art(i) {
+	    var qty = $('#quantity-' + i).val();
+	    var price = $('#unitprice-' + i).val();
+	    var total = (qty * price);
+	    var value = total.toFixed(2);
+	    $('#totalprice-' + i).val(value);
+	 
+	}
    /*setInterval(upd_art, 1000);*/
 });
 
 
+/*** CALCULATION ***/
+$(document).on("change", ".unitprice", function() {
+	// CALCULATE VAT INC
+    var sum = 0;
+    $(".totalprice").each(function(){
+        sum += parseFloat(+$(this).val());
+    });
+    $("#vatinclusive").val(parseFloat(sum).toFixed(2));
+
+    // CALCULATE 12% VAT
+  	var inclusive = parseFloat($("#vatinclusive").val());
+	$("#12vat").val(parseFloat(inclusive*0.12).toFixed(2));
+
+	// CALCULATE VAT EXC
+	var vat = parseFloat($("#12vat").val());
+	$("#vatexclusive").val(parseFloat(inclusive - vat).toFixed(2));
+
+	// CALCULATE TOTAL PRICE
+	$("#total").val(parseFloat(inclusive).toFixed(2));
+
+});
+
+/*** WITH DISCOUNT ***/
+$('#lessdiscount').on('change blur',function(){
+	if($(this).val().trim().length === 0){
+	$(this).val(0.00);
+	}
+
+	if ($(this).val().indexOf('%') >= 0) {
+	/*** DISCOUNT IS PERCENTAGE***/
+		var input = $(this).val();
+		var percent = parseFloat(input) / 100.0;
+       	
+       	// CALCULATE TOTAL PRICE
+	    var inclusive = parseFloat($("#vatinclusive").val());
+		var amountLess = parseFloat(inclusive * percent).toFixed(2);
+		var deducted = parseFloat(inclusive - amountLess).toFixed(2)
+		$("#total").val(parseFloat(deducted).toFixed(2));
+
+		// CALCULATE 12% VAT
+	  	var total = parseFloat($("#total").val());
+		$("#12vat").val(parseFloat(total*0.12).toFixed(2));
+
+		// CALCULATE VAT EXC
+		var vat = parseFloat($("#12vat").val());
+		$("#vatexclusive").val(parseFloat(total - vat).toFixed(2));
+
+    } else {
+    /*** DISCOUNT IS AMOUNT***/
+
+	   	// CALCULATE TOTAL PRICE
+	    var inclusive = parseFloat($("#vatinclusive").val());
+		var lessdiscount = parseFloat($("#lessdiscount").val());
+		$("#total").val(parseFloat(inclusive - lessdiscount).toFixed(2));
+
+		// CALCULATE 12% VAT
+	  	var total = parseFloat($("#total").val());
+		$("#12vat").val(parseFloat(total*0.12).toFixed(2));
+
+		// CALCULATE VAT EXC
+		var vat = parseFloat($("#12vat").val());
+		$("#vatexclusive").val(parseFloat(total - vat).toFixed(2));
+    }
+});
 
 
 
-//Showing vendor details
-$(document).ready(function () {
-	$('#tfilter').hide();
- $('#vendorname').on('change', function() {
-   	$('#tfilter').toggle(100);
-  // Declare variables 
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("vendorname");
- filter = input.value.toUpperCase();
-  table = document.getElementById("tfilter");
-  tr = table.getElementsByTagName("tr");
+/*** Showing vendor details ***/
+document.getElementById("vendorname").onchange = function()
+{
+	var x = document.getElementById("tableDiv");
+    if(this.value === "")
+    {
+        x.style.display = "none";
+    }
+    else{
+    	// Declare variables 
+		var input, filter, table, tr, td, i;
+		input = document.getElementById("vendorname");
+		filter = input.value.toUpperCase();
+		table = document.getElementById("tfilter");
+		tr = table.getElementsByTagName("tr");
 
-  // Loop through all table rows, and hide those who don't match the search query
-	  for (i = 0; i < tr.length; i++) {
-	    td = tr[i].getElementsByTagName("td")[0];
-	    if (td) {
-	      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-	        tr[i].style.display = "";
-	      } else {
-	        tr[i].style.display = "none";
+  		// FIND MATCH RECORD
+	  	for (i = 0; i < tr.length; i++) {
+	    	td = tr[i].getElementsByTagName("td")[0];
+	    	if (td) {
+	      		if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	        		tr[i].style.display = "";
+	      		} else {
+	        		tr[i].style.display = "none";
+	      		}
+	    	} 
+	  	}
+    	x.style.display = "block";
+    }
+};
 
-	      }
-	    } 
-	  }
-	});
-}); 
 
 /*** TIME-OUT SESSION ALERT ***/
 setTimeout(function() {
