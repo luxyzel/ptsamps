@@ -429,9 +429,9 @@ $(document).ready(function() {
 
 
   $(document).on('click', '.btn_remove', function() {
-    var button_id = $(this).attr("id");
-    $('#row' + button_id + '').remove();
-
+	var button_id = $(this).attr("id");
+	$('#row' + button_id + '').remove();
+	ComputePayments();
   });
 
 	function upd_art(i) {
@@ -445,11 +445,11 @@ $(document).ready(function() {
    /*setInterval(upd_art, 1000);*/
 });
 
-
 /*** CALCULATION ***/
-$(document).on("change", ".unitprice", function() {
+function ComputePayments() {
+	
 	// CALCULATE VAT INC
-    var sum = 0;
+	var sum = 0;
     $(".totalprice").each(function(){
         sum += parseFloat(+$(this).val());
     });
@@ -466,49 +466,61 @@ $(document).on("change", ".unitprice", function() {
 	// CALCULATE TOTAL PRICE
 	$("#total").val(parseFloat(inclusive).toFixed(2));
 
+	if($('#lessdiscount').val() !== ''){
+		/*** WITH LESS DISCOUNT ***/
+
+		if ($('#lessdiscount').val().indexOf('%') >= 0) {
+		/*** DISCOUNT IS PERCENTAGE***/
+			var input = $('#lessdiscount').val();
+			var percent = parseFloat(input) / 100.0;
+	       	
+	       	// CALCULATE TOTAL PRICE
+		    var inclusive = parseFloat($("#vatinclusive").val());
+			var amountLess = parseFloat(inclusive * percent).toFixed(2);
+			var deducted = parseFloat(inclusive - amountLess).toFixed(2)
+			$("#total").val(parseFloat(deducted).toFixed(2));
+
+			// CALCULATE 12% VAT
+		  	var total = parseFloat($("#total").val());
+			$("#12vat").val(parseFloat(total*0.12).toFixed(2));
+
+			// CALCULATE VAT EXC
+			var vat = parseFloat($("#12vat").val());
+			$("#vatexclusive").val(parseFloat(total - vat).toFixed(2));
+
+		} else {
+		/*** DISCOUNT IS AMOUNT***/
+
+		   	// CALCULATE TOTAL PRICE
+		    var inclusive = parseFloat($("#vatinclusive").val());
+			var lessdiscount = parseFloat($("#lessdiscount").val());
+			$("#total").val(parseFloat(inclusive - lessdiscount).toFixed(2));
+
+			// CALCULATE 12% VAT
+		  	var total = parseFloat($("#total").val());
+			$("#12vat").val(parseFloat(total*0.12).toFixed(2));
+
+			// CALCULATE VAT EXC
+			var vat = parseFloat($("#12vat").val());
+			$("#vatexclusive").val(parseFloat(total - vat).toFixed(2));
+	    }
+	}
+}
+
+
+$(document).on("change", ".unitprice", function() {
+
+	ComputePayments();
 });
 
-/*** WITH DISCOUNT ***/
+
 $('#lessdiscount').on('change blur',function(){
 	if($(this).val().trim().length === 0){
 	$(this).val(0.00);
 	}
 
-	if ($(this).val().indexOf('%') >= 0) {
-	/*** DISCOUNT IS PERCENTAGE***/
-		var input = $(this).val();
-		var percent = parseFloat(input) / 100.0;
-       	
-       	// CALCULATE TOTAL PRICE
-	    var inclusive = parseFloat($("#vatinclusive").val());
-		var amountLess = parseFloat(inclusive * percent).toFixed(2);
-		var deducted = parseFloat(inclusive - amountLess).toFixed(2)
-		$("#total").val(parseFloat(deducted).toFixed(2));
-
-		// CALCULATE 12% VAT
-	  	var total = parseFloat($("#total").val());
-		$("#12vat").val(parseFloat(total*0.12).toFixed(2));
-
-		// CALCULATE VAT EXC
-		var vat = parseFloat($("#12vat").val());
-		$("#vatexclusive").val(parseFloat(total - vat).toFixed(2));
-
-    } else {
-    /*** DISCOUNT IS AMOUNT***/
-
-	   	// CALCULATE TOTAL PRICE
-	    var inclusive = parseFloat($("#vatinclusive").val());
-		var lessdiscount = parseFloat($("#lessdiscount").val());
-		$("#total").val(parseFloat(inclusive - lessdiscount).toFixed(2));
-
-		// CALCULATE 12% VAT
-	  	var total = parseFloat($("#total").val());
-		$("#12vat").val(parseFloat(total*0.12).toFixed(2));
-
-		// CALCULATE VAT EXC
-		var vat = parseFloat($("#12vat").val());
-		$("#vatexclusive").val(parseFloat(total - vat).toFixed(2));
-    }
+	ComputePayments();
+	
 });
 
 
