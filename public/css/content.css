@@ -249,6 +249,21 @@
 	box-shadow: 3px 3px 40px -10px rgba(0, 0, 0, 0.29);
 }
 
+.view-cont {
+	background-color: #fff;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 600px;
+	height: 500px;
+	margin-top: -250px;
+	margin-left: -300px;
+	border-radius: 5px;
+	padding: 20px 30px;
+	box-shadow: 3px 3px 40px -10px rgba(0, 0, 0, 0.29);
+	overflow-x: auto;
+}
+
 
 /*Asset creation container*/
 .lcont-c-asset {
@@ -388,7 +403,7 @@
 	font-size: 18px;
 	text-transform: uppercase;
 	color: #4f9dff;
-	padding: 5px;
+	padding: 5px 10px;
 	background-color: #e1f0ff;
 	letter-spacing: 1px;
 }
@@ -398,7 +413,7 @@
 	font-size: 18px;
 	text-transform: uppercase;
 	color: #fe903a;
-	padding: 5px;
+	padding: 5px 10px;
 	background-color: #ffdcaa;
 	letter-spacing: 1px;
 }
@@ -408,7 +423,7 @@
 	font-size: 18px;
 	text-transform: uppercase;
 	color: #8279ff;
-	padding: 5px;
+	padding: 5px 10px;
 	background-color: #e1deff;
 	letter-spacing: 1px;
 }
@@ -418,7 +433,7 @@
 	font-size: 18px;
 	text-transform: uppercase;
 	color: #ff3668;
-	padding: 5px;
+	padding: 5px 10px;
 	background-color: #ffabc0;
 	letter-spacing: 1px;
 }
@@ -428,7 +443,7 @@
 	font-size: 18px;
 	text-transform: uppercase;
 	color: #3f9e7b;
-	padding: 5px;
+	padding: 5px 10px;
 	background-color: #ceffed;
 	letter-spacing: 1px;
 }
