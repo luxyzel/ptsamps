@@ -264,10 +264,10 @@
 							<th>Designation</th>
 							<th>Email Address</th>
 							<th>Contact Number</th>
-							<th>Company Address</th>
+							<th style="max-width: 200px">Company Address</th>
 							<th>Phone</th>
-							<th>Fax</th>
-							<th>Vat Number</th>
+							{{-- <th>Fax</th>
+							<th>Vat Number</th> --}}
 						</tr>
 					</thead>
 					@foreach ($vendors as $vendor)
@@ -277,10 +277,10 @@
 							<td>{{$vendor->designation}}</td>
 							<td>{{$vendor->email_address}}</td>
 							<td>{{$vendor->contact_number}}</td>
-							<td>{{$vendor->company_address}}</td>
+							<td style="max-width: 200px">{{$vendor->company_address}}</td>
 							<td>{{$vendor->phone}}</td>
-							<td>{{$vendor->fax}}</td>
-							<td>{{$vendor->vat_number}}</td>
+							{{-- <td>{{$vendor->fax}}</td>
+							<td>{{$vendor->vat_number}}</td> --}}
 						</tr>	
 					@endforeach
 				</table>
