@@ -91,7 +91,7 @@ class AssetTrackController extends Controller
         //
     }
 
-        //DEPLOYED ASSETS Monitor
+   /***  FILTER ***/
     public function TrackAsset(Request $request)
     {
         if ($request->categories !== 'All'){
@@ -108,4 +108,30 @@ class AssetTrackController extends Controller
         $category = Category::select('category')->groupBy('category')->get();
         return view('admin.assets-tracking.asset-track', compact('admin', 'category', 'assets'));
     }
+
+    /*** SEARCH ***/
+    public function Search(Request $request)
+    {
+        $s = $request->get('search');
+        $admin = Auth::guard('admin')->user();
+        $category = Category::select('category')->groupBy('category')->get();
+        $assets = Asset::where(function ($query) use($s) 
+        {
+            $query->where('st_msn', 'like', '%' . $s . '%')
+               ->orWhere('pdsn', 'like', '%' . $s . '%')
+               ->orWhere('asset_tag', 'like', '%' . $s . '%')
+               ->orWhere('asset_number', 'like', '%' . $s . '%');
+                })
+            ->paginate(25);
+
+
+            if(!$assets->isEmpty()){
+                return view('admin.assets-tracking.asset-track',compact('admin', 'assets', 'category'));
+            }else{
+                Session::flash('warning', 'No record found');
+                return view('admin.assets-tracking.asset-track',compact('admin', 'assets', 'category'));
+            }
+
+    }
+    
 }

@@ -32,7 +32,7 @@
 
 			<!-- Buttons -->
 			<div class="dboard-prof">
-				<a href="{{ route('assets.deployed')}}">
+				<a href="{{ route('deployed-units.index')}}">
 					<div class="dboard-left-but">Deployed Units</div>
 				</a>
 				<a href="{{ route('assets.stocks')}}">
@@ -210,7 +210,7 @@
 
 			<div class="dboard-content-menu">
 				<div class="fl">
-					<form method="get" id="DeployedForm" action="{{route('deployed-units')}}">{{ csrf_field() }}
+					<form method="get" id="DeployedForm" action="{{route('deployed-units.filter')}}">{{ csrf_field() }}
 			         	<select name="categorytype"  id='categorytype'>
 			         		<option value="" selected disabled hidden>Select Category Type</option>
 			         		<option value="All">All</option>
@@ -226,9 +226,8 @@
       			</div>
 
 				<div class="fr" style="width: 400px;">
-					<form  action="#" method="get">
+					<form  action="{{ route('deployed-units.search') }}" method="get">
 						<input type="text" class="input" name="search" id="search" value="" placeholder="search asset" required autocomplete="off">
-						{{-- <button type="submit">Search</button> --}}
 						{{ csrf_field() }}
 					</form>
 				</div>
@@ -247,6 +246,7 @@
 							<th>Asset Tag</th>
 							<th>Location</th>
 							<th>Condition</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 						@foreach ($assets as $asset)
@@ -259,18 +259,27 @@
 								<td>{{$asset->asset_tag}}</td>
 								<td>{{$asset->location}}</td>
 								<td>{{$asset->condition}}</td>
+								<td><a href="{{ route('deployed-units.show', $asset->id) }}" class="manage-view-but" title="View">View</a></td>
 							</tr>
 						@endforeach
 				</table>
 			</div>
 
-		</div>
-		<div class="clr"></div>
-	</div>
-		<!-- PAGINATION -->
+			<!-- PAGINATION -->
 			<div class="pagination-bot">
 				{{ $assets->appends(request()->input())->links() }}
 			</div>
+
+			<!-- SEARCH NO RECORD FOUND -->
+		  	@if(Session::has('warning'))
+		        <div class="comment-error">
+		           <br><strong><center>{{ Session::get('warning') }}</center> </strong> 
+		        </div>
+		    @endif
+
+		</div>
+		<div class="clr"></div>
+	</div>
 
 @include('templates.footer')
 
@@ -285,18 +294,4 @@ $(document).ready(function() {
    });
 });
 
-/*** SEARCH ASSETS TABLE BY INPUT ***/
-$("#search").keyup(function () {
-    var value = this.value.toLowerCase().trim();
-
-    $("table tr").each(function (index) {
-        if (!index) return;
-        $(this).find("td").each(function () {
-            var id = $(this).text().toLowerCase().trim();
-            var not_found = (id.indexOf(value) == -1);
-            $(this).closest('tr').toggle(!not_found);
-            return not_found;
-        });
-    });
-});
 </script>
