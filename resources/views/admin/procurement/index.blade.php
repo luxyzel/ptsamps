@@ -101,7 +101,7 @@
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
-						<a href="">
+						<a href="{{ route('po-tracking.index') }}">
 							<div class="dboard-menu4-box">
 								<img src="/img/icon4.png">
 							</div>
@@ -210,11 +210,11 @@
 			</div><br>
 
 		<!-- SUCCESS ALERT -->
-        @if(Session::has('success'))
-        <div class="comment-error" id="comment-error">
-           <strong> {{ Session::get('success') }}</strong> 
-        </div>
-        @endif
+           @if(Session::has('success'))
+            <div class="comment-success" id ="comment-success" style="margin-top: 25px">
+                <strong> {{ Session::get('success') }}</strong> 
+            </div>
+            @endif
 
           <!-- DISPLAY ERRORS -->
           @if ($errors->any())
@@ -234,8 +234,8 @@
 			<p><strong>SHIP TO</strong></p><br>
 			<div class="field">
                 <label for="requestor" class="label">Requestor Name</label>
-                 <select name="requestor" id="requestor" class="control" >
-                 <option value="none">--Select Requestor--</option>
+                 <select name="requestor" id="requestor" class="control" required>
+                 <option value="none" hidden selected>--Select Requestor--</option>
                   @foreach($requestors as $requestor)
                     <option value="{{ $requestor->requestor_name }}">{{ $requestor->requestor_name }}</option>
                   @endforeach
@@ -247,7 +247,7 @@
 			<p><strong>VENDOR</strong></p><br>
 			<div class="field">
                 <label for="vendorname" class="label">Vendor Name</label>
-                 <select name="vendorname" id="vendorname" class="control">
+                 <select name="vendorname" id="vendorname" class="control" required>
                  <option value="">--Select Vendor--</option>
                   @foreach($vendors as $vendor)
                     <option value="{{ $vendor->company_name }}">{{ $vendor->company_name }}</option>
@@ -311,7 +311,7 @@
 						</td>
 						<td>
 							<div class="input_fields_wrap">
-						    <div><input type="text" class="quantity" name="quantity[]" size="5" id="quantity-0" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required></div>
+						    <div><input type="text" class="quantity" class="quantity" name="quantity[]" size="5" id="quantity-0" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required></div>
 							</div>
 						</td>
 						<td>
@@ -364,11 +364,11 @@
 	            	</div>
 	            	<div class="field">
 					<label class="label">Less Discount:</label>
-					<input type="text" class="lessdiscount" name="lessdiscount" id="lessdiscount">
+					<input type="text" onkeypress="return event.charCode == 46 ||event.charCode == 37|| (event.charCode >= 48 && event.charCode <= 57)" class="lessdiscount" name="lessdiscount" id="lessdiscount">
 	            	</div>
 	            	<div class="field">
 					<label class="label">12% VAT:</label>
-					<input type="text" class="12vat" name="12vat" id="12vat" readonly>
+					<input type="text" class="vat" name="vat" id="vat" readonly>
 	            	</div>
 	            	<div class="field">
 					<label class="label">Total Price:</label>
@@ -415,7 +415,7 @@ $(document).ready(function() {
 
   $('#add').click(function() {
     i++;
-    $('#dynamic_field').append('<tr id="row' + i + '"><td><input type="text" name="item[]" id="item-' + i + '" size="45" class="form-control name_list" required/></td><td><input type="text" value=0 id="quantity-' + i + '" name="quantity[]" placeholder="quantity" size="5" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required/></td><td><input type="text" name="uom[]" id="uom-' + i + '" class="form-control name_list" required/></td><td><input type="text" name="description[]" id="description-' + i + '" size="40" class="form-control name_list" required/></td><td><input type="text" id="unitprice-' + i + '" name="unitprice[]" class="unitprice" value=0  placeholder="price" onkeypress="return event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)" required/></td><td><input type="text" id="totalprice-' + i + '" name="totalprice[]" placeholder="total" class="totalprice" readonly /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+    $('#dynamic_field').append('<tr id="row' + i + '"><td><input type="text" name="item[]" id="item-' + i + '" size="45" class="form-control name_list" required/></td><td><input type="text" value=0 id="quantity-' + i + '" name="quantity[]" class="quantity" placeholder="quantity" size="5" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required/></td><td><input type="text" name="uom[]" id="uom-' + i + '" class="form-control name_list" required/></td><td><input type="text" name="description[]" id="description-' + i + '" size="40" class="form-control name_list" required/></td><td><input type="text" id="unitprice-' + i + '" name="unitprice[]" class="unitprice" value=0  placeholder="price" onkeypress="return event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)" required/></td><td><input type="text" id="totalprice-' + i + '" name="totalprice[]" placeholder="total" class="totalprice" readonly /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
 
 
     $("#quantity-" + i).change(function() {
@@ -445,6 +445,7 @@ $(document).ready(function() {
    /*setInterval(upd_art, 1000);*/
 });
 
+
 /*** CALCULATION ***/
 function ComputePayments() {
 	
@@ -457,10 +458,10 @@ function ComputePayments() {
 
     // CALCULATE 12% VAT
   	var inclusive = parseFloat($("#vatinclusive").val());
-	$("#12vat").val(parseFloat(inclusive*0.12).toFixed(2));
+	$("#vat").val(parseFloat(inclusive*0.12).toFixed(2));
 
 	// CALCULATE VAT EXC
-	var vat = parseFloat($("#12vat").val());
+	var vat = parseFloat($("#vat").val());
 	$("#vatexclusive").val(parseFloat(inclusive - vat).toFixed(2));
 
 	// CALCULATE TOTAL PRICE
@@ -482,10 +483,10 @@ function ComputePayments() {
 
 			// CALCULATE 12% VAT
 		  	var total = parseFloat($("#total").val());
-			$("#12vat").val(parseFloat(total*0.12).toFixed(2));
+			$("#vat").val(parseFloat(total*0.12).toFixed(2));
 
 			// CALCULATE VAT EXC
-			var vat = parseFloat($("#12vat").val());
+			var vat = parseFloat($("#vat").val());
 			$("#vatexclusive").val(parseFloat(total - vat).toFixed(2));
 
 		} else {
@@ -498,10 +499,10 @@ function ComputePayments() {
 
 			// CALCULATE 12% VAT
 		  	var total = parseFloat($("#total").val());
-			$("#12vat").val(parseFloat(total*0.12).toFixed(2));
+			$("#vat").val(parseFloat(total*0.12).toFixed(2));
 
 			// CALCULATE VAT EXC
-			var vat = parseFloat($("#12vat").val());
+			var vat = parseFloat($("#vat").val());
 			$("#vatexclusive").val(parseFloat(total - vat).toFixed(2));
 	    }
 	}
@@ -509,15 +510,40 @@ function ComputePayments() {
 
 
 $(document).on("change", ".unitprice", function() {
+	var $row = $(this).closest("tr");  
+    var qty = parseFloat($row.find('.quantity').val());  
+    var price = parseFloat($row.find(".unitprice").val());
+    var total = (qty * price);
+    var value = total.toFixed(2);
+    if (isNaN(value)) {
+        $row.find('.totalprice').val("");  
+    }else {
+        $row.find('.totalprice').val(value);  
+    }
 
 	ComputePayments();
 });
 
+$(document).on("change", ".quantity", function() {
+	var $row = $(this).closest("tr");  
+    var qty = parseFloat($row.find('.quantity').val());  
+    var price = parseFloat($row.find(".unitprice").val());
+    var total = (qty * price);
+    var value = total.toFixed(2);
+    if (isNaN(value)) {
+        $row.find('.totalprice').val("");  
+    }else {
+        $row.find('.totalprice').val(value);  
+    }
+	ComputePayments();
+});
+
+
 
 $('#lessdiscount').on('change blur',function(){
-	if($(this).val().trim().length === 0){
+/*	if($(this).val().trim().length === 0){
 	$(this).val(0.00);
-	}
+	}*/
 
 	ComputePayments();
 	
@@ -561,6 +587,7 @@ document.getElementById("vendorname").onchange = function()
 setTimeout(function() {
     $('#comment-success').fadeOut('fast');
 }, 5000);
+
 </script>
 
 

@@ -54,12 +54,16 @@ class PeripheralsController extends Controller
     {
         $this->validateWith([
         'category_type' => 'required',
-        'stmsn' => 'required|unique:peripherals,stmsn',
-        'pdsn' => 'unique:peripherals,pdsn',
-        'asset_tag' => 'unique:peripherals,asset_tag',
-        'wsno' => 'unique:peripherals,wsno',
+        'stmsn' => 'required',
         'date_delivered' => 'required',
         'vendor' => 'required',
+        // 'category_type' => 'required',
+        // 'stmsn' => 'required|unique:peripherals,stmsn',
+        // 'pdsn' => 'unique:peripherals,pdsn',
+        // 'asset_tag' => 'unique:peripherals,asset_tag',
+        // 'wsno' => 'unique:peripherals,wsno',
+        // 'date_delivered' => 'required',
+        // 'vendor' => 'required',
         ]);
 
         $peripheral = new Peripheral();
@@ -126,12 +130,16 @@ class PeripheralsController extends Controller
     {
         $this->validateWith([
         'category_type' => 'required',
+        'stmsn' => 'required',
+        'date_delivered' => 'required',
+        'vendor' => 'required',
+        /*'category_type' => 'required',
         'stmsn' => 'required|unique:peripherals,stmsn,'.$id,
         'pdsn' => 'unique:peripherals,pdsn,'.$id,
         'asset_tag' => 'unique:peripherals,asset_tag,'.$id,
         'wsno' => 'unique:peripherals,wsno,'.$id,
         'date_delivered' => 'required',
-        'vendor' => 'required',
+        'vendor' => 'required',*/
         ]);
 
         $peripheral = Peripheral::findOrFail($id);

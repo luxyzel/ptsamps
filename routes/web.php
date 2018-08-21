@@ -93,6 +93,15 @@ Route::prefix('admin')->group(function(){
 	// Assets Tracking
 	Route::resource('/assets-tracking', 'Admin\AssetTrackController');
 
+	// PO Tracking FILTER
+	Route::get('/po-tracking/filter', 'Admin\POTrackController@FilterPO')->name('po-tracking.filter');
+
+	// PO Tracking SEARCH
+	Route::get('/po-tracking/search', 'Admin\POTrackController@Search')->name('po-tracking.search');
+
+	// PO Tracking
+	Route::resource('/po-tracking', 'Admin\POTrackController');
+
 });
 
 
