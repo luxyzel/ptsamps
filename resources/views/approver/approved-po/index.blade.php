@@ -16,7 +16,7 @@
 
             <!-- Buttons -->
             <div class="dboard-prof">
-                 <a href="{{ route('home') }}">
+                <a href="{{ route('home') }}">
                     <div class="dboard-left-but">Dashboard</div>
                 </a>
                 <a href="{{ route('pending-po.index') }}">
@@ -44,52 +44,54 @@
                 </a>
             </div>
         </div>
-
-        {{-- Right Menu --}}
         <div class="dboard-right-panel fr">
-            
-            {{-- Page Label --}}
-            <div class="app-label">
+
+        	<div class="app-label">
                 <div class="fl">
-                    <p class="app-page-name">Dashboard</p>
+                    <p class="app-page-name">Approved P.O.</p>
                 </div>
                 <div class="fl">
-                    <p class="app-page-sub">Overview</p>
+                    <p class="app-page-sub">Purchase Orders</p>
                 </div>
                 <div class="clr"></div>  
             </div>
 
-            {{-- First set of contents dashboard  --}}
-            <div class="app-dboard-cont">
-                <div class="app-cont-box2 fl">
-                    <p class="app-cont-title-blue">Purchase Order Summary</p>
-
-                    {{--  --}}
-                </div>
-                <div class="app-cont-box1 fl">
-                    <p class="app-cont-title-green">Monthly P.O. Cost</p>
-                </div>
-                <div class="clr"></div>
-            </div>
-
-            {{-- First set of contents dashboard  --}}
-            <div class="app-dboard-cont" style="margin-top: 20px">
-                <div class="app-cont-box1 fl" style="margin-right: 25px; width: 32%;">
-                    <p class="app-cont-title-orange">Total Asset and Peripherals</p>
-                </div>
-                <div class="app-cont-box1 fl" style="margin-right: 20px; width: 31%;">
-                    <p class="app-cont-title-violet">Number of user</p>
-                </div>
-                <div class="app-cont-box1 fl" style="width: 33%;">
-                    <p class="app-cont-title-pink">Graph</p>
-                </div>
-                <div class="clr"></div>
-            </div>
-        </div>
-
+	  		<div class="manage-content">
+				<table style="width: 100%; text-align: center;">
+					<thead>
+						<tr>
+							<th>Requested Date</th>
+							<th>Requested By</th>
+							<th>Status</th>
+							<th>PO Number</th>
+							<th style="max-width:160px;">Items</th>
+							<th>Vendor</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+						@foreach ($procures as $procure)
+						<tr>
+							<td>{{ $procure->created_at->toFormattedDateString() }}</td>
+							<td>{{ $procure->requested_by }}</td>
+							<td>{{ $procure->status }}</td>
+							@if($procure->po_id == NULL)
+							<td>N/A</td>
+							@else
+							<td>{{ $procure->ponumbers->po_number }}</td>
+							@endif
+							<td style="max-width:160px;">{{ $procure->item }}</td>
+							<td>{{ $procure->vendors->company_name}}</td>
+							<td>
+								<a href="{{ route('approved-po.show', $procure->group_id) }}" class="manage-view-but" title="View">View Details</a>
+							</td>
+						</tr>
+					@endforeach
+				</table>
+			</div>
+	  	</div>
         <div class="clr"></div>
-        
     </div>
-
+	
+	
 
 @include('templates.footer')
