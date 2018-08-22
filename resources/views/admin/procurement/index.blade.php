@@ -1,7 +1,6 @@
 
 @include('templates.header')
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
   <title>Procurement Process | Asset Management and Procurement System</title>
 </head>
@@ -101,7 +100,7 @@
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
-						<a href="{{ route('po-tracking.index') }}">
+						<a href="{{ route('po-tracking.index')}}">
 							<div class="dboard-menu4-box">
 								<img src="/img/icon4.png">
 							</div>
@@ -210,177 +209,200 @@
 			</div><br>
 
 		<!-- SUCCESS ALERT -->
-           @if(Session::has('success'))
-            <div class="comment-success" id ="comment-success" style="margin-top: 25px">
+        @if(Session::has('success'))
+           	<div class="comment-success" id ="comment-success" style="margin-top: 25px">
                 <strong> {{ Session::get('success') }}</strong> 
             </div>
-            @endif
+        @endif
 
-          <!-- DISPLAY ERRORS -->
-          @if ($errors->any())
-          <div class="alert alert-danger">
-              <ul>
-                  @foreach ($errors->all() as $error)
-                      <br><strong>{{ $error }}</strong>
-                  @endforeach
-              </ul>
-          </div>
-          @endif
+     	<!-- DISPLAY ERRORS -->
+      	@if ($errors->any())
+	      	<div class="alert alert-danger">
+	          	<ul>
+	              	@foreach ($errors->all() as $error)
+	                 	<br><strong>{{ $error }}</strong>
+	              	@endforeach
+	          	</ul>
+	      	</div>
+      	@endif
 
-		<form id="VendorForm" action="{{ route('procurement.store') }}" method="post">{{ csrf_field() }}
+		<form id="VendorForm" action="{{ route('procurement.store') }}" method="post">
+			{{ csrf_field() }}
+
+			<div class="manage-content" style="margin-top: 20px;">	
+				<div class="app-label" style="margin-top: 10px;">
+	                <div class="fl">
+	                    <p class="app-page-name" style="font-size: 20px">Select Vendor</p>
+	                </div>
+	                <div class="fl">
+	                    <p class="app-page-sub"></p>
+	                </div>
+                	<div class="clr"></div>  
+            	</div>
+				
+             	<select name="vendorname" id="vendorname" class="control" required>
+	             	<option value="">-- Select Vendor --</option>
+	              	@foreach($vendors as $vendor)
+	                	<option value="{{ $vendor->company_name }}">{{ $vendor->company_name }}</option>
+	              	@endforeach
+            	</select>
 
 
-		<div class="manage-content">
-			<p><strong>SHIP TO</strong></p><br>
-			<div class="field">
-                <label for="requestor" class="label">Requestor Name</label>
-                 <select name="requestor" id="requestor" class="control" required>
-                 <option value="none" hidden selected>--Select Requestor--</option>
-                  @foreach($requestors as $requestor)
-                    <option value="{{ $requestor->requestor_name }}">{{ $requestor->requestor_name }}</option>
-                  @endforeach
-                </select>
-          	</div><br>
-		</div>
-		<br>
-		<div class="manage-content">	
-			<p><strong>VENDOR</strong></p><br>
-			<div class="field">
-                <label for="vendorname" class="label">Vendor Name</label>
-                 <select name="vendorname" id="vendorname" class="control" required>
-                 <option value="">--Select Vendor--</option>
-                  @foreach($vendors as $vendor)
-                    <option value="{{ $vendor->company_name }}">{{ $vendor->company_name }}</option>
-                  @endforeach
-                </select>
-          	</div><br>
+				<div id="tableDiv" style="display:none">
+					<table style="width: 100%; text-align: center;" id="tfilter">
+						<thead>
+							<tr>
+								<th data-type="standard">Company Name</th>
+								<th>Contact Person</th>
+								<th>Designation</th>
+								<th>Email Address</th>
+								<th>Contact Number</th>
+								<th style="max-width: 200px">Company Address</th>
+								<th>Phone</th>
+							</tr>
+						</thead>
+						@foreach ($vendors as $vendor)
+							<tr>
+								<td>{{$vendor->company_name}}</td>
+								<td>{{$vendor->contact_person}}</td>
+								<td>{{$vendor->designation}}</td>
+								<td>{{$vendor->email_address}}</td>
+								<td>{{$vendor->contact_number}}</td>
+								<td style="max-width: 200px">{{$vendor->company_address}}</td>
+								<td>{{$vendor->phone}}</td>
+							</tr>	
+						@endforeach
+					</table>
+				</div>
+			</div>
 
-			<div id="tableDiv" style="display:none">
-				<table style="width: 100%; text-align: center;" id="tfilter">
+			
+
+			<div class="manage-content" style="margin-top: 20px;">
+				<div class="app-label" style="margin-top: 10px;">
+	                <div class="fl">
+	                    <p class="app-page-name" style="font-size: 20px">Place your orders</p>
+	                </div>
+	                <div class="fl">
+	                    <p class="app-page-sub"></p>
+	                </div>
+	            	<div class="clr"></div>  
+            	</div>
+				<table style="width: 100%; text-align: center;" id="dynamic_field">
 					<thead>
 						<tr>
-							<th data-type="standard">Company Name</th>
-							<th>Contact Person</th>
-							<th>Designation</th>
-							<th>Email Address</th>
-							<th>Contact Number</th>
-							<th style="max-width: 200px">Company Address</th>
-							<th>Phone</th>
-							{{-- <th>Fax</th>
-							<th>Vat Number</th> --}}
+							<th>Item</th>
+							<th>Quantity</th>
+							<th>UOM</th>
+							<th>Description</th>
+							<th>Unit Price (₱)</th>
+							<th>Total Price (₱)</th>
+							<th>Add</th>
 						</tr>
 					</thead>
-					@foreach ($vendors as $vendor)
-						<tr>
-							<td>{{$vendor->company_name}}</td>
-							<td>{{$vendor->contact_person}}</td>
-							<td>{{$vendor->designation}}</td>
-							<td>{{$vendor->email_address}}</td>
-							<td>{{$vendor->contact_number}}</td>
-							<td style="max-width: 200px">{{$vendor->company_address}}</td>
-							<td>{{$vendor->phone}}</td>
-							{{-- <td>{{$vendor->fax}}</td>
-							<td>{{$vendor->vat_number}}</td> --}}
-						</tr>	
-					@endforeach
+						<tr class="dynamic-added">
+							<td>
+								<div class="input_fields_wrap">
+							    <div><input type="text" name="item[]" size="45" id="item-0" required></div>
+								</div>
+							</td>
+							<td>
+								<div class="input_fields_wrap">
+							    <div><input type="text" class="quantity" class="quantity" name="quantity[]" size="5" id="quantity-0" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required></div>
+								</div>
+							</td>
+							<td>
+								<div class="input_fields_wrap">
+							    <div><input type="text" name="uom[]" id="uom-0" required></div>
+								</div>
+							</td>
+							<td>
+								<div class="input_fields_wrap">
+							    <div><input type="text" name="description[]" size="40" id="description-0" required></div>
+								</div>
+							</td>
+							<td>
+								<div class="input_fields_wrap">
+							    <div><input type="text" class="unitprice" name="unitprice[]" id="unitprice-0"  onkeypress="return event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)" required></div>
+								</div>
+							</td>
+							<td>
+								<div class="input_fields_wrap">
+							    <div><input type="text" class="totalprice" name="totalprice[]" id="totalprice-0" placeholder="total" readonly></div>
+								</div>
+							</td>
+							<td>
+								<button type="button" name="add" id="add" class="add-btn">+</button>
+							</td>
+						</tr>
 				</table>
 			</div>
-		</div><br>
 
-
-
-		<div class="manage-content">
-			<p><strong>ORDERS</strong></p><br>
-			<table style="width: 100%; text-align: center;" id="dynamic_field">
-				<thead>
-					<tr>
-						<th>Item</th>
-						<th>Quantity</th>
-						<th>UOM</th>
-						<th>Description</th>
-						<th>Unit Price (₱)</th>
-						<th>Total Price (₱)</th>
-						<th>Add</th>
-					</tr>
-				</thead>
-					<tr class="dynamic-added">
-						<td>
-							<div class="input_fields_wrap">
-						    <div><input type="text" name="item[]" size="45" id="item-0" required></div>
-							</div>
-						</td>
-						<td>
-							<div class="input_fields_wrap">
-						    <div><input type="text" class="quantity" class="quantity" name="quantity[]" size="5" id="quantity-0" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required></div>
-							</div>
-						</td>
-						<td>
-							<div class="input_fields_wrap">
-						    <div><input type="text" name="uom[]" id="uom-0" required></div>
-							</div>
-						</td>
-						<td>
-							<div class="input_fields_wrap">
-						    <div><input type="text" name="description[]" size="40" id="description-0" required></div>
-							</div>
-						</td>
-						<td>
-							<div class="input_fields_wrap">
-						    <div><input type="text" class="unitprice" name="unitprice[]" id="unitprice-0"  onkeypress="return event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)" required></div>
-							</div>
-						</td>
-						<td>
-							<div class="input_fields_wrap">
-						    <div><input type="text" class="totalprice" name="totalprice[]" id="totalprice-0" placeholder="total" readonly></div>
-							</div>
-						</td>
-						<td>
-							<button type="button" name="add" id="add" class="btn btn-success">+</button>
-						</td>
-					</tr>
-			</table>
-		</div><br>
-		
-		<div class="dboard-content-menu">
+			<div class="manage-content" style="margin-top: 20px;">
+				<div class="app-label" style="margin-top: 10px;">
+	                <div class="fl">
+	                    <p class="app-page-name" style="font-size: 20px">Others</p>
+	                </div>
+	                <div class="fl">
+	                    <p class="app-page-sub"></p>
+	                </div>
+	            	<div class="clr"></div>  
+            	</div>
 				
-				<p><strong>PAYMENTS</strong></p><br>
-			    <div class="fl">
-					<label for="remarks" class="label">Notes/Remarks/Comment:</label>
-					<textarea name="remarks" id="remarks" rows="4" cols="30"></textarea>
-					<br>
-					<div class="field">
-					<label for="remarks" class="label">Payment Terms:</label>
-					<input type="text" name="paymentterms" id="paymentterms">
-	            	</div>
-	            </div>
-	            <div class="fr">
-	            	<div class="field">
-					<label class="label">VAT Inclusive:</label>
-					<input type="text" class="vatinclusive" name="vatinclusive" id="vatinclusive" readonly>
-					</div>
-					<div class="field">
-					<label class="label">VAT Exclusive:</label>
-					<input type="text" class="vatexclusive" name="vatexclusive" id="vatexclusive" readonly>
-	            	</div>
-	            	<div class="field">
-					<label class="label">Less Discount:</label>
-					<input type="text" onkeypress="return event.charCode == 46 ||event.charCode == 37|| (event.charCode >= 48 && event.charCode <= 57)" class="lessdiscount" name="lessdiscount" id="lessdiscount">
-	            	</div>
-	            	<div class="field">
-					<label class="label">12% VAT:</label>
-					<input type="text" class="vat" name="vat" id="vat" readonly>
-	            	</div>
-	            	<div class="field">
-					<label class="label">Total Price:</label>
-					<input type="text" class="total" name="total" id="total" readonly>
-	            	</div>
-	            </div>
-	        
-		</div>
+                <label for="requestor" class="label">Requestor Name</label>
+                <select name="requestor" id="requestor" class="control" required>
+	                <option value="none" hidden selected>--Select Requestor--</option>
+		                @foreach($requestors as $requestor)
+		                	<option value="{{ $requestor->requestor_name }}">{{ $requestor->requestor_name }}</option>
+		                @endforeach
+                </select>
+			</div>
+			
 
-		<button class="submit-approver-acc" style="margin-top: 40px;" id="submits">Submit</button>
+
+
+			
+			
+			<div class="dboard-content-menu">
+					
+					<p><strong>PAYMENTS</strong></p><br>
+				    <div class="fl">
+						<label for="remarks" class="label">Notes/Remarks/Comment:</label>
+						<textarea name="remarks" id="remarks" rows="4" cols="30"></textarea>
+						<br>
+						<div class="field">
+						<label for="remarks" class="label">Payment Terms:</label>
+						<input type="text" name="paymentterms" id="paymentterms">
+		            	</div>
+		            </div>
+		            <div class="fr">
+		            	<div class="field">
+						<label class="label">VAT Inclusive:</label>
+						<input type="text" class="vatinclusive" name="vatinclusive" id="vatinclusive" readonly>
+						</div>
+						<div class="field">
+						<label class="label">VAT Exclusive:</label>
+						<input type="text" class="vatexclusive" name="vatexclusive" id="vatexclusive" readonly>
+		            	</div>
+		            	<div class="field">
+						<label class="label">Less Discount:</label>
+						<input type="text" onkeypress="return event.charCode == 46 ||event.charCode == 37|| (event.charCode >= 48 && event.charCode <= 57)" class="lessdiscount" name="lessdiscount" id="lessdiscount">
+		            	</div>
+		            	<div class="field">
+						<label class="label">12% VAT:</label>
+						<input type="text" class="vat" name="vat" id="vat" readonly>
+		            	</div>
+		            	<div class="field">
+						<label class="label">Total Price:</label>
+						<input type="text" class="total" name="total" id="total" readonly>
+		            	</div>
+		            </div>
+		        
+			</div>
+
+			<button class="submit-approver-acc" style="margin-top: 40px;" id="submits">Submit</button>
 		
-	</form>	
+		</form>	
 			<!-- PAGINATION -->
 
 			<!-- warning no record -->
@@ -415,7 +437,7 @@ $(document).ready(function() {
 
   $('#add').click(function() {
     i++;
-    $('#dynamic_field').append('<tr id="row' + i + '"><td><input type="text" name="item[]" id="item-' + i + '" size="45" class="form-control name_list" required/></td><td><input type="text" value=0 id="quantity-' + i + '" name="quantity[]" class="quantity" placeholder="quantity" size="5" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required/></td><td><input type="text" name="uom[]" id="uom-' + i + '" class="form-control name_list" required/></td><td><input type="text" name="description[]" id="description-' + i + '" size="40" class="form-control name_list" required/></td><td><input type="text" id="unitprice-' + i + '" name="unitprice[]" class="unitprice" value=0  placeholder="price" onkeypress="return event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)" required/></td><td><input type="text" id="totalprice-' + i + '" name="totalprice[]" placeholder="total" class="totalprice" readonly /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+    $('#dynamic_field').append('<tr id="row' + i + '"><td><input type="text" name="item[]" id="item-' + i + '" size="45" class="form-control name_list" required/></td><td><input type="text" value=0 id="quantity-' + i + '" name="quantity[]" class="quantity" placeholder="quantity" size="5" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required/></td><td><input type="text" name="uom[]" id="uom-' + i + '" class="form-control name_list" required/></td><td><input type="text" name="description[]" id="description-' + i + '" size="40" class="form-control name_list" required/></td><td><input type="text" id="unitprice-' + i + '" name="unitprice[]" class="unitprice" value=0  placeholder="price" onkeypress="return event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)" required/></td><td><input type="text" id="totalprice-' + i + '" name="totalprice[]" placeholder="total" class="totalprice" readonly /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">x</button></td></tr>');
 
 
     $("#quantity-" + i).change(function() {

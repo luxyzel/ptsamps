@@ -448,6 +448,28 @@
 	letter-spacing: 1px;
 }
 
+/*add button procurement*/
+.add-btn {
+	background-color: #4688f6;
+	border: none;
+	margin-top: 0px;
+	padding: 1.8px 4px;
+	color: #fff;
+	border-radius: 2px;
+}
+
+.btn_remove {
+	background-color: #fd5f60;
+	border: none;
+	margin-top: 0px;
+	padding: 1.5px 4px;
+	color: #fff;
+	border-radius: 2px;
+}
+
+td input[type=text] {
+	margin-bottom: 0px;
+}
 
 
 
