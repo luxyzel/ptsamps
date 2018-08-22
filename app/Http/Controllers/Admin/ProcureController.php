@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 use App\Model\Vendor;
 use App\Model\Requestor;
 use App\Model\Procure;
+use App\Model\Payment;
+use App\Model\Po_number;
+use App\Model\Group_number;
 use Carbon\Carbon;
 use Auth;
 use DB;
@@ -50,23 +53,42 @@ class ProcureController extends Controller
     public function store(Request $request)
     {
         $year = Carbon::now()->year;
-        $valNum = "00001";
-        $val = "ID". $year. $valNum;
+        $valCount = "00001";
+        $val = "ID". $year. $valCount;
         
         /***Check GROUP NUMBER - NEW or INCREMENT***/
-        $idCheck = Procure::where('groupid', $val)->first();
+        $idCheck = Group_number::where('groupid', $val)->first();
         if (!$idCheck){
             $groupID = $val;
-            $newNum = 1;
+            $newCount = 1;
         }else{
-            $getNum = Procure::whereYear('created_at', $year)->max('groupnum');
-            $n = str_pad($getNum + 1, 5, 0, STR_PAD_LEFT);
+            $getCount = Group_number::whereYear('created_at', $year)->max('count');
+            $n = str_pad($getCount + 1, 5, 0, STR_PAD_LEFT);
             $groupID = "ID". $year. $n;
-            $newNum = $getNum + 1; 
+            $newCount = $getCount + 1; 
         }
+
+        /***SAVE ITEM GROUP-NUMBER***/
+        $groupNumber = new Group_number();
+        $groupNumber->groupid = $groupID;
+        $groupNumber->count = $newCount;
+
+        if ($groupNumber->save()) {
+            $lastInsertedId = $groupNumber->id;
+        } else{
+            $lastInsertedId ="";
+        }
+
+
+        /***GET Admin***/
+        $admin = Auth::guard('admin')->user();
+
+        /***GET REQUESTOR ID***/
+        $requestor = Requestor::where('requestor_name', $request->requestor)->first();
 
         /***GET VENDOR ID***/
         $vendor = Vendor::where('company_name', $request->vendorname)->first();
+
 
         /***FROM INPUTS***/
         $data  = Input::only('item', 'quantity', 'uom', 'description', 'unitprice', 'totalprice');
@@ -82,18 +104,18 @@ class ProcureController extends Controller
         foreach( $item as $key => $i ) {
             $save = DB::table('procures')->insert(
                 array(
-                    'groupid' => $groupID,
-                    'groupnum' => $newNum,
-                    'vendor_id' => $vendor->id, //for update
-                    'requestor_id' => $id->id,
+                    'group_id' =>$lastInsertedId,
                     'request_date' => Carbon::now(),
-                    'phone' => $request->phone,          
+                    'vendor_id' => $vendor->id,
+                    'requestor_id' => $requestor->id,         
                     'item' => $item[$key],
                     'quantity' => $quantity[$key],
                     'uom' => $uom[$key],
                     'description' => $description[$key],
-                    'item_unitprice' => $unitprice[$key],
-                    'item_totalprice' => $totalprice[$key],
+                    'unit_price' => $unitprice[$key],
+                    'total_price' => $totalprice[$key],
+                    'requested_by' => $requestor->requestor_name,
+                    'prepared_by' => $admin->name,
                     'status' => 'Pending',
                     'created_at' => now(),
                     'updated_at' => now(),
@@ -102,8 +124,22 @@ class ProcureController extends Controller
         }
 
         if ($save){
-            Session::flash('success', 'PO Request Successfully Created');
-            return redirect()->back();
+
+            /*** SAVE PAYMENTS ***/
+            $payment = new Payment();
+            $payment->group_id = $lastInsertedId;
+            $payment->vat_inc = $request->vatinclusive;
+            $payment->vat_ex = $request->vatexclusive;
+            $payment->less_discount = $request->lessdiscount;
+            $payment->vat = $request->vat;
+            $payment->total_price = $request->total;
+            $payment->remarks = $request->remarks;
+            $payment->payment_terms = $request->paymentterms;
+
+            if ($payment->save()) {
+                Session::flash('success', 'PO Request Successfully Created');
+                return redirect()->back();
+            }
         }else{
             Session::flash('error', 'Error Encountered');
             return redirect()->back();
@@ -118,7 +154,7 @@ class ProcureController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
