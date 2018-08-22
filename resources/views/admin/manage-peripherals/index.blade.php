@@ -105,7 +105,7 @@
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
-						<a href="">
+						<a href="{{ route('po-tracking.index')}}">
 							<div class="dboard-menu4-box">
 								<img src="/img/icon4.png">
 							</div>
