@@ -123,6 +123,17 @@ Route::resource('/vendor', 'Admin\VendorController');
 // REQUESTOR  RESOURCE
 Route::resource('/requestor', 'Admin\RequestorController');
 
+	/*APPROVER ROUTES*/
+
+// APPROVED-PO  RESOURCE
+Route::resource('/approved-po', 'Approver\ApprovedPOController');
+
+// APPROVED-PO  RESOURCE
+Route::resource('/rejected-po', 'Approver\RejectedPOController');
+
+// APPROVED-PO  RESOURCE
+Route::resource('/pending-po', 'Approver\PendingPOController');
+
 
 // user auth route
 Auth::routes();

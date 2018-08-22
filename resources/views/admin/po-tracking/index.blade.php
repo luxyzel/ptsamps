@@ -270,7 +270,7 @@
 								@if($procure->po_id == NULL)
 								<td>N/A</td>
 								@else
-								<td>{{ $procure->po_id }}</td>
+								<td>{{ $procure->ponumbers->po_number }}</td>
 								@endif
 								<td style="max-width:160px;">{{ $procure->item }}</td>
 								<td>{{ $procure->vendors->company_name}}</td>

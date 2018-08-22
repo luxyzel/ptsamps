@@ -19,5 +19,10 @@ class Procure extends Model
      public function vendors()
     {
     	return $this->belongsTo('App\Model\Vendor','vendor_id','id');
-    } 
+    }
+
+    public function ponumbers()
+    {
+        return $this->belongsTo('App\Model\Po_number','po_id','id');
+    }  
 }
