@@ -97,6 +97,7 @@
                       <br><br>
                   </div>
                   <div class="fr">
+                    <input type="hidden" name="paymentid" value="{{$payments->id}}">
                       <div class="field">
                       <br><strong><span>VAT Inclusive:</span></strong><br>
                       <label for="remarks" class="label">{{$payments->vat_inc}}</label>

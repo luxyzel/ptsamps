@@ -123,6 +123,10 @@ class PendingPOController extends Controller
             }
 
             if ($save) {
+                $payment = Payment::findOrFail(Request::input('paymentid'));
+                $payment->po_id = $lastInsertedId;
+                $payment->save();
+
             Session::flash('success', 'PO Request Successfully Approved');
             return redirect()->back();
             }

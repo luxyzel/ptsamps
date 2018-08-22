@@ -189,9 +189,27 @@ class AssetsController extends Controller
     public function StocksIndex()
     {
         $admin = Auth::guard('admin')->user();
-        $assets = Asset::where('status', 'Available')->get();
+        $assets = Asset::where('status', 'Available')->paginate(25);
         return view('admin.assets-stock.stocks',compact('admin', 'assets'));
     }
+
+     /*** FILTER ***/
+    public function StockFilter(Request $request)
+    {
+        if ($request->categorytype !== 'All'){
+            $assets = Asset::where('status', 'Deployed')->where('category_type', $request->categorytype)->paginate(25);
+            $count = Asset::where('status', 'Deployed')->where('category_type', $request->categorytype)->count();
+
+        }else{
+            $assets = Asset::where('status', 'Deployed')->paginate(25);
+            $count = Asset::where('status', 'Deployed')->count();
+        }
+
+        $admin = Auth::guard('admin')->user();
+        $category = Category::select('category_type')->where('type', 'Assets')->groupBy('category_type')->get();
+        return view('admin.assets-deployed.deployed',compact('admin', 'category', 'assets', 'count'));
+    }
+
 
 
       public function Search(Request $request)

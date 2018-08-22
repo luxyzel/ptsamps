@@ -9,6 +9,8 @@ use App\Model\Category;
 use App\Model\Brand;
 use App\Model\Location;
 use App\Model\Vendor;
+use App\Model\Condition;
+use App\Model\Status;
 use Excel;
 use File;
 use Session;
@@ -67,8 +69,8 @@ class ImportController extends Controller
                                 'keyboard' => array_get($row, 'keyboard'),
                                 'code' => array_get($row, 'code'),
                                 'description' => array_get($row, 'description'),
-                                'condition' => NULL,
-                                'status' => NULL,
+                                'condition' => array_get($row, 'condition'),
+                                'status' => array_get($row, 'status'),
                                 'date_delivered' => array_get($row, 'date_delivered'),
                                 'warranty_ends' => array_get($row, 'warranty_ends'),
                                 'vendor' => array_get($row, 'vendor'),
@@ -91,8 +93,11 @@ class ImportController extends Controller
                                 $arrayL[] = ['location' => array_get($row, 'room'), 'created_at' => date("Y-m-d"), 'updated_at' => date("Y-m-d"),];
                                 $locations = array_unique($arrayL, SORT_REGULAR);
 
-                                $arrayV[] = ['vendor' => array_get($row, 'vendor'), 'created_at' => date("Y-m-d"), 'updated_at' => date("Y-m-d"),];
-                                $vendors = array_unique($arrayV, SORT_REGULAR);
+                                $arrayS[] = ['status' => array_get($row, 'status'), 'created_at' => date("Y-m-d"), 'updated_at' => date("Y-m-d"),];
+                                $status = array_unique($arrayS, SORT_REGULAR);
+
+                                $arrayCon[] = ['condition' => array_get($row, 'condition'), 'created_at' => date("Y-m-d"), 'updated_at' => date("Y-m-d"),];
+                                $condition = array_unique($arrayCon, SORT_REGULAR);
                             }
                         }
                     }
@@ -129,11 +134,17 @@ class ImportController extends Controller
                                 $locData = Location::insert($locations);
                                 Location::where('location',NULL)->delete();
                             }
-                            /*VENDOR IMPORT*/
-                            $venMatch = Vendor::where('vendor', $vendors)->first();
-                            if (!$venMatch) {
-                                $venData = Vendor::insert($vendors);
-                                Vendor::where('vendor',NULL)->delete();
+                            /*STATUS IMPORT*/
+                            $statMatch = Status::where('status', $status)->first();
+                            if (!$statMatch) {
+                                $statData = Status::insert($status);
+                                Status::where('status',NULL)->delete();
+                            }
+                             /*CONDITION IMPORT*/
+                            $conMatch = Condition::where('status', $condition)->first();
+                            if (!$conMatch) {
+                                $conData = Condition::insert($condition);
+                                Condition::where('condition',NULL)->delete();
                             }
 
 

@@ -279,6 +279,9 @@
 									@if($procure->status == 'Rejected')
 									<a href="{{ route('po-tracking.show', $procure->group_id) }}" class="manage-view-but" title="View">Re-route</a>
 									@endif
+									@if($procure->status == 'Approved')
+									<a href="{{ route('po-tracking.pdf', $procure->po_id) }}" class="manage-view-but" title="View">Download</a>
+									@endif
 
 								</td>
 							</tr>

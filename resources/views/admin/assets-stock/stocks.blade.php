@@ -236,8 +236,13 @@
 						@endforeach
 				</table>
 			</div>
-
+		<!-- PAGINATION -->
+			<div class="pagination-bot">
+				{{ $assets->appends(request()->input())->links() }}
+			</div>
 		</div>
+
+
 		<div class="clr"></div>
 	</div>
 
