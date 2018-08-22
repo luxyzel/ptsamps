@@ -128,20 +128,20 @@
 					<div class="dboard-left-menu fl">
 						<a href="{{ route('category.index') }}">
 							<div class="dboard-menu6-box">
-								<img src="/img/icon5.png">
+								<img src="/img/icon6.png">
 							</div>
 						</a>
 
 						<!-- popup menu name -->
 						<div id="dboard-menu-pop6">
 							<img src="/img/hoverarrow1.png">
-							<p>Create Categories</p>
+							<p>Categories & Others</p>
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
 						<a href="{{ route('users.index') }}">
 							<div class="dboard-menu7-box">
-								<img src="/img/icon5.png">
+								<img src="/img/icon7.png">
 							</div>
 						</a>
 
@@ -341,7 +341,7 @@
 			<div class="manage-content" style="margin-top: 20px;">
 				<div class="app-label" style="margin-top: 10px;">
 	                <div class="fl">
-	                    <p class="app-page-name" style="font-size: 20px">Others</p>
+	                    <p class="app-page-name" style="font-size: 20px">Other Information</p>
 	                </div>
 	                <div class="fl">
 	                    <p class="app-page-sub"></p>
@@ -349,59 +349,41 @@
 	            	<div class="clr"></div>  
             	</div>
 				
-                <label for="requestor" class="label">Requestor Name</label>
-                <select name="requestor" id="requestor" class="control" required>
-	                <option value="none" hidden selected>--Select Requestor--</option>
-		                @foreach($requestors as $requestor)
-		                	<option value="{{ $requestor->requestor_name }}">{{ $requestor->requestor_name }}</option>
-		                @endforeach
-                </select>
+				<div class="proc-bot fl" style="padding-right: 20px;">
+					<label class="lbl-login">VAT Inclusive:</label>
+					<input type="text" class="vatinclusive" name="vatinclusive" id="vatinclusive" readonly style="font-weight: bold">
+
+					<label class="lbl-login">VAT Exclusive:</label>
+					<input type="text" class="vatexclusive" name="vatexclusive" id="vatexclusive" readonly style="font-weight: bold" >
+
+					<label class="lbl-login">Less Discount:</label>
+					<input type="text" onkeypress="return event.charCode == 46 ||event.charCode == 37|| (event.charCode >= 48 && event.charCode <= 57)" class="lessdiscount" name="lessdiscount" id="lessdiscount">
+
+					<label class="lbl-login">12% VAT:</label>
+					<input type="text" class="vat" name="vat" id="vat" readonly style="font-weight: bold">
+
+					<label class="lbl-login">Total Price:</label>
+					<input type="text" class="total" name="total" id="total" readonly style="font-weight: bold">
+				</div>
+
+				<div class="proc-bot fl">
+					<label for="requestor" class="lbl-login">Requestor Name</label>
+	                <select name="requestor" id="requestor" class="control" required>
+		                <option value="none" hidden selected>--Select Requestor--</option>
+			                @foreach($requestors as $requestor)
+			                	<option value="{{ $requestor->requestor_name }}">{{ $requestor->requestor_name }}</option>
+			                @endforeach
+	                </select>
+	                <label for="remarks" class="lbl-login">Notes/Remarks/Comment:</label>
+					<textarea name="remarks" id="remarks" rows="4" cols="30"></textarea>
+					<label for="remarks" class="lbl-login">Payment Terms:</label>
+					<input type="text" name="paymentterms" id="paymentterms">
+
+					<button class="submit-approver-acc" style="margin-top: 30px" id="submits">Submit Purchase Order</button>
+				</div>
+				<div class="clr"></div>
 			</div>
-			
-
-
-
-			
-			
-			<div class="dboard-content-menu">
-					
-					<p><strong>PAYMENTS</strong></p><br>
-				    <div class="fl">
-						<label for="remarks" class="label">Notes/Remarks/Comment:</label>
-						<textarea name="remarks" id="remarks" rows="4" cols="30"></textarea>
-						<br>
-						<div class="field">
-						<label for="remarks" class="label">Payment Terms:</label>
-						<input type="text" name="paymentterms" id="paymentterms">
-		            	</div>
-		            </div>
-		            <div class="fr">
-		            	<div class="field">
-						<label class="label">VAT Inclusive:</label>
-						<input type="text" class="vatinclusive" name="vatinclusive" id="vatinclusive" readonly>
-						</div>
-						<div class="field">
-						<label class="label">VAT Exclusive:</label>
-						<input type="text" class="vatexclusive" name="vatexclusive" id="vatexclusive" readonly>
-		            	</div>
-		            	<div class="field">
-						<label class="label">Less Discount:</label>
-						<input type="text" onkeypress="return event.charCode == 46 ||event.charCode == 37|| (event.charCode >= 48 && event.charCode <= 57)" class="lessdiscount" name="lessdiscount" id="lessdiscount">
-		            	</div>
-		            	<div class="field">
-						<label class="label">12% VAT:</label>
-						<input type="text" class="vat" name="vat" id="vat" readonly>
-		            	</div>
-		            	<div class="field">
-						<label class="label">Total Price:</label>
-						<input type="text" class="total" name="total" id="total" readonly>
-		            	</div>
-		            </div>
-		        
-			</div>
-
-			<button class="submit-approver-acc" style="margin-top: 40px;" id="submits">Submit</button>
-		
+			<div style="padding: 10px"></div>
 		</form>	
 			<!-- PAGINATION -->
 

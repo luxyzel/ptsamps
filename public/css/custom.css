@@ -152,6 +152,12 @@ textarea {
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	margin-bottom: 10px;
 	border-radius: 3px;
+    font-family: roboto-reg;
+    font-size: 13px;
+}
+
+textarea:focus {
+    box-shadow: 3px 3px 40px -10px rgba(35, 169, 225, 0.7);
 }
 
 select {
@@ -547,7 +553,7 @@ select:focus {
 }
 
 .dboard-menu6-box img {
-    width: 18px;
+    width: 16px;
     display: block;
     margin: auto;
 }
@@ -559,7 +565,7 @@ select:focus {
 }
 
 .dboard-menu7-box img {
-    width: 18px;
+    width: 17px;
     display: block;
     margin: auto;
 }
