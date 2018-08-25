@@ -216,7 +216,7 @@
 
 				<div class="fr" style="width: 400px;">
 					<form  action="{{ route('asset-search') }}" method="get">
-					<input type="text" class="input" name="search" id="search" value="" placeholder="search ..." required> {{ csrf_field() }}
+					<input type="text" class="input" name="search" id="search" value="" placeholder="search ..." required autocomplete="off"> {{ csrf_field() }}
 					</form>
 				</div>
 				<div class="clr"></div>

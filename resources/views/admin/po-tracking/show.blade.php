@@ -196,6 +196,11 @@
             </div>
 
         </form>
+                    <div class="field">
+                        
+                      <br><strong><span>Approver Comment:</span></strong><br>
+                      <label for="remarks" class="label">{{$comment->comments}}</label>
+                    </div>
         <a href="{{ route('po-tracking.index') }}" class="po-back-page">Back To Previous Page</a>
     </div>
 
