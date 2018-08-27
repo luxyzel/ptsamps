@@ -78,7 +78,8 @@ class POTrackController extends Controller
         $procures = Procure::where('group_id', $id)->get();
         $payments = Payment::where('group_id', $id)->first();
         $ids = Procure::where('group_id', '=' , $id)->firstOrFail();
-        return view('admin.po-tracking.show', compact('procures', 'payments', 'ids'));
+        $comment = Procure::select('comments')->where('group_id', $id)->groupBy('comments')->first();
+        return view('admin.po-tracking.show', compact('procures', 'payments', 'ids', 'comment'));
     }
 
     /**

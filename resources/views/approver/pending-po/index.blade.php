@@ -48,7 +48,7 @@
 
         	<div class="app-label">
                 <div class="fl">
-                    <p class="app-page-name">Approved P.O.</p>
+                    <p class="app-page-name">Pending P.O.</p>
                 </div>
                 <div class="fl">
                     <p class="app-page-sub">Purchase Orders</p>

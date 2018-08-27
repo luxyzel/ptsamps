@@ -5,48 +5,44 @@
 </head>
 
 <body>
-  <div class="flex-container" style="width: 80%; margin: auto;">
-      <div class="columns m-t-10">
-          <div class="column">
-            <h1 class="title">View PO Request</h1>
+    <div style="width: 1200px; margin: 0 auto;">
+        <div class="app-label" style="margin-top: 20px;">
+            <div class="fl">
+                <p class="app-page-name" style="font-size: 30px">View Puchase Order Request</p>
+            </div>
+            <div class="fl">
+                <p class="app-page-sub"></p>
+            </div>
+            <div class="clr"></div>  
+        </div>
+
+        <!-- ALERT SUCCESS -->
+        @if(Session::has('success'))
+          <div class="comment-success" id ="comment-success" style="margin-top: 25px">
+              <strong> {{ Session::get('success') }}</strong> 
           </div>
-      </div>
-      <hr class="m-t-0">
+        @endif
 
-    
-
-       <div class="columns">
-          <div class="column">
-
-          <!-- ALERT SUCCESS -->
-            @if(Session::has('success'))
-              <div class="comment-success" id ="comment-success" style="margin-top: 25px">
-                  <strong> {{ Session::get('success') }}</strong> 
-              </div>
-            @endif
-
-          <!-- ALERT ERROR -->
-            @if(Session::has('error'))
-              <div class="comment-error" id ="comment-error" style="margin-top: 25px">
-                  <strong> {{ Session::get('success') }}</strong> 
-              </div>
-            @endif
-
-          <!-- DISPLAY ERRORS -->
-          @if ($errors->any())
-          <div class="alert alert-danger">
-              <ul>
-                  @foreach ($errors->all() as $error)
-                      <br><strong>{{ $error }}</strong>
-                  @endforeach
-              </ul>
+        <!-- ALERT ERROR -->
+        @if(Session::has('error'))
+          <div class="comment-error" id ="comment-error" style="margin-top: 25px">
+              <strong> {{ Session::get('success') }}</strong> 
           </div>
-          @endif
+        @endif
 
+        <!-- DISPLAY ERRORS -->
+        @if ($errors->any())
+        <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <br><strong>{{ $error }}</strong>
+              @endforeach
+          </ul>
+        </div>
+        @endif
 
-
-      <form method="POST" action="{{ route('po-tracking.update', $ids->group_id)}}">{{method_field('PUT')}} 
-         {{csrf_field()}}
+        <form method="POST" action="{{ route('po-tracking.update', $ids->group_id)}}">{{method_field('PUT')}} 
+            {{csrf_field()}}
 
               
               <div class="manage-content">
@@ -132,8 +128,85 @@
                   @endforeach
                 </table>
               </div>
+
+
+              <div class="manage-content" style="margin-top: 20px;">
+                <div class="app-label" style="margin-top: 10px;">
+                    <div class="fl">
+                        <p class="app-page-name" style="font-size: 20px">Payment Information</p>
+                    </div>
+                    <div class="fl">
+                        <p class="app-page-sub"></p>
+                    </div>
+                    <div class="clr"></div>  
+                </div>
+                
+                <div class="proc-bot fl" style="padding-right: 20px;">
+                    <div class="field">
+                        <label class="lbl-login">VAT Inclusive:</label>
+                        <input type="text" class="vatinclusive" name="vatinclusive" id="vatinclusive" value="{{$payments->vat_inc}}" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="lbl-login">VAT Exclusive:</label>
+                        <input type="text" class="vatexclusive" name="vatexclusive" id="vatexclusive" value="{{$payments->vat_ex}}" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="lbl-login">Less Discount:</label>
+                        @if($procure->status == 'Approved')
+                            <input type="text" onkeypress="return event.charCode == 46 ||event.charCode == 37|| (event.charCode >= 48 && event.charCode <= 57)" class="lessdiscount" name="lessdiscount" id="lessdiscount" value="{{$payments->less_discount}}" readonly>
+                        @else
+                            <input type="text" onkeypress="return event.charCode == 46 ||event.charCode == 37|| (event.charCode >= 48 && event.charCode <= 57)" class="lessdiscount" name="lessdiscount" id="lessdiscount" value="{{$payments->less_discount}}">
+                        @endif
+                    </div>
+                    <div class="field">
+                        <label class="lbl-login">12% VAT:</label>
+                        <input type="text" class="vat" name="vat" id="vat" value="{{$payments->vat}}" readonly>
+                    </div>
+                    <div class="field">
+                        <label class="lbl-login">Total Price:</label>
+                        <input type="text" class="total" name="total" id="total" value="{{$payments->total_price}}" readonly>
+                    </div>
+                </div>
+
+                <div class="proc-bot fl">
+                    <label for="remarks" class="lbl-login">Notes/Remarks/Comment:</label>
+                        @if($procure->status == 'Approved')
+                            <textarea name="remarks" id="remarks" rows="4" cols="30" readonly>{{$payments->remarks}}</textarea>
+                        @else
+                            <textarea name="remarks" id="remarks" rows="4" cols="30" >{{$payments->remarks}}</textarea>
+                        @endif
+                    <div class="field">
+                        <label for="paymentterms" class="lbl-login">Payment Terms:</label>
+                        @if($procure->status == 'Approved')
+                            <input type="text" name="paymentterms" id="paymentterms" value="{{$payments->payment_terms}}" readonly>
+                        @else
+                            <input type="text" name="paymentterms" id="paymentterms" value="{{$payments->payment_terms}}">
+                        @endif
+                    </div>
+                        <input type="hidden" name="poid" id="poid" value="{{$payments->group_id}}">
+                        @if($procure->status == 'Approved')
+                            <button class="submit-approver-acc" style="margin-top: 33px;" value="update" name="submit" disabled>Update</button>
+                            <button class="submit-approver-acc" style="margin-top: 20px; background-color: #fd5f60" value="delete" name="submit" disabled>Delete</button>
+                        @else
+                            <button class="submit-approver-acc" style="margin-top: 33px;" value="update" name="submit">Update</button>
+                            <button class="submit-approver-acc" style="margin-top: 20px; background-color: #fd5f60" value="delete" name="submit">Delete</button>
+                        @endif
+                </div>
+                <div class="clr"></div>
+            </div>
+
+        </form>
+                    <div class="field">
+                        
+                      <br><strong><span>Approver Comment:</span></strong><br>
+                      <label for="remarks" class="label">{{$comment->comments}}</label>
+                    </div>
+        <a href="{{ route('po-tracking.index') }}" class="po-back-page">Back To Previous Page</a>
+    </div>
+
+
   
-              <div class="dboard-content-menu">
+              {{-- <div class="dboard-content-menu">
         
                 <p><strong>PAYMENTS</strong></p><br>
                   <div class="fl">
@@ -190,17 +263,8 @@
                     </div>
                     <a href="{{ route('po-tracking.index') }}">Back To Previous Page</a>
                 </div>
-              </div>
+              </div> --}}
               
-            </form>
-          </div> <!-- end of .column -->
-
-          <div class="columns">
-            <div class="column">
-                <hr/>
-            </div>
-          </div>
-      </div>
 
 @include('templates.footer')
 

@@ -132,20 +132,20 @@
                     <div class="dboard-left-menu fl">
                         <a href="{{ route('category.index') }}">
                             <div class="dboard-menu6-box">
-                                <img src="/img/icon5.png">
+                                <img src="/img/icon6.png">
                             </div>
                         </a>
 
                         <!-- popup menu name -->
                         <div id="dboard-menu-pop6">
                             <img src="/img/hoverarrow1.png">
-                            <p>Create Categories</p>
+                            <p>Categories & Others</p>
                         </div>
                     </div>
                     <div class="dboard-left-menu fl">
                         <a href="{{ route('users.index') }}">
                             <div class="dboard-menu7-box">
-                                <img src="/img/icon5.png">
+                                <img src="/img/icon7.png">
                             </div>
                         </a>
 

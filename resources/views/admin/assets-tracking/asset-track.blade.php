@@ -127,20 +127,20 @@
 					<div class="dboard-left-menu fl">
 						<a href="{{ route('category.index') }}">
 							<div class="dboard-menu6-box">
-								<img src="/img/icon5.png">
+								<img src="/img/icon6.png">
 							</div>
 						</a>
 
 						<!-- popup menu name -->
 						<div id="dboard-menu-pop6">
 							<img src="/img/hoverarrow1.png">
-							<p>Create Categories</p>
+							<p>Categories & Others</p>
 						</div>
 					</div>
 					<div class="dboard-left-menu fl">
 						<a href="{{ route('users.index') }}">
 							<div class="dboard-menu7-box">
-								<img src="/img/icon5.png">
+								<img src="/img/icon7.png">
 							</div>
 						</a>
 
@@ -172,7 +172,7 @@
 						</a>
 					</div>
 
-					<div class="dboard-right-menu fr" style="margin-right: 15px">
+					{{-- <div class="dboard-right-menu fr" style="margin-right: 15px">
 						<a href="#" id="acc-but">
 							<div class="dboard-rmenu3-box">
 								<img src="/img/purchaseorder.png" title="Manage PO">
@@ -187,7 +187,7 @@
 							</div>
 						</a>
 					</div>
-					<div class="clr"></div>
+					<div class="clr"></div> --}}
 
 					<!--Account popup -->
 					<div id="acc-but-popup">
