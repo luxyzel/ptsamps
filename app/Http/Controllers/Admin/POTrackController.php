@@ -10,6 +10,7 @@ use App\Model\Procure;
 use App\Model\Payment;
 use App\Model\Po_number;
 use App\Model\Group_number;
+use App\Model\Log;
 use Auth;
 use DB;
 use Session;
@@ -24,7 +25,7 @@ class POTrackController extends Controller
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        $procures = Procure::select('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id', DB::raw('group_concat(item) as item'))->groupBy('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id')->get();
+        $procures = Procure::select('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id', DB::raw('group_concat(item) as item'))->groupBy('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id')->orderBy('created_at','DESC')->get();
          $count = $procures->count();
         $payments = Payment::All();
         return view('admin.po-tracking.index', compact('admin', 'procures', 'payments', 'count'));
@@ -119,8 +120,17 @@ class POTrackController extends Controller
                     $payment->remarks = Request::input('remarks');/*$request->remarks;*/
                     $payment->payment_terms = Request::input('paymentterms');/*$request->paymentterms;*/
                     if ($payment->save()) {
+
+                        /*** CREATE EVENT LOG ***/
+                        $eventLogs = new Log();
+                        $eventLogs->action = 'Update';
+                        $eventLogs->description = 'Update PO request';
+                        $eventLogs->user = Auth::guard('admin')->user()->name;
+                        $eventLogs->save();
+
                         Session::flash('success', 'PO Request Successfully Updated');
                         return redirect()->back();
+
                     }else{
                         Session::flash('error', 'Error Encountered');
                         return redirect()->back();
@@ -137,8 +147,17 @@ class POTrackController extends Controller
             Procure::whereIn("id",$checked)->delete(); 
 
             if ($checked){
+
+                /*** CREATE EVENT LOG ***/
+                $eventLogs = new Log();
+                $eventLogs->action = 'Delete';
+                $eventLogs->description = 'Delete item from PO request';
+                $eventLogs->user = Auth::guard('admin')->user()->name;
+                $eventLogs->save();
+
                 Session::flash('success', 'Item Successfully Deleted');
                 return redirect()->back();  
+
             }else{
                 Session::flash('error', 'Error Encountered');
                 return redirect()->back();

@@ -1,7 +1,7 @@
 
 @include('templates.header')
 
-	<title>Dashboard | Asset Management and Procurement System</title>
+  <title>Event Logs | Asset Management and Procurement System</title>
 </head>
 
 <body>
@@ -14,7 +14,9 @@
 			
 			<!-- Company profile -->
 			<div class="dboard-prof">
-				<img src="img/companylogo.png" title="Project T Solutions">
+				<img src="/img/companylogo.png" title="Project T Solutions">
+
+
 
 				<!-- Admin -->
 				<div class="dboard-admin">
@@ -30,7 +32,7 @@
 
 			<!-- Buttons -->
 			<div class="dboard-prof">
-				<a href="{{ route('deployed-units.index') }}">
+				<a href="{{ route('deployed-units.index')}}">
 					<div class="dboard-left-but">Deployed Units</div>
 				</a>
 				<a href="{{ route('assets.stocks')}}">
@@ -48,7 +50,7 @@
 				<a href="#">
 					<div class="dboard-left-but">Calendar</div>
 				</a>
-				<a href="{{ route('logs.index') }}">
+				<a href="#">
 					<div class="dboard-left-but">Logs</div>
 				</a>
 			</div>
@@ -153,7 +155,6 @@
 							<p>Manage User</p>
 						</div>
 					</div>
-					
 					<div class="clr"></div>
 
 				</div>
@@ -165,7 +166,7 @@
 					<div class="dboard-right-menu fr">
 						<a href="#" id="acc-but">
 							<div class="dboard-rmenu1-box">
-								<img src="img/menuicon.png">
+								<img src="/img/menuicon.png">
 							</div>
 						</a>
 					</div>
@@ -176,28 +177,26 @@
 						</a>
 					</div>
 
-					{{-- Change UI Update to DASHBOARD MENUS --}}
 					{{-- <div class="dboard-right-menu fr" style="margin-right: 15px">
 						<a href="#" id="acc-but">
 							<div class="dboard-rmenu3-box">
-								<img src="img/purchaseorder.png" title="Manage PO">
+								<img src="/img/purchaseorder.png" title="Manage PO">
 							</div>
 						</a>
-					</div> --}}
+					</div>
 
-					{{-- <div class="dboard-right-menu fr" style="margin-right: 5px">
+					<div class="dboard-right-menu fr" style="margin-right: 5px">
 						<a href="{{ route('users.index') }}" id="acc-but">
 							<div class="dboard-rmenu4-box">
-								<img src="img/adduser.png" title="Manage User">
+								<img src="/img/adduser.png" title="Manage User">
 							</div>
 						</a>
 					</div> --}}
-
 					<div class="clr"></div>
 
 					<!--Account popup -->
 					<div id="acc-but-popup">
-						<img src="img/hoverarrow2.png">
+						<img src="/img/hoverarrow2.png">
 						<div id="acc-but-popup-cont">
 							<a href="{{ route('acc.settings') }}">Account Settings</a><br>
 							<a href="{{route('admin.logout')}}" onclick="event.preventDefault();
@@ -212,35 +211,69 @@
 				<div class="clr"></div>
 			</div>
 
-            {{-- First set of contents dashboard  --}}
-            <div class="app-dboard-cont" style="margin-top: 30px">
-                <div class="app-cont-box2 fl">
-                    <p class="app-cont-title-blue">Purchase Order Summary</p>
+			<div class="dboard-content-menu">
+				<div class="fl">
+					<form method="get" id="UsersForm" action="{{route('logs.filter')}}">{{ csrf_field() }}
+			         	<select name="users"  id='users'>
+			         		<option value="" selected disabled hidden>Select User</option>
+			         		<option value="All">All</option>
+		         			@foreach($users as $user)
+				            	<option value="{{ $user->user }}">{{ $user->user }}</option>
+				          	@endforeach
+			        	</select>
+		        	</form>
+      			</div>
 
-                    {{--  --}}
-                </div>
-                <div class="app-cont-box1 fl">
-                    <p class="app-cont-title-green">Monthly P.O. Cost</p>
-                </div>
-                <div class="clr"></div>
-            </div>
+				<div class="clr"></div>			
+			</div>
 
-            {{-- First set of contents dashboard  --}}
-            <div class="app-dboard-cont" style="margin-top: 20px">
-                <div class="app-cont-box1 fl" style="margin-right: 25px; width: 32%;">
-                    <p class="app-cont-title-orange">Total Asset and Peripherals</p>
-                </div>
-                <div class="app-cont-box1 fl" style="margin-right: 20px; width: 31%;">
-                    <p class="app-cont-title-violet">Number of user</p>
-                </div>
-                <div class="app-cont-box1 fl" style="width: 33%;">
-                    <p class="app-cont-title-pink">Graph</p>
-                </div>
-                <div class="clr"></div>
-            </div>
+			<div class="manage-content">
+				<table style="width: 100%; text-align: center;">
+					<thead>
+						<tr>
+							<th>Action</th>
+							<th>Description</th>
+							<th>Date | Time</th>
+							<th>User</th>
+						</tr>
+					</thead>
+						@foreach ($logs as $log)
+							<tr>
+								<td>{{$log->action}}</td>
+								<td>{{$log->description}}</td>
+								<td>{{$log->created_at->format('M. d, Y &\nb\sp; &\nb\sp; h:i:s A')}}</td>
+								<td>{{$log->user}}</td>
+							</tr>
+						@endforeach
+				</table>
+			</div>
+
+			<!-- PAGINATION -->
+			<div class="pagination-bot">
+				{{ $logs->appends(request()->input())->links() }}
+			</div>
+
+			<!-- SEARCH NO RECORD FOUND -->
+		  	@if(Session::has('warning'))
+		        <div class="comment-error">
+		           <br><strong><center>{{ Session::get('warning') }}</center> </strong> 
+		        </div>
+		    @endif
 
 		</div>
 		<div class="clr"></div>
-	</div>	
+	</div>
 
 @include('templates.footer')
+
+<script type="text/javascript">
+/*** Auto-Submit Form on Dropdown Change ***/
+$(document).ready(function() {
+   $('#users').change(function() {
+     var parentForm = $(this).closest("form");
+     if (parentForm && parentForm.length > 0)
+       parentForm.submit();
+   });
+});
+
+</script>

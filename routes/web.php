@@ -130,7 +130,16 @@ Route::resource('/vendor', 'Admin\VendorController');
 // REQUESTOR  RESOURCE
 Route::resource('/requestor', 'Admin\RequestorController');
 
-	/*APPROVER ROUTES*/
+// LOGS Filter
+Route::get('/logs/filter', 'Admin\LogsController@FilterUser')->name('logs.filter');
+
+// LOGS  RESOURCE
+Route::resource('/logs', 'Admin\LogsController');
+
+
+
+
+	/*** APPROVER ROUTES ***/
 
 // APPROVED-PO  RESOURCE
 Route::resource('/approved-po', 'Approver\ApprovedPOController');

@@ -49,6 +49,9 @@
 				<a href="#">
 					<div class="dboard-left-but">Calendar</div>
 				</a>
+				<a href="{{ route('logs.index') }}">
+					<div class="dboard-left-but">Logs</div>
+				</a>
 			</div>
 		</div>
 

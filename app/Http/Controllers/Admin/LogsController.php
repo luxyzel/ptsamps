@@ -1,16 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Approver;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Model\Log;
 use App\Http\Controllers\Controller;
-use App\Model\Procure;
-use App\Model\Payment;
 use Auth;
-use DB;
-use Session;
-
-class ApprovedPOController extends Controller
+class LogsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,10 +15,10 @@ class ApprovedPOController extends Controller
      */
     public function index()
     {
-        $procures = Procure::select('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id', DB::raw('group_concat(item) as item'))->where('status', 'Approved')->groupBy('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id')->orderBy('created_at','DESC')->get();
-        $count = $procures->count();
-        $payments = Payment::All();
-        return view('approver.approved-po.index', compact('procures', 'count', 'payments'));
+        $admin = Auth::guard('admin')->user();
+        $users = Log::Select('user')->distinct()->get();
+        $logs = Log::orderBy('created_at','DESC')->paginate(25);
+        return view('admin.logs.index',compact('admin', 'users', 'logs'));
     }
 
     /**
@@ -54,11 +50,7 @@ class ApprovedPOController extends Controller
      */
     public function show($id)
     {
-        $procures = Procure::where('group_id', $id)->get();
-        $payments = Payment::where('group_id', $id)->first();
-        $ids = Procure::where('group_id', '=' , $id)->firstOrFail();
-        $comment = Procure::select('comments')->where('group_id', $id)->groupBy('comments')->first();
-        return view('approver.approved-po.show', compact('procures', 'payments', 'ids', 'comment'));
+        //
     }
 
     /**
@@ -69,8 +61,7 @@ class ApprovedPOController extends Controller
      */
     public function edit($id)
     {
-         
-       
+        //
     }
 
     /**
@@ -94,5 +85,19 @@ class ApprovedPOController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function FilterUser(Request $request)
+    {
+        if ($request->users !== 'All'){
+            $logs = Log::where('user', $request->users)->orderBy('created_at','DESC')->paginate(25);
+
+        }else{
+            $logs = Log::orderBy('created_at','DESC')->paginate(25);
+        }
+
+        $admin = Auth::guard('admin')->user();
+        $users = Log::Select('user')->distinct()->get();
+        return view('admin.logs.index',compact('admin', 'users', 'logs'));
     }
 }

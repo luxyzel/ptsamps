@@ -11,6 +11,7 @@ use App\Model\Procure;
 use App\Model\Payment;
 use App\Model\Po_number;
 use App\Model\Group_number;
+use App\Model\Log;
 use Carbon\Carbon;
 use Auth;
 use DB;
@@ -89,7 +90,6 @@ class ProcureController extends Controller
         /***GET VENDOR ID***/
         $vendor = Vendor::where('company_name', $request->vendorname)->first();
 
-
         /***FROM INPUTS***/
         $data  = Input::only('item', 'quantity', 'uom', 'description', 'unitprice', 'totalprice');
 
@@ -106,15 +106,15 @@ class ProcureController extends Controller
                 array(
                     'group_id' =>$lastInsertedId,
                     'request_date' => Carbon::now(),
-                    'vendor_id' => $vendor->id,
-                    'requestor_id' => $requestor->id,         
+                    'vendor_id' => $vendor->id, //
+                    'requestor_id' => $requestor->id, //         
                     'item' => $item[$key],
                     'quantity' => $quantity[$key],
                     'uom' => $uom[$key],
                     'description' => $description[$key],
                     'unit_price' => $unitprice[$key],
                     'total_price' => $totalprice[$key],
-                    'requested_by' => $requestor->requestor_name,
+                    'requested_by' => $requestor->requestor_name, //
                     'prepared_by' => $admin->name,
                     'status' => 'Pending',
                     'created_at' => now(),
@@ -137,6 +137,14 @@ class ProcureController extends Controller
             $payment->payment_terms = $request->paymentterms;
 
             if ($payment->save()) {
+
+                /*** CREATE EVENT LOG ***/
+                $eventLogs = new Log();
+                $eventLogs->action = 'Create';
+                $eventLogs->description = 'Create PO request';
+                $eventLogs->user = Auth::guard('admin')->user()->name;
+                $eventLogs->save();
+
                 Session::flash('success', 'PO Request Successfully Created');
                 return redirect()->back();
             }
