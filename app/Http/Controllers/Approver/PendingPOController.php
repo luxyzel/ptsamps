@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Procure;
 use App\Model\Payment;
 use App\Model\Po_number;
+use App\Model\Log;
 use Carbon\Carbon;
 use Auth;
 use DB;
@@ -23,7 +24,7 @@ class PendingPOController extends Controller
      */
     public function index()
     {
-        $procures = Procure::select('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id', DB::raw('group_concat(item) as item'))->where('status', 'Pending')->groupBy('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id')->get();
+        $procures = Procure::select('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id', DB::raw('group_concat(item) as item'))->where('status', 'Pending')->groupBy('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id')->orderBy('created_at','DESC')->get();
         $count = $procures->count();
         $payments = Payment::All();
         return view('approver.pending-po.index', compact('procures', 'count', 'payments'));
@@ -84,36 +85,36 @@ class PendingPOController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $year = Carbon::now()->year;
-        $valCount = "00001";
-        $val = "PO". $year. $valCount;
-        
-        /***Check GROUP NUMBER - NEW or INCREMENT***/
-        $idCheck = Po_number::where('po_number', $val)->first();
-        if (!$idCheck){
-            $orderID = $val;
-            $newCount = 1;
-        }else{
-            $getCount = Po_number::whereYear('created_at', $year)->max('count');
-            $n = str_pad($getCount + 1, 5, 0, STR_PAD_LEFT);
-            $orderID = "ID". $year. $n;
-            $newCount = $getCount + 1; 
-        }
-
-        /***SAVE ITEM PO-NUMBER***/
-        $poNumber = new Po_number();
-        $poNumber->po_number = $orderID;
-        $poNumber->count = $newCount;
-
-        if ($poNumber->save()) {
-            $lastInsertedId = $poNumber->id;
-        } else{
-            $lastInsertedId ="";
-        }
-
 
         if(Input::get('submit') == 'approved')
-        {       
+        {   
+            $year = Carbon::now()->year;
+            $valCount = "00001";
+            $val = "PO". $year. $valCount;
+            
+            /***Check PO NUMBER - NEW or INCREMENT***/
+            $idCheck = Po_number::where('po_number', $val)->first();
+            if (!$idCheck){
+                $orderID = $val;
+                $newCount = 1;
+            }else{
+                $getCount = Po_number::whereYear('created_at', $year)->max('count');
+                $n = str_pad($getCount + 1, 5, 0, STR_PAD_LEFT);
+                $orderID = "PO". $year. $n;
+                $newCount = $getCount + 1; 
+            }
+
+            /***SAVE ITEM PO-NUMBER***/
+            $poNumber = new Po_number();
+            $poNumber->po_number = $orderID;
+            $poNumber->count = $newCount;
+
+            if ($poNumber->save()) {
+                $lastInsertedId = $poNumber->id;
+            } else{
+                $lastInsertedId ="";
+            }
+
             foreach(Request::input('idlists') as $key => $value){ 
                 $save = Procure::find(Request::input('idlists')[$key]); 
                 $save->po_id = $lastInsertedId; 
@@ -127,8 +128,15 @@ class PendingPOController extends Controller
                 $payment->po_id = $lastInsertedId;
                 $payment->save();
 
-            Session::flash('success', 'PO Request Successfully Approved');
-            return redirect()->back();
+                /*** CREATE EVENT LOG ***/
+                $eventLogs = new Log();
+                $eventLogs->action = 'Approve';
+                $eventLogs->description = 'Approved PO request';
+                $eventLogs->user = Auth::guard('web')->user()->name;
+                $eventLogs->save();
+
+                Session::flash('success', 'PO Request Successfully Approved');
+                return redirect()->back();
             }
 
         }else{
@@ -141,8 +149,16 @@ class PendingPOController extends Controller
                 }
 
                 if ($save) {
-                Session::flash('success', 'PO Request Rejected');
-                return redirect()->back();
+
+                    /*** CREATE EVENT LOG ***/
+                    $eventLogs = new Log();
+                    $eventLogs->action = 'Reject';
+                    $eventLogs->description = 'Rejected PO request';
+                    $eventLogs->user = Auth::guard('web')->user()->name;
+                    $eventLogs->save();
+
+                    Session::flash('success', 'PO Request Rejected');
+                    return redirect()->back();
                 }
         }
 

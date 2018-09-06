@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Model\Log;
 use Auth;
 use Session;
 
@@ -55,7 +56,13 @@ class LoginController extends Controller
         // Login attempt
         if (Auth::guard('web')->attempt(['username' => $request->username, 'password' => $request->password]))
         {
-            // if success login
+            /*** SUCCESS LOGIN ***/
+            $eventLogs = new Log();
+            $eventLogs->action = 'Login';
+            $eventLogs->description = 'Login approver account';
+            $eventLogs->user = Auth::guard('web')->user()->name;
+            $eventLogs->save();
+
             return redirect()->intended(route('home'));
         }
             //if failed login
@@ -64,7 +71,16 @@ class LoginController extends Controller
     }
 
     public function logout() {
-        Auth::guard('web')->logout();
-        return redirect('/');
+
+        /*** Event Log ***/
+        $eventLogs = new Log();
+        $eventLogs->action = 'Logout';
+        $eventLogs->description = 'Logout approver account';
+        $eventLogs->user = Auth::guard('web')->user()->name;
+
+        if ($eventLogs->save()) {
+            Auth::guard('web')->logout();
+            return redirect('/');
+        }
     }
 }
