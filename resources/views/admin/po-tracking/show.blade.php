@@ -41,7 +41,7 @@
         </div>
         @endif
 
-        <form method="POST" action="{{ route('po-tracking.update', $ids->group_id)}}">{{method_field('PUT')}} 
+        <form method="POST" action="{{ route('po-tracking.update', $ids->group_id)}}" onSubmit="return confirm('Are you sure to submit?');">{{method_field('PUT')}} 
             {{csrf_field()}}
 
               
@@ -201,7 +201,7 @@
                       <br><strong><span>Approver Comment:</span></strong><br>
                       <label for="remarks" class="label">{{$comment->comments}}</label>
                     </div>
-        <a href="{{ route('po-tracking.index') }}" class="po-back-page">Back To Previous Page</a>
+        <a href="{{ route('po-tracking.index')}}" class="po-back-page">Back To Previous Page</a>
     </div>
 
 

@@ -25,7 +25,7 @@
             </div>
 
                 {{-- FORM APPROVER ACCOUNT CREATION --}}
-                <form method="POST" action="{{route('assets-management.update', $asset->id)}}">
+                <form method="POST" action="{{route('assets-management.update', $asset->id)}}" onSubmit="return confirm('Are you sure to submit?');">
                     {{method_field('PUT')}}
                     {{csrf_field()}}
 
@@ -208,7 +208,7 @@
                     <div class="field">
                     <label for="date_delivered" class="lbl-login">Date Delivered</label>
                     <p class="control">
-                        <input type="datetime" class="input" name="date_delivered" id="date_delivered" value="{{ date('F d, Y', strtotime($asset->date_delivered)) }}">
+                        <input class="datepicker" type="date" name="date_delivered" id="date_delivered" value="{{ $asset->date_delivered }}">
                     </p>
                     </div>
                     @endif
@@ -217,7 +217,7 @@
                     <div class="field">
                     <label for="warranty_ends" class="lbl-login">Warranty Ends</label>
                     <p class="control">
-                        <input type="datetime" class="input" name="warranty_ends" id="warranty_ends" value="{{ date('F d, Y', strtotime($asset->warranty_ends)) }}">
+                        <input type="datetime" class="input" name="warranty_ends" id="warranty_ends" value="{{ $asset->warranty_ends }}">
                     </p>
                     </div>
                     @endif

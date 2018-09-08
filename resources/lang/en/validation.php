@@ -114,6 +114,27 @@ return [
         'category' => [
             'unique' => 'The Category has already been added',
         ],
+        'st_msn' => [
+            'unique' => 'The st/msn aready exists',
+        ],
+        'pdsn' => [
+            'unique' => 'The pdsn aready exists',
+        ],
+        'asset_tag' => [
+            'unique' => 'The asset tag aready exists',
+        ],
+        'asset_number' => [
+            'unique' => 'The asset number aready exists',
+        ],
+        'adapter' => [
+            'unique' => 'The adapter aready exists',
+        ],
+        'st' => [
+            'unique' => 'The st aready exists',
+        ],
+        's_n' => [
+            'unique' => 'The sn aready exists',
+        ],
     ],
 
     /*

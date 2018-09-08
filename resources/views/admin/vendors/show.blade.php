@@ -52,7 +52,7 @@
             <p class="view-label">{{$vendor->vat_number}}</p>
         </div>
             
-        <a href="{{ route('vendor.index') }}" class="back-to-manage">Back</a>
+        <a href="{{url()->previous() }}" class="back-to-manage">Back</a>
 
     </div>
     

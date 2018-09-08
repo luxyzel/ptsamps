@@ -199,7 +199,7 @@
                     @endif
             </table>
         </div>
-        <a href="{{ route('assets-tracking.index') }}" class="back-but-l">Back to Manage Assets</a>
+        <a href="{{ url()->previous()  }}" class="back-but-l">Back to Manage Assets</a>
     {{-- Container Creating User --}}
     {{-- <div class="large-cont"> --}}
 

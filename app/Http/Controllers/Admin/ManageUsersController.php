@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Model\Log;
 use Auth;
+use Session;
 
 class ManageUsersController extends Controller
 {
@@ -59,7 +61,17 @@ class ManageUsersController extends Controller
         $user->password = bcrypt($request->password);
 
         if ($user->save()) {
+
+            /*** CREATE EVENT LOG ***/
+            $eventLogs = new Log();
+            $eventLogs->action = 'Create';
+            $eventLogs->description = 'Created new approvers account';
+            $eventLogs->user = Auth::guard('admin')->user()->name;
+            $eventLogs->save();
+
+            Session::flash('success', 'Account Successfully Created');
             return redirect()->route('users.show', $user->id);
+
         } else{
             return redirect()->route('users.create');
         }
@@ -110,7 +122,17 @@ class ManageUsersController extends Controller
         $user->email = $request->email;
 
         if ($user->save()) {
+
+            /*** CREATE EVENT LOG ***/
+            $eventLogs = new Log();
+            $eventLogs->action = 'Update';
+            $eventLogs->description = 'Updated approvers account';
+            $eventLogs->user = Auth::guard('admin')->user()->name;
+            $eventLogs->save();
+
+            Session::flash('success', 'Account Successfully Updated');
             return redirect()->route('users.show', $id);
+
         } else{
             return redirect()->route('users.edit', $id);
         }
@@ -124,7 +146,22 @@ class ManageUsersController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::where('id',$id)->delete();
-        return redirect()->back();
+        $user = User::where('id',$id);
+
+        if ($user->delete()) {
+
+            /*** CREATE EVENT LOG ***/
+            $eventLogs = new Log();
+            $eventLogs->action = 'Delete';
+            $eventLogs->description = 'Deleted approvers account';
+            $eventLogs->user = Auth::guard('admin')->user()->name;
+            $eventLogs->save();
+
+            Session::flash('success', 'Account Successfully Deleted');
+            return redirect()->back();
+
+        }else{
+            return redirect()->back();
+        }
     }
 }

@@ -13,7 +13,7 @@
     	</div>
     	<hr class="m-t-0">
 
-     <form action="{{route('peripherals.update', $peripheral->id)}}" method="POST">
+     <form action="{{route('peripherals.update', $peripheral->id)}}" method="POST" onSubmit="return confirm('Are you sure to submit?');">
       {{method_field('PUT')}}
       {{csrf_field()}}
 
@@ -41,7 +41,7 @@
 
               <div class="field">
                 <label for="category_type" class="label">Category Type</label>
-                 <select name="category_type" id="category_type" class="control">
+                 <select name="category_type" id="category_type" class="control" required>
                   @foreach($category as $cat)
                     <option value="{{ $cat->category_type }}" {{ $peripheral->category_type === $cat->category_type? 'selected' : '' }}>{{ $cat->category_type }}</option>
                   @endforeach
@@ -59,27 +59,27 @@
               <div class="field">
                 <label for="stmsn" class="label">ST/MSN</label>
                 <p class="control">
-                    <input type="text" class="input" name="stmsn" id="stmsn" value="{{ $peripheral->stmsn }}">
+                    <input type="text" class="input" name="stmsn" id="stmsn" value="{{ $peripheral->stmsn }}" required>
                 </p>
               </div>
 
               <div class="field">
                 <label for="pdsn" class="label">PDSN</label>
                 <p class="control">
-                    <input type="text" class="input" name="pdsn" id="pdsn" value="{{ $peripheral->pdsn }}">
+                    <input type="text" class="input" name="pdsn" id="pdsn" value="{{ $peripheral->pdsn }}" required>
                 </p>
               </div>
 
               <div class="field">
                 <label for="asset_tag" class="label">Asset Tag</label>
                 <p class="control">
-                    <input type="text" class="input" name="asset_tag" id="asset_tag" value="{{ $peripheral->asset_tag }}">
+                    <input type="text" class="input" name="asset_tag" id="asset_tag" value="{{ $peripheral->asset_tag }}" required>
                 </p>
               </div>
 
                 <div class="field">
                 <label for="condition" class="label">Condition</label>
-                 <select name="condition" id="condition" class="control">
+                 <select name="condition" id="condition" class="control" required>
                   @foreach($condition as $con)
                     <option value="{{ $con->condition }}" {{ $peripheral->condition === $con->condition? 'selected' : '' }}>{{ $con->condition }}</option>
                   @endforeach
@@ -88,7 +88,7 @@
 
               <div class="field">
                 <label for="status" class="label">Status</label>
-                 <select name="status" id="status" class="control">
+                 <select name="status" id="status" class="control" required>
                   @foreach($status as $status)
                     <option value="{{ $status->status }}" {{ $peripheral->status === $status->status? 'selected' : '' }}>{{ $status->status }}</option>
                   @endforeach
@@ -97,7 +97,7 @@
 
               <div class="field">
                 <label for="vendor" class="label">Vendor</label>
-                 <select name="vendor" id="vendor" class="control">
+                 <select name="vendor" id="vendor" class="control" required>
                   @foreach($vendors as $vendor)
                     <option value="{{ $vendor->company_name }}" {{ $peripheral->vendor === $vendor->company_name? 'selected' : '' }}>{{ $vendor->company_name }}</option>
                   @endforeach
@@ -114,7 +114,7 @@
               <div class="field">
                 <label for="warranty_ends" class="label">Warranty Ends</label>
                 <p class="control">
-                    <input type="text" class="input" name="warranty_ends" id="warranty_ends" value="{{$peripheral->warranty_ends}}">
+                    <input type="text" class="input" name="warranty_ends" id="warranty_ends" value="{{$peripheral->warranty_ends}}" required>
                 </p>
               </div>
 

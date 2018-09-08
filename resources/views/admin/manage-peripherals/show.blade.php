@@ -58,7 +58,7 @@
             <p class="view-label">{{$peripheral->notes}}</p>
         </div>
             
-        <a href="{{ route('peripherals.index') }}" class="back-to-manage">Back to Peripherals</a>
+        <a href="{{ url()->previous()  }}" class="back-to-manage">Back to Peripherals</a>
 
     </div>
     

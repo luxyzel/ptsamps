@@ -250,7 +250,7 @@
 									<a href="{{ route('vendor.show', $vendor->id) }}" class="manage-view-but" title="View">View</a>
 									<a href="{{ route('vendor.edit', $vendor->id) }}" class="manage-edit-but" title="Edit">Edit</a>
 									{{-- <a href="#" class="manage-archive-but" title="Archive User">Archive</a> --}}
-									<form action="{{ route('vendor.destroy', $vendor->id) }}" method="POST" style="display: inline;">
+									<form action="{{ route('vendor.destroy', $vendor->id) }}" method="POST" style="display: inline;" onSubmit="return confirm('Are you sure to delete?');">
 										{{ csrf_field() }}
 										{{ method_field('DELETE') }}
 										<button class="manage-archive-but">Delete</button>

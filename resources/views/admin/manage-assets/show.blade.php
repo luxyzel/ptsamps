@@ -169,7 +169,7 @@
                     @if(!is_null($asset->date_delivered))
                         <tr>
                             <td>Date Delivered</td>
-                            <td>{{ \Carbon\Carbon::parse(\DB::table('assets')->first()->date_delivered)->toFormattedDateString() }}</td>
+                            <td>{{ Carbon\Carbon::parse($asset->date_delivered)->format('M. d, Y') }}</td>
                         </tr>
                     @else
                     @endif
@@ -177,7 +177,11 @@
                     @if(!is_null($asset->warranty_ends))
                         <tr>
                             <td>Warranty Ends</td>
-                            <td>{{$asset->warranty_ends}}</td>
+                            @if (strtotime($asset->warranty_ends));
+                            <td>{{ Carbon\Carbon::parse($asset->warranty_ends)->format('M. d, Y') }}</td>
+                            @else
+                            <td>{{ $asset->warranty_ends }}</td>
+                            @endif
                         </tr>
                     @else
                     @endif
@@ -199,7 +203,7 @@
                     @endif
             </table>
         </div>
-        <a href="{{ route('assets-management.index') }}" class="back-but-l">Back to Manage Assets</a>
+        <a href="{{ url()->previous() }}" class="back-but-l">Back to Manage Assets</a>
         {{-- First  --}}
        {{--  <div class="lcont-c-asset fl" style="padding-right: 10px"> --}}
 

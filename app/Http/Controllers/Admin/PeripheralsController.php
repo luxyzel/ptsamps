@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\Model\Peripheral;
 use App\Model\Category;
@@ -11,6 +12,7 @@ use App\Model\Location;
 use App\Model\Vendor;
 use App\Model\Condition;
 use App\Model\Status;
+use App\Model\Log;
 use Auth;
 use Session;
 use File;
@@ -54,16 +56,17 @@ class PeripheralsController extends Controller
     {
         $this->validateWith([
         'category_type' => 'required',
-        'stmsn' => 'required',
         'date_delivered' => 'required',
         'vendor' => 'required',
-        // 'category_type' => 'required',
-        // 'stmsn' => 'required|unique:peripherals,stmsn',
-        // 'pdsn' => 'unique:peripherals,pdsn',
-        // 'asset_tag' => 'unique:peripherals,asset_tag',
-        // 'wsno' => 'unique:peripherals,wsno',
-        // 'date_delivered' => 'required',
-        // 'vendor' => 'required',
+        'stmsn' => ['required', Rule::unique('peripherals')->where(function ($query) {
+                return $query->where('stmsn', '!=' ,'N/A');
+             })],
+        'pdsn' => ['required', Rule::unique('peripherals')->where(function ($query) {
+                return $query->where('pdsn', '!=' ,'N/A');
+             })],
+        'asset_tag' => ['required', Rule::unique('peripherals')->where(function ($query) {
+                return $query->where('asset_tag', '!=' ,'N/A');
+             })],
         ]);
 
         $peripheral = new Peripheral();
@@ -80,10 +83,19 @@ class PeripheralsController extends Controller
         $peripheral->notes = $request->notes;
 
         if ($peripheral->save()) {
+
+            /*** CREATE EVENT LOG ***/
+            $eventLogs = new Log();
+            $eventLogs->action = 'Create';
+            $eventLogs->description = 'Created peripherals data';
+            $eventLogs->user = Auth::guard('admin')->user()->name;
+            $eventLogs->save();
+
             Session::flash('success', 'Perepheral Successfully Added');
             return redirect()->back();
         } else{
-            return redirect()->route('perepheral.create');
+            Session::flash('warning', 'Encountered Error. Try Again');
+            return redirect()->back();
         }
     }
 
@@ -130,16 +142,12 @@ class PeripheralsController extends Controller
     {
         $this->validateWith([
         'category_type' => 'required',
-        'stmsn' => 'required',
         'date_delivered' => 'required',
         'vendor' => 'required',
-        /*'category_type' => 'required',
-        'stmsn' => 'required|unique:peripherals,stmsn,'.$id,
+        'stmsn' => 'unique:peripherals,stmsn,'.$id,
         'pdsn' => 'unique:peripherals,pdsn,'.$id,
         'asset_tag' => 'unique:peripherals,asset_tag,'.$id,
-        'wsno' => 'unique:peripherals,wsno,'.$id,
-        'date_delivered' => 'required',
-        'vendor' => 'required',*/
+
         ]);
 
         $peripheral = Peripheral::findOrFail($id);
@@ -156,8 +164,17 @@ class PeripheralsController extends Controller
         $peripheral->notes = $request->notes;
 
         if ($peripheral->save()) {
+
+            /*** CREATE EVENT LOG ***/
+            $eventLogs = new Log();
+            $eventLogs->action = 'Update';
+            $eventLogs->description = 'Updated peripherals data';
+            $eventLogs->user = Auth::guard('admin')->user()->name;
+            $eventLogs->save();
+
             Session::flash('success', 'Perepheral Successfully Updated');
             return redirect()->back();
+
         } else{
             return redirect()->back();
         }
@@ -173,6 +190,14 @@ class PeripheralsController extends Controller
     {
         $DelPer = Peripheral::where('id',$id);
         if ($DelPer->delete()) {
+
+            /*** CREATE EVENT LOG ***/
+            $eventLogs = new Log();
+            $eventLogs->action = 'Delete';
+            $eventLogs->description = 'Deleted peripherals data';
+            $eventLogs->user = Auth::guard('admin')->user()->name;
+            $eventLogs->save();
+
             Session::flash('success', 'Peripheral Successfully Deleted');
             return redirect()->back();
         } else{
@@ -305,6 +330,14 @@ class PeripheralsController extends Controller
                             $insertData = Peripheral::insert($insert);
                             Peripheral::where('category_type',NULL)->delete();
                             if ($insertData) {
+
+                                /*** CREATE EVENT LOG ***/
+                                $eventLogs = new Log();
+                                $eventLogs->action = 'Import';
+                                $eventLogs->description = 'Imported peripherals data';
+                                $eventLogs->user = Auth::guard('admin')->user()->name;
+                                $eventLogs->save();
+
                                 Session::flash('success', 'Your Data has successfully imported');
                             }else {                        
                                 Session::flash('error', 'Error inserting the data..');

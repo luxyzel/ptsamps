@@ -201,7 +201,7 @@
                 <p class="view-label-full">N/A</p>
             @endif
 
-            <a href="{{ route('deployed-units.index') }}" class="back-but-l">Back to Assets Deployed Page</a>
+            <a href="{{ url()->previous()  }}" class="back-but-l">Back to Assets Deployed Page</a>
         </div>
         
 

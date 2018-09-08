@@ -13,8 +13,10 @@
             <div class="login-title">
 
                 {{-- Asset From --}}
-                <form method="POST" action="{{route('assets-management.store')}}">
+                <form  id="CreateForm" method="POST" action="{{route('assets-management.store')}}" onSubmit="return confirm('Are you sure to submit?');">
                     {{ csrf_field() }}
+
+                    {{-- onSubmit="return confirm('Are you sure you wish to delete?');" --}}
 
                     {{-- 1st Container --}}
                     <div class="lcont-c-asset fl" style="padding-right: 10px">
@@ -41,7 +43,7 @@
                         <input type="text" class="input" name="model" id="model" value="" autocomplete="off">
 
                         <label class="lbl-login">ST/MSN</label>
-                        <input type="text" class="input" name="stmsn" id="stmsn" value="" autocomplete="off"> 
+                        <input type="text" class="input" name="st_msn" id="st_msn" value="" autocomplete="off"> 
 
                         <label class="lbl-login">PDSN</label>
                         <input type="text" class="input" name="pdsn" id="pdsn" value="" autocomplete="off">
@@ -75,7 +77,7 @@
                         <input type="text" class="input" name="st" id="st" value="" autocomplete="off">
 
                         <label class="lbl-login">SN</label>
-                        <input type="text" class="input" name="sn" id="sn" value="" autocomplete="off">
+                        <input type="text" class="input" name="s_n" id="s_n" value="" autocomplete="off">
 
                         <label class="lbl-login">Mouse</label>
                         <input type="text" class="input" name="mouse" id="mouse" value="" autocomplete="off">
@@ -149,9 +151,17 @@
 
                         <button class="submit-approver-acc" style="margin-top: 12px;">Confirm Asset Creation</button>
 
+                        <!-- onclick="return confirmation();" -->
+
                         @if(Session::has('success'))
                             <div class="comment-success" id="comment-success" style="margin-top: 25px">
                                 <strong> {{ Session::get('success') }}</strong> 
+                            </div>
+                        @endif
+
+                        @if(Session::has('warning'))
+                            <div class="comment-warning" id="comment-warning" style="margin-top: 25px">
+                               <strong><center>{{ Session::get('warning') }}</center> </strong> 
                             </div>
                         @endif
 
@@ -379,8 +389,471 @@ $(document).ready(function() {
     });
 });
 
+
+
 /*** TIME-OUT SESSION ALERT ***/
 setTimeout(function() {
     $('#comment-success').fadeOut('fast');
+    $('#comment-warning').fadeOut('fast');
 }, 5000); 
+
+
+/*** Showing vendor details ***/
+document.getElementById("category_type").onchange = function()
+{
+    if(this.value === "Firewall")
+    {
+      $("#asset_number").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_tag").prop("disabled", false);
+      $("#adapter").prop("disabled", false);
+
+      $("#stmsn").prop("required", true);
+      $("#asset_tag").prop("required", true);
+
+    }
+    else if(this.value === "Wifi Router"){
+      $("#asset_number").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_tag").prop("disabled", false);
+      $("#adapter").prop("disabled", false);
+
+      $("#stmsn").prop("required", true);
+      $("#asset_tag").prop("required", true);
+    }
+    else if(this.value === "Server"){
+      $("#asset_number").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_tag").prop("disabled", false);
+
+      $("#stmsn").prop("required", true);
+      $("#pdsn").prop("required", true);
+      $("#asset_tag").prop("required", true);
+     }
+    else if(this.value === "Data Switch"){
+      $("#asset_tag").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_number").prop("disabled", false);
+
+      $("#stmsn").prop("required", true);
+      $("#pdsn").prop("required", true);
+      $("#asset_number").prop("required", true);
+     }
+    else if(this.value === "Voice Switch"){
+      $("#asset_tag").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_number").prop("disabled", false);
+
+      $("#stmsn").prop("required", true);
+      $("#pdsn").prop("required", true);
+      $("#asset_number").prop("required", true);
+     }
+    else if(this.value === "Core Switch"){
+      $("#asset_tag").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_number").prop("disabled", false);
+
+      $("#stmsn").prop("required", true);
+      $("#pdsn").prop("required", true);
+      $("#asset_number").prop("required", true);
+     }
+    else if(this.value === "System Units"){
+      $("#asset_tag").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#wsno").prop("disabled", false);
+      $("#stmsn").prop("disabled", false);
+      $("#mouse").prop("disabled", false);
+      $("#keyboard").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_number").prop("disabled", false);
+
+      $("#stmsn").prop("required", true);
+      $("#asset_number").prop("required", true);
+     }
+    else if(this.value === "Monitor"){
+      $("#stmsn").prop("disabled", true);
+      $("#asset_tag").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#wsno").prop("disabled", false);
+      $("#st").prop("disabled", false);
+      $("#sn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_number").prop("disabled", false);
+
+      $("#st").prop("required", true);
+      $("#sn").prop("required", true);
+      $("#asset_number").prop("required", true);
+     }
+    else if(this.value === "Laptop"){
+      $("#asset_number").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_tag").prop("disabled", false);
+
+      $("#stmsn").prop("required", true);
+     }
+    else if(this.value === "RPS"){
+      $("#asset_tag").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_number").prop("disabled", false);
+
+      $("#stmsn").prop("required", true);
+      $("#pdsn").prop("required", true);
+      $("#asset_number").prop("required", true);
+     }
+    else if(this.value === "MPS"){
+      $("#asset_tag").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_number").prop("disabled", false);
+
+      $("#stmsn").prop("required", true);
+      $("#pdsn").prop("required", true);
+      $("#asset_number").prop("required", true);
+     }
+    else if(this.value === "UPS"){
+      $("#asset_tag").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_number").prop("disabled", false);
+
+      $("#stmsn").prop("required", true);
+      $("#asset_number").prop("required", true);
+     }
+    else if(this.value === "IP Phone"){
+      $("#asset_tag").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_number").prop("disabled", false);
+
+      $("#stmsn").prop("required", true);
+      $("#asset_number").prop("required", true);
+     }
+    else if(this.value === "Printer"){
+      $("#asset_number").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_tag").prop("disabled", false);
+
+      $("#stmsn").prop("required", true);
+      $("#asset_tag").prop("required", true);
+     }
+    else if(this.value === "Biometrics"){
+      $("#asset_number").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_tag").prop("disabled", false);
+
+      $("#stmsn").prop("required", true);
+      $("#asset_tag").prop("required", true);
+     }
+    else if(this.value === "CCTV"){
+      $("#pdsn").prop("disabled", true);
+      $("#asset_number").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#asset_tag").prop("disabled", false);
+
+      $("#stmsn").prop("required", true);
+     }
+    else if(this.value === "Headset"){
+      $("#asset_number").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_tag").prop("disabled", false);
+
+      $("#stmsn").prop("required", true);
+     }
+    else if(this.value === "TV"){
+      $("#pdsn").prop("disabled", true);
+      $("#asset_number").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#asset_tag").prop("disabled", false);
+
+      $("#stmsn").prop("required", true);
+      $("#asset_tag").prop("required", true);
+     }
+    else if(this.value === "Refregirator"){
+      $("#asset_number").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_tag").prop("disabled", false);
+
+      $("#asset_tag").prop("required", true);
+     }
+    else if(this.value === "Microwave"){
+      $("#asset_number").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_tag").prop("disabled", false);
+
+      $("#asset_tag").prop("required", true);
+     }
+    else if(this.value === "Coffee Maker"){
+      $("#asset_number").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_tag").prop("disabled", false);
+
+      $("#asset_tag").prop("required", true);
+     }
+    else if(this.value === "Office Chair"){
+      $("#stmsn").prop("disabled", true);
+      $("#pdsn").prop("disabled", true);
+      $("#asset_number").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+
+      $("#code").prop("disabled", false);
+      $("#description").prop("disabled", false);
+      $("#asset_tag").prop("disabled", false);
+
+      $("#description").prop("required", true);
+     }
+    else if(this.value === "Tables"){
+      $("#stmsn").prop("disabled", true);
+      $("#pdsn").prop("disabled", true);
+      $("#asset_number").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+
+      $("#code").prop("disabled", false);
+      $("#description").prop("disabled", false);
+      $("#asset_tag").prop("disabled", false);
+
+      $("#description").prop("required", true);
+     }
+    else if(this.value === "Projector"){
+      $("#asset_number").prop("disabled", true);
+      $("#adapter").prop("disabled", true);
+      $("#wsno").prop("disabled", true);
+      $("#st").prop("disabled", true);
+      $("#sn").prop("disabled", true);
+      $("#mouse").prop("disabled", true);
+      $("#keyboard").prop("disabled", true);
+      $("#code").prop("disabled", true);
+      $("#description").prop("disabled", true);
+
+      $("#stmsn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_tag").prop("disabled", false);
+
+      $("#stmsn").prop("required", true);
+     }
+     else{
+      $("#stmsn").prop("disabled", false);
+      $("#pdsn").prop("disabled", false);
+      $("#asset_tag").prop("disabled", false);
+      $("#asset_number").prop("disabled", false);
+      $("#adapter").prop("disabled", false);
+      $("#wsno").prop("disabled", false);
+      $("#st").prop("disabled", false);
+      $("#sn").prop("disabled", false);
+      $("#mouse").prop("disabled", false);
+      $("#keyboard").prop("disabled", false);
+      $("#code").prop("disabled", false);
+      $("#description").prop("disabled", false);
+     }
+};
+
+// function confirmation(){
+//     if(confirm('Are you sure to submit?')){
+//         document.getElementById('CreateForm').submit();
+//     }else{
+//         return false;
+//     }   
+// }
 </script>

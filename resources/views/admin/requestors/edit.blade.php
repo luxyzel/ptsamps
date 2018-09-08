@@ -25,7 +25,7 @@
             </div>
 
             {{-- FORM EDIT REQUESTOR INFORMATION --}}
-            <form method="POST" action="{{route('requestor.update', $requestor->id)}}">
+            <form method="POST" action="{{route('requestor.update', $requestor->id)}}" onSubmit="return confirm('Are you sure to submit?');">
                 {{method_field('PUT')}}
                 {{csrf_field()}}
 

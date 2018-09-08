@@ -283,7 +283,7 @@
 									<a href="{{ route('peripherals.show', $per->id) }}" class="manage-view-but" title="View">View</a>
 									<a href="{{ route('peripherals.edit', $per->id) }}" class="manage-edit-but" title="Edit">Edit</a>
 									{{-- <a href="#" class="manage-archive-but" title="Archive User">Archive</a> --}}
-									<form action="{{ route('peripherals.destroy', $per->id) }}" method="POST" style="display: inline;">
+									<form action="{{ route('peripherals.destroy', $per->id) }}" method="POST" style="display: inline;" onSubmit="return confirm('Are you sure to delete?');">
 										{{ csrf_field() }}
 										{{ method_field('DELETE') }}
 										<button class="manage-archive-but">Delete</button>

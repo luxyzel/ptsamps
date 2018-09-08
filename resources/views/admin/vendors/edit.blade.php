@@ -1,6 +1,6 @@
 
 
-             <form action="{{route('vendor.update', $vendor->id)}}" method="POST">
+             <form action="{{route('vendor.update', $vendor->id)}}" method="POST" onSubmit="return confirm('Are you sure to submit?');">
       {{method_field('PUT')}}
       {{csrf_field()}}
                 
@@ -27,28 +27,28 @@
                 <div class="field">
                 <label for="coname" class="label">Company Name</label>
                 <p class="control">
-                    <input type="text" class="input" name="coname" id="coname" value="{{ $vendor->company_name }}">
+                    <input type="text" class="input" name="coname" id="coname" value="{{ $vendor->company_name }}" required>
                 </p>
                 </div>
 
                 <div class="field">
                 <label for="ctperson" class="label">Contact Person</label>
                 <p class="control">
-                    <input type="text" class="input" name="ctperson" id="ctperson" value="{{ $vendor->contact_person }}">
+                    <input type="text" class="input" name="ctperson" id="ctperson" value="{{ $vendor->contact_person }}" required>
                 </p>
                 </div>
 
                 <div class="field">
                 <label for="designation" class="label">Designation</label>
                 <p class="control">
-                    <input type="text" class="input" name="designation" id="designation" value="{{ $vendor->designation }}">
+                    <input type="text" class="input" name="designation" id="designation" value="{{ $vendor->designation }}" required>
                 </p>
                 </div>
 
                 <div class="field">
                 <label for="emailadd" class="label">Email Address</label>
                 <p class="control">
-                    <input type="text" class="input" name="emailadd" id="emailadd" value="{{ $vendor->email_address }}">
+                    <input type="text" class="input" name="emailadd" id="emailadd" value="{{ $vendor->email_address }}" required>
                 </p>
                 </div>
 
@@ -62,7 +62,7 @@
                 <div class="field">
                 <label for="coaddress" class="label">Company Address</label>
                 <p class="control">
-                    <input type="text" class="input" name="coaddress" id="coaddress" value="{{ $vendor->company_address }}">
+                    <input type="text" class="input" name="coaddress" id="coaddress" value="{{ $vendor->company_address }}" required>
                 </p>
                 </div>
 
@@ -83,7 +83,7 @@
                 <div class="field">
                 <label for="vat" class="label">VAT Reg. TIN: </label>
                 <p class="control">
-                    <input type="text" class="input" name="vat" id="vat" value="{{ $vendor->vat_number }}">
+                    <input type="text" class="input" name="vat" id="vat" value="{{ $vendor->vat_number }}" required>
                 </p>
                 </div>
 
