@@ -4,7 +4,9 @@
 	}
 </style>
 <div class="container">
-		
+		  
+      <p><strong>PO NUMBER: </strong><p><strong>{{$payments->pos->po_number}}</strong>
+
 			<div class="dboard-content-menu">
                 <p><strong>VENDOR</strong></p>
                   <div class="fl">

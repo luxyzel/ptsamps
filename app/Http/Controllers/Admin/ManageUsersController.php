@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Model\Log;
+use App\Model\Notif;
 use Auth;
 use Session;
 
@@ -61,6 +62,12 @@ class ManageUsersController extends Controller
         $user->password = bcrypt($request->password);
 
         if ($user->save()) {
+
+            /*** CREATE USER NOTIF ***/
+            $lastInsertedId = $user->id;
+            $userNotif = new Notif();
+            $userNotif->user_id = $lastInsertedId;
+            $userNotif->save();
 
             /*** CREATE EVENT LOG ***/
             $eventLogs = new Log();
