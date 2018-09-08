@@ -281,12 +281,12 @@
     position: absolute;
     top: -20px;
     right: 250px;
-    padding: 2px 5px 2px 6px;
-    background-color: red;
-    color: white;
+    padding: 2px 6px 2px 5px;
+    background-color: #ff5f86;
+    color: #fff;
     font-size: 0.65em;
     border-radius: 50%;
-    box-shadow: 1px 1px 1px gray;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, .3);
     display: none;
   }
 

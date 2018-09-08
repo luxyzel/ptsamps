@@ -18,8 +18,8 @@
                         <img src="/img/companylogo.png" title="Project T Solutions">
                     </div>
                     <div class="login-text fl">
-                        <p class="login-comp-nm">Create New Assets</p>
-                        <p class="system-about">Add Asset to your Inventory</p>
+                        <p class="login-comp-nm">Create Peripherals</p>
+                        <p class="system-about">Add peripherals to your Asset</p>
                     </div>
                     <div class="clr"></div>
 
