@@ -516,11 +516,25 @@ td input[type=text] {
 	background-color: #5497db;
 }
 
+/*Peripherals*/
+.medium-cont {
+	background-color: #fff;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 800px;
+	height: 450px;
+	margin-top: -225px;
+	margin-left: -400px;
+	border-radius: 5px;
+	padding: 20px 30px;
+	box-shadow: 3px 3px 40px -10px rgba(0, 0, 0, 0.29);
+}
 
-
-
-
-
+/*peripherals create*/
+.lcont-c-peri {
+	width: 33.3%;
+}
 
 
 
