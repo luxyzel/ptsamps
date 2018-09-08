@@ -31,9 +31,10 @@ class POfileController extends Controller
         view()->share('vendor', $vendor);
         view()->share('requestor', $requestor);
         
- 		$pdf = PDF::loadView('admin.po-tracking.pdfview');
-        return $pdf->download('admin.po-tracking.pdfview.pdf');
-        /*return $vendor;*/
+ 		// $pdf = PDF::loadView('admin.po-tracking.pdfview');
+        //return $pdf->download('admin.po-tracking.pdfview.pdf');
+        
+        return view('admin.po-tracking.pdfview');
     }
 
 }
