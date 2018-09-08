@@ -4,54 +4,59 @@
 </head>
 
 <body>
-	<div class="flex-container" style="width: 80%; margin: auto;">
-    	<div class="columns m-t-10">
-      		<div class="column">
-        		<h1 class="title">Create New Status</h1>
-      		</div>
-    	</div>
-    	<hr class="m-t-0">
-    	<form method="POST" action="{{route('statuses.store')}}">
-     	 {{ csrf_field() }}
-     	 <div class="columns">
-       		<div class="column">
 
-			    <!-- warning invalid credentials -->
-	            @if(Session::has('success'))
-	            <div class="comment-error">
-	               <strong> {{ Session::get('success') }}</strong> 
-	            </div>
-	            @endif
- 
-          		<div class="field">
-           			<label for="name" class="label">Status</label>
-            		<p class="control">
-              			<input type="text" class="input" name="status" id="status" value="{{old('status')}}">
-            		</p>
-          		</div>
+	<div class="landing-bg">
 
-        	</div> <!-- end of .column -->
+    {{-- Container Creating User --}}
+    <div class="user-interface-cont-condition">
 
-        	<div class="columns">
-		        <div class="column">
-		          <hr />
-		          <button class="button is-primary is-pulled-right" style="width: 250px;">Add Status</button>
-		        </div>
+      {{-- TOP LABELS --}}
+      <div class="login-title">
+                <div class="login-logo fl">
+                    <img src="/img/companylogo.png" title="Project T Solutions">
+                </div>
+                <div class="login-text fl">
+                    <p class="login-comp-nm">Create New Status</p>
+                </div>
+                <div class="clr"></div>
+            </div>
 
-		       <a href="{{ route('statuses.index') }}">Back</a>
+            {{-- FORM APPROVER ACCOUNT CREATION --}}
+            <form method="POST" action="{{route('statuses.store')}}">
+     	 	{{ csrf_field() }}
 
-			    <!-- DISPLAY ERRORS -->
-			    @if ($errors->any())
-			    <div class="alert alert-danger">
-			        <ul>
-			            @foreach ($errors->all() as $error)
-			                <br><strong>{{ $error }}</strong>
-			            @endforeach
-			        </ul>
-			    </div>
-			    @endif
-    		</div>
-   	 	</form>
-   	</div>
+       			<label for="name" class="lbl-login">Status</label>
+              	<input type="text" class="input" name="status" id="status" value="{{old('status')}}">
+            		
+                <button class="submit-approver-acc">Add Condition</button>
+
+                @if(Session::has('success'))
+                        <div class="comment-success" id="comment-success" style="margin-top: 25px">
+                            <strong> {{ Session::get('success') }}</strong> 
+                        </div>
+                    @endif
+
+                    @if(Session::has('warning'))
+                        <div class="comment-warning" id="comment-warning" style="margin-top: 25px">
+                           <strong><center>{{ Session::get('warning') }}</center> </strong> 
+                        </div>
+                    @endif
+
+                <!-- DISPLAY ERRORS -->
+                @if ($errors->any())
+                    <div class="login-comment-error">
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                  </div>
+                @endif
+
+                <a href="{{ route('statuses.index') }}" class="back-to-manage">Back to Manage Status</a>
+
+        </form>
+
+    </div>
+    
+  </div>
 
 @include('templates.footer')
