@@ -10,6 +10,7 @@ use App\Model\Procure;
 use App\Model\Payment;
 use App\Model\Po_number;
 use App\Model\Log;
+use App\Model\Notif;
 use Carbon\Carbon;
 use Auth;
 use DB;
@@ -135,6 +136,11 @@ class PendingPOController extends Controller
                 $eventLogs->user = Auth::guard('web')->user()->name;
                 $eventLogs->save();
 
+                $UserFind = Auth::guard('web')->user()->id;
+                $NotifSave = Notif::where('user_id', $UserFind)->first();
+                $NotifSave->count = $NotifSave->count + 1;
+                $NotifSave->save();
+
                 Session::flash('success', 'PO Request Successfully Approved');
                 return redirect()->back();
             }
@@ -156,6 +162,11 @@ class PendingPOController extends Controller
                     $eventLogs->description = 'Rejected PO request';
                     $eventLogs->user = Auth::guard('web')->user()->name;
                     $eventLogs->save();
+
+                    $UserFind = Auth::guard('web')->user()->id;
+                    $NotifSave = Notif::where('user_id', $UserFind)->first();
+                    $NotifSave->count = $NotifSave->count +  1;
+                    $NotifSave->save();
 
                     Session::flash('success', 'PO Request Rejected');
                     return redirect()->back();

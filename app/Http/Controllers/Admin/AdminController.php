@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Admin;
 use App\User;
+use App\Model\Log;
+use App\Model\Notif;
 use Session;
 use Hash;
 
@@ -26,7 +28,8 @@ class AdminController extends Controller
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        return view('admin.dashboard')->with('admin', $admin);
+        $notifs = Notif::sum('count');
+        return view('admin.dashboard', compact('admin', 'notifs'));
     }
 
     public function accountInfo()
@@ -58,6 +61,14 @@ class AdminController extends Controller
                 $admin->name = $request->name;
                 $admin->email = $request->email;
                 $admin->save();
+
+                /*** CREATE EVENT LOG ***/
+                $eventLogs = new Log();
+                $eventLogs->action = 'Update';
+                $eventLogs->description = 'Updated account info';
+                $eventLogs->user = Auth::guard('admin')->user()->name;
+                $eventLogs->save();
+
                 Session::flash('success', 'Update Changed Successfully');
                 return redirect()->back();
 
@@ -90,6 +101,14 @@ class AdminController extends Controller
                 $admin->email = $request->email;
                 $admin->password = bcrypt($request->password);
                 $admin->save();
+
+                /*** CREATE EVENT LOG ***/
+                $eventLogs = new Log();
+                $eventLogs->action = 'Update';
+                $eventLogs->description = 'Updated account password';
+                $eventLogs->user = Auth::guard('admin')->user()->name;
+                $eventLogs->save();
+
                 Session::flash('success', 'Password Changed Successfully');
                 return redirect()->back();
 
@@ -123,6 +142,14 @@ class AdminController extends Controller
         $adminnew->password = bcrypt($request->password);
 
         if ($adminnew->save()) {
+
+            /*** CREATE EVENT LOG ***/
+            $eventLogs = new Log();
+            $eventLogs->action = 'Create';
+            $eventLogs->description = 'Created new admin account';
+            $eventLogs->user = Auth::guard('admin')->user()->name;
+            $eventLogs->save();
+
             Session::flash('success', 'New Admin Created Successfully');
             return redirect()->back();
         } else{

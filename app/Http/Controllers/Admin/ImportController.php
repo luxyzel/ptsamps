@@ -11,6 +11,7 @@ use App\Model\Location;
 use App\Model\Vendor;
 use App\Model\Condition;
 use App\Model\Status;
+use App\Model\Log;
 use Excel;
 use File;
 use Session;
@@ -117,6 +118,14 @@ class ImportController extends Controller
                             /*ASSET IMPORT*/
                             $insertData = Asset::insert($insert);
                             if ($insertData) {
+
+                                /*** CREATE EVENT LOG ***/
+                                $eventLogs = new Log();
+                                $eventLogs->action = 'Import';
+                                $eventLogs->description = 'Imported asset data';
+                                $eventLogs->user = Auth::guard('admin')->user()->name;
+                                $eventLogs->save();
+
                                 Session::flash('success', 'Data has successfully imported');
                             }else {                        
                                 Session::flash('error', 'Error inserting the data..');

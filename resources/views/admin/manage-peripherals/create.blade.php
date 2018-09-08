@@ -12,7 +12,7 @@
       		</div>
     	</div>
     	<hr class="m-t-0">
-    	<form method="POST" action="{{route('peripherals.store')}}">
+    	<form method="POST" action="{{route('peripherals.store')}}" onSubmit="return confirm('Are you sure to submit?');">
      	 {{ csrf_field() }}
      	 <div class="columns">
        		<div class="column">
@@ -37,7 +37,7 @@
 
               <div class="field">
                 <label for="category_type" class="label">Category Type</label>
-                 <select name="category_type" id="category_type" class="control">
+                 <select name="category_type" id="category_type" class="control" required>
                   <option value="" selected disabled hidden>--Select Category Type--</option>
                   @foreach($category as $cat)
                     <option value="{{ $cat->category_type }}">{{ $cat->category_type }}</option>
@@ -55,21 +55,21 @@
               <div class="field">
                 <label for="stmsn" class="label">ST/MSN</label>
                 <p class="control">
-                    <input type="text" class="input" name="stmsn" id="stmsn" value="">
+                    <input type="text" class="input" name="stmsn" id="stmsn" value="" required>
                 </p>
               </div>
 
               <div class="field">
                 <label for="pdsn" class="label">PDSN</label>
                 <p class="control">
-                    <input type="text" class="input" name="pdsn" id="pdsn" value="">
+                    <input type="text" class="input" name="pdsn" id="pdsn" value="" required>
                 </p>
               </div>
 
               <div class="field">
                 <label for="asset_tag" class="label">Asset Tag</label>
                 <p class="control">
-                    <input type="text" class="input" name="asset_tag" id="asset_tag" value="">
+                    <input type="text" class="input" name="asset_tag" id="asset_tag" value="" required>
                 </p>
               </div>
 
@@ -95,7 +95,7 @@
 
               <div class="field">
                 <label for="vendor" class="label">Vendor</label>
-                 <select name="vendor" id="vendor" class="control">
+                 <select name="vendor" id="vendor" class="control" required>
                   <option value="" selected disabled hidden>--Select Vendor--</option>
                   @foreach($vendors as $vendor)
                     <option value="{{ $vendor->company_name }}">{{ $vendor->company_name }}</option>
@@ -106,7 +106,7 @@
               <div class="field">
                 <label for="date_delivered" class="label">Date Delivered</label>
                 <p class="control">
-                    <input type="date" class="input" name="date_delivered" id="date_delivered" value="">
+                    <input type="date" class="input" name="date_delivered" id="date_delivered" value="" required>
                 </p>
               </div><br>
 

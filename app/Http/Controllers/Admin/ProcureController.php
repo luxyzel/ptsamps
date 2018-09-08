@@ -141,7 +141,7 @@ class ProcureController extends Controller
                 /*** CREATE EVENT LOG ***/
                 $eventLogs = new Log();
                 $eventLogs->action = 'Create';
-                $eventLogs->description = 'Create PO request';
+                $eventLogs->description = 'Created PO request';
                 $eventLogs->user = Auth::guard('admin')->user()->name;
                 $eventLogs->save();
 

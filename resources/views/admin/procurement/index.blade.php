@@ -229,7 +229,7 @@
 	      	</div>
       	@endif
 
-		<form id="VendorForm" action="{{ route('procurement.store') }}" method="post">
+		<form id="VendorForm" action="{{ route('procurement.store') }}" method="post" onSubmit="return confirm('Are you sure to submit?');">
 			{{ csrf_field() }}
 
 			<div class="manage-content" style="margin-top: 20px;">	
@@ -335,7 +335,7 @@
 								</div>
 							</td>
 							<td>
-								<button type="button" name="add" id="add" class="add-btn">+</button>
+								<button type="button" name="add" id="add" class="add-btn" >+</button>
 							</td>
 						</tr>
 				</table>
@@ -372,7 +372,7 @@
 				<div class="proc-bot fl">
 					<label for="requestor" class="lbl-login">Requestor Name</label>
 	                <select name="requestor" id="requestor" class="control" required>
-		                <option value="none" hidden selected>--Select Requestor--</option>
+		                <option value="" hidden selected>--Select Requestor--</option>
 			                @foreach($requestors as $requestor)
 			                	<option value="{{ $requestor->requestor_name }}">{{ $requestor->requestor_name }}</option>
 			                @endforeach
@@ -435,10 +435,21 @@ $(document).ready(function() {
   });
 
 
-  $(document).on('click', '.btn_remove', function() {
+  /*$(document).on('click', '.btn_remove', function() {
 	var button_id = $(this).attr("id");
+
 	$('#row' + button_id + '').remove();
 	ComputePayments();
+  });*/
+
+  $(document).on('click', '.btn_remove', function() {
+	var button_id = $(this).attr("id");
+	if(confirm('Are you sure to remove?')){
+        $('#row' + button_id + '').remove();
+		ComputePayments();
+    }else{
+        return false;
+    }   
   });
 
 	function upd_art(i) {
@@ -594,6 +605,7 @@ document.getElementById("vendorname").onchange = function()
 setTimeout(function() {
     $('#comment-success').fadeOut('fast');
 }, 5000);
+
 
 </script>
 

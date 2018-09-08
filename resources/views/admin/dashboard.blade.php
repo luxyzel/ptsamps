@@ -101,19 +101,33 @@
 							<p>Asset Tracking</p>
 						</div>
 					</div>
+
+				{{-- <div class="container">
+				  <div class="notify-container">
+				    <span class="notify-bubble">1</span>
+				    <button type="button" class="btn btn-notify">Notify Me</button>
+				  </div>
+				  <h3>click to trigger notification bubble</h3>
+				</div> --}}
+
+					@if($notifs != 0)
+					<div class="notify-container">
+					    <span class="notify-bubble">{{$notifs}}</span></div>
+					@endif
 					<div class="dboard-left-menu fl">
-						<a href="{{ route('po-tracking.index')}}">
+						<a href="{{ route('po-tracking.index')}}" id="potrack">
 							<div class="dboard-menu4-box">
 								<img src="/img/icon4.png">
 							</div>
 						</a>
-
+					
 						<!-- popup menu name -->
 						<div id="dboard-menu-pop4">
 							<img src="/img/hoverarrow1.png">
 							<p>P.O. Tracking</p>
 						</div>
 					</div>
+
 					<div class="dboard-left-menu fl">
 						<a href="{{ route('peripherals.index') }}">
 							<div class="dboard-menu5-box">
@@ -205,6 +219,8 @@
 						</div>
 					</div>
 
+
+
 					<form id="logout-form" action="{{route('admin.logout')}}" method="POST" style="display: none;">
 						{{ csrf_field() }}
 					</form>
@@ -241,6 +257,63 @@
 
 		</div>
 		<div class="clr"></div>
+
+
 	</div>	
 
+
+
 @include('templates.footer')
+
+<style type="text/css">
+	.container {
+  margin: 100px auto;
+  text-align: center;
+}
+
+.notify-container {
+  position: relative;
+	display: inline-block;
+  margin-top: 10px;
+}
+
+  .notify-bubble {
+    position: absolute;
+    top: -20px;
+    right: 250px;
+    padding: 2px 5px 2px 6px;
+    background-color: red;
+    color: white;
+    font-size: 0.65em;
+    border-radius: 50%;
+    box-shadow: 1px 1px 1px gray;
+    display: none;
+  }
+
+/*.btn {
+  background: #ccc;
+  
+  &:hover {
+    background: darken(silver, 10%);
+  }
+  
+  &:focus,
+  &:focus:active,
+  &:active {
+    outline: none;
+    box-shadow: none;
+  }
+}*/
+</style>
+<script type="text/javascript">
+
+$(document).ready(function() {
+$('.notify-bubble').show(400);
+});	
+
+// $(document).ready(function(){
+//     $('#potrack').click(function(){
+//         $('.notify-bubble').none(400);
+//     });
+// });
+</script>

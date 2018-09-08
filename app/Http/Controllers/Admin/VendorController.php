@@ -18,7 +18,7 @@ class VendorController extends Controller
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        $vendors = Vendor::orderBy('company_name','DESC')->paginate(25);
+        $vendors = Vendor::orderBy('created_at','DESC')->paginate(25);
         return view('admin.vendors.index', compact('admin', 'vendors'));
     }
 
@@ -44,10 +44,10 @@ class VendorController extends Controller
         'coname' => 'required|unique:vendors,company_name',
         'ctperson' => 'required',
         'emailadd' => 'required|unique:vendors,email_address',
-/*        'ctnumber' => 'unique:vendors,contact_number',
+        'ctnumber' => 'unique:vendors,contact_number',
         'phone' => 'unique:vendors,phone',
         'fax' => 'unique:vendors,fax',
-        'vat' => 'unique:vendors,vat_number',*/
+        'vat' => 'unique:vendors,vat_number',
         ]);
 
         $vendors = new Vendor();
@@ -108,10 +108,10 @@ class VendorController extends Controller
         'coname' => 'required|unique:vendors,company_name,'.$id,
         'ctperson' => 'required',
         'emailadd' => 'required|unique:vendors,email_address,'.$id,
-/*        'ctnumber' => 'unique:vendors,contact_number,'.$id,
+        'ctnumber' => 'unique:vendors,contact_number,'.$id,
         'phone' => 'unique:vendors,phone,'.$id,
         'fax' => 'unique:vendors,fax,'.$id,
-        'vat' => 'unique:vendors,vat_number,'.$id,*/
+        'vat' => 'unique:vendors,vat_number,'.$id,
         ]);
 
         $vendors = Vendor::findOrFail($id);

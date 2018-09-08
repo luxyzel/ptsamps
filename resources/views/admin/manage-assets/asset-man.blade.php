@@ -282,7 +282,7 @@
 									<a href="{{ route('assets-management.show', $asset->id) }}" class="manage-view-but" title="View">View</a>
 									<a href="{{ route('assets-management.edit', $asset->id) }}" class="manage-edit-but" title="Edit">Edit</a>
 									{{-- <a href="#" class="manage-archive-but" title="Archive User">Archive</a> --}}
-									<form action="{{ route('assets-management.destroy', $asset->id) }}" method="POST" style="display: inline;">
+									<form action="{{ route('assets-management.destroy', $asset->id) }}" method="POST" style="display: inline;" onSubmit="return confirm('Are you sure to archive?');">
 										{{ csrf_field() }}
 										{{ method_field('DELETE') }}
 										<button class="manage-archive-but">Archive</button>

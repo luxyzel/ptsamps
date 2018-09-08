@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\Model\Asset;
 use App\Model\Category;
@@ -11,6 +12,7 @@ use App\Model\Location;
 use App\Model\Vendor;
 use App\Model\Condition;
 use App\Model\Status;
+use App\Model\Log;
 use Auth;
 use Session;
 
@@ -47,15 +49,36 @@ class AssetsController extends Controller
 
     public function store(Request $request)
     {
-
-         $this->validateWith([
+        $ignore = 'N/A';
+        $this->validateWith([
         'category_type' => 'required',
+        'st_msn' => Rule::unique('assets')->where(function ($query) {
+                return $query->where('st_msn', '!=' ,'N/A');
+             }),
+        'pdsn' => Rule::unique('assets')->where(function ($query) {
+                return $query->where('pdsn', '!=' ,'N/A');
+             }),
+        'asset_tag' => Rule::unique('assets')->where(function ($query) {
+                return $query->where('asset_tag', '!=' ,'N/A');
+             }),
+        'asset_number' => Rule::unique('assets')->where(function ($query) {
+                return $query->where('asset_number', '!=' ,'N/A');
+             }),
+        'adapter' => Rule::unique('assets')->where(function ($query) {
+                return $query->where('adapter', '!=' ,'N/A');
+             }),
+        'st' => Rule::unique('assets')->where(function ($query) {
+                return $query->where('st', '!=' ,'N/A');
+             }),
+        's_n' => Rule::unique('assets')->where(function ($query) {
+                return $query->where('s_n', '!=' ,'N/A');
+             }),
         ]);
 
         $asset = new Asset();
         $asset->category_type = $request->category_type;
         $asset->model = $request->model;
-        $asset->st_msn = $request->stmsn;
+        $asset->st_msn = $request->st_msn;
         $asset->pdsn = $request->pdsn;
         $asset->asset_tag = $request->asset_tag;
         $asset->asset_number = $request->asset_number;
@@ -71,14 +94,22 @@ class AssetsController extends Controller
         $asset->condition = $request->condition;
         $asset->status = $request->status;
         $asset->date_delivered = $request->date_delivered;
+        $asset->warranty_ends = $request->warranty_ends;
         $asset->vendor = $request->vendor;
         $asset->notes = $request->notes;
 
         if ($asset->save()) {
+            /*** CREATE EVENT LOG ***/
+            $eventLogs = new Log();
+            $eventLogs->action = 'Create';
+            $eventLogs->description = 'Created asset data';
+            $eventLogs->user = Auth::guard('admin')->user()->name;
+            $eventLogs->save();
+
             Session::flash('success', 'Asset Successfully Added');
             return redirect()->back();
         } else{
-            return redirect()->route('create.assets');
+            return redirect()->back();
         }
     }
 
@@ -130,24 +161,24 @@ class AssetsController extends Controller
     {
         $this->validateWith([
         'category_type' => 'required',
-        'stmsn' => 'unique:assets,stmsn,'.$id,
+        'st_msn' => 'unique:assets,st_msn,'.$id,
         'asset_tag' => 'unique:assets,asset_tag,'.$id,
         'asset_number' => 'unique:assets,asset_number,'.$id,
-        'wsno' => 'unique:assets,wsno,'.$id,
+        'ws_no' => 'unique:assets,ws_no,'.$id,
         'st' => 'unique:assets,st,'.$id,
-        'sn' => 'unique:assets,sn,'.$id,
+        's_n' => 'unique:assets,s_n,'.$id,
         ]);
 
         $asset = Asset::findOrFail($id);
         $asset->category_type = $request->category_type;
         $asset->model = $request->model;
-        $asset->st_msn = $request->stmsn;
+        $asset->st_msn = $request->st_msn;
         $asset->pdsn = $request->pdsn;
         $asset->asset_tag = $request->asset_tag;
         $asset->asset_number = $request->asset_number;
         $asset->adapter = $request->adapter;
         $asset->location = $request->location;
-        $asset->ws_no = $request->wsno;
+        $asset->ws_no = $request->ws_no;
         $asset->st = $request->st;
         $asset->s_n = $request->s_n;
         $asset->mouse = $request->mouse;
@@ -156,10 +187,20 @@ class AssetsController extends Controller
         $asset->description = $request->description;
         $asset->condition = $request->condition;
         $asset->status = $request->status;
+        $asset->date_delivered = $request->date_delivered;
+        $asset->warranty_ends = $request->warranty_ends;
         $asset->vendor = $request->vendor;
         $asset->notes = $request->notes;
 
         if ($asset->save()) {
+
+            /*** CREATE EVENT LOG ***/
+            $eventLogs = new Log();
+            $eventLogs->action = 'Update';
+            $eventLogs->description = 'Updated asset data';
+            $eventLogs->user = Auth::guard('admin')->user()->name;
+            $eventLogs->save();
+
             Session::flash('success', 'Asset Successfully Updated');
             return redirect()->back();
         } else{
@@ -177,8 +218,17 @@ class AssetsController extends Controller
     {
         $asset = Asset::where('id',$id);
         if ($asset->delete()) {
+
+            /*** CREATE EVENT LOG ***/
+            $eventLogs = new Log();
+            $eventLogs->action = 'Archive';
+            $eventLogs->description = 'Archived asset data';
+            $eventLogs->user = Auth::guard('admin')->user()->name;
+            $eventLogs->save();
+
             Session::flash('success', 'Asset Successfully Archived');
             return redirect()->back();
+
         } else{
             return redirect()->back();
         }

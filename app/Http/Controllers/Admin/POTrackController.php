@@ -11,6 +11,7 @@ use App\Model\Payment;
 use App\Model\Po_number;
 use App\Model\Group_number;
 use App\Model\Log;
+use App\Model\Notif;
 use Auth;
 use DB;
 use Session;
@@ -24,11 +25,15 @@ class POTrackController extends Controller
      */
     public function index()
     {
+        DB::table('notifs')->update(['count' => 0]);
+
         $admin = Auth::guard('admin')->user();
         $procures = Procure::select('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id', DB::raw('group_concat(item) as item'))->groupBy('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id')->orderBy('created_at','DESC')->get();
          $count = $procures->count();
         $payments = Payment::All();
         return view('admin.po-tracking.index', compact('admin', 'procures', 'payments', 'count'));
+
+
     }
 
     /**

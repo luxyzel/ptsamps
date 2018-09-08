@@ -25,7 +25,7 @@
             </div>
 
             {{-- FORM APPROVER ACCOUNT CREATION --}}
-            <form method="POST" action="{{route('requestor.store')}}">
+            <form method="POST" action="{{route('requestor.store')}}" onSubmit="return confirm('Are you sure to submit?');">
             	{{ csrf_field() }}
 				
 				<label class="lbl-login">Requestor Name</label>

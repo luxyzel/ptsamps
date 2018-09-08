@@ -19,7 +19,7 @@ class RequestorController extends Controller
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        $requestors = Requestor::orderBy('requestor_name','ASC')->paginate(25);
+        $requestors = Requestor::orderBy('created_at','DESC')->paginate(25);
         return view('admin.requestors.index',compact('admin', 'requestors'));
     }
 
