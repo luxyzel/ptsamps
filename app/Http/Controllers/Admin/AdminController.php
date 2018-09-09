@@ -28,21 +28,22 @@ class AdminController extends Controller
 
     public function index()
     {
-        $POchart = Charts::database(Procure::all()->keyBy('group_id'), 'bar', 'google')
+        $POchart = Charts::database(Procure::all()->keyBy('group_id'), 'bar', 'highcharts')
                 ->title('Purchase Order Chart')
                 ->elementLabel('summary')
                 ->Width(0)
                 ->colors(['#2db580', '#32db92', '#7ff9c6'])
                 ->groupBy('status')
-                ->responsive(true);
+                ->dimensions(1150,260)
+                ->responsive(false);
 
-        $Stockchart = Charts::database(Asset::all()->where('status', 'Available'), 'donut', 'highcharts')
+        $Stockchart = Charts::database(Asset::all()->where('status', 'Available'), 'donut', 'fusioncharts')
                 ->title('Assets Chart')
                 ->elementLabel('Stocks')
                 ->colors(['#ffdcaa', '#fe903a'])
-                ->dimensions(1000,500)
                 ->groupBy('category_type')
-                ->responsive(true);
+                ->dimensions(500,500)
+                ->responsive(false);
 
 
         $year = Carbon::now()->year;
@@ -63,8 +64,8 @@ class AdminController extends Controller
             ->labels([$lastMonthName, $curMonthName])
             ->values([$lastCost, $curCost])
             ->colors(['#8279ff'])
-            ->dimensions(1000,500)
-            ->responsive(true);
+            ->dimensions(500,455)
+            ->responsive(false);
 
         $admin = Auth::guard('admin')->user();
         $notifs = Notif::sum('count');
