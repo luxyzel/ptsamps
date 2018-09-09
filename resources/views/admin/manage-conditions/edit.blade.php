@@ -10,7 +10,7 @@
   <div class="landing-bg">
 
     {{-- Container Creating User --}}
-    <div class="user-interface-cont">
+    <div class="user-interface-cont-condition">
 
       {{-- TOP LABELS --}}
       <div class="login-title">
@@ -28,7 +28,7 @@
                 {{method_field('PUT')}}
                 {{csrf_field()}}
 
-                <label class="lbl-login">Condition</label>
+                <label class="lbl-login" style="margin-top: 20px">Condition</label>
                 <input type="text" class="input" name="condition" id="condition" value="{{$condition->condition}}" autocomplete="off"  required>
                 
 

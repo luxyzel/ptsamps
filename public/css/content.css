@@ -380,22 +380,20 @@
 }
 
 .app-cont-box2 {
-	width: 65%;
+	width: 100%;
 	margin-right: 20px;
 	background-color: #fff;
 	border-radius: 3px;
 	padding: 8px;
 	box-shadow: 5px 5px 21px -3px rgba(70, 136, 246, 0.1);
-	height: 150px;
 }
 
 .app-cont-box1 {
-	width: 33%;
+	width: 49%;
 	background-color: #fff;
 	border-radius: 3px;
 	padding: 8px;
 	box-shadow: 5px 5px 21px -3px rgba(70, 136, 246, 0.1);
-	height: 150px;
 }
 
 .app-cont-title-blue {
@@ -534,6 +532,21 @@ td input[type=text] {
 /*peripherals create*/
 .lcont-c-peri {
 	width: 33.3%;
+}
+
+/*Categories and others*/
+.user-interface-cont-condition {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 350px;
+	height: 250px;
+	margin-top: -125px;
+	margin-left: -175px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 3px 3px 40px -10px rgba(0, 0, 0, 0.29);
+	padding: 20px 30px;
 }
 
 

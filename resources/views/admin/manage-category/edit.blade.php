@@ -42,7 +42,7 @@
                 </select>
               </div><br>
 
-                <button class="submit-approver-acc" style="margin-top: 40px;">Update Category</button>
+                <button class="submit-approver-acc" style="margin-top: 30px;">Update Category</button>
 
                 <!-- DISPLAY ERRORS -->
                  @if ($errors->any())
