@@ -232,7 +232,7 @@
             <div class="app-dboard-cont" style="margin-top: 30px">
                 <div class="app-cont-box2 fl">
                     <p class="app-cont-title-green" style="margin-bottom: 15px">Purchase Order Summary</p>
-                    {!! $POchart->html() !!}
+                    <center> {!! $POchart->html() !!}</center>
                 </div>
        		</div>	
 
@@ -247,7 +247,7 @@
                 </div>
                 <div class="app-cont-box1 fl">
                     <p class="app-cont-title-orange">Available Asset Summary</p>
-					{!! $Stockchart->html() !!}
+					<center>{!! $Stockchart->html() !!}</center>
                 </div>
                 <div class="clr"></div>
             </div>
