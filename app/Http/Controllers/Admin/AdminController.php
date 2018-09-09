@@ -41,7 +41,7 @@ class AdminController extends Controller
                 ->groupBy('status')
                 ->responsive(true);
 
-        $Stockchart = Charts::database(Asset::all()->where('status', 'Available'), 'pie', 'highcharts')
+        $Stockchart = Charts::database(Asset::all()->where('status', 'Available'), 'donut', 'highcharts')
                 ->title('Assets')
                 ->elementLabel('Stocks')
                 ->colors(['#C5CAE9', '#283593'])
