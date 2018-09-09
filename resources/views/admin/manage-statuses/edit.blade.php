@@ -9,7 +9,7 @@
   <div class="landing-bg">
 
     {{-- Container Creating User --}}
-    <div class="user-interface-cont">
+    <div class="user-interface-cont-condition">
 
       {{-- TOP LABELS --}}
       <div class="login-title">

@@ -4,54 +4,62 @@
 </head>
 
 <body>
-	<div class="flex-container" style="width: 80%; margin: auto;">
-    	<div class="columns m-t-10">
-      		<div class="column">
-        		<h1 class="title">Create New Condition</h1>
-      		</div>
-    	</div>
-    	<hr class="m-t-0">
-    	<form method="POST" action="{{route('conditions.store')}}">
-     	 {{ csrf_field() }}
-     	 <div class="columns">
-       		<div class="column">
 
-			    <!-- warning invalid credentials -->
-	            @if(Session::has('success'))
-	            <div class="comment-error">
-	               <strong> {{ Session::get('success') }}</strong> 
-	            </div>
-	            @endif
- 
-          		<div class="field">
-           			<label for="name" class="label">Condition</label>
-            		<p class="control">
-              			<input type="text" class="input" name="condition" id="condition" value="{{old('condition')}}">
-            		</p>
-          		</div>
 
-        	</div> <!-- end of .column -->
+	{{-- Create User Frontend --}}
+  <div class="landing-bg">
 
-        	<div class="columns">
-		        <div class="column">
-		          <hr />
-		          <button class="button is-primary is-pulled-right" style="width: 250px;">Add Condition</button>
-		        </div>
+    {{-- Container Creating User --}}
+    <div class="user-interface-cont-condition">
 
-		       <a href="{{ route('conditions.index') }}">Back</a>
+      {{-- TOP LABELS --}}
+      <div class="login-title">
+                <div class="login-logo fl">
+                    <img src="/img/companylogo.png" title="Project T Solutions">
+                </div>
+                <div class="login-text fl">
+                    <p class="login-comp-nm">Create New Condition</p>
+                </div>
+                <div class="clr"></div>
+            </div>
 
-			    <!-- DISPLAY ERRORS -->
-			    @if ($errors->any())
-			    <div class="alert alert-danger">
-			        <ul>
-			            @foreach ($errors->all() as $error)
-			                <br><strong>{{ $error }}</strong>
-			            @endforeach
-			        </ul>
-			    </div>
-			    @endif
-    		</div>
-   	 	</form>
-   	</div>
+            {{-- FORM APPROVER ACCOUNT CREATION --}}
+            <form method="POST" action="{{route('conditions.store')}}">
+     	 	{{ csrf_field() }}
 
+       			<label for="name" class="lbl-login">Condition</label>
+          		<input type="text" class="input" name="condition" id="condition" value="{{old('condition')}}">
+            		
+
+                <button class="submit-approver-acc">Add Condition</button>
+
+                @if(Session::has('success'))
+                        <div class="comment-success" id="comment-success" style="margin-top: 25px">
+                            <strong> {{ Session::get('success') }}</strong> 
+                        </div>
+                    @endif
+
+                    @if(Session::has('warning'))
+                        <div class="comment-warning" id="comment-warning" style="margin-top: 25px">
+                           <strong><center>{{ Session::get('warning') }}</center> </strong> 
+                        </div>
+                    @endif
+
+                <!-- DISPLAY ERRORS -->
+                @if ($errors->any())
+                    <div class="login-comment-error">
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                  </div>
+                @endif
+
+                <a href="{{ route('conditions.index') }}" class="back-to-manage">Back to Manage Conditions</a>
+
+        </form>
+
+    </div>
+    
+  </div>
+	
 @include('templates.footer')
