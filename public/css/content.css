@@ -380,22 +380,20 @@
 }
 
 .app-cont-box2 {
-	width: 65%;
+	width: 100%;
 	margin-right: 20px;
 	background-color: #fff;
 	border-radius: 3px;
 	padding: 8px;
 	box-shadow: 5px 5px 21px -3px rgba(70, 136, 246, 0.1);
-	height: 150px;
 }
 
 .app-cont-box1 {
-	width: 33%;
+	width: 49%;
 	background-color: #fff;
 	border-radius: 3px;
 	padding: 8px;
 	box-shadow: 5px 5px 21px -3px rgba(70, 136, 246, 0.1);
-	height: 150px;
 }
 
 .app-cont-title-blue {

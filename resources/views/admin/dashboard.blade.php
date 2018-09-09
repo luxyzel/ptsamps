@@ -234,31 +234,21 @@
                     <p class="app-cont-title-blue">Purchase Order Summary</p>
                     {!! $POchart->html() !!}
                 </div>
-                <div class="app-cont-box1 fl">
+       		</div>	
+
+       		<div class="clr"></div>
+
+            {{-- First set of contents dashboard  --}}
+            <div class="app-dboard-cont" style="margin-top: 20px">
+            	<div class="app-cont-box1 fl" style="margin-right: 20px">
                     <p class="app-cont-title-green">Monthly P.O. Cost</p>
 					<span>Current Month PO Cost: <strong>{{$curCostFormat}}</strong></span>
                     {!! $Costchart->html() !!}
                 </div>
-                
-                <div class="clr"></div>
-
-            </div><br><br><br><br><br><br>
-
-            {{-- First set of contents dashboard  --}}
-            <div class="app-dboard-cont" style="margin-top: 20px">
-                <div class="app-cont-box1 fl" style="margin-right: 25px; width: 32%;">
-                    <p class="app-cont-title-orange">Total Asset and Peripherals</p>
+                <div class="app-cont-box1 fl">
+                    <p class="app-cont-title-pink">Available Asset Summary</p>
 					{!! $Stockchart->html() !!}
                 </div>
-                </div>
-                <div class="app-cont-box1 fl" style="margin-right: 20px; width: 31%;">
-                    <p class="app-cont-title-violet">Number of user</p>
-                     
-                {{-- <div class="app-cont-box1 fl" style="width: 33%;">
-                    <p class="app-cont-title-pink">Graph</p>
-               			
-                </div> --}}
-
                 <div class="clr"></div>
             </div>
 
