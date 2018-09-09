@@ -33,18 +33,18 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $POchart = Charts::database(Procure::all()->keyBy('group_id'), 'bar', 'highcharts')
-                ->title('PO')
+        $POchart = Charts::database(Procure::all()->keyBy('group_id'), 'bar', 'google')
+                ->title('Purchase Order Chart')
                 ->elementLabel('summary')
                 ->Width(0)
-                ->colors(['#008ECC', '#ff5f86', '#708238'])
+                ->colors(['#2db580', '#32db92', '#7ff9c6'])
                 ->groupBy('status')
                 ->responsive(true);
 
-        $Stockchart = Charts::database(Asset::all()->where('status', 'Available'), 'pie', 'highcharts')
-                ->title('Assets')
+        $Stockchart = Charts::database(Asset::all()->where('status', 'Available'), 'donut', 'highcharts')
+                ->title('Assets Chart')
                 ->elementLabel('Stocks')
-                ->colors(['#C5CAE9', '#283593'])
+                ->colors(['#ffdcaa', '#fe903a'])
                 ->dimensions(1000,500)
                 ->groupBy('category_type')
                 ->responsive(true);
@@ -62,11 +62,12 @@ class AdminController extends Controller
         $curCostFormat = number_format($curCost);
         $lastCostFormat = number_format($lastCost);
 
-        $Costchart = Charts::create('line', 'highcharts')
+        $Costchart = Charts::create('area', 'highcharts')
             ->title($year)
             ->elementLabel('Total Cost')
             ->labels([$lastMonthName, $curMonthName])
             ->values([$lastCost, $curCost])
+            ->colors(['#8279ff'])
             ->dimensions(1000,500)
             ->responsive(true);
 

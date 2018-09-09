@@ -549,6 +549,11 @@ td input[type=text] {
 	padding: 20px 30px;
 }
 
+tspan {
+	color: red !important; 
+}
+
+
 
 
 

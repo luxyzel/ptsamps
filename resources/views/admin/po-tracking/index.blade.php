@@ -280,10 +280,10 @@
 								<td>
 									<a href="{{ route('po-tracking.edit', $procure->group_id) }}" class="manage-view-but" title="View">View Details</a>
 									@if($procure->status == 'Rejected')
-									<a href="{{ route('po-tracking.show', $procure->group_id) }}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to Re-route?')) { return false; }">Re-route</a>
+									<a href="{{ route('po-tracking.show', $procure->group_id) }}" class="manage-archive-but" title="View" onclick = "if (! confirm('Are you sure to Re-route?')) { return false; }">Re-route</a>
 									@endif
 									@if($procure->status == 'Approved')
-									<a href="{{ route('po-tracking.pdf', $procure->po_id) }}" class="manage-view-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Download</a>
+									<a href="{{ route('po-tracking.pdf', $procure->po_id) }}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Download</a>
 									<a href="{{ route('pdfview', $procure->po_id) }}" class="manage-view-but" title="View" onclick = "if (! confirm('Are you sure to view?')) { return false; }">VIEW</a>
 									
 									@endif
