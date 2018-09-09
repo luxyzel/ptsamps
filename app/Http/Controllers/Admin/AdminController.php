@@ -9,8 +9,14 @@ use App\Admin;
 use App\User;
 use App\Model\Log;
 use App\Model\Notif;
+use App\Model\Procure;
+use App\Model\Payment;
+use App\Model\Asset;
+use Carbon\Carbon;
 use Session;
 use Hash;
+use Charts;
+use DB;
 
 class AdminController extends Controller
 {
@@ -27,9 +33,44 @@ class AdminController extends Controller
      */
     public function index()
     {
+        $POchart = Charts::database(Procure::all()->keyBy('group_id'), 'bar', 'google')
+                ->title('PO status Report')
+                ->elementLabel('PO Status')
+                ->Width(0)
+                ->groupBy('status')
+                ->responsive(true);
+
+        $Stockchart = Charts::database(Asset::all()->where('status', 'Available'), 'pie', 'highcharts')
+                ->title('Asset Stocks Report')
+                ->elementLabel('Stocks')
+                ->dimensions(1000,500)
+                ->groupBy('category_type')
+                ->responsive(true);
+
+
+        $year = Carbon::now()->year;
+        $curMonth = Carbon::now()->month;
+        $curMonthName = Carbon::now()->format('F');
+        $lastMonth = Carbon::today()->subMonths(1)->month;
+        $lastMonthName = Carbon::today()->subMonths(1)->format('F');
+
+        $curCost = Payment::where('po_id', '!=', '')->whereYear('created_at', $year)->whereMonth('created_at', $curMonth)->sum('total_price');
+        $lastCost = Payment::where('po_id', '!=', '')->whereYear('created_at', $year)->whereMonth('created_at', $lastMonth)->sum('total_price');
+
+        $curCostFormat = number_format($curCost);
+        $lastCostFormat = number_format($lastCost);
+
+        $Costchart = Charts::create('line', 'highcharts')
+            ->title('PO Monthly Cost Report')
+            ->elementLabel($year)
+            ->labels([$lastMonthName, $curMonthName])
+            ->values([$lastCost, $curCost])
+            ->dimensions(1000,500)
+            ->responsive(true);
+
         $admin = Auth::guard('admin')->user();
         $notifs = Notif::sum('count');
-        return view('admin.dashboard', compact('admin', 'notifs'));
+        return view('admin.dashboard', compact('admin', 'notifs', 'POchart', 'Costchart', 'curCostFormat', 'Stockchart'));
     }
 
     public function accountInfo()
