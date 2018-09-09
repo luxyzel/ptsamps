@@ -25,7 +25,7 @@
             </div>
 
                 {{-- FORM APPROVER ACCOUNT CREATION --}}
-                <form method="POST" action="{{route('acc.settings.submit')}}" onSubmit="return confirm('Are you sure to submit?');">
+                <form method="POST" action="{{route('account-settings.update', $approver->id)}}" onSubmit="return confirm('Are you sure to submit?');">
                     {{method_field('PUT')}}
                     {{csrf_field()}}
 
@@ -55,19 +55,19 @@
 
                     <label for="name" class="lbl-login">Full Name</label>
                     <p class="control">
-                    <input type="text" class="input" name="name" id="name" value="{{$admin->name}}">
+                    <input type="text" class="input" name="name" id="name" value="{{$approver->name}}">
                     </p>
 
           
 
                     <label for="username" class="lbl-login">Username</label>
                     <p class="control">
-                        <input type="text" class="input" name="username" id="username" value="{{$admin->username}}">
+                        <input type="text" class="input" name="username" id="username" value="{{$approver->username}}">
                     </p>
 
                     <label for="email" class="lbl-login">Email Address</label>
                     <p class="control">
-                        <input type="text" class="input" name="email" id="email" value="{{$admin->email}}">
+                        <input type="text" class="input" name="email" id="email" value="{{$approver->email}}">
                     </p>
 
                     <label for="currentpass" class="lbl-login">Current Password</label>
@@ -92,7 +92,7 @@
                     <button class="submit-approver-acc" style="margin-top: 20px; margin-bottom: 20px">Update Account</button>
 
 
-                    <a href="{{ route('dashboard') }}" class="edit-to-back" >Back to Dashboard</a>
+                    <a href="{{ route('home') }}" class="edit-to-back" >Back to Dashboard</a>
 
                 </form>
             </div>

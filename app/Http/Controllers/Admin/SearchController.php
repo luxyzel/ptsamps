@@ -7,6 +7,11 @@ use App\Http\Controllers\Controller;
 
 class SearchController extends Controller
 {
+        public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+    
     Public function assetSearch()
     {
 
