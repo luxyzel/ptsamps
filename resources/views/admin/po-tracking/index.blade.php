@@ -284,6 +284,7 @@
 									@endif
 									@if($procure->status == 'Approved')
 									<a href="{{ route('po-tracking.pdf', $procure->po_id) }}" class="manage-view-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Download</a>
+									<a href="{{ route('pdfview', $procure->po_id) }}" class="manage-view-but" title="View" onclick = "if (! confirm('Are you sure to view?')) { return false; }">VIEW</a>
 									
 									@endif
 

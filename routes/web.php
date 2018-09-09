@@ -105,11 +105,11 @@ Route::prefix('admin')->group(function(){
 	// PO Tracking
 	/*Route::get('/approved-po/file/{id}', 'Admin\POfileController@pdfview')->name('po-tracking.pdf');*/
 
-	Route::get('pdfview',array('as'=>'pdfview','uses'=>'Admin\POfileController@pdfview'));
+	// Route::get('pdfview',array('as'=>'pdfview','uses'=>'Admin\POfileController@pdfview'));
 
-	Route::get('approved-po/file/{id}', ['as' => 'po-tracking.pdf', 'uses' => 'Admin\POfileController@pdfview']);
+	Route::get('approved-po/file/{id}', ['as' => 'po-tracking.pdf', 'uses' => 'Admin\POfileController@pdfdownload']);
 
-	
+	Route::get('approved-po/file-view/{id}', ['as' => 'pdfview', 'uses' => 'Admin\POfileController@pdfview']);
 
 });
 

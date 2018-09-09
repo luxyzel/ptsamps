@@ -1,9 +1,8 @@
 
 
-
 @include('templates.header')
 
-  <title>Show Vendor Information | Asset Management and Procurement System</title>
+  <title>Show Requestor Information | Asset Management and Procurement System</title>
 </head>
 
 <body>
@@ -20,8 +19,8 @@
                 <img src="/img/companylogo.png" title="Project T Solutions">
             </div>
             <div class="login-text fl">
-                <p class="login-comp-nm">Show Vendor Info</p>
-                <p class="system-about">View Vendor full Information</p>
+                <p class="login-comp-nm">Show Requestor Info</p>
+                <p class="system-about">View Requestor full Information</p>
             </div>
             <div class="clr"></div>
         </div>
@@ -36,47 +35,37 @@
                 </head>
                     <tr>
                         <td>Company Name</td>
-                        <td>{{$vendor->company_name}}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Contact Person</td>
-                        <td>{{$vendor->contact_person}}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Designation</td>
-                        <td>{{$vendor->designation}}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Email Address</td>
-                        <td>{{$vendor->email_address}}</td>
-                    </tr>
-
-                    <tr>
-                        <td>contact Number</td>
-                        <td>{{$vendor->contact_number}}</td>
+                        <td>{{$requestor->company_name}}</td>
                     </tr>
 
                     <tr>
                         <td>Company Address</td>
-                        <td>{{$vendor->company_address}}</td>
+                        <td>{{$requestor->company_address}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Requestor Name</td>
+                        <td>{{$requestor->requestor_name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Designation</td>
+                        <td>{{$requestor->designation}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Email Address</td>
+                        <td>{{$requestor->email_address}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Contact Number</td>
+                        <td>{{$requestor->contact_number}}</td>
                     </tr>
 
                     <tr>
                         <td>Phone</td>
-                        <td>{{$vendor->phone}}</td>
-                    </tr>
-
-                     <tr>
-                        <td>Fax</td>
-                        <td>{{$vendor->fax}}</td>
-                    </tr>
-
-                     <tr>
-                        <td>VAT Reg. TIN: </td>
-                        <td>{{$vendor->vat_number}}</td>
+                        <td>{{$requestor->phone}}</td>
                     </tr>
 
             </table>

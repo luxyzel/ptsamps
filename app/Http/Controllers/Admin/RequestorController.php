@@ -77,7 +77,8 @@ class RequestorController extends Controller
      */
     public function show($id)
     {
-        //
+        $requestor = Requestor::findOrFail($id);
+        return view('admin.requestors.show',compact('requestor'));
     }
 
     /**
@@ -89,7 +90,7 @@ class RequestorController extends Controller
     public function edit($id)
     {
         $requestor = Requestor::findOrFail($id);
-        return view('admin.requestors.edit',compact('requestor'));
+        return view('admin.requestors.edit', compact('requestor'));
     }
 
     /**
