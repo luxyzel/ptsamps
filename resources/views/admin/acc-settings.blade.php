@@ -18,7 +18,7 @@
                     <img src="/img/companylogo.png" title="Project T Solutions">
                 </div>
                 <div class="login-text fl">
-                    <p class="login-comp-nm">Update Account Information</p>
+                    <p class="login-comp-nm">Update Acc Information</p>
                     <p class="system-about">Account Information</p>
                 </div>
                 <div class="clr"></div>
