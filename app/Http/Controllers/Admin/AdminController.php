@@ -34,7 +34,7 @@ class AdminController extends Controller
                 ->Width(0)
                 ->colors(['#2db580', '#32db92', '#7ff9c6'])
                 ->groupBy('status')
-                ->dimensions(1150,260)
+                ->dimensions(1150,250)
                 ->responsive(false);
 
         $Stockchart = Charts::database(Asset::all()->where('status', 'Available'), 'donut', 'fusioncharts')
@@ -42,7 +42,7 @@ class AdminController extends Controller
                 ->elementLabel('Stocks')
                 ->colors(['#ffdcaa', '#fe903a'])
                 ->groupBy('category_type')
-                ->dimensions(500,500)
+                ->dimensions(500,340)
                 ->responsive(false);
 
 
@@ -64,7 +64,7 @@ class AdminController extends Controller
             ->labels([$lastMonthName, $curMonthName])
             ->values([$lastCost, $curCost])
             ->colors(['#8279ff'])
-            ->dimensions(500,455)
+            ->dimensions(500,300)
             ->responsive(false);
 
         $admin = Auth::guard('admin')->user();
