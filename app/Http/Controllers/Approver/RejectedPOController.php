@@ -13,17 +13,18 @@ use Session;
 
 class RejectedPOController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth:web');
+    }
+    
     public function index()
     {
         $procures = Procure::select('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id', DB::raw('group_concat(item) as item'))->where('status', 'Rejected')->groupBy('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id')->orderBy('created_at','DESC')->get();
         $count = $procures->count();
         $payments = Payment::All();
-        return view('approver.rejected-po.index', compact('procures', 'count', 'payments'));
+        $approver = Auth::guard('web')->user();
+        return view('approver.rejected-po.index', compact('procures', 'count', 'payments', 'approver'));
     }
 
     /**

@@ -152,6 +152,9 @@ Route::resource('/rejected-po', 'Approver\RejectedPOController');
 // APPROVED-PO  RESOURCE
 Route::resource('/pending-po', 'Approver\PendingPOController');
 
+// APPROVED-PO  RESOURCE
+Route::resource('/account-settings', 'Approver\AccountController');
+
 
 // user auth route
 Auth::routes();

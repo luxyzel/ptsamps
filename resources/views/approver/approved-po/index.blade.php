@@ -29,7 +29,7 @@
                     <div class="dboard-left-but">Rejected P.O.</div>
                 </a>
                 <div style="margin-bottom: 40px;"></div>
-                <a href="#">
+                <a href="{{ route('account-settings.edit', $approver->id) }}">
                     <div class="dboard-left-but">Account Settings</div>
                 </a>
                 <a href="{{ route('logout') }}"
