@@ -289,20 +289,9 @@
     display: none;
   }
 
-/*.btn {
-  background: #ccc;
-  
-  &:hover {
-    background: darken(silver, 10%);
-  }
-  
-  &:focus,
-  &:focus:active,
-  &:active {
-    outline: none;
-    box-shadow: none;
-  }
-}*/
+    g[class^='raphael-group-'][class$='-creditgroup'] {
+         display:none !important;
+    }
 </style>
 <script type="text/javascript">
 
