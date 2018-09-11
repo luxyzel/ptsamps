@@ -162,3 +162,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // admin auth route
 Route::get('/dashboard', 'Admin\AdminController@index')->name('dashboard');
+
+
+//Create New Event
+Route::get('event/create','Admin\EventController@create')->name('event.create');
+// Route::post('event/add','Admin\EventController@store');
+
+//TO VIEW CALENDAR
+Route::get('calendar','Admin\EventController@calendar')->name('calendar');
+
+// //To view list of Events
+// Route::get('event','Admin\EventController@index');
+
+// //Show events details
+// Route::get('event/details','Admin\EventController@show')->name('event.details');
+
+Route::resource('/manage/event', 'Admin\EventController');

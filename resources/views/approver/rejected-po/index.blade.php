@@ -56,6 +56,31 @@
                 <div class="clr"></div>  
             </div>
 
+
+            @if(Session::has('success'))
+                <div class="comment-success" id="comment-success" style="margin-top: 25px">
+                    <strong> {{ Session::get('success') }}</strong> 
+                </div>
+            @endif
+
+            @if(Session::has('warning'))
+                <div class="comment-warning" id="comment-warning" style="margin-top: 25px">
+                   <strong><center>{{ Session::get('warning') }}</center> </strong> 
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <br><strong>{{ $error }}</strong>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+
+
 	  		<div class="manage-content">
 				<table style="width: 100%; text-align: center;">
 					<thead>
@@ -95,3 +120,12 @@
 	
 
 @include('templates.footer')
+
+
+<script type="text/javascript">
+    /*** TIME-OUT SESSION ALERT ***/
+setTimeout(function() {
+    $('#comment-success').fadeOut('fast');
+    $('#comment-warning').fadeOut('fast');
+}, 5000); 
+</script>

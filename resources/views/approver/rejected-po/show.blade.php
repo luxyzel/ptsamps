@@ -8,7 +8,7 @@
   <div class="flex-container" style="width: 80%; margin: auto;">
       <div class="columns m-t-10">
           <div class="column">
-            <h1 class="title">View PO Request</h1>
+            <h1 class="title">View Rejected PO Request</h1>
           </div>
       </div>
       <hr class="m-t-0">
@@ -77,7 +77,6 @@
   
               <div class="dboard-content-menu">
         
-                <p><strong>PAYMENTS</strong></p><br>
                   <div class="fl">
                       <br><strong><span>Notes/Remarks/Comment:</span></strong><br>
                       <label for="remarks" class="label">{{$payments->remarks}}</label>
@@ -95,6 +94,7 @@
                        <a href="{{ route('rejected-po.index') }}">Back To Previous Page</a>
                   </div>
                   <div class="fr">
+                      <p><strong>PAYMENTS</strong></p><br>
                       <div class="field">
                       <br><strong><span>VAT Inclusive:</span></strong><br>
                       <label for="remarks" class="label">{{$payments->vat_inc}}</label>

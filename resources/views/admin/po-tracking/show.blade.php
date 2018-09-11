@@ -8,7 +8,11 @@
     <div style="width: 1200px; margin: 0 auto;">
         <div class="app-label" style="margin-top: 20px;">
             <div class="fl">
+              @if (!is_null($payments->po_id))
+                <p class="app-page-name" style="font-size: 30px">View Puchase Order {{$payments->pos->po_number}}</p>
+              @else
                 <p class="app-page-name" style="font-size: 30px">View Puchase Order Request</p>
+              @endif
             </div>
             <div class="fl">
                 <p class="app-page-sub"></p>
@@ -195,76 +199,17 @@
                 <div class="clr"></div>
             </div>
 
+            <div class="field">
+              <br><strong><span>Approver Comment:</span></strong><br>
+              <label for="remarks" class="label">{{$comment->comments}}</label>
+            </div>
+
+
         </form>
-                    <div class="field">
-                        
-                      <br><strong><span>Approver Comment:</span></strong><br>
-                      <label for="remarks" class="label">{{$comment->comments}}</label>
-                    </div>
-        <a href="{{ route('po-tracking.index')}}" class="po-back-page">Back To Previous Page</a>
+ 
+        <a href="{{ url()->previous()  }}" class="po-back-page">Back To Previous Page</a>
     </div>
 
-
-  
-              {{-- <div class="dboard-content-menu">
-        
-                <p><strong>PAYMENTS</strong></p><br>
-                  <div class="fl">
-                      <label for="remarks" class="label">Notes/Remarks/Comment:</label>
-                      @if($procure->status == 'Approved')
-                        <textarea name="remarks" id="remarks" rows="4" cols="30" readonly>{{$payments->remarks}}</textarea>
-                      @else
-                        <textarea name="remarks" id="remarks" rows="4" cols="30" >{{$payments->remarks}}</textarea>
-                      @endif
-                    <br>
-                    <div class="field">
-                      <label for="paymentterms" class="label">Payment Terms:</label>
-                      @if($procure->status == 'Approved')
-                        <input type="text" name="paymentterms" id="paymentterms" value="{{$payments->payment_terms}}" readonly>
-                      @else
-                        <input type="text" name="paymentterms" id="paymentterms" value="{{$payments->payment_terms}}">
-                      @endif
-                    </div>
-                      <input type="hidden" name="poid" id="poid" value="{{$payments->group_id}}">
-                      <br><br><br>
-                      @if($procure->status == 'Approved')
-                      <button class="submit-approver-acc" style="margin-top: 40px;" value="update" name="submit" disabled>Update</button>
-                      <button class="submit-approver-acc" style="margin-top: 40px;" value="delete" name="submit" disabled>Delete</button>
-                      @else
-                      <button class="submit-approver-acc" style="margin-top: 40px;" value="update" name="submit">Update</button>
-                      <button class="submit-approver-acc" style="margin-top: 40px;" value="delete" name="submit">Delete</button>
-                      @endif
-                      <br><br>
-                  </div>
-                  <div class="fr">
-                      <div class="field">
-                        <label class="label">VAT Inclusive:</label>
-                        <input type="text" class="vatinclusive" name="vatinclusive" id="vatinclusive" value="{{$payments->vat_inc}}" readonly>
-                    </div>
-                    <div class="field">
-                      <label class="label">VAT Exclusive:</label>
-                      <input type="text" class="vatexclusive" name="vatexclusive" id="vatexclusive" value="{{$payments->vat_ex}}" readonly>
-                    </div>
-                    <div class="field">
-                      <label class="label">Less Discount:</label>
-                      @if($procure->status == 'Approved')
-                        <input type="text" onkeypress="return event.charCode == 46 ||event.charCode == 37|| (event.charCode >= 48 && event.charCode <= 57)" class="lessdiscount" name="lessdiscount" id="lessdiscount" value="{{$payments->less_discount}}" readonly>
-                      @else
-                        <input type="text" onkeypress="return event.charCode == 46 ||event.charCode == 37|| (event.charCode >= 48 && event.charCode <= 57)" class="lessdiscount" name="lessdiscount" id="lessdiscount" value="{{$payments->less_discount}}">
-                      @endif
-                    </div>
-                    <div class="field">
-                      <label class="label">12% VAT:</label>
-                      <input type="text" class="vat" name="vat" id="vat" value="{{$payments->vat}}" readonly>
-                    </div>
-                    <div class="field">
-                      <label class="label">Total Price:</label>
-                      <input type="text" class="total" name="total" id="total" value="{{$payments->total_price}}" readonly>
-                    </div>
-                    <a href="{{ route('po-tracking.index') }}">Back To Previous Page</a>
-                </div>
-              </div> --}}
-              
 
 @include('templates.footer')
 

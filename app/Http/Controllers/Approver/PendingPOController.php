@@ -143,7 +143,7 @@ class PendingPOController extends Controller
                 $NotifSave->save();
 
                 Session::flash('success', 'PO Request Successfully Approved');
-                return redirect()->back();
+                return redirect()->route('approved-po.index');
             }
 
         }else{
@@ -170,7 +170,7 @@ class PendingPOController extends Controller
                     $NotifSave->save();
 
                     Session::flash('success', 'PO Request Rejected');
-                    return redirect()->back();
+                    return redirect()->route('rejected-po.index');
                 }
         }
 
