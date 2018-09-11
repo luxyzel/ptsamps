@@ -32,8 +32,13 @@ class Procure extends Model
         return $this->belongsTo('App\Model\Po_number','po_id','id');
     }  
 
-        public function payments()
+    public function payments()
     {
         return $this->belongsTo('App\Model\Payment','po_id','po_id');
     } 
+
+    public function approvers()
+    {
+        return $this->belongsTo('App\User','approver_id','id');
+    }
 }

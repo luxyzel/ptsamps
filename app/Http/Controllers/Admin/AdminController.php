@@ -67,9 +67,25 @@ class AdminController extends Controller
             ->dimensions(500,300)
             ->responsive(false);
 
+        /////////////////////////////////
+
+        $MonthlyReports = Payment::select(DB::raw('sum(total_price) as total'), DB::raw("DATE_FORMAT(created_at,'%M') as months"))
+            ->where('po_id', '!=', '')
+            ->whereYear('created_at', $year)
+            ->groupBy('months')
+            ->get();
+
+
+        $AssetReports = Asset::select('category_type', DB::raw('count(*) as count', 'status'))->where('status', 'Available')->groupBy('category_type')->get();
+
+        // $POReports = Procure::all()->keyBy('group_id')->groupBy('status')->get();
+
+
+        /////////////////////////////////
+
         $admin = Auth::guard('admin')->user();
         $notifs = Notif::sum('count');
-        return view('admin.dashboard', compact('admin', 'notifs', 'POchart', 'Costchart', 'curCostFormat', 'Stockchart'));
+        return view('admin.dashboard', compact('admin', 'notifs', 'POchart', 'Costchart', 'curCostFormat', 'Stockchart', 'MonthlyReports', 'AssetReports'));
     }
 
     public function accountInfo()
