@@ -10,7 +10,7 @@
   <div class="landing-bg">
 
     {{-- Container Creating User --}}
-    <div class="user-interface-cont">
+    <div class="user-interface-cont" style="height: 650px; margin-top: -325px">
 
       {{-- TOP LABELS --}}
       <div class="login-title">
@@ -18,8 +18,8 @@
                     <img src="/img/companylogo.png" title="Project T Solutions">
                 </div>
                 <div class="login-text fl">
-                    <p class="login-comp-nm">Update Approver Account</p>
-                    <p class="system-about">Account Exclusively for Executives</p>
+                    <p class="login-comp-nm">Update Requestor Acc</p>
+                    <p class="system-about">Requestor Information</p>
                 </div>
                 <div class="clr"></div>
             </div>

@@ -199,10 +199,14 @@
                 <div class="clr"></div>
             </div>
 
-            <div class="field">
-              <br><strong><span>Approver Comment:</span></strong><br>
-              <label for="remarks" class="label">{{$comment->comments}}</label>
+            <div class="manage-content" style="margin-top: 20px">
+                <p class="app-page-name" style="font-size: 20px; margin-top: 10px;">Approver Comments</p>
+                <div class="app-comment-po">
+                    <label for="remarks" class="label">{{$comment->comments}}</label>
+                </div>   
             </div>
+              
+          
 
 
         </form>
