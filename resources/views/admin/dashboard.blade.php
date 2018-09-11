@@ -219,8 +219,6 @@
 						</div>
 					</div>
 
-
-
 					<form id="logout-form" action="{{route('admin.logout')}}" method="POST" style="display: none;">
 						{{ csrf_field() }}
 					</form>
@@ -238,7 +236,7 @@
 
        		<div class="clr"></div>
 
-            {{-- First set of contents dashboard  --}}
+            {{-- Second set of contents dashboard  --}}
             <div class="app-dboard-cont" style="margin-top: 20px; margin-bottom: 20px;">
             	<div class="app-cont-box1 fl" style="margin-right: 20px">
                     <p class="app-cont-title-violet" style="margin-bottom: 25px;">Monthly P.O. Cost</p>
@@ -251,6 +249,25 @@
                 </div>
                 <div class="clr"></div>
             </div>
+
+            <div class="app-dboard-cont" style="margin-top: 30px">
+                <div class="app-cont-box2 fl">
+                    <p class="app-cont-title-green" style="margin-bottom: 15px">REPORTS</p>
+
+                    @foreach ($MonthlyReports as $MonthlyReport)
+                    <strong>{{ number_format($MonthlyReport->total, 2) }}</strong><br>
+                    <strong>{{$MonthlyReport->months}}</strong>
+                    @endforeach
+
+                    <br><a href="#" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Monthly</a>
+                    <a href="{{ route('assets-report.pdf') }}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Asset</a>
+                    <a href="{{route('po-report.pdf')}}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">PO</a>
+
+		
+                </div>
+       		</div>	
+
+       		<div class="clr"></div>
 
 		</div>
 		<div class="clr"></div>

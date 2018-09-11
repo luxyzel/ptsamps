@@ -111,6 +111,10 @@ Route::prefix('admin')->group(function(){
 
 	Route::get('approved-po/file-view/{id}', ['as' => 'pdfview', 'uses' => 'Admin\POfileController@pdfview']);
 
+	Route::get('report/assets-summary', ['as' => 'assets-report.pdf', 'uses' => 'Admin\ReportController@AssetsReportPdf']);
+
+	Route::get('report/po-summary', ['as' => 'po-report.pdf', 'uses' => 'Admin\ReportController@POReportPdf']);
+
 });
 
 

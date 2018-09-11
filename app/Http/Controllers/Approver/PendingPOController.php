@@ -119,8 +119,10 @@ class PendingPOController extends Controller
 
             foreach(Request::input('idlists') as $key => $value){ 
                 $save = Procure::find(Request::input('idlists')[$key]); 
-                $save->po_id = $lastInsertedId; 
+                $save->po_id = $lastInsertedId;
+                $save->approver_id = $approver = Auth::guard('web')->user()->id;
                 $save->status = 'Approved';
+                $save->date = Carbon::today()->toDateString();
                 $save->comments = Request::input('comments'); 
                 $save->save(); 
             }
@@ -150,7 +152,9 @@ class PendingPOController extends Controller
 
             foreach(Request::input('idlists') as $key => $value){ 
                 $save = Procure::find(Request::input('idlists')[$key]); 
+                $save->approver_id = $approver = Auth::guard('web')->user()->id;
                 $save->status = 'Rejected'; 
+                $save->date = Carbon::today()->toDateString();
                 $save->comments = Request::input('comments'); 
                 $save->save(); 
                 }

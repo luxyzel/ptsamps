@@ -28,8 +28,9 @@ class CreateProcuresTable extends Migration
             $table->decimal('total_price', 10, 2);
             $table->string('requested_by')->nullable();
             $table->string('prepared_by')->nullable();
-            $table->string('approved_by')->nullable();
+            $table->integer('approver_id')->nullable();
             $table->string('status')->nullable();
+            $table->date('date')->nullable();
             $table->string('comments')->nullable();
             $table->timestamps();
         });
