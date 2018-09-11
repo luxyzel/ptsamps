@@ -201,6 +201,9 @@
 
             <div class="manage-content" style="margin-top: 20px">
                 <p class="app-page-name" style="font-size: 20px; margin-top: 10px;">Approver Comments</p>
+                @if(!is_null($comment->comments))
+                <span>{{$comment->approvers->name}}</span><br>
+                @endif
                 <div class="app-comment-po">
                     <label for="remarks" class="label">{{$comment->comments}}</label>
                 </div>   
@@ -211,7 +214,7 @@
 
         </form>
  
-        <a href="{{ url()->previous()  }}" class="po-back-page">Back To Previous Page</a>
+        <a href="{{ route('po-tracking.index')  }}" class="po-back-page">Back To Previous Page</a>
     </div>
 
 

@@ -380,7 +380,7 @@
 	                <label for="remarks" class="lbl-login">Notes/Remarks/Comment:</label>
 					<textarea name="remarks" id="remarks" rows="4" cols="30"></textarea>
 					<label for="remarks" class="lbl-login">Payment Terms:</label>
-					<input type="text" name="paymentterms" id="paymentterms">
+					<input type="text" name="paymentterms" id="paymentterms" required>
 
 					<button class="submit-approver-acc" style="margin-top: 30px" id="submits">Submit Purchase Order</button>
 				</div>

@@ -58,6 +58,11 @@
                     <input type="text" class="input" name="name" id="name" value="{{$admin->name}}">
                     </p>
 
+                    <label for="name" class="lbl-login">Job Title</label>
+                    <p class="control">
+                    <input type="text" class="input" name="position" id="position" value="{{$admin->position}}">
+                    </p>
+
           
 
                     <label for="username" class="lbl-login">Username</label>

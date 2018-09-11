@@ -17,7 +17,7 @@ class CreateProcuresTable extends Migration
             $table->increments('id');
             $table->integer('po_id')->nullable();
             $table->integer('group_id')->nullable();
-            $table->datetime('request_date')->nullable();
+            $table->date('request_date')->nullable();
             $table->integer('vendor_id');
             $table->integer('requestor_id');
             $table->string('item');
@@ -27,7 +27,7 @@ class CreateProcuresTable extends Migration
             $table->decimal('unit_price', 8, 2);
             $table->decimal('total_price', 10, 2);
             $table->string('requested_by')->nullable();
-            $table->string('prepared_by')->nullable();
+            $table->integer('prepared_by')->nullable();
             $table->integer('approver_id')->nullable();
             $table->string('status')->nullable();
             $table->date('date')->nullable();

@@ -28,7 +28,7 @@ class POTrackController extends Controller
         DB::table('notifs')->update(['count' => 0]);
 
         $admin = Auth::guard('admin')->user();
-        $procures = Procure::select('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id', DB::raw('group_concat(item) as item'))->groupBy('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id')->orderBy('created_at','DESC')->paginate(25);
+        $procures = Procure::select('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id', DB::raw('group_concat(item) as item'))->groupBy('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id')->orderBy('updated_at','DESC')->paginate(25);
          $count = $procures->count();
         $payments = Payment::All();
         return view('admin.po-tracking.index', compact('admin', 'procures', 'payments', 'count'));
@@ -84,7 +84,7 @@ class POTrackController extends Controller
         $procures = Procure::where('group_id', $id)->get();
         $payments = Payment::where('group_id', $id)->first();
         $ids = Procure::where('group_id', '=' , $id)->firstOrFail();
-        $comment = Procure::select('comments')->where('group_id', $id)->groupBy('comments')->first();
+        $comment = Procure::select('comments', 'approver_id')->where('group_id', $id)->groupBy('comments', 'approver_id')->first();
         return view('admin.po-tracking.show', compact('procures', 'payments', 'ids', 'comment'));
     }
 

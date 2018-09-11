@@ -254,14 +254,16 @@
                 <div class="app-cont-box2 fl">
                     <p class="app-cont-title-green" style="margin-bottom: 15px">REPORTS</p>
 
-                    @foreach ($MonthlyReports as $MonthlyReport)
+                    {{-- @foreach ($MonthlyReports as $MonthlyReport)
                     <strong>{{ number_format($MonthlyReport->total, 2) }}</strong><br>
                     <strong>{{$MonthlyReport->months}}</strong>
-                    @endforeach
+                    @endforeach --}}
 
                     <br><a href="#" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Monthly</a>
                     <a href="{{ route('assets-report.pdf') }}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Asset</a>
-                    <a href="{{route('po-report.pdf')}}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">PO</a>
+                    <a href="{{route('approvedPO-report.pdf')}}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Approved PO</a>
+                    <a href="{{route('rejectedPO-report.pdf')}}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Rejected PO</a>
+                    <a href="{{route('pendingPO-report.pdf')}}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Pending PO</a>
 
 		
                 </div>

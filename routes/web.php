@@ -113,7 +113,12 @@ Route::prefix('admin')->group(function(){
 
 	Route::get('report/assets-summary', ['as' => 'assets-report.pdf', 'uses' => 'Admin\ReportController@AssetsReportPdf']);
 
-	Route::get('report/po-summary', ['as' => 'po-report.pdf', 'uses' => 'Admin\ReportController@POReportPdf']);
+	Route::get('report/ApprovedPO-summary', ['as' => 'approvedPO-report.pdf', 'uses' => 'Admin\ReportController@ApprovedPOReportPdf']);
+
+	Route::get('report/RejectedPO-summary', ['as' => 'rejectedPO-report.pdf', 'uses' => 'Admin\ReportController@RejectedPOReportPdf']);
+
+	Route::get('report/PendingPO-summary', ['as' => 'pendingPO-report.pdf', 'uses' => 'Admin\ReportController@PendingPOReportPdf']);
+
 
 });
 

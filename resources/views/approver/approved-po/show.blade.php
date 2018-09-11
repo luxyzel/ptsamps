@@ -87,7 +87,12 @@
                     </div>
                      <div class="field">
                       <br><strong><span>Approver Comment:</span></strong><br>
-                      <label for="remarks" class="label">{{$comment->comments}}</label>
+                      @if(!is_null($comment->comments))
+                      <span>{{$comment->approvers->name}}</span><br>
+                      @endif
+                      <div class="app-comment-po">
+                          <label for="remarks" class="label">{{$comment->comments}}</label>
+                      </div>   
                     </div>
                       <input type="hidden" name="poid" id="poid" value="{{$payments->group_id}}">
                       <br><br><br>
