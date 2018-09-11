@@ -553,8 +553,17 @@ tspan {
 	color: red !important; 
 }
 
-
-
+/*PO COMMENTS APPROVER*/
+.app-comment-po {
+	padding: 10px 15px;
+	background-color: #f6f8ff;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	box-shadow: 5px 5px 21px -3px rgba(70, 136, 246, 0.1);
+	border: 1px solid #bed2ff;
+	font-family: roboto-reg;
+	font-size: 13px;
+}
 
 
 
