@@ -34,6 +34,9 @@
                     
                     <label class="lbl-login" style="margin-top: 5px">Fullname</label>
                     <input type="text" class="input" name="name" id="name" value="{{$user->name}}" autocomplete="off"  required>
+
+                    <label class="lbl-login" style="margin-top: 5px">Job Title</label>
+                    <input type="text" class="input" name="position" id="position" value="{{$user->position}}" autocomplete="off"  required>
                    
                     <label class="lbl-login" style="margin-top: 5px">Email</label>
                     <input type="text" class="input" name="email" id="email" value="{{$user->email}}" autocomplete="off"  required>

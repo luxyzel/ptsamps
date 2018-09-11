@@ -105,7 +105,7 @@ class ProcureController extends Controller
             $save = DB::table('procures')->insert(
                 array(
                     'group_id' =>$lastInsertedId,
-                    'request_date' => Carbon::now(),
+                    'request_date' => Carbon::today()->toDateString(),
                     'vendor_id' => $vendor->id, //
                     'requestor_id' => $requestor->id, //         
                     'item' => $item[$key],
@@ -115,7 +115,7 @@ class ProcureController extends Controller
                     'unit_price' => $unitprice[$key],
                     'total_price' => $totalprice[$key],
                     'requested_by' => $requestor->requestor_name, //
-                    'prepared_by' => $admin->name,
+                    'prepared_by' => $admin->id,
                     'status' => 'Pending',
                     'created_at' => now(),
                     'updated_at' => now(),

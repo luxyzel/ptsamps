@@ -112,7 +112,7 @@
         <p class="comp-info">Phone: (02)236-5999 | Fax: (02)236-5999 | Company TIN: 009-198-700-000 | www.projecttsolutions.com | billing@projecttsolutions.com</p>
     </div>
 
-    <p class="po-rqt-date">Request Date: </p>
+    <p class="po-rqt-date">Request Date: {{Carbon\Carbon::parse($requestDate->request_date)->format('M. d, Y')}}</p>
     <p class="po-number">PO Number: <span>{{$payments->pos->po_number}}</span></p>
 
     <p class="po-from-info">VENDOR</p>
@@ -210,14 +210,18 @@
                     <strong>{{$requestor->designation}}</strong>
                 </td>
                 <td>
-                    Anne Sharmain Lacap
+                    {{-- Anne Sharmain Lacap --}}
+                     {{$officers->preparedby->name}}
                     <br>
-                    <strong>Procurement and Marketing Officer</strong
+                    {{-- <strong>Procurement and Marketing Officer</strong --}}
+                      <strong>{{$officers->preparedby->position}}</strong>
                 </td>
                 <td>
-                    Alvin Terrence Hong
+                   {{--  Alvin Terrence Hong --}}
+                   {{$officers->approvers->name}}
                     <br>
-                    <strong>CEO</strong>
+                    {{-- <strong>CEO</strong> --}}
+                    <strong>{{$officers->approvers->position}}</strong>
                 </td>
             </tr> 
         </table>
@@ -226,193 +230,3 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{-- 
-<div class="container" style="width: 730px; margin:0 auto; color: red;">
-		  <p></p>
-      <p><strong>PO NUMBER: </strong><p><strong>{{$payments->pos->po_number}}</strong>
-
-			<div class="dboard-content-menu">
-                <p><strong>VENDOR</strong></p>
-                  <div class="fl">
-                      <br><strong><span>Company Name: </span></strong>
-                      <label for="remarks" class="label">{{$vendor->company_name}}</label>
-                    <br>
-                    <div class="field">
-                      <br><strong><span>Contact Person:</span></strong>
-                      <label for="remarks" class="label">{{$vendor->contact_person}}</label>
-                    </div>
-                  </div>
-                  <div class="fr">
-                      <div class="field">
-                      <br><strong><span>Designation: </span></strong>
-                      <label for="remarks" class="label">{{$vendor->designation}}</label>
-                    </div>
-                    <div class="field">
-                      <br><strong><span>Email Address: </span></strong>
-                      <label for="remarks" class="label">{{$vendor->email_address}}</label>
-                    </div>
-                    <div class="field">
-                      <br><strong><span>Contact Number: </span></strong>
-                      <label for="remarks" class="label">{{$vendor->contact_number}}</label>
-                    </div>
-                    <div class="field">
-                      <br><strong><span>Company Address: </span></strong>
-                      <label for="remarks" class="label">{{$vendor->company_address}}</label>
-                    </div>
-                    <div class="field">
-                      <br><strong><span>Phone: </span></strong>
-                      <label for="remarks" class="label">{{$vendor->phone}}</label>
-                    </div>
-                    <div class="field">
-                      <br><strong><span>Fax: </span></strong>
-                      <label for="remarks" class="label">{{$vendor->fax}}</label>
-                    </div>
-                    <div class="field">
-                      <br><strong><span>VAT Reg. TIN: </span></strong>
-                      <label for="remarks" class="label">{{$vendor->vat_number}}</label>
-                    </div><br>
-                </div>
-              </div>
-
-              <div class="dboard-content-menu">
-                <p><strong>SHIP TO</strong></p>
-                  <div class="fl">
-                      <br><strong><span>Company Name: </span></strong>
-                      <label for="remarks" class="label">{{$requestor->company_name}}</label>
-                    <br>
-                    <div class="field">
-                      <br><strong><span>Contact Person: </span></strong>
-                      <label for="remarks" class="label">{{$requestor->contact_person}}</label>
-                    </div>
-                  </div>
-                  <div class="fr">
-                      <div class="field">
-                      <br><strong><span>Designation: </span></strong>
-                      <label for="remarks" class="label">{{$requestor->designation}}</label>
-                    </div>
-                    <div class="field">
-                      <br><strong><span>Email Address: </span></strong>
-                      <label for="remarks" class="label">{{$requestor->email_address}}</label>
-                    </div>
-                    <div class="field">
-                      <br><strong><span>Contact Number: </span></strong>
-                      <label for="remarks" class="label">{{$requestor->contact_number}}</label>
-                    </div>
-                    <div class="field">
-                      <br><strong><span>Company Address: </span></strong>
-                      <label for="remarks" class="label">{{$requestor->company_address}}</label>
-                    </div>
-                    <div class="field">
-                      <br><strong><span>Phone: </span></strong>
-                      <label for="remarks" class="label">{{$requestor->phone}}</label>
-                    </div><br>
-                </div>
-              </div>
-
-		    
-			<div class="manage-content">
-                <table style="width: 100%; text-align: center;" >
-                  <thead>
-                    <tr>
-                        <th style="display:none;">ID</th>
-                        <th>Item</th>
-                        <th>Quantity</th>
-                        <th>UOM</th>
-                        <th>Description</th>
-                        <th>Unit Price</th>
-                        <th>Total Price</th>
-                    </tr>
-                  </thead>
-                  @foreach ($procures as $key => $procure)
-                    <tr>
-                      <td>{{$procure->item}}</td>
-                      <td>{{$procure->quantity}}</td>
-                      <td>{{$procure->uom}}</td>
-                      <td>{{$procure->description}}</td>
-                      <td>{{$procure->unit_price}}</td>
-                      <td>{{$procure->total_price}}</td>
-                    </tr> 
-                  @endforeach
-                </table>
-              </div>
-
-			<div class="dboard-content-menu">
-                <p><strong>PAYMENTS</strong></p><br>
-                  <div class="fl">
-                      <br><strong><span>Notes/Remarks/Comment: </span></strong>
-                      <label for="remarks" class="label">{{$payments->remarks}}</label>
-                    <br>
-                    <div class="field">
-                      <br><strong><span>Payment Terms: </span></strong>
-                      <label for="remarks" class="label">{{$payments->payment_terms}}</label>
-                    </div>
-                  </div>
-                  <div class="fr">
-                      <div class="field">
-                      <br><strong><span>VAT Inclusive: </span></strong>
-                      <label for="remarks" class="label">{{$payments->vat_inc}}</label>
-                    </div>
-                    <div class="field">
-                      <br><strong><span>VAT Exclusive: </span></strong>
-                      <label for="remarks" class="label">{{$payments->vat_ex}}</label>
-                    </div>
-                    <div class="field">
-                      <br><strong><span>Less Discount: </span></strong>
-                      <label for="remarks" class="label">{{$payments->less_discount}}</label>
-                    </div>
-                    <div class="field">
-                      <br><strong><span>12% VAT: </span></strong>
-                      <label for="remarks" class="label">{{$payments->vat}}</label>
-                    </div>
-                    <div class="field">
-                      <br><strong><span>Total Price: </span></strong>
-                      <label for="remarks" class="label">{{$payments->total_price}}</label>
-                    </div>
-                </div>
-              </div>
-
-				<br><br>
-               <table style="width: 100%; text-align: center;" >
-                  <thead>
-                    <tr>
-                        <th>Requested by</th>
-                        <th>Prepared by</th>
-                        <th>Approved by</th>
-                    </tr>
-                  </thead>
-                    <tr>
-                      <td><strong>{{$requestor->requestor_name}}</strong>
-                      	<br>{{$requestor->designation}}
-                      </td>
-                      <td><strong>Ann</strong>
-                      	<br>IT Procurement and Asset Officer
-                      </td>
-                      <td><strong>Alvin Terrence Hong </strong>
-                      	<br>CEO
-                      </td>
-                    </tr> 
-                </table>
-
-</div> --}}

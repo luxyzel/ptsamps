@@ -25,7 +25,7 @@ class PendingPOController extends Controller
     
     public function index()
     {
-        $procures = Procure::select('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id', DB::raw('group_concat(item) as item'))->where('status', 'Pending')->groupBy('group_id', 'created_at', 'requested_by', 'status', 'po_id', 'vendor_id', 'po_id')->orderBy('created_at','DESC')->get();
+        $procures = Procure::select('group_id', 'request_date', 'requested_by', 'status','vendor_id', DB::raw('group_concat(item) as item'))->where('status', 'Pending')->groupBy('group_id', 'request_date', 'requested_by', 'status', 'vendor_id')->orderBy('updated_at','DESC')->get();
         $count = $procures->count();
         $payments = Payment::All();
         $approver = Auth::guard('web')->user();

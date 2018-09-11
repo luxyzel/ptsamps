@@ -41,4 +41,9 @@ class Procure extends Model
     {
         return $this->belongsTo('App\User','approver_id','id');
     }
+
+    public function preparedby()
+    {
+        return $this->belongsTo('App\Admin','prepared_by','id');
+    }
 }

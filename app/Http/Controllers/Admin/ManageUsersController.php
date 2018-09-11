@@ -51,6 +51,7 @@ class ManageUsersController extends Controller
         $this->validateWith([
             'username' => 'required|unique:users|max:64',
             'name' => 'required|max:255',
+            'position' => 'required|max:255',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:8',
         ]);
@@ -58,6 +59,7 @@ class ManageUsersController extends Controller
         $user = new User();
         $user->username = $request->username;
         $user->name = $request->name;
+        $user->position = $request->position;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
 
@@ -120,12 +122,14 @@ class ManageUsersController extends Controller
         $this->validateWith([
             'username' => 'required|unique:users,username,'.$id,
             'name' => 'required',
+            'position' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
         ]);
 
         $user = User::findOrFail($id);
         $user->username = $request->username;
         $user->name = $request->name;
+        $user->position = $request->position;
         $user->email = $request->email;
 
         if ($user->save()) {

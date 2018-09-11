@@ -71,7 +71,7 @@
 					</thead>
 						@foreach ($procures as $procure)
 						<tr>
-							<td>{{ $procure->created_at->toFormattedDateString() }}</td>
+							<td>{{ Carbon\Carbon::parse($procure->request_date)->format('M. d, Y')  }}</td>
 							<td>{{ $procure->requested_by }}</td>
 							<td>{{ $procure->status }}</td>
 							@if($procure->po_id == NULL)

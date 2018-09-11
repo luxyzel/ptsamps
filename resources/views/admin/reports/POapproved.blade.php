@@ -14,13 +14,13 @@
 			{{-- <th>Total Cost</th> --}}
 		</tr>
 	</thead>
-		@foreach ($POReports as $POReport)
+		@foreach ($ApprovedPOReports as $approvedPO)
 			<tr>
-				<td>{{$POReport->ponumbers->po_number}}</td>
-				<td>{{  Carbon\Carbon::parse($POReport->request_date)->format('M. d, Y') }}</td>
-				<td>{{$POReport->requestors->requestor_name}}</td>
-				<td>{{ Carbon\Carbon::parse($POReport->date)->format('M. d, Y') }}</td>
-				<td>{{$POReport->approvers->name}}</td>
+				<td>{{$approvedPO->ponumbers->po_number}}</td>
+				<td>{{  Carbon\Carbon::parse($approvedPO->request_date)->format('M. d, Y') }}</td>
+				<td>{{$approvedPO->requestors->requestor_name}}</td>
+				<td>{{ Carbon\Carbon::parse($approvedPO->date)->format('M. d, Y') }}</td>
+				<td>{{$approvedPO->approvers->name}}</td>
 				{{-- <td>{{$POReport->request_date}}</td> --}}
 			</tr>
 		@endforeach

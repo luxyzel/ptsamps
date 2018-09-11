@@ -30,6 +30,9 @@
                 
             <label class="lbl-view" style="margin-top: 20px;">Fullname</label>
             <p class="view-label">{{$user->name}}</p>
+
+            <label class="lbl-view" style="margin-top: 20px;">Job Title</label>
+            <p class="view-label">{{$user->position}}</p>
                
             <label class="lbl-view" style="margin-top: 20px;">Email</label>
             <p class="view-label">{{$user->email}}</p>

@@ -26,14 +26,18 @@ class POfileController extends Controller
         $procures = Procure::where('po_id', $payments->po_id)->get();
         $vendorid = Procure::select('vendor_id')->where('po_id', $id)->groupBy('vendor_id')->first();
         $requestorid = Procure::select('requestor_id')->where('po_id', $id)->groupBy('requestor_id')->first();
+        $requestDate = Procure::select('request_date')->where('po_id', $id)->groupBy('request_date')->first();
         $vendor = Vendor::where('id', $vendorid->vendor_id)->first();
         $requestor = Requestor::where('id', $requestorid->requestor_id)->first();
+        $officers =  Procure::select('prepared_by', 'approver_id')->where('po_id', $id)->groupBy('prepared_by', 'approver_id')->first();
         
 
         view()->share('procures', $procures);
         view()->share('payments', $payments);
         view()->share('vendor', $vendor);
         view()->share('requestor', $requestor);
+        view()->share('requestDate', $requestDate);
+        view()->share('officers', $officers);
         
  		// $pdf = PDF::loadView('admin.po-tracking.pdfview');
         //return $pdf->download('admin.po-tracking.pdfview.pdf');
@@ -48,6 +52,7 @@ class POfileController extends Controller
         $procures = Procure::where('po_id', $payments->po_id)->get();
         $vendorid = Procure::select('vendor_id')->where('po_id', $id)->groupBy('vendor_id')->first();
         $requestorid = Procure::select('requestor_id')->where('po_id', $id)->groupBy('requestor_id')->first();
+        $requestDate = Procure::select('request_date')->where('po_id', $id)->groupBy('request_date')->first();
         $vendor = Vendor::where('id', $vendorid->vendor_id)->first();
         $requestor = Requestor::where('id', $requestorid->requestor_id)->first();
         
@@ -56,6 +61,7 @@ class POfileController extends Controller
         view()->share('payments', $payments);
         view()->share('vendor', $vendor);
         view()->share('requestor', $requestor);
+        view()->share('requestDate', $requestDate);
         
         $pdf = PDF::loadView('admin.po-tracking.pdfview');
         return $pdf->download('admin.po-tracking.pdfview.pdf');

@@ -67,25 +67,10 @@ class AdminController extends Controller
             ->dimensions(500,300)
             ->responsive(false);
 
-        /////////////////////////////////
-
-        $MonthlyReports = Payment::select(DB::raw('sum(total_price) as total'), DB::raw("DATE_FORMAT(created_at,'%M') as months"))
-            ->where('po_id', '!=', '')
-            ->whereYear('created_at', $year)
-            ->groupBy('months')
-            ->get();
-
-
-        $AssetReports = Asset::select('category_type', DB::raw('count(*) as count', 'status'))->where('status', 'Available')->groupBy('category_type')->get();
-
-        // $POReports = Procure::all()->keyBy('group_id')->groupBy('status')->get();
-
-
-        /////////////////////////////////
 
         $admin = Auth::guard('admin')->user();
         $notifs = Notif::sum('count');
-        return view('admin.dashboard', compact('admin', 'notifs', 'POchart', 'Costchart', 'curCostFormat', 'Stockchart', 'MonthlyReports', 'AssetReports'));
+        return view('admin.dashboard', compact('admin', 'notifs', 'POchart', 'Costchart', 'curCostFormat', 'Stockchart'));
     }
 
     public function accountInfo()
@@ -104,6 +89,7 @@ class AdminController extends Controller
             $this->validateWith([
             'username' => 'required|unique:admins,username,'.$id,
             'name' => 'required|max:255',
+            'position' => 'required|max:255',
             'email' => 'required|email|unique:admins,email,'.$id,
             ]);
 
@@ -115,6 +101,7 @@ class AdminController extends Controller
             }
                 $admin->username = $request->username;
                 $admin->name = $request->name;
+                $admin->position = $request->position;
                 $admin->email = $request->email;
                 $admin->save();
 
@@ -137,6 +124,7 @@ class AdminController extends Controller
             $this->validateWith([
             'username' => 'required|unique:admins,username,'.$id,
             'name' => 'required|max:255',
+            'position' => 'required|max:255',
             'email' => 'required|email|unique:admins,email,'.$id,
             'currentpass' => 'required|max:255',
             'password' => 'required|confirmed|min:8',
@@ -154,6 +142,7 @@ class AdminController extends Controller
 
                 $admin->username = $request->username;
                 $admin->name = $request->name;
+                $admin->position = $request->position;
                 $admin->email = $request->email;
                 $admin->password = bcrypt($request->password);
                 $admin->save();
@@ -187,6 +176,7 @@ class AdminController extends Controller
         $this->validateWith([
             'username' => 'required|unique:admins|max:64',
             'name' => 'required|max:255',
+            'position' => 'required|max:255',
             'email' => 'required|email|unique:admins',
             'password' => 'required|confirmed|min:8',
         ]);
@@ -194,6 +184,7 @@ class AdminController extends Controller
         $adminnew = new Admin();
         $adminnew->username = $request->username;
         $adminnew->name = $request->name;
+        $adminnew->position = $request->position;
         $adminnew->email = $request->email;
         $adminnew->password = bcrypt($request->password);
 

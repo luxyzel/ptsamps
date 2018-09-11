@@ -30,6 +30,9 @@
 				
 				<label class="lbl-login">Fullname</label>
               	<input type="text" class="input" name="name" id="name" autofocus autocomplete="off"  required placeholder="fullname" value="{{old('name')}}">
+
+              	<label class="lbl-login">Job Title</label>
+              	<input type="text" class="input" name="position" id="position" autofocus autocomplete="off"  required placeholder="Job Title" value="{{old('position')}}">
 				
 				<label class="lbl-login">Username</label>
               	<input type="text" class="input" name="username" id="username" autocomplete="off"  required placeholder="username" value="{{old('username')}}">
