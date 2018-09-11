@@ -47,7 +47,7 @@
 				<a href="{{ route('requestor.index')}}">
 					<div class="dboard-left-but">Requestor</div>
 				</a>
-				<a href="#">
+				<a href="{{ route('calendar') }}">
 					<div class="dboard-left-but">Calendar</div>
 				</a>
 				<a href="{{ route('logs.index') }}">
@@ -323,7 +323,7 @@
 
 			<!-- PAGINATION -->
 			<div class="pagination-bot">
-				
+				{{ $procures->appends(request()->input())->links() }}
 			</div>
 
 			<!-- SEARCH NO RECORD FOUND -->

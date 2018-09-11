@@ -45,7 +45,7 @@
 				<a href="{{ route('requestor.index')}}">
 					<div class="dboard-left-but">Requestor</div>
 				</a>
-				<a href="#">
+				<a href="{{ route('calendar') }}">
 					<div class="dboard-left-but">Calendar</div>
 				</a>
 				<a href="{{ route('logs.index') }}">
@@ -299,9 +299,4 @@ $(document).ready(function() {
 $('.notify-bubble').show(400);
 });	
 
-// $(document).ready(function(){
-//     $('#potrack').click(function(){
-//         $('.notify-bubble').none(400);
-//     });
-// });
 </script>
