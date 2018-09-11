@@ -1,10 +1,97 @@
+
 <style type="text/css">
-	table td, table th{
-		border:1px solid black;
-	}
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+@font-face {
+    font-family: roboto-reg;
+    src: url('/fonts/Robotoregular.ttf');
+}
+
+.pdf-cont-outer {
+    width: 730px;
+    margin: 0 auto;
+    color: #000;
+    font-family: roboto-reg;
+}
+
+.header-top-content {
+    text-align: center;
+}
+
+.comp-name {
+    color: #23A9E1;
+    margin-top: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: .5px;
+}
+
+.comp-addr, .comp-info {
+    font-family: roboto-reg;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.po-rqt-date {
+    margin-top: 40px;
+    font-size: 12px;
+}
+
+.po-number {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.po-number span {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
 </style>
-<div class="container">
-		  
+
+
+
+<div class="pdf-cont-outer" {{-- style="border: 1px solid blue" --}}>
+    <div class="header-top-content">
+        <p class="comp-name">Project T International IT and Business Solutions</p>
+        <p class="comp-addr">23rd flr. Bonifacio Stopover Corporate Center, 31st Street Corner 2nd Avenue Bonifacio Global City, Taguig City 1634</p>
+        <p class="comp-info">Phone: (02)236-5999 | Fax: (02)236-5999 | Company TIN: 009-198-700-000 | www.projecttsolutions.com | billing@projecttsolutions.com</p>
+    </div>
+
+    <p class="po-rqt-date">Request Date: </p>
+    <p class="po-number">PO Number: <span>{{$payments->pos->po_number}}</span></p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- 
+<div class="container" style="width: 730px; margin:0 auto; color: red;">
+		  <p></p>
       <p><strong>PO NUMBER: </strong><p><strong>{{$payments->pos->po_number}}</strong>
 
 			<div class="dboard-content-menu">
@@ -169,4 +256,4 @@
                     </tr> 
                 </table>
 
-</div>
+</div> --}}
