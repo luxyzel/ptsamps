@@ -5,6 +5,13 @@
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
 
+<style type="text/css">
+  
+  a {
+    text-decoration: none !important;
+  }
+</style>
+
   <title>Calendar | Asset Management and Procurement System</title>
 </head>
 
@@ -216,7 +223,7 @@
         @endif
         
         <br>
-        <a href="{{ route('event.index') }}" class="dboard-add-acc fl" style="margin-left: 10px;">View Event List</a><br><br>
+        <a href="{{ route('event.index') }}" class="dboard-add-acc fl" style="padding: 3px 10px;">View Event List</a><br><br>
 
        <div class="panel panel-default">
              <div class="panel-heading">

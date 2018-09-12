@@ -1,7 +1,7 @@
 
 @include('templates.header')
 
-  <title>Po Request View Details | Asset Management and Procurement System</title>
+  <title>PO Request View Details | Asset Management and Procurement System</title>
 </head>
 
 <body>
@@ -207,7 +207,6 @@
                         <label for="remarks" class="label">{{$comment->comments}}</label>
                     </div> 
                 @endif
-                  
             </div>
               
           

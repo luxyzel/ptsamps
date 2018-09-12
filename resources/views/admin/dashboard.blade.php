@@ -240,7 +240,7 @@
             <div class="app-dboard-cont" style="margin-top: 20px;">
             	<div class="app-cont-box1 fl" style="margin-right: 20px">
                     <p class="app-cont-title-violet" style="margin-bottom: 25px;">Monthly P.O. Cost</p>
-					<span style="margin-left: 20px;">Current Month PO Cost: <strong>{{$curCostFormat}}</strong></span>
+					<span class="lbl-login" style="margin-left: 20px;">Current Month PO Cost: <strong>{{$curCostFormat}}</strong></span>
                     {!! $Costchart->html() !!}
                 </div>
                 <div class="app-cont-box1 fl">
@@ -275,7 +275,7 @@
                     <div class="clr"></div>       
 		
                 </div>
-       		</div>	
+       		</div>
 
        		<div class="clr"></div>
 
