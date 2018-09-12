@@ -7,24 +7,38 @@ use App\Http\Controllers\Controller;
 use App\Model\Payment;
 use App\Model\Procure;
 use App\Model\Asset;
+use App\Model\Event;
+use Carbon\Carbon;
 use DB;
 use PDF;
 
 class ReportController extends Controller
 {
 	/**** MONTHLY REPORT ***/
-	public function AssetsReportPdf(Request $request)
+	public function MonthlyReportPdf(Request $request)
     {
-        $MonthlyReports = Payment::select(DB::raw('sum(total_price) as total'), DB::raw("DATE_FORMAT(created_at,'%M') as months"))
+        $year = Carbon::now()->year;
+        $month = Carbon::now()->month;
+
+        $MonthlyReports = Payment::select('po_id', 'total_price')
             ->where('po_id', '!=', '')
             ->whereYear('created_at', $year)
-            ->groupBy('months')
+            ->whereMonth('created_at', $month)
+            ->groupBy('po_id', 'total_price')
             ->get();
+
+        $totalCost = Payment::select(DB::raw('sum(total_price) as total'), DB::raw("DATE_FORMAT(created_at,'%M') as months"))
+            ->where('po_id', '!=', '')
+            ->whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)
+            ->groupBy('months')
+            ->first();
         
-        view()->share('AssetReports', $AssetReports);
+        view()->share('MonthlyReports', $MonthlyReports);
+        view()->share('totalCost', $totalCost);
         
-        $pdf = PDF::loadView('admin.reports.assets');
-        return $pdf->download('admin.reports.assets.pdf');
+        $pdf = PDF::loadView('admin.reports.monthly');
+        return $pdf->download('admin.reports.monthly.pdf');
     }
 
     /**** AVAILABLE ASSET REPORT ***/
@@ -70,5 +84,21 @@ class ReportController extends Controller
         
         $pdf = PDF::loadView('admin.reports.POpending');
         return $pdf->download('admin.reports.POpending.pdf');
+    }
+
+    /**** DELIVERIES REPORT ***/
+    public function DeliveryReportPdf(Request $request)
+    {
+        $year = Carbon::now()->year;
+        $month = Carbon::now()->month;
+        $DeliveryReports = Event::whereYear('start_date', $year)
+            ->whereMonth('start_date', $month)
+            ->get();
+
+
+        view()->share('DeliveryReports', $DeliveryReports);
+        
+        $pdf = PDF::loadView('admin.reports.delivery');
+        return $pdf->download('admin.reports.delivery.pdf');
     }
 }
