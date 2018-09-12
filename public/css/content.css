@@ -563,13 +563,43 @@ tspan {
 	border: 1px solid #bed2ff;
 	font-family: roboto-reg;
 	font-size: 13px;
+	margin-top: 5px;
+}
+
+.app-comment-name {
+	font-family: roboto-reg;
+	text-transform: capitalize;
+	font-size: 13px;
+	padding-left: 10px; 
 }
 
 
+/*3rd row dashboard*/
+.dashboard-cont-but {
+	width: 16.5%;
+	text-align: center;
+	padding: 30px 0 40px 0;/* 
+	background-color: red;*/
+}
 
+.manage-db-but {
+	font-family: oswald-reg;
+	font-size: 14px;
+	text-transform: uppercase;
+	color: #ff3668;
+	padding: 5px 30px;
+	background-color: #ffe5ec;
+	letter-spacing: 1px;
+	border-radius: 5px;
+	border: 1px solid #ff3668;
+	transition: background-color 0.3s;
+	box-shadow: 5px 5px 21px -3px rgba(70, 136, 246, 0.29);
+}
 
-
-
+.manage-db-but:hover {
+	background-color: #ffabc0;
+	color: #fff;
+}
 
 
 

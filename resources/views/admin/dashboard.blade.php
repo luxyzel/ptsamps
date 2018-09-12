@@ -237,7 +237,7 @@
        		<div class="clr"></div>
 
             {{-- Second set of contents dashboard  --}}
-            <div class="app-dboard-cont" style="margin-top: 20px; margin-bottom: 20px;">
+            <div class="app-dboard-cont" style="margin-top: 20px;">
             	<div class="app-cont-box1 fl" style="margin-right: 20px">
                     <p class="app-cont-title-violet" style="margin-bottom: 25px;">Monthly P.O. Cost</p>
 					<span style="margin-left: 20px;">Current Month PO Cost: <strong>{{$curCostFormat}}</strong></span>
@@ -250,17 +250,29 @@
                 <div class="clr"></div>
             </div>
 
-            <div class="app-dboard-cont" style="margin-top: 30px">
+            {{-- 3rd Row of Dashboard pdf downloads --}}
+            <div class="app-dboard-cont" style="margin-top: 20px;">
                 <div class="app-cont-box2 fl">
-                    <p class="app-cont-title-green" style="margin-bottom: 15px">REPORTS</p>
-
-                    <br><a href="{{ route('monthly-report.pdf') }}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Monthly PO Cost</a>
-                    <a href="{{ route('assets-report.pdf') }}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Available Assets</a>
-                    <a href="{{route('approvedPO-report.pdf')}}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Approved PO</a>
-                    <a href="{{route('rejectedPO-report.pdf')}}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Rejected PO</a>
-                    <a href="{{route('pendingPO-report.pdf')}}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Pending PO</a>
-                    <a href="{{route('delivery-report.pdf')}}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Asset Deliveries</a>
-
+                    <p class="app-cont-title-pink" style="margin-bottom: 15px">Downloadable PDF Reports</p>
+                    <div class="dashboard-cont-but fl">
+                    	<a href="{{ route('monthly-report.pdf') }}" class="manage-db-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Monthly PO Cost</a>
+                    </div>
+                    <div class="dashboard-cont-but fl">
+                    	<a href="{{ route('assets-report.pdf') }}" class="manage-db-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Available Assets</a>
+                    </div>
+                    <div class="dashboard-cont-but fl">
+                    	<a href="{{ route('approvedPO-report.pdf') }}" class="manage-db-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Approved PO</a>                   	
+                    </div>
+                    <div class="dashboard-cont-but fl">
+                    	<a href="{{ route('rejectedPO-report.pdf') }}" class="manage-db-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Rejected PO</a>
+                    </div>
+                    <div class="dashboard-cont-but fl">
+                    	<a href="{{ route('pendingPO-report.pdf') }}" class="manage-db-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Pending PO</a>
+                    </div>
+                    <div class="dashboard-cont-but fl">
+                    	<a href="{{ route('delivery-report.pdf') }}" class="manage-db-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Asset Deliveries</a>
+                    </div>
+                    <div class="clr"></div>       
 		
                 </div>
        		</div>	
