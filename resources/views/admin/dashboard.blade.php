@@ -254,16 +254,12 @@
                 <div class="app-cont-box2 fl">
                     <p class="app-cont-title-green" style="margin-bottom: 15px">REPORTS</p>
 
-                    {{-- @foreach ($MonthlyReports as $MonthlyReport)
-                    <strong>{{ number_format($MonthlyReport->total, 2) }}</strong><br>
-                    <strong>{{$MonthlyReport->months}}</strong>
-                    @endforeach --}}
-
-                    <br><a href="#" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Monthly</a>
-                    <a href="{{ route('assets-report.pdf') }}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Asset</a>
+                    <br><a href="{{ route('monthly-report.pdf') }}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Monthly PO Cost</a>
+                    <a href="{{ route('assets-report.pdf') }}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Available Assets</a>
                     <a href="{{route('approvedPO-report.pdf')}}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Approved PO</a>
                     <a href="{{route('rejectedPO-report.pdf')}}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Rejected PO</a>
                     <a href="{{route('pendingPO-report.pdf')}}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Pending PO</a>
+                    <a href="{{route('delivery-report.pdf')}}" class="manage-edit-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Asset Deliveries</a>
 
 		
                 </div>

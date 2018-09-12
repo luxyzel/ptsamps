@@ -12,6 +12,7 @@ use App\Model\Notif;
 use App\Model\Procure;
 use App\Model\Payment;
 use App\Model\Asset;
+use App\Model\Event;
 use Carbon\Carbon;
 use Session;
 use Hash;
@@ -28,6 +29,7 @@ class AdminController extends Controller
 
     public function index()
     {
+
         $POchart = Charts::database(Procure::all()->keyBy('group_id'), 'bar', 'highcharts')
                 ->title('Purchase Order Chart')
                 ->elementLabel('summary')

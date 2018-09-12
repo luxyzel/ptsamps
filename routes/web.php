@@ -119,6 +119,10 @@ Route::prefix('admin')->group(function(){
 
 	Route::get('report/PendingPO-summary', ['as' => 'pendingPO-report.pdf', 'uses' => 'Admin\ReportController@PendingPOReportPdf']);
 
+	Route::get('report/monthly-summary', ['as' => 'monthly-report.pdf', 'uses' => 'Admin\ReportController@MonthlyReportPdf']);
+
+	Route::get('report/assetDelivery-summary', ['as' => 'delivery-report.pdf', 'uses' => 'Admin\ReportController@DeliveryReportPdf']);
+
 
 });
 
