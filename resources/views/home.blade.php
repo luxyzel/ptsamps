@@ -83,6 +83,36 @@
                 <div class="clr"></div>
             </div>
 
+
+                  {{-- 3rd Row of Dashboard pdf downloads --}}
+            <div class="app-dboard-cont" style="margin-top: 20px;">
+                <div class="app-cont-box2 fl">
+                    <p class="app-cont-title-pink" style="margin-bottom: 15px">Downloadable PDF Reports</p>
+                    <div class="dashboard-cont-but fl">
+                        <a href="{{ route('monthly-report.pdf') }}" class="manage-db-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Monthly PO Cost</a>
+                    </div>
+                    <div class="dashboard-cont-but fl">
+                        <a href="{{ route('assets-report.pdf') }}" class="manage-db-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Available Assets</a>
+                    </div>
+                    <div class="dashboard-cont-but fl">
+                        <a href="{{ route('approvedPO-report.pdf') }}" class="manage-db-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Approved PO</a>                     
+                    </div>
+                    <div class="dashboard-cont-but fl">
+                        <a href="{{ route('rejectedPO-report.pdf') }}" class="manage-db-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Rejected PO</a>
+                    </div>
+                    <div class="dashboard-cont-but fl">
+                        <a href="{{ route('pendingPO-report.pdf') }}" class="manage-db-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Pending PO</a>
+                    </div>
+                    <div class="dashboard-cont-but fl">
+                        <a href="{{ route('delivery-report.pdf') }}" class="manage-db-but" title="View" onclick = "if (! confirm('Are you sure to download?')) { return false; }">Asset Deliveries</a>
+                    </div>
+                    <div class="clr"></div>       
+        
+                </div>
+            </div>
+
+            <div class="clr"></div>
+
             
         </div>
 
