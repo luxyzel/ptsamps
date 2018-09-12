@@ -6,6 +6,8 @@ namespace App\Http\Controllers\Approver;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\poRouteMail;
 use App\Model\Procure;
 use App\Model\Payment;
 use App\Model\Po_number;
@@ -144,6 +146,11 @@ class PendingPOController extends Controller
                 $NotifSave->count = $NotifSave->count + 1;
                 $NotifSave->save();
 
+                Mail::send(['text'=>'admin.emails.poApprove'],['name','PTS'],function($message){
+                    $message->to('ptsamps@outlook.com', 'To Admin')->subject('PO Request Notif');
+                    $message->from('assetandprocurement@gmail.com','Approver');
+                });
+
                 Session::flash('success', 'PO Request Successfully Approved');
                 return redirect()->route('approved-po.index');
             }
@@ -172,6 +179,11 @@ class PendingPOController extends Controller
                     $NotifSave = Notif::where('user_id', $UserFind)->first();
                     $NotifSave->count = $NotifSave->count +  1;
                     $NotifSave->save();
+
+                    Mail::send(['text'=>'admin.emails.poReject'],['name','PTS'],function($message){
+                    $message->to('ptsamps@outlook.com', 'To Admin')->subject('PO Request Notif');
+                    $message->from('assetandprocurement@gmail.com','Approver');
+                });
 
                     Session::flash('success', 'PO Request Rejected');
                     return redirect()->route('rejected-po.index');
