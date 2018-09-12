@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\poRouteMail;
 use App\Model\Vendor;
 use App\Model\Requestor;
 use App\Model\Procure;
 use App\Model\Payment;
 use App\Model\Po_number;
 use App\Model\Group_number;
+use App\User;
 use App\Model\Log;
 use Carbon\Carbon;
 use Auth;
@@ -145,8 +148,20 @@ class ProcureController extends Controller
                 $eventLogs->user = Auth::guard('admin')->user()->name;
                 $eventLogs->save();
 
+                // $adminE = Auth::guard('admin')->user()->email;
+                // $emails = User::where('id', 1)->first();
+                // $to = explode(',',$emails);
+                Mail::send(['text'=>'admin.emails.poRoute'],['name','PTS'],function($message)
+                {
+                    $message->to('assetandprocurement@outlook.com', 'To Approver')->subject('PO Request Notif');
+                    $message->from('assetandprocurement@gmail.com','Admin');
+                });
+
+
                 Session::flash('success', 'PO Request Successfully Created');
                 return redirect()->back();
+                // return $emails;
+
             }
         }else{
             Session::flash('error', 'Error Encountered');

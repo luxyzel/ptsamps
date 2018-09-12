@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 /*use Illuminate\Http\Request;*/
+use Illuminate\Support\Facades\Mail;
+use App\Mail\poRouteMail;
 use App\Http\Controllers\Controller;
 use App\Model\Procure;
 use App\Model\Payment;
@@ -64,6 +66,13 @@ class POTrackController extends Controller
             $save = DB::table('procures')->where('group_id', $id)->update(array('status' => 'Pending'));
 
             if ($save){
+
+                
+                Mail::send(['text'=>'admin.emails.poReRoute'],['name','PTS'],function($message){
+                    $message->to('assetandprocurement@outlook.com', 'To Approver')->subject('PO Request Notif');
+                    $message->from('assetandprocurement@gmail.com','Admin');
+                });
+
                 Session::flash('success', 'PO Request Successfully Re-route for Approval');
                 return redirect()->back();
             }else{
