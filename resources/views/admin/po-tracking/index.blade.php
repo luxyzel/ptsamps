@@ -3,10 +3,6 @@
 
   <title>PO Tracking | Asset Management and Procurement System</title>
 
-     <style>
-   table {border-collapse:collapse; table-layout:fixed; width:310px;}
-   table td {word-wrap:break-word;}
-   </style>
 </head>
 
 <body>
