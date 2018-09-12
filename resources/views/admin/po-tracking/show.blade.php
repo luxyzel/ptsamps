@@ -1,7 +1,7 @@
 
 @include('templates.header')
 
-  <title>Po Request View Details | Asset Management and Procurement System</title>
+  <title>PO Request View Details | Asset Management and Procurement System</title>
 </head>
 
 <body>
@@ -202,11 +202,11 @@
             <div class="manage-content" style="margin-top: 20px">
                 <p class="app-page-name" style="font-size: 20px; margin-top: 10px;">Approver Comments</p>
                 @if(!is_null($comment->comments))
-                <span>{{$comment->approvers->name}}</span><br>
+                    <span class="app-comment-name">{{$comment->approvers->name}}:</span>
+                    <div class="app-comment-po">
+                        <label for="remarks" class="label">{{$comment->comments}}</label>
+                    </div> 
                 @endif
-                <div class="app-comment-po">
-                    <label for="remarks" class="label">{{$comment->comments}}</label>
-                </div>   
             </div>
               
           

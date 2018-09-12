@@ -210,18 +210,18 @@
                     <strong>{{$requestor->designation}}</strong>
                 </td>
                 <td>
-                    {{-- Anne Sharmain Lacap --}}
-                     {{$officers->preparedby->name}}
+                    Anne Sharmain Lacap
+                     {{-- {{$officers->preparedby->name}} --}}
                     <br>
-                    {{-- <strong>Procurement and Marketing Officer</strong --}}
-                      <strong>{{$officers->preparedby->position}}</strong>
+                     <strong>Procurement and Marketing Officer</strong>
+                      {{-- <strong>{{$officers->preparedby->position}}</strong> --}}
                 </td>
                 <td>
-                   {{--  Alvin Terrence Hong --}}
-                   {{$officers->approvers->name}}
+                    Alvin Terrence Hong
+                   {{-- {{$officers->approvers->name}} --}}
                     <br>
-                    {{-- <strong>CEO</strong> --}}
-                    <strong>{{$officers->approvers->position}}</strong>
+                    <strong>CEO</strong>
+                    {{-- <strong>{{$officers->approvers->position}}</strong> --}}
                 </td>
             </tr> 
         </table>

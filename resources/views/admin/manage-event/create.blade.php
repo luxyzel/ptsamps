@@ -1,70 +1,63 @@
+
 @include('templates.header')
 
   <title>Create Event | Asset Management and Procurement System</title>
 </head>
 
 <body>
-  <div class="flex-container" style="width: 80%; margin: auto;">
-      <div class="columns m-t-10">
-          <div class="column">
-            <h1 class="title">Create New Event</h1>
-          </div>
-      </div>
-      <hr class="m-t-0">
-      <form method="POST" action="{{route('event.store')}}">
-       {{ csrf_field() }}
-       <div class="columns">
-          <div class="column">
 
-          <!-- warning invalid credentials -->
-              @if(Session::has('success'))
-              <div class="comment-error">
-                 <strong> {{ Session::get('success') }}</strong> 
-              </div>
-              @endif
+    {{-- Background --}}
+    <div class="landing-bg">
 
-              <div class="field">
-                <label for="name" class="label">Title</label>
-                <p class="control">
-                    <input type="text" class="input" name="title" id="title" value="{{old('title')}}">
-                </p>
-              </div>
-
-              <div class="field">
-                <label for="name" class="label">Start Date</label>
-                <p class="control">
-                    <input type="date" class="input" name="start_date" id="start_date" value="{{old('start_date')}}">
-                </p>
-              </div>
-
-              <div class="field">
-                <label for="name" class="label">End Date</label>
-                <p class="control">
-                    <input type="date" class="input" name="end_date" id="end_date" value="{{old('end_date')}}">
-                </p>
-              </div>
-              </div> <!-- end of .column -->
-
-              <div class="columns">
-            <div class="column">
-              <hr />
-              <button class="button is-primary is-pulled-right" style="width: 250px;">Add Event</button>
+        {{-- Container of form --}}
+        <div class="user-interface-cont-peri">
+        
+            {{-- TOP LABELS --}}
+            <div class="login-title">
+                <div class="login-logo fl">
+                    <img src="/img/companylogo.png" title="Project T Solutions">
+                </div>
+                <div class="login-text fl">
+                    <p class="login-comp-nm">Create New Event</p>
+                    <p class="system-about">Event and Activities Schedule</p>
+                </div>
+                <div class="clr"></div>
             </div>
 
-           <a href="{{ route('event.index') }}">Back</a>
+            <form method="POST" action="{{route('event.store')}}">
+            {{ csrf_field() }}
 
-           @if ($errors->any())
-          <div class="alert alert-danger">
-              <ul>
-                  @foreach ($errors->all() as $error)
-                      <br><strong>{{ $error }}</strong>
-                  @endforeach
-              </ul>
-          </div>
-          @endif
+                <label for="name" class="lbl-login">Title</label>
+                <input type="text" class="input" name="title" id="title" value="{{old('title')}}">
+
+                <label for="name" class="lbl-login">Start Date</label>
+                <input type="date" class="input" name="start_date" id="start_date" value="{{old('start_date')}}">
+
+                <label for="name" class="lbl-login">End Date</label>
+                <input type="date" class="input" name="end_date" id="end_date" value="{{old('end_date')}}">
+
+                <button class="submit-approver-acc">Add Event</button>
+
+                <!-- DISPLAY ERRORS -->
+                 @if ($errors->any())
+                    <div class="login-comment-error">
+                        @foreach ($errors->all() as $error)
+                            <strong>{{ $error }}</strong>
+                        @endforeach
+                    </div>
+                 @endif
+
+                {{-- Success Message --}}
+                @if(Session::has('success'))
+                    <div class="comment-success">
+                        <strong>{{ Session::get('success') }}</strong> 
+                    </div>
+                @endif
+
+                <a href="{{ route('event.index') }}" class="back-to-manage">Back to Previous page</a>
+
+            </form>
         </div>
-      </form>
-    </div>
 
 @include('templates.footer')
 
