@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
+use App\Notifications\NewEvent;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 use Auth;
 use Validator;
 use App\Model\Event; 
 use Session;
+use App\User;
+use Carbon\Carbon;
 
 class EventController extends Controller
 {
@@ -58,7 +61,15 @@ class EventController extends Controller
         // return redirect('event')->with('success', 'Event has been added');
 
         if ($event->save()) {
+            $deal='';
+            $users = User::all();
+            $when = Carbon::now()->addSecond();
+            foreach($users as $user){
+                 $user->notify((new NewEvent($deal))->delay($when));
+            }
+
              return redirect()->route('event.show', $event->id);
+
           } else{
               return redirect()->route('event.create');
           }

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 /*use Illuminate\Http\Request;*/
 use Illuminate\Support\Facades\Mail;
+use App\Notifications\ReroutePO;
 use App\Mail\poRouteMail;
 use App\Http\Controllers\Controller;
 use App\Model\Procure;
@@ -14,6 +15,8 @@ use App\Model\Po_number;
 use App\Model\Group_number;
 use App\Model\Log;
 use App\Model\Notif;
+use App\User;
+use Carbon\Carbon;
 use Auth;
 use DB;
 use Session;
@@ -68,10 +71,17 @@ class POTrackController extends Controller
             if ($save){
 
                 
-                Mail::send(['text'=>'admin.emails.poReRoute'],['name','PTS'],function($message){
-                    $message->to('assetandprocurement@outlook.com', 'To Approver')->subject('PO Request Notif');
-                    $message->from('assetandprocurement@gmail.com','Admin');
-                });
+                // Mail::send(['text'=>'admin.emails.poReRoute'],['name','PTS'],function($message){
+                //     $message->to('assetandprocurement@outlook.com', 'To Approver')->subject('PO Request Notif');
+                //     $message->from('assetandprocurement@gmail.com','Admin');
+                // });
+
+                $deal='';
+                $users = User::all();
+                $when = Carbon::now()->addSecond();
+                foreach($users as $user){
+                     $user->notify((new ReroutePO($deal))->delay($when));
+                }
 
                 Session::flash('success', 'PO Request Successfully Re-route for Approval');
                 return redirect()->back();

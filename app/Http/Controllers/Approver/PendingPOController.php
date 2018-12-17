@@ -6,6 +6,8 @@ namespace App\Http\Controllers\Approver;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
+use App\Notifications\ApprovedPO;
+use App\Notifications\RejectedPO;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\poRouteMail;
 use App\Model\Procure;
@@ -13,6 +15,8 @@ use App\Model\Payment;
 use App\Model\Po_number;
 use App\Model\Log;
 use App\Model\Notif;
+use App\User;
+use App\Admin;
 use Carbon\Carbon;
 use Auth;
 use DB;
@@ -146,10 +150,20 @@ class PendingPOController extends Controller
                 $NotifSave->count = $NotifSave->count + 1;
                 $NotifSave->save();
 
-                Mail::send(['text'=>'admin.emails.poApprove'],['name','PTS'],function($message){
-                    $message->to('ptsamps@outlook.com', 'To Admin')->subject('PO Request Notif');
-                    $message->from('assetandprocurement@gmail.com','Approver');
-                });
+                // User::all()->notify(new ApprovedPO);
+                $deal='';
+                $admins = Admin::all();
+                $when = Carbon::now()->addSecond();
+                 foreach($admins as $admin){
+                     $admin->notify((new ApprovedPO($deal))->delay($when));
+                 }
+
+                // Notification::send(User::all(), new NewPost($post));
+
+                // Mail::send(['text'=>'admin.emails.poApprove'],['name','PTS'],function($message){
+                //     $message->to('ptsamps@outlook.com', 'To Admin')->subject('PO Request Notif');
+                //     $message->from('assetandprocurement@gmail.com','Approver');
+                // });
 
                 Session::flash('success', 'PO Request Successfully Approved');
                 return redirect()->route('approved-po.index');
@@ -180,10 +194,16 @@ class PendingPOController extends Controller
                     $NotifSave->count = $NotifSave->count +  1;
                     $NotifSave->save();
 
-                    Mail::send(['text'=>'admin.emails.poReject'],['name','PTS'],function($message){
-                    $message->to('ptsamps@outlook.com', 'To Admin')->subject('PO Request Notif');
-                    $message->from('assetandprocurement@gmail.com','Approver');
-                });
+                    $deal='';
+                    $admins = Admin::all();
+                    $when = Carbon::now()->addSecond();
+                    foreach($admins as $admin){
+                         $admin->notify((new RejectedPO($deal))->delay($when));
+                    }
+                    // Mail::send(['text'=>'admin.emails.poReject'],['name','PTS'],function($message){
+                    // $message->to('ptsamps@outlook.com', 'To Admin')->subject('PO Request Notif');
+                    // $message->from('assetandprocurement@gmail.com','Approver');
+                    // });
 
                     Session::flash('success', 'PO Request Rejected');
                     return redirect()->route('rejected-po.index');

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use App\Notifications\PORequest;
 use App\Mail\poRouteMail;
 use App\Model\Vendor;
 use App\Model\Requestor;
@@ -151,11 +152,18 @@ class ProcureController extends Controller
                 // $adminE = Auth::guard('admin')->user()->email;
                 // $emails = User::where('id', 1)->first();
                 // $to = explode(',',$emails);
-                Mail::send(['text'=>'admin.emails.poRoute'],['name','PTS'],function($message)
-                {
-                    $message->to('assetandprocurement@outlook.com', 'To Approver')->subject('PO Request Notif');
-                    $message->from('assetandprocurement@gmail.com','Admin');
-                });
+                // Mail::send(['text'=>'admin.emails.poRoute'],['name','PTS'],function($message)
+                // {
+                //     $message->to('assetandprocurement@outlook.com', 'To Approver')->subject('PO Request Notif');
+                //     $message->from('assetandprocurement@gmail.com','Admin');
+                // });
+
+                $deal='';
+                $users = User::all();
+                $when = Carbon::now()->addSecond();
+                foreach($users as $user){
+                     $user->notify((new PORequest($deal))->delay($when));
+                }
 
 
                 Session::flash('success', 'PO Request Successfully Created');
