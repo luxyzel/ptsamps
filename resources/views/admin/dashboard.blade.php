@@ -229,8 +229,10 @@
             {{-- First set of contents dashboard  --}}
             <div class="app-dboard-cont" style="margin-top: 30px">
                 <div class="app-cont-box2 fl">
-                    <p class="app-cont-title-green" style="margin-bottom: 15px">Purchase Order Summary</p>
-                    <center> {!! $POchart->html() !!}</center>
+                    <p class="app-cont-title-green" style="margin-bottom: 15px">Monthly P.O. Cost</p>
+                    {{-- <center> {!! $POchart->html() !!}</center> --}}
+                    <span class="lbl-login" style="margin-left: 20px;">Current Month PO Cost: <strong>{{$curCostFormat}}</strong></span>
+                    {!! $Costchart->html() !!}
                 </div>
        		</div>	
 
@@ -239,9 +241,10 @@
             {{-- Second set of contents dashboard  --}}
             <div class="app-dboard-cont" style="margin-top: 20px;">
             	<div class="app-cont-box1 fl" style="margin-right: 20px">
-                    <p class="app-cont-title-violet" style="margin-bottom: 25px;">Monthly P.O. Cost</p>
-					<span class="lbl-login" style="margin-left: 20px;">Current Month PO Cost: <strong>{{$curCostFormat}}</strong></span>
-                    {!! $Costchart->html() !!}
+                    <p class="app-cont-title-violet" style="margin-bottom: 25px;">Purchase Order Summary </p>
+					{{-- <span class="lbl-login" style="margin-left: 20px;">Current Month PO Cost: <strong>{{$curCostFormat}}</strong></span> --}}
+                   {{--  {!! $Costchart->html() !!} --}}
+                    <center> {!! $POchart->html() !!}</center>
                 </div>
                 <div class="app-cont-box1 fl">
                     <p class="app-cont-title-orange">Available Asset Summary</p>
